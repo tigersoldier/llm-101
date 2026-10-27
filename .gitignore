@@ -1,0 +1,20 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+build/
+dist/
+*.egg-info/
+site/
+.env
+.DS_Store
+
+# Training data and generated artifacts stay out of Git history.
+data/raw/
+data/processed/
+!data/README.md
+artifacts/*
+!artifacts/README.md

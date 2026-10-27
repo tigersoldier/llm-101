@@ -1,0 +1,29 @@
+name: Tests and lint
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: "3.11"
+          enable-cache: true
+      - name: Sync locked project environment
+        run: uv sync --locked --extra dev
+      - name: Run tests
+        run: uv run pytest -q
+      - name: Run lint
+        run: uv run ruff check src tests
+      - name: Run type check
+        run: uv run pyright --project pyrightconfig.json

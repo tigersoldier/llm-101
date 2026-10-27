@@ -1,0 +1,30 @@
+site_name: LLM 101：从零训练一个小语言模型
+site_description: 用清晰、可运行的代码学习 tokenizer、Transformer、训练与推理。
+site_dir: site
+
+theme:
+  name: material
+  language: zh
+  features:
+    - navigation.sections
+    - navigation.top
+    - content.code.copy
+
+plugins:
+  - search
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight
+
+nav:
+  - 首页: index.md
+  - 课程路线: course/roadmap.md
+  - BPE tokenizer: course/bpe.md
+  - 手写梯度: course/manual-gradients.md
+  - 因果自注意力: course/causal-attention.md
+  - Decoder-only Transformer: course/transformer-model.md
+  - 数据与许可: datasets.md
+  - 内容许可: content-license.md
