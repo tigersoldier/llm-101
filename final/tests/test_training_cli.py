@@ -18,17 +18,23 @@ def _write_token_stream(path: Path, token_ids: list[int]) -> None:
 
 def test_training_cli_saves_artifacts_and_resumes_from_checkpoint(tmp_path) -> None:
     data_dir = tmp_path / "data"
-    tokenizer = BPETokenizer.train(
-        ["hello small world", "the little dog"], vocab_size=32
-    )
-    tokenizer.save(data_dir / "tokenizers" / "english.json")
-    token_ids = [index % tokenizer.vocab_size for index in range(256)]
-    _write_token_stream(data_dir / "english" / "train.bin", token_ids)
-    _write_token_stream(data_dir / "english" / "validation.bin", token_ids)
+    bilingual = data_dir / "bilingual"
+    tokenizer = BPETokenizer.train(["hello small world", "你好，小世界"], vocab_size=32)
+    tokenizer.save(data_dir / "tokenizers" / "bilingual.json")
+    english_tokens = [index % tokenizer.vocab_size for index in range(128)]
+    chinese_tokens = [(index + 3) % tokenizer.vocab_size for index in range(128)]
+    _write_token_stream(bilingual / "train.bin", english_tokens + chinese_tokens)
+    _write_token_stream(bilingual / "validation.bin", english_tokens + chinese_tokens)
+    _write_token_stream(bilingual / "english_validation.bin", english_tokens)
+    _write_token_stream(bilingual / "chinese_validation.bin", chinese_tokens)
     stats = {
         "vocab_size": tokenizer.vocab_size,
-        "train_tokens": len(token_ids),
-        "validation_tokens": len(token_ids),
+        "english_train_tokens": len(english_tokens),
+        "chinese_train_tokens": len(chinese_tokens),
+        "english_validation_tokens": len(english_tokens),
+        "chinese_validation_tokens": len(chinese_tokens),
+        "train_tokens": len(english_tokens) + len(chinese_tokens),
+        "validation_tokens": len(english_tokens) + len(chinese_tokens),
     }
     manifest = {
         "english_revision": "smoke-test",
@@ -36,8 +42,8 @@ def test_training_cli_saves_artifacts_and_resumes_from_checkpoint(tmp_path) -> N
         "source_file_sha256": {},
         "chinese_validation_fraction": 0.01,
         "tokenizer_training": {},
-        "corpora": {"english": stats},
-        "tokenizer_files": {"english": "tokenizers/english.json"},
+        "corpora": {"bilingual": stats},
+        "tokenizer_files": {"bilingual": "tokenizers/bilingual.json"},
     }
     (data_dir / "experiment_manifest.json").write_text(
         json.dumps(manifest), encoding="utf-8"
@@ -48,8 +54,6 @@ def test_training_cli_saves_artifacts_and_resumes_from_checkpoint(tmp_path) -> N
         command = [
             sys.executable,
             "scripts/train_model.py",
-            "--corpus",
-            "english",
             "--hours",
             hours,
             "--data-dir",
@@ -96,13 +100,14 @@ def test_training_cli_saves_artifacts_and_resumes_from_checkpoint(tmp_path) -> N
     first_step = first_payload["training_state"]["step"]
     assert first_step > 0
     assert (run_dir / "model-0.0001h.pt").is_file()
-    assert (run_dir / "samples-0.0001h.json").is_file()
+    samples = json.loads((run_dir / "samples-0.0001h.json").read_text("utf-8"))
+    assert len(samples["samples"]) == 4
+    assert (run_dir / "run_manifest.json").is_file()
 
     run("0.0005", resume=True)
     resumed_payload = load_payload(checkpoint_path)
-    assert resumed_payload["training_state"]["step"] > first_step
-    assert (
-        resumed_payload["training_state"]["language_tokens_seen"]["english"]
-        == (resumed_payload["training_state"]["tokens_seen"])
-    )
+    state = resumed_payload["training_state"]
+    assert state["step"] > first_step
+    assert set(state["language_tokens_seen"]) == {"english", "chinese"}
+    assert sum(state["language_tokens_seen"].values()) == state["tokens_seen"]
     assert (run_dir / "model-0.0005h.pt").is_file()

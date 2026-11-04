@@ -14,13 +14,13 @@
 
 ```bash
 uv run python scripts/generate.py \
-  --model artifacts/runs/english-5h-seed20261027/model-5h.pt \
-  --tokenizer data/processed/tokenizers/english.json \
-  --prompt "Once upon a time, there was a little girl named" \
+  --model artifacts/runs/bilingual-5h-seed20261027/model-5h.pt \
+  --tokenizer data/processed/tokenizers/bilingual.json \
+  --prompt "小兔子走进了" \
   --max-new-tokens 64 --temperature 0.8 --top-k 40 --seed 20261027
 ```
 
-训练脚本会用固定英文和中文提示词生成样例，并保存到对应运行目录的 `samples-<hours>h.json`，方便比较不同语言和训练时长的结果。双语模型各测两种语言的提示词。
+训练脚本会用四条固定提示词（两条英文、两条中文）生成样例，并保存到对应运行目录的 `samples-<hours>h.json`，方便比较不同训练时长下的中英文表现。
 
 ## 当前实现的限制
 

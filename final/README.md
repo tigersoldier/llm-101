@@ -29,7 +29,7 @@ uv run pytest -q
 ```bash
 uv run python scripts/download_datasets.py
 uv run python scripts/prepare_training_data.py
-uv run python scripts/train_model.py --corpus bilingual --hours 1
+uv run python scripts/train_model.py --hours 1
 ```
 
 数据写入仓库根目录的 `data/`，训练产物写入 `artifacts/runs/`；两者都在 `.gitignore` 中。
@@ -40,16 +40,19 @@ uv run python scripts/train_model.py --corpus bilingual --hours 1
 
 ## 已完成的训练
 
-|模型|训练时长|呈现 token 数|验证 PPL|
-|---|---|---:|---:|
-|英文|5 小时|48,089,088|18.08|
-|中文|5 小时|39,990,784|21.74|
-|双语|5 小时|38,290,944|18.61（混合）|
+课程只训练一个中英混合模型：联合词表、两份完整训练语料、不加语言控制 token。
 
-双语模型另有一条 1h → 3h → 5h 的累计训练轨迹，在同一验证窗口上的 PPL 为 38.66 → 21.24 → 18.21。指标含义、样例和局限见 `docs/course/results.md`。
+|训练轨迹|训练时长|呈现 token 数|混合验证 PPL|
+|---|---|---:|---:|
+|同一轨迹累计续训|1 小时|8,207,872|38.66|
+|同上|3 小时|24,002,560|21.24|
+|同上|5 小时|39,636,992|18.21|
+|独立从头运行|5 小时|38,290,944|18.61|
+
+三个时长的 PPL 用同一批固定验证窗口重算，可以直接比较；独立 5 小时运行的种子不同，只作重复运行参考。指标含义、样例和局限见 `docs/course/results.md`。
 
 ## 与主仓库的关系
 
-本目录是快照，不随主仓库代码演进自动更新。修改实现时应同时更新本目录，否则两者会不一致；`results/` 中的样例来自 `bilingual-progressive-seed20261027` 等运行，命名中的时长是累计训练时长。
+本目录是快照，不随主仓库代码演进自动更新。修改实现时应同时更新本目录，否则两者会不一致；`results/` 中的样例来自 `bilingual-progressive-seed20261027` 与 `bilingual-5h-seed20261027` 两次运行，命名中的时长是累计训练时长。
 
 这里的模型是 next-token prediction 预训练的故事续写器，不是指令微调的助手：给定故事开头能继续写，但不会执行“讲个笑话”这类请求。

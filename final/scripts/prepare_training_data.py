@@ -135,41 +135,16 @@ def train_tokenizer(
     )
 
 
-def encode_split(
-    tokenizer: BPETokenizer,
-    train_stories,
-    validation_stories,
-    output_dir: Path,
-    *,
-    workers: int,
-) -> dict[str, int]:
-    train_tokens, train_story_count = write_token_stream(
-        train_stories, tokenizer, output_dir / "train.bin", workers=workers
-    )
-    validation_tokens, validation_story_count = write_token_stream(
-        validation_stories, tokenizer, output_dir / "validation.bin", workers=workers
-    )
-    return {
-        "vocab_size": tokenizer.vocab_size,
-        "train_tokens": train_tokens,
-        "validation_tokens": validation_tokens,
-        "train_stories": train_story_count,
-        "validation_stories": validation_story_count,
-    }
-
-
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--raw-dir", type=Path, default=Path("data/raw"))
     parser.add_argument("--output-dir", type=Path, default=Path("data/processed"))
     parser.add_argument("--sample-stories", type=int, default=512)
     parser.add_argument("--validation-fraction", type=float, default=0.01)
-    parser.add_argument("--english-vocab-size", type=int, default=4096)
-    parser.add_argument("--chinese-vocab-size", type=int, default=8192)
-    parser.add_argument("--bilingual-vocab-size", type=int, default=8192)
+    parser.add_argument("--vocab-size", type=int, default=8192)
     parser.add_argument("--seed", type=int, default=20261027)
     parser.add_argument("--workers", type=int, default=min(4, os.cpu_count() or 1))
-    parser.add_argument("--reuse-tokenizers", action="store_true")
+    parser.add_argument("--reuse-tokenizer", action="store_true")
     parser.add_argument("--force-rebuild-splits", action="store_true")
     args = parser.parse_args()
     if args.sample_stories <= 0:
@@ -209,29 +184,20 @@ def main() -> None:
     )
 
     tokenizer_dir = args.output_dir / "tokenizers"
-    tokenizer_paths = {
-        "english": tokenizer_dir / "english.json",
-        "chinese": tokenizer_dir / "chinese.json",
-        "bilingual": tokenizer_dir / "bilingual.json",
-    }
-    if args.reuse_tokenizers:
-        missing = [path for path in tokenizer_paths.values() if not path.is_file()]
-        if missing:
-            raise FileNotFoundError(f"cannot reuse missing tokenizers: {missing}")
-        english_tokenizer = BPETokenizer.load(tokenizer_paths["english"])
-        chinese_tokenizer = BPETokenizer.load(tokenizer_paths["chinese"])
-        bilingual_tokenizer = BPETokenizer.load(tokenizer_paths["bilingual"])
-        english_alphabet = set(english_tokenizer.initial_tokens)
-        chinese_alphabet = set(chinese_tokenizer.initial_tokens)
-        joint_alphabet = set(bilingual_tokenizer.initial_tokens)
+    tokenizer_path = tokenizer_dir / "bilingual.json"
+    if args.reuse_tokenizer:
+        if not tokenizer_path.is_file():
+            raise FileNotFoundError(f"cannot reuse missing tokenizer: {tokenizer_path}")
+        tokenizer = BPETokenizer.load(tokenizer_path)
+        joint_alphabet = set(tokenizer.initial_tokens)
         tokenizer_training_path = tokenizer_dir / "manifest.json"
         tokenizer_training = (
             json.loads(tokenizer_training_path.read_text(encoding="utf-8"))
             if tokenizer_training_path.exists()
             else {}
         )
-        tokenizer_training["mode"] = "reused-existing-tokenizers"
-        print("Reusing the saved tokenizers and resuming corpus encoding...")
+        tokenizer_training["mode"] = "reused-existing-tokenizer"
+        print("Reusing the saved joint tokenizer and resuming corpus encoding...")
     else:
         print("Scanning full training splits for code points and tokenizer samples...")
         english_alphabet, english_sample, english_story_count = (
@@ -262,73 +228,23 @@ def main() -> None:
             f"English train={english_story_count:,}; "
             f"Chinese train={chinese_train_count:,}, validation={chinese_valid_count:,}"
         )
-        print("Training English BPE merges...", flush=True)
-        english_tokenizer = train_tokenizer(
-            english_sample, english_alphabet, args.english_vocab_size
-        )
-        print("Training Chinese BPE merges...", flush=True)
-        chinese_tokenizer = train_tokenizer(
-            chinese_sample, chinese_alphabet, args.chinese_vocab_size
-        )
-        print("Training bilingual BPE merges...", flush=True)
-        bilingual_tokenizer = train_tokenizer(
-            joint_sample, joint_alphabet, args.bilingual_vocab_size
-        )
-        english_tokenizer.save(tokenizer_paths["english"])
-        chinese_tokenizer.save(tokenizer_paths["chinese"])
-        bilingual_tokenizer.save(tokenizer_paths["bilingual"])
+        print("Training joint Chinese/English BPE merges...", flush=True)
+        tokenizer = train_tokenizer(joint_sample, joint_alphabet, args.vocab_size)
+        tokenizer.save(tokenizer_path)
         tokenizer_training = {
             "mode": "trained-from-reservoir-samples",
             "sample_stories_per_language": args.sample_stories,
             "seed": args.seed,
             "min_frequency": 2,
-            "target_vocab_sizes": {
-                "english": args.english_vocab_size,
-                "chinese": args.chinese_vocab_size,
-                "bilingual": args.bilingual_vocab_size,
-            },
+            "target_vocab_size": args.vocab_size,
         }
 
-    tokenizer_training["actual_vocab_sizes"] = {
-        "english": english_tokenizer.vocab_size,
-        "chinese": chinese_tokenizer.vocab_size,
-        "bilingual": bilingual_tokenizer.vocab_size,
-    }
+    tokenizer_training["actual_vocab_size"] = tokenizer.vocab_size
     write_json(tokenizer_dir / "manifest.json", tokenizer_training)
-    print(
-        "alphabet sizes: "
-        f"English={len(english_alphabet):,}; "
-        f"Chinese={len(chinese_alphabet):,}; bilingual={len(joint_alphabet):,}"
-    )
-    print(
-        "vocabulary sizes: "
-        f"English={english_tokenizer.vocab_size:,}; "
-        f"Chinese={chinese_tokenizer.vocab_size:,}; "
-        f"bilingual={bilingual_tokenizer.vocab_size:,}"
-    )
+    print(f"joint alphabet size: {len(joint_alphabet):,}")
+    print(f"vocabulary size: {tokenizer.vocab_size:,}")
 
-    print("Encoding all training and validation stories...")
-    english_stats = encode_split(
-        english_tokenizer,
-        iter_delimited_stories(english_train),
-        iter_delimited_stories(english_valid),
-        args.output_dir / "english",
-        workers=args.workers,
-    )
-    chinese_stats = encode_split(
-        chinese_tokenizer,
-        iter_jsonl_stories(chinese_train),
-        iter_jsonl_stories(chinese_valid),
-        args.output_dir / "chinese",
-        workers=args.workers,
-    )
-    if (
-        chinese_stats["train_stories"] != chinese_train_count
-        or chinese_stats["validation_stories"] != chinese_valid_count
-    ):
-        raise RuntimeError(
-            "Chinese token streams do not match the persisted story split"
-        )
+    print("Encoding all training and validation stories with the joint tokenizer...")
 
     bilingual_dir = args.output_dir / "bilingual"
     bilingual_dir.mkdir(parents=True, exist_ok=True)
@@ -344,10 +260,10 @@ def main() -> None:
             "chinese_validation.bin",
         ),
     }
-    bilingual_stats: dict[str, int] = {"vocab_size": bilingual_tokenizer.vocab_size}
+    bilingual_stats: dict[str, int] = {"vocab_size": tokenizer.vocab_size}
     for name, (stories, filename) in bilingual_parts.items():
         count, story_count = write_token_stream(
-            stories, bilingual_tokenizer, bilingual_dir / filename, workers=args.workers
+            stories, tokenizer, bilingual_dir / filename, workers=args.workers
         )
         bilingual_stats[f"{name}_tokens"] = count
         bilingual_stats[f"{name}_stories"] = story_count
@@ -375,24 +291,10 @@ def main() -> None:
             "chinese_archive": CHINESE_ARCHIVE_SHA256,
         },
         "chinese_validation_fraction": args.validation_fraction,
-        "alphabet_sizes": {
-            "english": len(english_alphabet),
-            "chinese": len(chinese_alphabet),
-            "bilingual": len(joint_alphabet),
-        },
-        "corpora": {
-            "english": english_stats,
-            "chinese": chinese_stats,
-            "bilingual": bilingual_stats,
-        },
-        "tokenizer_files": {
-            "english": "tokenizers/english.json",
-            "chinese": "tokenizers/chinese.json",
-            "bilingual": "tokenizers/bilingual.json",
-        },
-        "tokenizer_sha256": {
-            name: sha256_file(path) for name, path in tokenizer_paths.items()
-        },
+        "alphabet_sizes": {"bilingual": len(joint_alphabet)},
+        "corpora": {"bilingual": bilingual_stats},
+        "tokenizer_files": {"bilingual": "tokenizers/bilingual.json"},
+        "tokenizer_sha256": {"bilingual": sha256_file(tokenizer_path)},
     }
     write_json(args.output_dir / "experiment_manifest.json", manifest)
     print(json.dumps(manifest["corpora"], ensure_ascii=False, indent=2))

@@ -4,13 +4,12 @@
 
 ## 做了什么
 
-- 三种模型分别随机初始化，权重不共享：英文、中文、中英双语。
-- 模型均为 4 层、`d_model=256`、4 头、`d_ff=1024`、上下文 128，共享输入/输出嵌入。
+- 只训练一个中英混合模型：联合词表、两份完整训练语料、不加语言控制 token。
+- 模型为 4 层、`d_model=256`、4 头、`d_ff=1024`、上下文 128，共享输入/输出嵌入。
 - 训练使用完整语料，按墙钟时间停止；每次运行记录实际呈现给模型的 token 位置数。
-- 双语模型的中英文训练 token 分别约占 59% 和 41%，与两种语料的 token 量比例一致，没有额外重采样。
+- 中英文训练 token 分别约占 59% 和 41%，与两种语料的 token 量比例一致，没有额外重采样。
 
 ## 双语模型：1、3、5 小时的同一训练轨迹
-
 先训练 1 小时，再从同一 checkpoint 续训到 3 小时、5 小时。下表是三个时长分别保存的权重，在同一批固定验证窗口上重新评估的结果（batch 4、上下文 128、每个子集 50 个 batch，固定随机种子），因此可以直接横向比较。
 
 |训练时长|step|呈现 token 数|混合 PPL|英文 PPL|中文 PPL|
@@ -19,21 +18,9 @@
 |3 小时|46,880|24,002,560|21.24|20.17|24.39|
 |5 小时|77,416|39,636,992|18.21|17.21|20.89|
 
-1 小时到 3 小时的改善最大；3 小时到 5 小时仍在下降，但幅度明显变小。perplexity 依赖词表和训练分布，这里的数字只在同一 tokenizer、同一验证窗口内可比。
+1 小时到 3 小时的改善最大；3 小时到 5 小时仍在下降，但幅度明显变小。perplexity 依赖词表和训练分布，这里的数字只在同一词表和同一验证窗口内可比。
 
-## 三个 5 小时基线
-
-各自运行结束时记录的最终验证结果（验证 batch 数为 50，随机种子随运行变化，因此不宜与其他表逐位对照）。
-
-|模型|step|呈现 token 数|验证 loss|验证 PPL|
-|---|---:|---:|---:|---:|
-|英文|93,924|48,089,088|2.895|18.08|
-|中文|78,107|39,990,784|3.079|21.74|
-|双语（混合）|74,787|38,290,944|2.924|18.61|
-|双语（仅英文子集）|—|—|2.860|17.46|
-|双语（仅中文子集）|—|—|3.008|20.25|
-
-中文和英文使用不同词表，两个 PPL 不应互相比较；表中的中文数值更高，只说明该模型在自己的验证分布上的拟合程度。
+另一次独立的 5 小时从头运行（`bilingual-5h-seed20261027`）结束时记录：step 74,787、呈现 38,290,944 token，混合 loss 2.924 / PPL 18.61，英文子集 17.46，中文子集 20.25。它们与上表用的随机种子不同，因此只作为重复运行的参考。
 
 ## 生成样例
 
@@ -58,16 +45,16 @@ One day, she was playing a game with her friend the sink. She got very excited a
 
 ## 这不是指令微调模型
 
-直接用「讲一个小兔子的笑话：」测试三个检查点时，输出都是普通故事续写，没有形成笑话。这类提示之所以失败，是因为训练目标只有 next-token prediction：模型学到的是短故事的分布，不是遵循请求。要获得问答能力需要后训练数据，不在本课程的基础主线内。
+直接用「讲一个小兔子的笑话：」测试 1、3、5 小时三个检查点时，输出都是普通故事续写，没有形成笑话。这类提示之所以失败，是因为训练目标只有 next-token prediction：模型学到的是短故事的分布，不是遵循请求。要获得问答能力需要后训练数据，不在本课程的基础主线内。
 
 ## 复现
 
 ```bash
-uv run python scripts/train_model.py --corpus bilingual --hours 1 \
+uv run python scripts/train_model.py --hours 1 \
   --run-dir artifacts/runs/bilingual-progressive-seed20261027
-uv run python scripts/train_model.py --corpus bilingual --hours 3 \
+uv run python scripts/train_model.py --hours 3 \
   --run-dir artifacts/runs/bilingual-progressive-seed20261027 --resume
-uv run python scripts/train_model.py --corpus bilingual --hours 5 \
+uv run python scripts/train_model.py --hours 5 \
   --run-dir artifacts/runs/bilingual-progressive-seed20261027 --resume
 ```
 

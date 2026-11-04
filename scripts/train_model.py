@@ -1,9 +1,8 @@
-"""Run one CPU-only, time-bounded TinyGPT pretraining experiment.
+"""Run one CPU-only, time-bounded bilingual TinyGPT pretraining experiment.
 
-Examples::
+Example::
 
-    uv run python scripts/train_model.py --corpus english --hours 5
-    uv run python scripts/train_model.py --corpus bilingual --hours 5
+    uv run python scripts/train_model.py --hours 5
 """
 
 from __future__ import annotations
@@ -39,22 +38,15 @@ from llm101.training import TokenStream, train_step
 _ADAMW_BETAS = (0.9, 0.999)
 _ADAMW_EPS = 1e-8
 
-_PROMPTS = {
-    "english": [
-        "Once upon a time, there was a little girl named",
-        "The little rabbit went to the",
-    ],
-    "chinese": [
-        "从前，有一个小女孩，名叫",
-        "小兔子走进了",
-    ],
-    "bilingual": [
-        "Once upon a time, there was a little girl named",
-        "The little rabbit went to the",
-        "从前，有一个小女孩，名叫",
-        "小兔子走进了",
-    ],
-}
+# The course trains a single joint Chinese/English model; no language tag is added.
+CORPUS = "bilingual"
+
+_PROMPTS = [
+    "Once upon a time, there was a little girl named",
+    "The little rabbit went to the",
+    "从前，有一个小女孩，名叫",
+    "小兔子走进了",
+]
 
 
 def _write_json(path: Path, value: dict[str, Any]) -> None:
@@ -86,44 +78,32 @@ def _sha256_file(path: Path) -> str:
 
 
 def _validation_streams(
-    data_dir: Path, corpus: str, stats: dict[str, Any]
+    data_dir: Path, stats: dict[str, Any]
 ) -> list[tuple[str, TokenStream]]:
-    if corpus == "bilingual":
-        english_count = int(stats["english_validation_tokens"])
-        chinese_count = int(stats["chinese_validation_tokens"])
-        return [
-            (
-                "mixed",
-                TokenStream(
-                    data_dir / "bilingual" / "validation.bin",
-                    [("english", english_count), ("chinese", chinese_count)],
-                ),
-            ),
-            (
-                "english",
-                TokenStream(
-                    data_dir / "bilingual" / "english_validation.bin",
-                    [("english", english_count)],
-                ),
-            ),
-            (
-                "chinese",
-                TokenStream(
-                    data_dir / "bilingual" / "chinese_validation.bin",
-                    [("chinese", chinese_count)],
-                ),
-            ),
-        ]
-
-    validation_count = int(stats["validation_tokens"])
+    english_count = int(stats["english_validation_tokens"])
+    chinese_count = int(stats["chinese_validation_tokens"])
     return [
         (
-            "validation",
+            "mixed",
             TokenStream(
-                data_dir / corpus / "validation.bin",
-                [(corpus, validation_count)],
+                data_dir / CORPUS / "validation.bin",
+                [("english", english_count), ("chinese", chinese_count)],
             ),
-        )
+        ),
+        (
+            "english",
+            TokenStream(
+                data_dir / CORPUS / "english_validation.bin",
+                [("english", english_count)],
+            ),
+        ),
+        (
+            "chinese",
+            TokenStream(
+                data_dir / CORPUS / "chinese_validation.bin",
+                [("chinese", chinese_count)],
+            ),
+        ),
     ]
 
 
@@ -172,13 +152,11 @@ def _evaluate_all(
     return results
 
 
-def _language_lengths(corpus: str, stats: dict[str, Any]) -> list[tuple[str, int]]:
-    if corpus == "bilingual":
-        return [
-            ("english", int(stats["english_train_tokens"])),
-            ("chinese", int(stats["chinese_train_tokens"])),
-        ]
-    return [(corpus, int(stats["train_tokens"]))]
+def _language_lengths(stats: dict[str, Any]) -> list[tuple[str, int]]:
+    return [
+        ("english", int(stats["english_train_tokens"])),
+        ("chinese", int(stats["chinese_train_tokens"])),
+    ]
 
 
 def _load_run_payload(
@@ -249,7 +227,7 @@ def _save_checkpoint(
 
 
 def _final_samples(
-    model: TinyGPT, tokenizer: BPETokenizer, corpus: str, seed: int
+    model: TinyGPT, tokenizer: BPETokenizer, seed: int
 ) -> list[dict[str, str]]:
     return [
         {
@@ -264,15 +242,12 @@ def _final_samples(
                 seed=seed + index,
             ),
         }
-        for index, prompt in enumerate(_PROMPTS[corpus])
+        for index, prompt in enumerate(_PROMPTS)
     ]
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument(
-        "--corpus", choices=("english", "chinese", "bilingual"), required=True
-    )
     parser.add_argument("--hours", type=float, required=True)
     parser.add_argument("--data-dir", type=Path, default=Path("data/processed"))
     parser.add_argument("--run-dir", type=Path)
@@ -330,7 +305,7 @@ def main() -> None:
         )
     data_manifest = json.loads(data_manifest_path.read_text(encoding="utf-8"))
     corpora = data_manifest["corpora"]
-    stats = corpora[args.corpus]
+    stats = corpora[CORPUS]
     config = GPTConfig(
         vocab_size=int(stats["vocab_size"]),
         d_model=args.d_model,
@@ -339,10 +314,10 @@ def main() -> None:
         d_ff=args.d_ff,
         max_seq_len=args.sequence_length,
     )
-    train_lengths = _language_lengths(args.corpus, stats)
-    train_stream = TokenStream(args.data_dir / args.corpus / "train.bin", train_lengths)
-    validation_streams = _validation_streams(args.data_dir, args.corpus, stats)
-    tokenizer_relative_path = Path(data_manifest["tokenizer_files"][args.corpus])
+    train_lengths = _language_lengths(stats)
+    train_stream = TokenStream(args.data_dir / CORPUS / "train.bin", train_lengths)
+    validation_streams = _validation_streams(args.data_dir, stats)
+    tokenizer_relative_path = Path(data_manifest["tokenizer_files"][CORPUS])
     if tokenizer_relative_path.is_absolute() or ".." in tokenizer_relative_path.parts:
         raise ValueError(
             "tokenizer path in data manifest must stay inside the data directory"
@@ -368,7 +343,7 @@ def main() -> None:
         "tokenizer_sha256": tokenizer_sha256,
     }
     run_config: dict[str, Any] = {
-        "corpus": args.corpus,
+        "corpus": CORPUS,
         "data_signature": _signature(signature_data),
         "source_file_sha256": data_manifest.get("source_file_sha256", {}),
         "tokenizer_path": tokenizer_relative_path.as_posix(),
@@ -389,7 +364,7 @@ def main() -> None:
         "threads": args.threads,
     }
     run_dir = args.run_dir or Path(
-        f"artifacts/runs/{args.corpus}-{args.hours:g}h-seed{args.seed}"
+        f"artifacts/runs/{CORPUS}-{args.hours:g}h-seed{args.seed}"
     )
     run_dir.mkdir(parents=True, exist_ok=True)
     checkpoint_path = run_dir / "last.pt"
@@ -447,7 +422,7 @@ def main() -> None:
     run_manifest = {
         "created_at": previous_manifest.get("created_at", now_iso),
         "updated_at": now_iso,
-        "corpus": args.corpus,
+        "corpus": CORPUS,
         "target_hours": args.hours,
         "run_config": run_config,
         "train_tokens_available": train_stream.token_count,
@@ -528,7 +503,7 @@ def main() -> None:
                     batches=args.eval_batches,
                     seed=args.seed + step,
                 )
-                primary_name = "mixed" if args.corpus == "bilingual" else "validation"
+                primary_name = "mixed"
                 primary_loss = validation[primary_name]["loss"]
                 if primary_loss < best_validation_loss:
                     best_validation_loss = primary_loss
@@ -536,7 +511,7 @@ def main() -> None:
                         run_dir / "best-model.pt",
                         model,
                         metadata={
-                            "corpus": args.corpus,
+                            "corpus": CORPUS,
                             "step": step,
                             "elapsed_seconds": elapsed,
                             "validation": validation,
@@ -595,14 +570,14 @@ def main() -> None:
         batches=max(args.eval_batches, 50),
         seed=args.seed + step + 1,
     )
-    primary_name = "mixed" if args.corpus == "bilingual" else "validation"
+    primary_name = "mixed"
     if final_validation[primary_name]["loss"] < best_validation_loss:
         best_validation_loss = final_validation[primary_name]["loss"]
         save_model_artifact(
             run_dir / "best-model.pt",
             model,
             metadata={
-                "corpus": args.corpus,
+                "corpus": CORPUS,
                 "step": step,
                 "elapsed_seconds": elapsed,
                 "validation": final_validation,
@@ -622,7 +597,7 @@ def main() -> None:
     )
     final_model_path = run_dir / f"model-{args.hours:g}h.pt"
     final_metadata = {
-        "corpus": args.corpus,
+        "corpus": CORPUS,
         "step": step,
         "training_seconds": elapsed,
         "tokens_seen": tokens_seen,
@@ -637,7 +612,7 @@ def main() -> None:
         {
             "model": final_model_path.name,
             "tokenizer": str(tokenizer_relative_path),
-            "samples": _final_samples(model, tokenizer, args.corpus, args.seed),
+            "samples": _final_samples(model, tokenizer, args.seed),
         },
     )
     _append_event(
@@ -666,7 +641,7 @@ def main() -> None:
         },
     )
     print(
-        f"Finished {args.corpus}: {step:,} steps, {tokens_seen:,} tokens, "
+        f"Finished {CORPUS}: {step:,} steps, {tokens_seen:,} tokens, "
         f"{elapsed / 3600:.3f} training hours; artifacts: {run_dir}",
         flush=True,
     )

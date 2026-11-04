@@ -6,13 +6,13 @@
 
 - 用 PyTorch 张量和矩阵运算，但不依赖 autograd；手写有代表性的反向传播与参数更新。
 - 以清晰、可读、CPU 可运行优先，不以性能优化为目标。
-- 分别训练英文、中文和中英混合三个版本；双语版不加入语言控制标记。
+- 只训练一个中英混合模型；语料不加入语言控制标记，靠提示文本区分语言。
 - 用验证集 loss/perplexity 和固定提示词生成结果评估；按时长实验选出最短达标版本。
 - 教程内容使用中文，代码和练习在本地运行；网站由 MkDocs 生成，可部署到 GitHub Pages。
 
 ## 当前状态
 
-已实现教学版 Unicode-codepoint BPE tokenizer、手写梯度与 SGD/AdamW、因果多头自注意力、Pre-LN decoder-only Transformer，以及完整语料预处理、显式梯度训练、验证、断点续训和自回归生成脚本。有限差分测试覆盖了注意力与小型完整模型的参数梯度。英文、中文、双语三个 5 小时基线，以及双语 1/3/5 小时累计对照已完成，结果见[实验结果](docs/course/results.md)；模型权重再发布许可复核仍待完成。
+已实现教学版 Unicode-codepoint BPE tokenizer、手写梯度与 SGD/AdamW、因果多头自注意力、Pre-LN decoder-only Transformer，以及完整语料预处理、显式梯度训练、验证、断点续训和自回归生成脚本。有限差分测试覆盖了注意力与小型完整模型的参数梯度。课程只训练一个中英混合模型，已完成 5 小时基线和 1/3/5 小时累计对照，结果见[实验结果](docs/course/results.md)；模型权重再发布许可复核仍待完成。
 
 ## 本地开发
 
@@ -31,16 +31,16 @@ uv run mkdocs serve
 ```bash
 uv run python scripts/download_datasets.py
 uv run python scripts/prepare_training_data.py
-uv run python scripts/train_model.py --corpus english --hours 5
+uv run python scripts/train_model.py --hours 5
 ```
 
-`--corpus` 可选 `english`、`chinese` 或 `bilingual`。训练默认 CPU、batch size 4、上下文 128、AdamW 学习率 `3e-4`，每 5 分钟记录验证指标并保存断点。将实验延长到 12 小时可在原运行目录加 `--resume`；具体评估流程见[实验方案](docs/course/experiment-protocol.md)。生成示例：
+课程只训练中英混合模型：联合词表、完整两边训练切分、不加语言控制 token。训练默认 CPU、batch size 4、上下文 128、AdamW 学习率 `3e-4`，每 5 分钟记录验证指标并保存断点。将实验延长到 12 小时可在原运行目录加 `--resume`；具体评估流程见[实验方案](docs/course/experiment-protocol.md)。生成示例：
 
 ```bash
 uv run python scripts/generate.py \
-  --model artifacts/runs/english-5h-seed20261027/model-5h.pt \
-  --tokenizer data/processed/tokenizers/english.json \
-  --prompt "Once upon a time, there was a little girl named"
+  --model artifacts/runs/bilingual-5h-seed20261027/model-5h.pt \
+  --tokenizer data/processed/tokenizers/bilingual.json \
+  --prompt "小兔子走进了"
 ```
 
 原始数据、token 流和训练检查点都留在本地，不提交到 Git。

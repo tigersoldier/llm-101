@@ -11,7 +11,7 @@
 7. **预训练循环**：memory-mapped token 流、随机上下文窗口、next-token loss、验证 loss/perplexity、限时停止和断点续训，见[训练循环](training-loop.md)。
 8. **生成**：贪心解码、temperature 和 top-k 采样，见[推理课程页](inference.md)。当前每步重新计算上下文，不使用 KV cache 或 top-p。
 9. **KV cache**：在简单推理基线稳定后加入 cache，并比较输出一致性与速度。
-10. **模型比较与发布**：对英文、中文和双语模型使用固定提示词与验证集；选满足标准的最短训练时长。实验过程见[限时实验方案](experiment-protocol.md)。
+10. **模型比较与发布**：对中英混合模型使用固定提示词与验证集，比较 1、3、5 小时的同一训练轨迹，选满足标准的最短训练时长。实验过程见[限时实验方案](experiment-protocol.md)，结果见[实验结果](results.md)。
 
 ## 后续课程
 
