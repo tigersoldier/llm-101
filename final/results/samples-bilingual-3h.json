@@ -1,0 +1,22 @@
+{
+  "model": "model-3h.pt",
+  "tokenizer": "tokenizers/bilingual.json",
+  "samples": [
+    {
+      "prompt": "Once upon a time, there was a little girl named",
+      "output": "Once upon a time, there was a little girl named. She was happy because she loved the waves. One day she went to a park with her mom. When it was time for n'llow, she saw a big, yellow flashlight. It was full of lightss and shapes! Everyone was so excited. \nCnight, she could not tell her mom about the flashlight. Her mom hugged her and said they were a wonderful "
+    },
+    {
+      "prompt": "The little rabbit went to the",
+      "output": "The little rabbit went to these who was only only one thing. He was always so busy in the kitchen, but he kept going up and down the hill.\nThe rabbit was very successful to see. Everybody in the field, the rabbit looked so tall that the bear had ever seen. He was so happy and he wanted to try something new.\nWhen he got to the park, he saw a bright white thing in the meadow"
+    },
+    {
+      "prompt": "从前，有一个小女孩，名叫",
+      "output": "从前，有一个小女孩，名叫玛。她喜欢画画。有一天，她把纸笔涂在一座漂亮的房子里。\n玛丝很热，她妈妈给了她一个碗，让她用布满灰尘的笔画画。 “谢谢！”她回答道。\n玛丝看着纸板，耐心地等待着。她看着纸板说：“看看我画的所有颜色。”\n她妈妈微笑着说：“亲爱的"
+    },
+    {
+      "prompt": "小兔子走进了",
+      "output": "小兔子走进了房间，看到厨房里有美味的果汁。地板是红色的，呈橙子，闻起来很香。她觉得好吃！\n“妈妈，你能帮我吗？”她妈妈问。 “当然，亲爱的。你在做什么？”\n“我正在做一个果汁来玩，”她说。\n杰克和妈妈很惊讶。他们不知道这是一个果"
+    }
+  ]
+}

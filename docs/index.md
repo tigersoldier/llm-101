@@ -18,4 +18,4 @@
 
 各模型都是预训练的故事续写器，不是指令微调的助手：给定故事开头会继续写，但不会执行“讲个笑话”这类请求，输出也常有语法和连贯性错误。验证指标和固定提示词样例见[实验结果](course/results.md)。
 
-课程顺序和数据来源见[课程路线](course/roadmap.md)与[数据与许可](datasets.md)。
+课程顺序和数据来源见[课程路线](course/roadmap.md)与[数据与许可](datasets.md)。完整代码快照位于[`final/`](https://github.com/tigersoldier/llm-101/tree/master/final)，可独立安装和运行；以后每章也会有一个同样形式的章节目录。

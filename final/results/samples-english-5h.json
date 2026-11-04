@@ -1,0 +1,14 @@
+{
+  "model": "model-5h.pt",
+  "tokenizer": "tokenizers/english.json",
+  "samples": [
+    {
+      "prompt": "Once upon a time, there was a little girl named",
+      "output": "Once upon a time, there was a little girl named. She was feeling very enthusiastic about exploring the world around her. She walked up to the trees, smiling and smiling.\nBut then, something strange happened. A big, loud noise came from a distance, strange, strange and a little monster. The little girl was scared, but she bravely stepped closer.\nThe monster closed her eyes and the little girl was sho"
+    },
+    {
+      "prompt": "The little rabbit went to the",
+      "output": "The little rabbit went to these in a very long way. The sun was shining and the rabbit became very happy.\nThe little rabbit had a small pond with its big brown fur legs. The mouse loved the little rabbit very much, and said, \"For the best rabbit ever!\" \nThe rabbit smiled and said, \"You are very nice to meet you, and I love playing with you.\" \nThe rabbit was happy and started to "
+    }
+  ]
+}

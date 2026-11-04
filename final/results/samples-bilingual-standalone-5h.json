@@ -1,0 +1,22 @@
+{
+  "model": "model-5h.pt",
+  "tokenizer": "tokenizers/bilingual.json",
+  "samples": [
+    {
+      "prompt": "Once upon a time, there was a little girl named",
+      "output": "Once upon a time, there was a little girl named. She was nervous, so her mom held her hand. The little girl went to a place where her mom had an an apple. She was very excited to see her friends. She saw a big tree with many branches! The little girl said, \"Let's go see my tree!\" So she walked over to the tree and started to climb. \nSuddenly, the girl heard someone calling her name. She s"
+    },
+    {
+      "prompt": "The little rabbit went to the",
+      "output": "The little rabbit went to theater. He saw another little bird and wanted to help it. She asked the bird for help. The rabbit said to the bird, \"Hello, little bird. The bird has been here for help mepers.\"\nThe bird smiled and the bird said hello to them. The rabbit said, \"I hope you will help me find your way!\" \nThe little "
+    },
+    {
+      "prompt": "从前，有一个小女孩，名叫",
+      "output": "从前，有一个小女孩，名叫玛丽。她喜欢吃糖果。她有自己的鲜花、鲜花和糖。有一天，她想在上面画画。她请求妈妈给玛丽买一种饼干。\n莉莉很高兴，迫不及待地想看看。\n玛丽把饼干放进罐子里，等待着。当她回到家时，妈妈说：“莉莉，别再画画了，玛丽。我迫不及待地想"
+    },
+    {
+      "prompt": "小兔子走进了",
+      "output": "小兔子走进了房间，看到了他的朋友萨姆。他们坐在草地上，看着他们。猫头鹰也很伤心，但萨姆想念他。山姆说：“别伤心，我可以帮助你找到你。”\n山姆和山姆玩了一整天，直到太阳回来。山姆了解到，即使事情看起来很困难，也会发生。"
+    }
+  ]
+}
