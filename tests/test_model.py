@@ -5,7 +5,9 @@ import torch
 from llm101.model import GPTConfig, TinyGPT
 
 
-def finite_difference(tensor: torch.Tensor, function, eps: float = 1e-6) -> torch.Tensor:
+def finite_difference(
+    tensor: torch.Tensor, function, eps: float = 1e-6
+) -> torch.Tensor:
     numerical = torch.empty_like(tensor)
     for index in product(*(range(size) for size in tensor.shape)):
         original = tensor[index].item()
@@ -52,15 +54,13 @@ def test_tied_vocabulary_projection_accumulates_gradient_into_embedding() -> Non
     input_ids = torch.tensor([[1, 2]], dtype=torch.long)
     logits = model.forward(input_ids)
     grad_logits = torch.tensor(
-        [[[0.1, 0.2, -0.3, 0.4, -0.2, 0.5],
-          [-0.4, 0.3, 0.2, -0.1, 0.6, -0.2]]],
+        [[[0.1, 0.2, -0.3, 0.4, -0.2, 0.5], [-0.4, 0.3, 0.2, -0.1, 0.6, -0.2]]],
         dtype=torch.float64,
     )
     assert model._final_hidden_states is not None
-    expected_output_head_grad = (
-        grad_logits.reshape(-1, model.config.vocab_size).T
-        @ model._final_hidden_states.reshape(-1, model.config.d_model)
-    )
+    expected_output_head_grad = grad_logits.reshape(
+        -1, model.config.vocab_size
+    ).T @ model._final_hidden_states.reshape(-1, model.config.d_model)
 
     model.backward(grad_logits)
 

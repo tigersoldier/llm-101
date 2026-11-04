@@ -6,7 +6,9 @@ from llm101.layers import GELU, Embedding, LayerNorm, Linear
 from llm101.losses import softmax_cross_entropy
 
 
-def finite_difference(tensor: torch.Tensor, function, eps: float = 1e-6) -> torch.Tensor:
+def finite_difference(
+    tensor: torch.Tensor, function, eps: float = 1e-6
+) -> torch.Tensor:
     """Central finite differences for tiny tensors; deliberately not an autograd tool."""
     numerical = torch.empty_like(tensor)
     for index in product(*(range(size) for size in tensor.shape)):
@@ -32,7 +34,8 @@ def test_linear_backward_matches_finite_differences() -> None:
     grad_input = layer.backward(grad_output)
 
     numerical_input = finite_difference(
-        inputs, lambda: ((inputs @ layer.weight.value + layer.bias.value) * grad_output).sum()
+        inputs,
+        lambda: ((inputs @ layer.weight.value + layer.bias.value) * grad_output).sum(),
     )
     numerical_weight = finite_difference(
         layer.weight.value,
@@ -44,7 +47,9 @@ def test_linear_backward_matches_finite_differences() -> None:
     )
 
     torch.testing.assert_close(grad_input, numerical_input, atol=1e-8, rtol=1e-6)
-    torch.testing.assert_close(layer.weight.grad, numerical_weight, atol=1e-8, rtol=1e-6)
+    torch.testing.assert_close(
+        layer.weight.grad, numerical_weight, atol=1e-8, rtol=1e-6
+    )
     torch.testing.assert_close(layer.bias.grad, numerical_bias, atol=1e-8, rtol=1e-6)
 
 
@@ -67,7 +72,9 @@ def test_embedding_backward_accumulates_repeated_token_ids() -> None:
 def test_layer_norm_supplied_backward_matches_finite_differences() -> None:
     layer = LayerNorm(3, dtype=torch.float64)
     inputs = torch.tensor([[0.2, -0.4, 0.7], [0.1, 0.9, -0.3]], dtype=torch.float64)
-    grad_output = torch.tensor([[0.4, -0.2, 0.3], [0.5, 0.1, -0.6]], dtype=torch.float64)
+    grad_output = torch.tensor(
+        [[0.4, -0.2, 0.3], [0.5, 0.1, -0.6]], dtype=torch.float64
+    )
 
     output = layer.forward(inputs)
     assert torch.isfinite(output).all()
@@ -78,14 +85,18 @@ def test_layer_norm_supplied_backward_matches_finite_differences() -> None:
         centered = inputs - mean
         variance = (centered * centered).mean(dim=-1, keepdim=True)
         normalized = centered * torch.rsqrt(variance + layer.eps)
-        return ((normalized * layer.weight.value + layer.bias.value) * grad_output).sum()
+        return (
+            (normalized * layer.weight.value + layer.bias.value) * grad_output
+        ).sum()
 
     numerical_input = finite_difference(inputs, projected_loss)
     numerical_weight = finite_difference(layer.weight.value, projected_loss)
     numerical_bias = finite_difference(layer.bias.value, projected_loss)
 
     torch.testing.assert_close(grad_input, numerical_input, atol=1e-7, rtol=1e-5)
-    torch.testing.assert_close(layer.weight.grad, numerical_weight, atol=1e-7, rtol=1e-5)
+    torch.testing.assert_close(
+        layer.weight.grad, numerical_weight, atol=1e-7, rtol=1e-5
+    )
     torch.testing.assert_close(layer.bias.grad, numerical_bias, atol=1e-7, rtol=1e-5)
 
 
@@ -96,7 +107,9 @@ def test_gelu_supplied_backward_matches_finite_differences() -> None:
 
     output = activation.forward(inputs)
     grad_input = activation.backward(grad_output)
-    numerical = finite_difference(inputs, lambda: (activation_formula(inputs) * grad_output).sum())
+    numerical = finite_difference(
+        inputs, lambda: (activation_formula(inputs) * grad_output).sum()
+    )
 
     torch.testing.assert_close(output, activation_formula(inputs))
     torch.testing.assert_close(grad_input, numerical, atol=1e-8, rtol=1e-6)
@@ -107,9 +120,7 @@ def activation_formula(inputs: torch.Tensor) -> torch.Tensor:
 
 
 def test_softmax_cross_entropy_gradient_matches_finite_differences() -> None:
-    logits = torch.tensor(
-        [[0.2, -0.3, 1.1], [1.5, 0.4, -0.2]], dtype=torch.float64
-    )
+    logits = torch.tensor([[0.2, -0.3, 1.1], [1.5, 0.4, -0.2]], dtype=torch.float64)
     targets = torch.tensor([2, 0], dtype=torch.long)
 
     loss, gradient = softmax_cross_entropy(logits, targets)

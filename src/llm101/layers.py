@@ -23,9 +23,10 @@ class Linear:
         if in_features <= 0 or out_features <= 0:
             raise ValueError("feature dimensions must be positive")
         scale = math.sqrt(2.0 / (in_features + out_features))
-        weight = torch.randn(
-            in_features, out_features, dtype=dtype, generator=generator
-        ) * scale
+        weight = (
+            torch.randn(in_features, out_features, dtype=dtype, generator=generator)
+            * scale
+        )
         self.weight = Parameter(weight)
         self.bias = Parameter(torch.zeros(out_features, dtype=dtype))
         self.in_features = in_features
@@ -78,9 +79,10 @@ class Embedding:
     ) -> None:
         if num_embeddings <= 0 or embedding_dim <= 0:
             raise ValueError("embedding dimensions must be positive")
-        initial = torch.randn(
-            num_embeddings, embedding_dim, dtype=dtype, generator=generator
-        ) * 0.02
+        initial = (
+            torch.randn(num_embeddings, embedding_dim, dtype=dtype, generator=generator)
+            * 0.02
+        )
         self.weight = Parameter(initial)
         self.num_embeddings = num_embeddings
         self.embedding_dim = embedding_dim

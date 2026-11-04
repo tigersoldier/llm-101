@@ -1,6 +1,6 @@
 import pytest
 
-from llm101.tokenizer import BPETokenizer
+from llm101.tokenizer import BPETokenizer, _merge_pair
 
 
 def test_bpe_round_trip_for_english_and_chinese() -> None:
@@ -18,6 +18,28 @@ def test_bpe_is_deterministic() -> None:
 
     assert first.vocabulary == second.vocabulary
     assert first.merges == second.merges
+
+
+def test_ranked_encoder_matches_sequential_merge_reference() -> None:
+    texts = ["abababab", "abab", "abac", "bbab", "aaaaaaa"]
+    tokenizer = BPETokenizer.train(texts, vocab_size=16, min_frequency=1)
+    token_to_id = tokenizer.token_to_id
+
+    for text in texts:
+        pieces = list(text)
+        for pair in tokenizer.merges:
+            pieces = _merge_pair(pieces, pair)
+        expected = [token_to_id.get(piece, tokenizer.unk_id) for piece in pieces]
+        assert tokenizer.encode(text) == expected
+
+
+def test_tokenizer_can_use_alphabet_collected_from_full_corpus() -> None:
+    tokenizer = BPETokenizer.train(
+        ["aa", "aa"], vocab_size=6, initial_alphabet=("a", "中")
+    )
+
+    assert tokenizer.encode("中") == [tokenizer.token_to_id["中"]]
+    assert tokenizer.unk_id not in tokenizer.encode("中")
 
 
 def test_unknown_code_point_uses_unknown_token() -> None:

@@ -12,17 +12,38 @@
 
 ## 当前状态
 
-当前已实现教学版 Unicode-codepoint BPE tokenizer、手写梯度与 SGD/AdamW、因果多头自注意力，以及带可学习绝对位置和共享词嵌入/输出权重的 Pre-LN decoder-only Transformer。有限差分测试覆盖了注意力与小型完整模型的参数梯度。语料加载、训练循环、评估和推理仍未实现，因此当前还不能训练或生成完整模型。
+已实现教学版 Unicode-codepoint BPE tokenizer、手写梯度与 SGD/AdamW、因果多头自注意力、Pre-LN decoder-only Transformer，以及完整语料预处理、显式梯度训练、验证、断点续训和自回归生成脚本。有限差分测试覆盖了注意力与小型完整模型的参数梯度。英文、中文、双语三个 5 小时基线，以及双语 1/3/5 小时累计对照已完成，结果见[实验结果](docs/course/results.md)；模型权重再发布许可复核仍待完成。
 
 ## 本地开发
 
 ```bash
 uv sync --extra dev --extra docs
 uv run pytest
-uv run ruff check src tests
+uv run ruff check src tests scripts
 uv run pyright --project pyrightconfig.json
 uv run mkdocs serve
 ```
+
+## 数据准备与训练
+
+首次运行需要下载约 2.4 GB 原始语料，再生成本地 token 流：
+
+```bash
+uv run python scripts/download_datasets.py
+uv run python scripts/prepare_training_data.py
+uv run python scripts/train_model.py --corpus english --hours 5
+```
+
+`--corpus` 可选 `english`、`chinese` 或 `bilingual`。训练默认 CPU、batch size 4、上下文 128、AdamW 学习率 `3e-4`，每 5 分钟记录验证指标并保存断点。将实验延长到 12 小时可在原运行目录加 `--resume`；具体评估流程见[实验方案](docs/course/experiment-protocol.md)。生成示例：
+
+```bash
+uv run python scripts/generate.py \
+  --model artifacts/runs/english-5h-seed20261027/model-5h.pt \
+  --tokenizer data/processed/tokenizers/english.json \
+  --prompt "Once upon a time, there was a little girl named"
+```
+
+原始数据、token 流和训练检查点都留在本地，不提交到 Git。
 
 ## 目录约定
 

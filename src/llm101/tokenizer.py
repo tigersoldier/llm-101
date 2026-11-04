@@ -7,6 +7,7 @@ clear rather than fast and keeps its input sequences in memory.
 
 from __future__ import annotations
 
+import heapq
 import json
 from collections import Counter
 from collections.abc import Iterable, Sequence
@@ -41,6 +42,61 @@ def _merge_pair(sequence: Sequence[str], pair: _Pair) -> list[str]:
     return merged
 
 
+def _merge_by_rank(sequence: Sequence[str], ranks: dict[_Pair, int]) -> list[str]:
+    """Apply ranked BPE merges with a heap, preserving left-to-right tie order."""
+    count = len(sequence)
+    if count < 2 or not ranks:
+        return list(sequence)
+
+    values = list(sequence)
+    previous = [index - 1 for index in range(count)]
+    following = [index + 1 for index in range(count)]
+    following[-1] = -1
+    alive = [True] * count
+    versions = [0] * count
+    candidates: list[tuple[int, int, int, int, int]] = []
+
+    def add_candidate(left: int) -> None:
+        if left < 0 or not alive[left]:
+            return
+        right = following[left]
+        if right < 0:
+            return
+        rank = ranks.get((values[left], values[right]))
+        if rank is not None:
+            heapq.heappush(
+                candidates,
+                (rank, left, versions[left], right, versions[right]),
+            )
+
+    for index in range(count - 1):
+        add_candidate(index)
+
+    while candidates:
+        rank, left, left_version, right, right_version = heapq.heappop(candidates)
+        if (
+            not alive[left]
+            or not alive[right]
+            or following[left] != right
+            or versions[left] != left_version
+            or versions[right] != right_version
+            or ranks.get((values[left], values[right])) != rank
+        ):
+            continue
+
+        values[left] += values[right]
+        versions[left] += 1
+        alive[right] = False
+        versions[right] += 1
+        following[left] = following[right]
+        if following[left] >= 0:
+            previous[following[left]] = left
+        add_candidate(previous[left])
+        add_candidate(left)
+
+    return [value for index, value in enumerate(values) if alive[index]]
+
+
 @dataclass
 class BPETokenizer:
     """BPE tokenizer with a transparent training and serialization format."""
@@ -51,6 +107,7 @@ class BPETokenizer:
     _vocabulary: tuple[str, ...] = field(init=False, repr=False)
     _token_to_id: dict[str, int] = field(init=False, repr=False)
     _initial_token_set: frozenset[str] = field(init=False, repr=False)
+    _merge_ranks: dict[_Pair, int] = field(init=False, repr=False)
 
     def __post_init__(self) -> None:
         self.initial_tokens = tuple(self.initial_tokens)
@@ -71,7 +128,9 @@ class BPETokenizer:
         vocabulary_set = set(vocabulary)
         for left, right in self.merges:
             if left not in known_tokens or right not in known_tokens:
-                raise ValueError(f"merge references an unknown token: {(left, right)!r}")
+                raise ValueError(
+                    f"merge references an unknown token: {(left, right)!r}"
+                )
             merged = left + right
             if merged in self.special_tokens:
                 raise ValueError("a BPE merge cannot create a special token")
@@ -83,6 +142,7 @@ class BPETokenizer:
         self._vocabulary = tuple(vocabulary)
         self._token_to_id = {token: index for index, token in enumerate(vocabulary)}
         self._initial_token_set = frozenset(self.initial_tokens)
+        self._merge_ranks = {pair: rank for rank, pair in enumerate(self.merges)}
 
     @classmethod
     def train(
@@ -93,13 +153,16 @@ class BPETokenizer:
         min_frequency: int = 2,
         max_texts: int | None = None,
         special_tokens: tuple[str, ...] = DEFAULT_SPECIAL_TOKENS,
+        initial_alphabet: Iterable[str] = (),
     ) -> BPETokenizer:
         """Learn frequent adjacent code-point merges from ``texts``.
 
         ``max_texts`` limits only tokenizer training, not later LM training. It
         is useful because this intentionally simple implementation repeatedly
         scans its input; a deterministic text sample is often sufficient for
-        teaching BPE on a large corpus.
+        teaching BPE on a large corpus. ``initial_alphabet`` can supply
+        code points collected from the full training split while ``texts`` is
+        only a smaller sample for learning merges.
         """
         if vocab_size < 1:
             raise ValueError("vocab_size must be positive")
@@ -120,7 +183,9 @@ class BPETokenizer:
             if not isinstance(text, str):
                 raise TypeError("BPE training data must contain strings")
             if any(token in text for token in reserved):
-                raise ValueError("training text contains a reserved special-token spelling")
+                raise ValueError(
+                    "training text contains a reserved special-token spelling"
+                )
             if _UNKNOWN_SYMBOL in text:
                 raise ValueError("training text contains the reserved NUL code point")
             if text:
@@ -130,6 +195,12 @@ class BPETokenizer:
 
         if not sequences:
             raise ValueError("cannot train BPE without non-empty texts")
+        for token in initial_alphabet:
+            if not isinstance(token, str) or len(token) != 1:
+                raise ValueError("initial_alphabet entries must be single code points")
+            if token in reserved or token == _UNKNOWN_SYMBOL:
+                raise ValueError("initial_alphabet contains a reserved token")
+            alphabet.add(token)
 
         initial_tokens = tuple(sorted(alphabet))
         minimum_size = len(reserved) + len(initial_tokens)
@@ -219,13 +290,15 @@ class BPETokenizer:
 
         # The reserved NUL symbol marks an unknown code point and blocks merges.
         sequence = [
-            char if char in self._initial_token_set else _UNKNOWN_SYMBOL for char in text
+            char if char in self._initial_token_set else _UNKNOWN_SYMBOL
+            for char in text
         ]
-        for pair in self.merges:
-            sequence = _merge_pair(sequence, pair)
+        sequence = _merge_by_rank(sequence, self._merge_ranks)
 
         ids = [
-            self.unk_id if piece == _UNKNOWN_SYMBOL else self._token_to_id.get(piece, self.unk_id)
+            self.unk_id
+            if piece == _UNKNOWN_SYMBOL
+            else self._token_to_id.get(piece, self.unk_id)
             for piece in sequence
         ]
         if add_bos:
@@ -245,7 +318,11 @@ class BPETokenizer:
             piece = self._vocabulary[token_id]
             if piece == "<unk>":
                 output.append("�")
-            elif piece in self.special_tokens and skip_special_tokens and piece in skippable:
+            elif (
+                piece in self.special_tokens
+                and skip_special_tokens
+                and piece in skippable
+            ):
                 continue
             else:
                 output.append(piece)
