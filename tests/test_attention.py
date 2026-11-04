@@ -5,7 +5,9 @@ import torch
 from llm101.attention import MultiHeadSelfAttention
 
 
-def finite_difference(tensor: torch.Tensor, function, eps: float = 1e-6) -> torch.Tensor:
+def finite_difference(
+    tensor: torch.Tensor, function, eps: float = 1e-6
+) -> torch.Tensor:
     numerical = torch.empty_like(tensor)
     for index in product(*(range(size) for size in tensor.shape)):
         original = tensor[index].item()

@@ -1,0 +1,22 @@
+{
+  "model": "model-5h.pt",
+  "tokenizer": "tokenizers/bilingual.json",
+  "samples": [
+    {
+      "prompt": "Once upon a time, there was a little girl named",
+      "output": "Once upon a time, there was a little girl named. She was only three years old. One day she went on an adventure. As she was walking in the forest, she heard her parents coming from outside. \nThe little girl was very excited at Stella's war. She opened the door and saw a beautiful butterfly. She was so excited to see all the butterflies.\nInside the butterfly, a girl walked along the butterfly. It was s"
+    },
+    {
+      "prompt": "The little rabbit went to the",
+      "output": "The little rabbit went to theater was playing in his house. When he arrived, he saw a big, green box. The box was full of beautiful things inside!\nWhen the box looked inside, he saw a tiny mouse! He was so happy and it started to lick his face. He was so happy and knew it was the perfect gift he had ever seen!\nThe little mouse was so happy to be free"
+    },
+    {
+      "prompt": "从前，有一个小女孩，名叫",
+      "output": "从前，有一个小女孩，名叫玛丽。她喜欢把纸捡起来给妈妈一个大碗。\n玛丽很热情，因为她没有人会提到食物。他开始向她的朋友们讲述了他的话，然后她想加入他们的玩具中的游戏。\n玛丽非常兴奋。她想在厨房里做出她最喜欢的意大利面。\n玛丽拿着"
+    },
+    {
+      "prompt": "小兔子走进了",
+      "output": "小兔子走进了谷仓。他看到了她的朋友，一只名叫咪咪的小兔子。咪咪喜欢跳来跳去寻找胡萝卜。但咪咪却找不到胡萝卜吃。\n咪咪问她的朋友：“你知道什么是什么？”咪咪回答说：“我不知道，我们去看看胡萝卜吧！”咪咪非常高兴。他们玩了很多时间。\n咪咪看到​​她就说：“咪咪，走开！”咪咪"
+    }
+  ]
+}

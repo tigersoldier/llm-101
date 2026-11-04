@@ -32,7 +32,9 @@ def softmax_cross_entropy(
     flat_targets = targets.reshape(-1)
     if flat_targets.numel() == 0:
         raise ValueError("targets must contain at least one token")
-    if bool(torch.any(flat_targets < 0)) or bool(torch.any(flat_targets >= logits.shape[-1])):
+    if bool(torch.any(flat_targets < 0)) or bool(
+        torch.any(flat_targets >= logits.shape[-1])
+    ):
         raise IndexError("target ID is outside the vocabulary")
 
     shifted = flat_logits - flat_logits.max(dim=-1, keepdim=True).values

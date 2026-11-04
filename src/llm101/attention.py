@@ -114,9 +114,9 @@ class MultiHeadSelfAttention:
 
         grad_attention_weights = grad_context @ value.transpose(-2, -1)
         grad_value = attention_weights.transpose(-2, -1) @ grad_context
-        softmax_projection = (
-            grad_attention_weights * attention_weights
-        ).sum(dim=-1, keepdim=True)
+        softmax_projection = (grad_attention_weights * attention_weights).sum(
+            dim=-1, keepdim=True
+        )
         grad_scores = attention_weights * (grad_attention_weights - softmax_projection)
 
         grad_query = (grad_scores @ key) * self.scale

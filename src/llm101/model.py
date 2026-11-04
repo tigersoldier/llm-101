@@ -26,11 +26,15 @@ class GPTConfig:
         if self.vocab_size <= 0:
             raise ValueError("vocab_size must be positive")
         if self.d_model <= 0 or self.n_layers <= 0 or self.n_heads <= 0:
-            raise ValueError("model width, layer count, and head count must be positive")
+            raise ValueError(
+                "model width, layer count, and head count must be positive"
+            )
         if self.d_model % self.n_heads != 0:
             raise ValueError("d_model must be divisible by n_heads")
         if self.d_ff <= 0 or self.max_seq_len <= 0:
-            raise ValueError("feed-forward width and maximum sequence length must be positive")
+            raise ValueError(
+                "feed-forward width and maximum sequence length must be positive"
+            )
 
 
 class TransformerBlock:
@@ -74,7 +78,9 @@ class TransformerBlock:
 
     def backward(self, grad_output: torch.Tensor) -> torch.Tensor:
         if not self._has_forwarded:
-            raise RuntimeError("TransformerBlock.backward() requires a preceding forward()")
+            raise RuntimeError(
+                "TransformerBlock.backward() requires a preceding forward()"
+            )
 
         grad_mlp_branch = self.mlp_down.backward(grad_output)
         grad_mlp_branch = self.activation.backward(grad_mlp_branch)
@@ -145,7 +151,9 @@ class TinyGPT:
                 f"{self.config.max_seq_len}"
             )
         if input_ids.device != self.token_embedding.weight.value.device:
-            raise ValueError("input IDs and model parameters must be on the same device")
+            raise ValueError(
+                "input IDs and model parameters must be on the same device"
+            )
 
         position_ids = torch.arange(sequence_length, device=input_ids.device)
         position_ids = position_ids.unsqueeze(0).expand(batch_size, sequence_length)

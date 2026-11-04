@@ -1,0 +1,22 @@
+{
+  "model": "model-1h.pt",
+  "tokenizer": "tokenizers/bilingual.json",
+  "samples": [
+    {
+      "prompt": "Once upon a time, there was a little girl named",
+      "output": "Once upon a time, there was a little girl named。有一天，她was an incredient man. One day she went to a big fancy tree. In the tree was a great day. The fancy endort was sad that she wanted it.\nSo, they went to a plane of ice in the garden, looking around. Together, they seemed so happy to see it. \nThe two "
+    },
+    {
+      "prompt": "The little rabbit went to the",
+      "output": "The little rabbit went to these to his mommy and said, \"Let's go on my house and have a lovely rumber.\"\nAt the man and his mommy went to the store and saw lots of yummy fruits. Mr. Smith in the forest and his mommy watched the fruit, and soon it was time for the treat. The rabbit was so happy that he had a treasure of hard to make the butterfly. He "
+    },
+    {
+      "prompt": "从前，有一个小女孩，名叫",
+      "output": "从前，有一个小女孩，名叫苏。苏喜欢用蜡笔画画。她有自己的书并且有她的书。这本书是她最好的朋友。\n有一天，一个名叫蒂姆的男孩喜欢读书。他喜欢玩书，一只名叫麦克斯的狗。麦克斯的朋友，一只名叫汤姆的小狗过来玩。卢娜的一个小男孩来读，说：“嗨！你想和我玩吗？”蒂姆说：“是的，我也想玩，但"
+    },
+    {
+      "prompt": "小兔子走进了",
+      "output": "小兔子走进了房间，看到地上有一个大盒子。她很害怕，开始哭泣。\n妈妈来到了屋顶上。她把手枪子从口袋里掏在手中。她拿起它，用了一张纸。她拿起它并把它带出来。她把它从口袋里掏出一张纸来。她把它拉了本和手臂，并告诉妈妈发生了什么事"
+    }
+  ]
+}

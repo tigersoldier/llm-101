@@ -6,26 +6,48 @@
 
 - 用 PyTorch 张量和矩阵运算，但不依赖 autograd；手写有代表性的反向传播与参数更新。
 - 以清晰、可读、CPU 可运行优先，不以性能优化为目标。
-- 分别训练英文、中文和中英混合三个版本；双语版不加入语言控制标记。
+- 只训练一个中英混合模型；语料不加入语言控制标记，靠提示文本区分语言。
 - 用验证集 loss/perplexity 和固定提示词生成结果评估；按时长实验选出最短达标版本。
 - 教程内容使用中文，代码和练习在本地运行；网站由 MkDocs 生成，可部署到 GitHub Pages。
 
 ## 当前状态
 
-当前已实现教学版 Unicode-codepoint BPE tokenizer、手写梯度与 SGD/AdamW、因果多头自注意力，以及带可学习绝对位置和共享词嵌入/输出权重的 Pre-LN decoder-only Transformer。有限差分测试覆盖了注意力与小型完整模型的参数梯度。语料加载、训练循环、评估和推理仍未实现，因此当前还不能训练或生成完整模型。
+已实现教学版 Unicode-codepoint BPE tokenizer、手写梯度与 SGD/AdamW、因果多头自注意力、Pre-LN decoder-only Transformer，以及完整语料预处理、显式梯度训练、验证、断点续训和自回归生成脚本。有限差分测试覆盖了注意力与小型完整模型的参数梯度。课程只训练一个中英混合模型，已完成 5 小时基线和 1/3/5 小时累计对照，结果见[实验结果](docs/course/results.md)；模型权重再发布许可复核仍待完成。
 
 ## 本地开发
 
 ```bash
 uv sync --extra dev --extra docs
 uv run pytest
-uv run ruff check src tests
+uv run ruff check src tests scripts
 uv run pyright --project pyrightconfig.json
 uv run mkdocs serve
 ```
 
+## 数据准备与训练
+
+首次运行需要下载约 2.4 GB 原始语料，再生成本地 token 流：
+
+```bash
+uv run python scripts/download_datasets.py
+uv run python scripts/prepare_training_data.py
+uv run python scripts/train_model.py --hours 5
+```
+
+课程只训练中英混合模型：联合词表、完整两边训练切分、不加语言控制 token。训练默认 CPU、batch size 4、上下文 128、AdamW 学习率 `3e-4`，每 5 分钟记录验证指标并保存断点。将实验延长到 12 小时可在原运行目录加 `--resume`；具体评估流程见[实验方案](docs/course/experiment-protocol.md)。生成示例：
+
+```bash
+uv run python scripts/generate.py \
+  --model artifacts/runs/bilingual-5h-seed20261027/model-5h.pt \
+  --tokenizer data/processed/tokenizers/bilingual.json \
+  --prompt "小兔子走进了"
+```
+
+原始数据、token 流和训练检查点都留在本地，不提交到 Git。
+
 ## 目录约定
 
+- `final/`：课程完成时的完整代码快照，包含 `src/`、`scripts/`、`tests/`、依赖锁定文件和生成样例，可脱离主仓库独立 `uv sync` 与运行。后续每章也会有同样形式的章节目录，保存该章结束时的代码。
 - `docs/`：中文课程和数据来源说明。
 - `src/llm101/`：逐步构建的可复用 Python 实现。
 - `tests/`：单元测试、数值梯度检查和训练/推理回归测试。

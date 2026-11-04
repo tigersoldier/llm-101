@@ -26,5 +26,9 @@ nav:
   - 手写梯度: course/manual-gradients.md
   - 因果自注意力: course/causal-attention.md
   - Decoder-only Transformer: course/transformer-model.md
+  - 预训练循环与断点续训: course/training-loop.md
+  - 自回归推理与生成: course/inference.md
+  - 限时实验方案: course/experiment-protocol.md
+  - 实验结果: course/results.md
   - 数据与许可: datasets.md
   - 内容许可: content-license.md
