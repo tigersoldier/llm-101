@@ -53,6 +53,7 @@ final/                    # 与 ch11/end 逐字节一致
 
 - `start/`：工程脚手架 + 三个失败测试（输出形状、因果掩码、上下文上限）。
 - `end/`：`tokenizer.py`（字符级）、`parameters.py`（`Parameter`，含全零 `grad` 但本章不用）、`layers.py`（`Linear`、`Embedding`、`LayerNorm`、`GELU`，只有 `forward`）、`attention.py`（`MultiHeadSelfAttention`，只有 `forward`）、`model.py`（`GPTConfig`、`TransformerBlock`、`TinyGPT`，并把逐层中间量暴露出来）、`web/`（FastAPI 应用 + 静态前端）、`scripts/serve_demo.py`、`tests/test_api.py`。
+- 小节骨架：`ch01/sections/1.1.md` 到 `1.11.md`，每份只写目标、内容安排、涉及代码、验收与写作注意，正文留给后续。
 - 验收：`pytest` 全绿；`uv run python scripts/serve_demo.py` 后浏览器能输入文本并逐层查看张量；接口链拼接出的 logits 与 `TinyGPT.forward` 一致；改后段 token 不影响前段注意力输出。
 
 ### 第 2 章 真正的 tokenizer
@@ -140,7 +141,25 @@ final/                    # 与 ch11/end 逐字节一致
 - 现有根目录 `final/` 暂时保留；`ch11/end` 完成后由其取代并保持同步。
 - 代码已收敛为单一中英混合模型，章节计划沿用这一结论，不再保留纯英文或纯中文训练路径。
 
-## 10. 尚未决定
+## 10. 交接清单
+
+截至 2026-11-23 的状态：
+
+- `ch01/` 骨架已建立：`README.md`（总览、小节清单、写作流程、进度勾选）、`sections/1.1.md`–`1.11.md`（目标 / 内容安排 / 涉及代码 / 验收 / 写作注意）、`start/`（模块空壳 + 3 个红测试 + 示例文本）、`end/`（只有说明，待填写）。
+- `start/` 已验证可运行：`cd ch01/start && uv sync --extra dev && uv run pytest -q` → 3 failed，全部是 `NotImplementedError`，分别对应 1.4（上下文上限）、1.6（掩码）、1.7（形状）。
+- 章节目录还没有接入 CI；`scripts/check_snapshots.py` 尚未实现。提交时不要带上 `uv.lock`、`.venv/`、缓存或 `egg-info`。
+
+新 session 从 1.1 开始时的步骤：
+
+1. 读 `ch01/sections/1.1.md` 与 `ch01/README.md` 的写作流程。
+2. 把 `ch01/start/` 整体复制为 `ch01/end/`（只做一次），之后只改 `end/`。
+3. 正文写到 `docs/course/ch01/<编号>.md`；1.1 时顺带建 `index.md` 与 `mkdocs.yml` 子导航。
+4. 每节按“验收”跑测试；新测试放 `ch01/end/tests/`。
+5. 完成后把 `sections/<编号>.md` 的状态改为“完成”，并在 `ch01/README.md` 的进度清单里打勾。
+
+写作约束：`start/` 里的函数签名已固定，后续章节依赖它们；第 1 章只做前向；前端只发请求和渲染。
+
+## 11. 尚未决定
 
 - KV cache 是否作为第 12 章（当前代码未实现，`roadmap.md` 已列为后续）。
 - 第 10 章页面加载训练后权重的具体形式：训练一个小号 2 层模型专门给页面用，还是对大模型做量化后导出。
@@ -151,3 +170,4 @@ final/                    # 与 ch11/end 逐字节一致
 - 2026-11-23：建立本文件，记录快照链结构、四项工程决策与十一章清单。
 - 2026-11-23：可视化改为 Python web server + 前端分离：服务器导入本章代码，每层一个 API，浏览器不重复计算；可视化资源只放章节目录内，`docs/` 不再复制；相应去掉 Node 对齐测试。
 - 2026-11-23：第 1 章配置从 `d_model=32`/`d_ff=64`（19,840 参数）缩小到 `d_model=16`/`d_ff=32`（5,824 参数），理由是页面展示与手算核对优先；同时明确本文件只是草案，后续可调整。
+- 2026-11-23：生成 `ch01/` 骨架（小节骨架 + `start` 脚手架 + `end` 占位），并新增第 10 节交接清单。
