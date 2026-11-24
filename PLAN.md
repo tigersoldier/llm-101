@@ -31,13 +31,14 @@ final/                    # 与 ch11/end 逐字节一致
 
 ## 3. 已定决策
 
-以下四项是目前采纳的方案；若后续实验或读者反馈暴露问题，可以再改，改动时同步更新本章节与修订记录。
+以下六项是目前采纳的方案；若后续实验或读者反馈暴露问题，可以再改，改动时同步更新本章节与修订记录。
 
 1. 目录名用 `start/` 与 `end/`，避免与根目录的 `final/` 混淆。
 2. `uv.lock` 只保留在仓库根和 `final/`；各章 README 用 `uv sync`（不带 `--locked`），避免 22 份锁文件副本淹没历史。
-3. 交互页面的前向用 JavaScript 实现，可输入任意文本；用 Node 跑同一组输入与 Python 对齐（容差 1e-5），Node 不存在时跳过该测试。放弃“预计算固定提示词”方案，因为它只能选句子，失去交互感。
+3. 可视化用 **Python web server + 浏览器前端**的分离结构：服务器导入本章代码，为每一层提供一个 API，请求体是上一层的输出，响应是本层的中间量与输出；浏览器只发请求和渲染，不重复实现任何数学。服务器用 FastAPI + uvicorn（作为 `demo` 可选依赖），测试用 `TestClient` 校验每个端点的形状，并有一个“接口链结果 == `TinyGPT.forward`”的等价性测试。放弃浏览器端 JS 前向方案：它要么重写一遍数学、容易与 Python 漂移，要么只能选预置句子。
 4. CI 只运行每个 `end/` 的测试（共用一套环境，`PYTHONPATH` 指向各快照）；`start/` 不跑测试，只校验它与上一章 `end/` 逐字节一致。
 5. 第 1 章直接采用与 `final/` 相同的模块划分，只是暂时只有 `forward`。
+6. 可视化资源（HTML/JS/CSS）只存在于章节目录内，由本地服务器提供；`docs/` 只放说明页，不复制页面文件。
 
 ## 4. 连续性规则
 
@@ -51,8 +52,8 @@ final/                    # 与 ch11/end 逐字节一致
 ### 第 1 章 看得见的 transformer
 
 - `start/`：工程脚手架 + 三个失败测试（输出形状、因果掩码、上下文上限）。
-- `end/`：`parameters.py`（`Parameter`，含全零 `grad` 但本章不用）、`layers.py`（`Linear`、`Embedding`、`LayerNorm`、`GELU`，只有 `forward`）、`attention.py`（`MultiHeadSelfAttention`，只有 `forward`）、`model.py`（`GPTConfig`、`TransformerBlock`、`TinyGPT`）、`scripts/export_demo.py`、`docs/assets/demo/` 交互页、Node 对齐测试。
-- 验收：`pytest` 全绿；页面能输入文本并逐层查看张量；改后段 token 不影响前段注意力输出。
+- `end/`：`tokenizer.py`（字符级）、`parameters.py`（`Parameter`，含全零 `grad` 但本章不用）、`layers.py`（`Linear`、`Embedding`、`LayerNorm`、`GELU`，只有 `forward`）、`attention.py`（`MultiHeadSelfAttention`，只有 `forward`）、`model.py`（`GPTConfig`、`TransformerBlock`、`TinyGPT`，并把逐层中间量暴露出来）、`web/`（FastAPI 应用 + 静态前端）、`scripts/serve_demo.py`、`tests/test_api.py`。
+- 验收：`pytest` 全绿；`uv run python scripts/serve_demo.py` 后浏览器能输入文本并逐层查看张量；接口链拼接出的 logits 与 `TinyGPT.forward` 一致；改后段 token 不影响前段注意力输出。
 
 ### 第 2 章 真正的 tokenizer
 
@@ -110,12 +111,13 @@ final/                    # 与 ch11/end 逐字节一致
 - 结构：2 层 Pre-LN decoder-only，`d_model=16`、2 头（每头 8 维）、`d_ff=32`、上下文 16，可学习绝对位置，共享输入/输出嵌入。
 - 规模：5,824 个参数；float32 权重 23 KiB，网页端 JSON 约 40 KB。刻意保持这么小，是为了让每层的张量能一屏放下、数值可以手算核对；第 5 章再把维度提到 `d_model=256`、4 层，并说明每一步放大了什么。
 - 权重：固定 seed 随机初始化，只有 forward。页面必须明确写“输出是噪声，看的是结构与数据流”，避免读者误以为模型已经会说话。
-- 页面交互：
-  - 输入文本 → 实时前向；
-  - 逐层步进：token 与 id → 词嵌入 + 位置 → 每层 LayerNorm → Q/K/V → 每头注意力矩阵（因果掩码区域灰显）→ 注意力输出 → 残差加 → MLP 隐藏层 → 残差加；
+- 页面交互（前端只负责显示）：
+  - 输入文本 → 调 `/api/tokenize` 与 `/api/embed`；
+  - 逐层步进：每一层一次请求，拿回 LayerNorm、Q/K/V、每头注意力矩阵（因果掩码区域灰显）、注意力输出、残差、MLP 隐藏层、残差；
   - 每步显示张量形状与这一层参数量，热力图悬停显示数值；
-  - 末端显示 logits 与 top-5 概率条，`temperature` 滑块影响采样。
-- 测试：`tests/test_structure.py`（形状、掩码、上下文上限）、`tests/test_demo_parity.py`（Node 执行页面 JS，与 Python 激活对齐 1e-5）。
+  - 末端调 `/api/logits` 得到 logits 与 top-5，`temperature` 滑块调 `/api/sample`。
+- 服务器接口：`GET /api/config`、`POST /api/tokenize`、`POST /api/embed`、`POST /api/layers/{0,1}`、`POST /api/logits`、`POST /api/sample`。每层请求体是上一层的输出，响应体是该层全部中间量与输出，形状与参数名固定。
+- 测试：`tests/test_structure.py`（形状、掩码、上下文上限）、`tests/test_api.py`（端点形状与接口链等价性，容差 1e-6）。不再依赖 Node。
 
 ## 7. 数据与许可边界
 
@@ -129,7 +131,7 @@ final/                    # 与 ch11/end 逐字节一致
 - 快照只含代码、测试、脚本、`pyproject.toml` 与 README；不含 `data/`、`artifacts/`、`site/`、`.venv/`。
 - 新增 `scripts/check_snapshots.py`：校验 `chNN/start` 与 `ch(N-1)/end` 逐字节一致、`final` 与 `ch11/end` 一致，并对每个 `end/` 运行测试。
 - 体积估算：每份快照约 450 KB 文本、约 5 千行；23 份合计约 10 MB，Git 增量压缩后更小。
-- 页面资源放在 `docs/assets/demo/`，由 MkDocs 原样复制；`mkdocs build --strict` 必须继续通过。
+- 前端静态资源放在章节目录内（如 `ch01/end/web/static/`），由本地服务器提供；`docs/` 只放说明页，不复制页面文件，所以站点不需要额外构建步骤。
 
 ## 9. 与现状的关系
 
@@ -147,4 +149,5 @@ final/                    # 与 ch11/end 逐字节一致
 ## 修订记录
 
 - 2026-11-23：建立本文件，记录快照链结构、四项工程决策与十一章清单。
+- 2026-11-23：可视化改为 Python web server + 前端分离：服务器导入本章代码，每层一个 API，浏览器不重复计算；可视化资源只放章节目录内，`docs/` 不再复制；相应去掉 Node 对齐测试。
 - 2026-11-23：第 1 章配置从 `d_model=32`/`d_ff=64`（19,840 参数）缩小到 `d_model=16`/`d_ff=32`（5,824 参数），理由是页面展示与手算核对优先；同时明确本文件只是草案，后续可调整。
