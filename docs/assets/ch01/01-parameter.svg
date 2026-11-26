@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 300" role="img" aria-labelledby="title desc">
+  <title id="title">Parameter 的结构</title>
+  <desc id="desc">Parameter 包含 value 张量和形状相同的 grad 缓冲；本章 grad 全为零。</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#64748b"/>
+    </marker>
+  </defs>
+  <rect width="780" height="300" fill="#ffffff"/>
+  <text x="30" y="36" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="18" font-weight="600" fill="#1f2937">Parameter：一个值，加一块同形状的缓冲</text>
+  <rect x="30" y="60" width="450" height="212" rx="14" fill="#f8fafc" stroke="#94a3b8" stroke-dasharray="6 4"/>
+  <text x="50" y="88" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#64748b">Parameter</text>
+  <rect x="55" y="104" width="400" height="66" rx="8" fill="#e0ecff" stroke="#3b6ea5"/>
+  <text x="75" y="130" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15" font-weight="600" fill="#1e3a5f">value</text>
+  <text x="75" y="153" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#475569">形状 [2, 3]；模型真正读取的数字</text>
+  <rect x="55" y="192" width="400" height="66" rx="8" fill="#f1f5f9" stroke="#cbd5e1"/>
+  <text x="75" y="218" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15" font-weight="600" fill="#334155">grad</text>
+  <text x="75" y="241" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#64748b">形状 [2, 3]；全零，第 3 章写入</text>
+  <line x1="255" y1="172" x2="255" y2="188" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="500" y="120" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#334155">本章</text>
+  <text x="500" y="146" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#334155">只读 value</text>
+  <text x="500" y="172" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#334155">grad 不动</text>
+</svg>
