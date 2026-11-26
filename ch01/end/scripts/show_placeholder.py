@@ -1,7 +1,7 @@
-"""Print the pipeline state after a given section.
+"""Print the placeholder pipeline state after a given section.
 
 Example:
-    uv run python scripts/show_placeholder.py --stage 1 "the cat sat"
+    uv run python scripts/show_placeholder.py "the cat sat"
 """
 
 from __future__ import annotations
@@ -24,15 +24,7 @@ def main() -> None:
     print(
         f"vectors[-1]     {[round(value, 3) for value in result.vectors[0, -1].tolist()]}"
     )
-    print(
-        f"mixed[-1]       {[round(value, 3) for value in result.mixed[0, -1].tolist()]}"
-    )
-    print(
-        f"scores[:8]      {[round(value, 3) for value in result.scores[:8].tolist()]}"
-    )
-    print(
-        f"top-3           {[(index, round(value, 3)) for index, value in result.top]}"
-    )
+    print(f"answer          {result.answer}")
 
 
 if __name__ == "__main__":
