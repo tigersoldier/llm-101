@@ -25,6 +25,7 @@ nav:
   - 第 1 章 看得见的 transformer:
       - 章节总览: course/ch01/index.md
       - 1.1 起点与本章交付物: course/ch01/1.1.md
+      - 1.2 字符级 tokenizer 与接口: course/ch01/1.2.md
   - BPE tokenizer: course/bpe.md
   - 手写梯度: course/manual-gradients.md
   - 因果自注意力: course/causal-attention.md
@@ -35,3 +36,4 @@ nav:
   - 实验结果: course/results.md
   - 数据与许可: datasets.md
   - 内容许可: content-license.md
+  - 术语表: glossary.md
