@@ -53,6 +53,16 @@ def test_context_limit() -> None:
         model.forward(token_ids)
 
 
+def test_batch_dimension() -> None:
+    """1.4: [B, T] ids produce [B, T, C] embeddings."""
+    model = TinyGPT(small_config(), generator=torch.Generator().manual_seed(0))
+    batch = torch.tensor([[1, 2, 3], [4, 5, 6]], dtype=torch.long)
+
+    outputs = model.forward(batch)
+
+    assert outputs.shape == (2, 3, 16)
+
+
 def test_position_changes_the_embedding() -> None:
     """1.4: the same token at different positions gets different vectors."""
     model = TinyGPT(small_config(), generator=torch.Generator().manual_seed(0))
