@@ -1,8 +1,9 @@
-"""The chapter 1 demo pipeline, upgraded one section at a time.
+"""The chapter 1 placeholder pipeline, upgraded one section at a time.
 
 ``run(text, stage)`` uses real components for sections up to ``stage`` and
 simple placeholders afterwards. The placeholders exist so the pipeline can run
-before every component is written; they are not part of the final model.
+before every component is written; later sections replace them and this module
+is removed once the full model takes over.
 """
 
 from __future__ import annotations
@@ -10,9 +11,6 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 import torch
-
-from llm101.layers import Embedding, Linear
-from llm101.tokenizer import DEFAULT_VOCABULARY, CharacterTokenizer
 
 VOCAB_SIZE = 68
 WIDTH = 16
@@ -87,12 +85,16 @@ def run(text: str, stage: int = 1) -> PipelineResult:
         raise NotImplementedError("position embeddings land in section 1.4")
 
     if stage >= 2:
+        from llm101.tokenizer import DEFAULT_VOCABULARY, CharacterTokenizer
+
         tokenizer = CharacterTokenizer(DEFAULT_VOCABULARY)
         ids = tokenizer.encode(text, add_bos=True, add_eos=True)
     else:
         ids = _placeholder_ids(text)
 
     if stage >= 3:
+        from llm101.layers import Embedding
+
         embedding = Embedding(VOCAB_SIZE, WIDTH, generator=_generator(0))
         token_ids = torch.tensor([ids], dtype=torch.long)
         vectors = embedding.forward(token_ids)
@@ -102,6 +104,8 @@ def run(text: str, stage: int = 1) -> PipelineResult:
     mixed = _placeholder_mix(vectors)
 
     if stage >= 3:
+        from llm101.layers import Linear
+
         output = Linear(WIDTH, VOCAB_SIZE, generator=_generator(1))
         scores = output.forward(mixed)[0, -1]
     else:

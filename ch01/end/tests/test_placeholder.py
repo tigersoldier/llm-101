@@ -1,10 +1,10 @@
-"""Tests for the section-by-section demo pipeline."""
+"""Tests for the section-by-section placeholder pipeline."""
 
 import pytest
 import torch
 
 from llm101.layers import Embedding
-from llm101.pipeline import VOCAB_SIZE, WIDTH, run
+from llm101.placeholder import VOCAB_SIZE, WIDTH, run
 from llm101.tokenizer import DEFAULT_VOCABULARY, CharacterTokenizer
 
 EXAMPLE = "the cat sat"
