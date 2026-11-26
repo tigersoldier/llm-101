@@ -28,9 +28,17 @@ STEPS = [
         "68 个分数 → argmax → 字符",
         "占位：编号 → 字符",
         7,
-        lambda stage: stage <= 2 or stage >= 7,
+        lambda stage: True,
     ),
 ]
+
+
+def _answer_detail(stage: int) -> str:
+    if stage >= 7:
+        return "68 个分数 → argmax → 字符"
+    if stage >= 3:
+        return "临时：向量 → 字符"
+    return "占位：编号 → 字符"
 
 
 def _box(top: int, name: str, detail: str, real: bool) -> str:
@@ -88,6 +96,8 @@ def render(stage: int) -> str:
     ) in enumerate(steps):
         real = stage >= real_stage
         detail = real_detail if real else placeholder_detail
+        if name == "答案" and not real:
+            detail = _answer_detail(stage)
         top = 80 + index * 92
         parts.append(_box(top, name, detail, real))
         if index + 1 < len(steps):

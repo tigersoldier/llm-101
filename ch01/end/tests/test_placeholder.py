@@ -44,8 +44,8 @@ def test_stage_three_returns_the_embedding_vectors() -> None:
     embedding = Embedding(VOCAB_SIZE, WIDTH, generator=torch.Generator().manual_seed(0))
     expected = embedding.forward(torch.tensor(result.ids, dtype=torch.long))
 
-    assert result.answer is None
-    assert result.character is None
+    assert result.answer is not None
+    assert result.character == ALPHABET[result.answer % len(ALPHABET)]
     assert result.vectors is not None
     torch.testing.assert_close(result.vectors, expected)
 

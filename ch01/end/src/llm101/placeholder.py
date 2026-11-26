@@ -65,10 +65,13 @@ def run(text: str, stage: int = 1) -> PipelineResult:
             )
             token_ids = torch.tensor(ids, dtype=torch.long)
             vectors = embedding.forward(token_ids)
+            answer = int(vectors[-1].sum().mul(1000).item()) % VOCAB_SIZE
             return PipelineResult(
                 stage=stage,
                 text=text,
                 ids=ids,
+                answer=answer,
+                character=_placeholder_character(answer),
                 vectors=vectors,
             )
 
