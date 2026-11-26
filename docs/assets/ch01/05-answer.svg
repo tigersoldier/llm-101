@@ -1,0 +1,201 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 640" role="img" aria-labelledby="title desc">
+<title id="title">从最后一行向量到字符</title>
+<desc id="desc">三个编号变成三行 16 个数字；最后一行求和、向零取整取余得到编号 21，再映射到字母 v。</desc>
+<rect width="1000" height="640" fill="#ffffff"/>
+<text x="30" y="36" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="18" font-weight="600" fill="#1f2937">从最后一行向量到字符</text>
+<text x="30" y="62" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#64748b">取 the cat sat 的最后 3 个编号，查表得到三行；最后一行用于临时计算。</text>
+<text x="30" y="112" font-family="ui-monospace, monospace" font-size="12" fill="#475569">id 0</text>
+<rect x="100" y="86" width="50" height="40" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="125" y="111" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#1f2937">-0.023</text>
+<rect x="152" y="86" width="50" height="40" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="177" y="111" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#1f2937">-0.023</text>
+<rect x="204" y="86" width="50" height="40" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="229" y="111" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#1f2937">-0.005</text>
+<rect x="256" y="86" width="50" height="40" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="281" y="111" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#1f2937">-0.009</text>
+<rect x="308" y="86" width="50" height="40" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="333" y="111" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#1f2937">0.017</text>
+<rect x="360" y="86" width="50" height="40" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="385" y="111" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#1f2937">0.014</text>
+<rect x="412" y="86" width="50" height="40" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="437" y="111" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#1f2937">-0.006</text>
+<rect x="464" y="86" width="50" height="40" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="489" y="111" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#1f2937">-0.042</text>
+<rect x="516" y="86" width="50" height="40" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="541" y="111" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#1f2937">0.006</text>
+<rect x="568" y="86" width="50" height="40" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="593" y="111" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#1f2937">-0.025</text>
+<rect x="620" y="86" width="50" height="40" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="645" y="111" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#1f2937">0.007</text>
+<rect x="672" y="86" width="50" height="40" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="697" y="111" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#1f2937">0.006</text>
+<rect x="724" y="86" width="50" height="40" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="749" y="111" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#1f2937">0.002</text>
+<rect x="776" y="86" width="50" height="40" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="801" y="111" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#1f2937">0.025</text>
+<rect x="828" y="86" width="50" height="40" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="853" y="111" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#1f2937">0.022</text>
+<rect x="880" y="86" width="50" height="40" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="905" y="111" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#1f2937">-0.005</text>
+<text x="30" y="162" font-family="ui-monospace, monospace" font-size="12" fill="#475569">id 19</text>
+<rect x="100" y="136" width="50" height="40" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="125" y="161" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#1f2937">-0.012</text>
+<rect x="152" y="136" width="50" height="40" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="177" y="161" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#1f2937">-0.004</text>
+<rect x="204" y="136" width="50" height="40" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="229" y="161" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#1f2937">-0.010</text>
+<rect x="256" y="136" width="50" height="40" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="281" y="161" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#1f2937">0.016</text>
+<rect x="308" y="136" width="50" height="40" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="333" y="161" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#1f2937">0.002</text>
+<rect x="360" y="136" width="50" height="40" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="385" y="161" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#1f2937">-0.021</text>
+<rect x="412" y="136" width="50" height="40" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="437" y="161" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#1f2937">-0.002</text>
+<rect x="464" y="136" width="50" height="40" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="489" y="161" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#1f2937">-0.020</text>
+<rect x="516" y="136" width="50" height="40" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="541" y="161" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#1f2937">-0.024</text>
+<rect x="568" y="136" width="50" height="40" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="593" y="161" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#1f2937">0.010</text>
+<rect x="620" y="136" width="50" height="40" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="645" y="161" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#1f2937">-0.025</text>
+<rect x="672" y="136" width="50" height="40" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="697" y="161" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#1f2937">-0.027</text>
+<rect x="724" y="136" width="50" height="40" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="749" y="161" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#1f2937">0.031</text>
+<rect x="776" y="136" width="50" height="40" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="801" y="161" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#1f2937">-0.001</text>
+<rect x="828" y="136" width="50" height="40" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="853" y="161" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#1f2937">-0.008</text>
+<rect x="880" y="136" width="50" height="40" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="905" y="161" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#1f2937">-0.005</text>
+<text x="30" y="212" font-family="ui-monospace, monospace" font-size="12" fill="#475569">id 67</text>
+<rect x="100" y="186" width="50" height="40" fill="#e0ecff" stroke="#cbd5e1"/>
+<text x="125" y="211" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#1f2937">-0.012</text>
+<rect x="152" y="186" width="50" height="40" fill="#e0ecff" stroke="#cbd5e1"/>
+<text x="177" y="211" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#1f2937">0.008</text>
+<rect x="204" y="186" width="50" height="40" fill="#e0ecff" stroke="#cbd5e1"/>
+<text x="229" y="211" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#1f2937">-0.025</text>
+<rect x="256" y="186" width="50" height="40" fill="#e0ecff" stroke="#cbd5e1"/>
+<text x="281" y="211" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#1f2937">-0.001</text>
+<rect x="308" y="186" width="50" height="40" fill="#e0ecff" stroke="#cbd5e1"/>
+<text x="333" y="211" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#1f2937">-0.001</text>
+<rect x="360" y="186" width="50" height="40" fill="#e0ecff" stroke="#cbd5e1"/>
+<text x="385" y="211" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#1f2937">0.012</text>
+<rect x="412" y="186" width="50" height="40" fill="#e0ecff" stroke="#cbd5e1"/>
+<text x="437" y="211" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#1f2937">-0.009</text>
+<rect x="464" y="186" width="50" height="40" fill="#e0ecff" stroke="#cbd5e1"/>
+<text x="489" y="211" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#1f2937">-0.024</text>
+<rect x="516" y="186" width="50" height="40" fill="#e0ecff" stroke="#cbd5e1"/>
+<text x="541" y="211" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#1f2937">-0.031</text>
+<rect x="568" y="186" width="50" height="40" fill="#e0ecff" stroke="#cbd5e1"/>
+<text x="593" y="211" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#1f2937">0.009</text>
+<rect x="620" y="186" width="50" height="40" fill="#e0ecff" stroke="#cbd5e1"/>
+<text x="645" y="211" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#1f2937">-0.055</text>
+<rect x="672" y="186" width="50" height="40" fill="#e0ecff" stroke="#cbd5e1"/>
+<text x="697" y="211" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#1f2937">0.001</text>
+<rect x="724" y="186" width="50" height="40" fill="#e0ecff" stroke="#cbd5e1"/>
+<text x="749" y="211" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#1f2937">-0.004</text>
+<rect x="776" y="186" width="50" height="40" fill="#e0ecff" stroke="#cbd5e1"/>
+<text x="801" y="211" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#1f2937">-0.016</text>
+<rect x="828" y="186" width="50" height="40" fill="#e0ecff" stroke="#cbd5e1"/>
+<text x="853" y="211" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#1f2937">-0.043</text>
+<rect x="880" y="186" width="50" height="40" fill="#e0ecff" stroke="#cbd5e1"/>
+<text x="905" y="211" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#1f2937">0.007</text>
+<text x="100" y="238" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#3b6ea5">最后一行</text>
+<line x1="500" y1="240" x2="500" y2="270" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="50" y="275" width="270" height="88" rx="10" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="70" y="303" font-family="ui-monospace, monospace" font-size="14" fill="#1f2937">s = Σ v[k]</text>
+<text x="70" y="333" font-family="ui-monospace, monospace" font-size="14" fill="#475569">≈ -0.1838</text>
+<line x1="325" y1="319" x2="360" y2="319" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="365" y="275" width="320" height="88" rx="10" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="385" y="303" font-family="ui-monospace, monospace" font-size="14" fill="#1f2937">a = trunc(1000 s) mod 68</text>
+<text x="385" y="333" font-family="ui-monospace, monospace" font-size="14" fill="#475569">= 21</text>
+<line x1="690" y1="319" x2="720" y2="319" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="725" y="275" width="230" height="88" rx="10" fill="#ecfdf5" stroke="#047857"/>
+<text x="745" y="303" font-family="ui-monospace, monospace" font-size="14" fill="#064e3b">alphabet[21]</text>
+<text x="745" y="333" font-family="ui-monospace, monospace" font-size="14" fill="#047857">= &quot;v&quot;</text>
+<text x="30" y="420" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#475569">小写字母表：a=0，b=1，…，v=21</text>
+<rect x="40" y="435" width="34" height="38" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="57" y="460" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">a</text>
+<text x="57" y="489" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#64748b">0</text>
+<rect x="76" y="435" width="34" height="38" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="93" y="460" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">b</text>
+<text x="93" y="489" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#64748b">1</text>
+<rect x="112" y="435" width="34" height="38" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="129" y="460" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">c</text>
+<text x="129" y="489" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#64748b">2</text>
+<rect x="148" y="435" width="34" height="38" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="165" y="460" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">d</text>
+<text x="165" y="489" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#64748b">3</text>
+<rect x="184" y="435" width="34" height="38" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="201" y="460" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">e</text>
+<text x="201" y="489" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#64748b">4</text>
+<rect x="220" y="435" width="34" height="38" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="237" y="460" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">f</text>
+<text x="237" y="489" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#64748b">5</text>
+<rect x="256" y="435" width="34" height="38" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="273" y="460" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">g</text>
+<text x="273" y="489" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#64748b">6</text>
+<rect x="292" y="435" width="34" height="38" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="309" y="460" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">h</text>
+<text x="309" y="489" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#64748b">7</text>
+<rect x="328" y="435" width="34" height="38" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="345" y="460" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">i</text>
+<text x="345" y="489" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#64748b">8</text>
+<rect x="364" y="435" width="34" height="38" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="381" y="460" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">j</text>
+<text x="381" y="489" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#64748b">9</text>
+<rect x="400" y="435" width="34" height="38" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="417" y="460" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">k</text>
+<text x="417" y="489" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#64748b">10</text>
+<rect x="436" y="435" width="34" height="38" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="453" y="460" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">l</text>
+<text x="453" y="489" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#64748b">11</text>
+<rect x="472" y="435" width="34" height="38" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="489" y="460" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">m</text>
+<text x="489" y="489" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#64748b">12</text>
+<rect x="508" y="435" width="34" height="38" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="525" y="460" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">n</text>
+<text x="525" y="489" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#64748b">13</text>
+<rect x="544" y="435" width="34" height="38" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="561" y="460" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">o</text>
+<text x="561" y="489" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#64748b">14</text>
+<rect x="580" y="435" width="34" height="38" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="597" y="460" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">p</text>
+<text x="597" y="489" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#64748b">15</text>
+<rect x="616" y="435" width="34" height="38" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="633" y="460" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">q</text>
+<text x="633" y="489" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#64748b">16</text>
+<rect x="652" y="435" width="34" height="38" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="669" y="460" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">r</text>
+<text x="669" y="489" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#64748b">17</text>
+<rect x="688" y="435" width="34" height="38" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="705" y="460" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">s</text>
+<text x="705" y="489" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#64748b">18</text>
+<rect x="724" y="435" width="34" height="38" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="741" y="460" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">t</text>
+<text x="741" y="489" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#64748b">19</text>
+<rect x="760" y="435" width="34" height="38" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="777" y="460" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">u</text>
+<text x="777" y="489" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#64748b">20</text>
+<rect x="796" y="435" width="34" height="38" fill="#bbf7d0" stroke="#047857"/>
+<text x="813" y="460" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">v</text>
+<text x="813" y="489" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#64748b">21</text>
+<rect x="832" y="435" width="34" height="38" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="849" y="460" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">w</text>
+<text x="849" y="489" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#64748b">22</text>
+<rect x="868" y="435" width="34" height="38" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="885" y="460" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">x</text>
+<text x="885" y="489" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#64748b">23</text>
+<rect x="904" y="435" width="34" height="38" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="921" y="460" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">y</text>
+<text x="921" y="489" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#64748b">24</text>
+<rect x="940" y="435" width="34" height="38" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="957" y="460" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">z</text>
+<text x="957" y="489" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#64748b">25</text>
+<text x="30" y="545" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="20" font-weight="600" fill="#1f2937">输出字符：&quot;v&quot;</text>
+<text x="30" y="595" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">临时计算；1.7 会换成真正的模型分数再做选择。</text>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#64748b"/></marker></defs>
+</svg>
