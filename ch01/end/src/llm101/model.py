@@ -49,13 +49,34 @@ class TinyGPT:
         generator: torch.Generator | None = None,
         dtype: torch.dtype = torch.float32,
     ) -> None:
-        raise NotImplementedError("TODO 1.7")
+        self.config = config
+        self.token_embedding = Embedding(
+            config.vocab_size,
+            config.d_model,
+            generator=generator,
+            dtype=dtype,
+        )
+        self.position_embedding = Embedding(
+            config.max_seq_len,
+            config.d_model,
+            generator=generator,
+            dtype=dtype,
+        )
 
     def parameters(self) -> tuple[Parameter, ...]:
         raise NotImplementedError("TODO 1.7")
 
     def forward(self, token_ids: torch.Tensor) -> torch.Tensor:
-        raise NotImplementedError("TODO 1.7")
+        """Return token + position embeddings; blocks and logits arrive in 1.7."""
+        if token_ids.shape[-1] > self.config.max_seq_len:
+            raise ValueError(
+                f"sequence length {token_ids.shape[-1]} exceeds the model context "
+                f"of {self.config.max_seq_len}"
+            )
+        positions = torch.arange(token_ids.shape[-1], device=token_ids.device)
+        return self.token_embedding.forward(
+            token_ids
+        ) + self.position_embedding.forward(positions)
 
     def forward_with_trace(self, token_ids: torch.Tensor) -> dict[str, object]:
         """Same result as ``forward`` plus every intermediate tensor."""

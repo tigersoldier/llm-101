@@ -45,9 +45,18 @@ def test_causal_mask_hides_future() -> None:
 
 
 def test_context_limit() -> None:
-    """TODO 1.4: sequences longer than max_seq_len are rejected."""
+    """1.4: sequences longer than max_seq_len are rejected."""
     model = TinyGPT(small_config(), generator=torch.Generator().manual_seed(0))
     token_ids = torch.zeros(1, 17, dtype=torch.long)
 
     with pytest.raises(ValueError, match="context"):
         model.forward(token_ids)
+
+
+def test_position_changes_the_embedding() -> None:
+    """1.4: the same token at different positions gets different vectors."""
+    model = TinyGPT(small_config(), generator=torch.Generator().manual_seed(0))
+    alone = model.forward(torch.tensor([1], dtype=torch.long))
+    later = model.forward(torch.tensor([0, 1], dtype=torch.long))
+
+    assert not torch.allclose(alone[0], later[1])

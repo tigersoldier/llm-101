@@ -16,6 +16,7 @@ import torch
 
 VOCAB_SIZE = 68
 WIDTH = 16
+MAX_SEQ_LEN = 16
 ALPHABET = "abcdefghijklmnopqrstuvwxyz"
 
 
@@ -29,6 +30,7 @@ class PipelineResult:
     answer: int | None = None
     character: str | None = None
     vectors: torch.Tensor | None = None
+    position_vectors: torch.Tensor | None = None
     output: torch.Tensor | None = None
     scores: torch.Tensor | None = None
 
@@ -56,8 +58,8 @@ def run(text: str, stage: int = 1) -> PipelineResult:
         raise ValueError("stage must be between 1 and 11")
     if not text:
         raise ValueError("text must contain at least one character")
-    if stage >= 4:
-        raise NotImplementedError("position embeddings land in section 1.4")
+    if stage >= 5:
+        raise NotImplementedError("LayerNorm and GELU land in section 1.5")
 
     if stage >= 2:
         from llm101.tokenizer import DEFAULT_VOCABULARY, CharacterTokenizer
@@ -73,6 +75,21 @@ def run(text: str, stage: int = 1) -> PipelineResult:
             )
             token_ids = torch.tensor(ids, dtype=torch.long)
             vectors = embedding.forward(token_ids)
+            position_vectors = None
+            if stage >= 4:
+                if len(ids) > MAX_SEQ_LEN:
+                    raise ValueError(
+                        f"text has {len(ids)} positions, longer than the model "
+                        f"context of {MAX_SEQ_LEN}"
+                    )
+                position_embedding = Embedding(
+                    MAX_SEQ_LEN,
+                    WIDTH,
+                    generator=torch.Generator().manual_seed(1),
+                )
+                positions = torch.arange(len(ids), dtype=torch.long)
+                position_vectors = position_embedding.forward(positions)
+                vectors = vectors + position_vectors
             output = vectors.sum(dim=0)
             scores = output @ _OUTPUT_MATRIX
             answer = int(scores.max(dim=0).indices)
@@ -83,6 +100,7 @@ def run(text: str, stage: int = 1) -> PipelineResult:
                 answer=answer,
                 character=_placeholder_character(answer),
                 vectors=vectors,
+                position_vectors=position_vectors,
                 output=output,
                 scores=scores,
             )

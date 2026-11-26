@@ -4,7 +4,7 @@ import pytest
 import torch
 
 from llm101.layers import Embedding
-from llm101.placeholder import ALPHABET, VOCAB_SIZE, WIDTH, run
+from llm101.placeholder import ALPHABET, MAX_SEQ_LEN, VOCAB_SIZE, WIDTH, run
 from llm101.tokenizer import DEFAULT_VOCABULARY, CharacterTokenizer
 
 EXAMPLE = "the cat sat"
@@ -51,6 +51,7 @@ def test_stage_three_returns_the_embedding_vectors() -> None:
     assert result.answer is not None
     assert result.character == ALPHABET[result.answer % len(ALPHABET)]
     assert result.vectors is not None
+    assert result.position_vectors is None
     torch.testing.assert_close(result.vectors, expected)
     assert result.output is not None
     assert result.output.shape == (WIDTH,)
@@ -60,9 +61,35 @@ def test_stage_three_returns_the_embedding_vectors() -> None:
     assert result.answer == int(result.scores.max(dim=0).indices)
 
 
+def test_stage_four_adds_position_vectors() -> None:
+    result = run(EXAMPLE, stage=4)
+    token_embedding = Embedding(
+        VOCAB_SIZE, WIDTH, generator=torch.Generator().manual_seed(0)
+    )
+    position_embedding = Embedding(
+        MAX_SEQ_LEN, WIDTH, generator=torch.Generator().manual_seed(1)
+    )
+    token_ids = torch.tensor(result.ids, dtype=torch.long)
+    positions = torch.arange(len(result.ids))
+    expected_tokens = token_embedding.forward(token_ids)
+    expected_positions = position_embedding.forward(positions)
+
+    assert result.position_vectors is not None
+    assert result.position_vectors.shape == (len(result.ids), WIDTH)
+    assert result.vectors is not None
+    torch.testing.assert_close(result.vectors, expected_tokens + expected_positions)
+    assert result.scores is not None
+    assert result.answer == int(result.scores.max(dim=0).indices)
+
+
+def test_stage_four_rejects_text_longer_than_context() -> None:
+    with pytest.raises(ValueError, match="context"):
+        run("x" * 17, stage=4)
+
+
 def test_future_stage_is_not_implemented() -> None:
-    with pytest.raises(NotImplementedError, match="1.4"):
-        run(EXAMPLE, stage=4)
+    with pytest.raises(NotImplementedError, match="1.5"):
+        run(EXAMPLE, stage=5)
 
 
 def test_empty_text_is_rejected() -> None:

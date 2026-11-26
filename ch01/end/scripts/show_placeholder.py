@@ -21,6 +21,8 @@ def main() -> None:
 
     print(f"stage {result.stage} | text: {result.text}")
     print(f"ids ({len(result.ids)})        {result.ids}")
+    if result.position_vectors is not None:
+        print(f"positions       {tuple(result.position_vectors.shape)}")
     if result.vectors is not None:
         print(f"vectors         {tuple(result.vectors.shape)}")
     if result.output is not None:

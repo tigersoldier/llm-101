@@ -21,6 +21,12 @@
 |weight|权重|模型里可调整的矩阵；Embedding 的表就是一张权重|[1.3](course/ch01/1.3.md)|
 |output matrix|输出矩阵|把输出向量变成词表分数的矩阵，形状 `[16, 68]`；本节固定，1.7 可训练|[1.3](course/ch01/1.3.md)|
 |score|分数|输出矩阵给每个词表编号的得分；最高分对应答案|[1.3](course/ch01/1.3.md)|
+|position embedding|位置嵌入|为每个位置学一行可加向量，让模型知道顺序|[1.4](course/ch01/1.4.md)|
+|position id|位置编号|序列中的位置 0..T-1，不是 token id|[1.4](course/ch01/1.4.md)|
+|context length|上下文长度|模型一次最多处理的位置数；本章 16|[1.4](course/ch01/1.4.md)|
+|absolute position|绝对位置|位置表按 0、1、… 的绝对编号取行|[1.4](course/ch01/1.4.md)|
+|relative position|相对位置|用两个位置的差表示距离；相对方案更容易外推|[1.4](course/ch01/1.4.md)|
+|sinusoidal position encoding|正弦位置编码|原论文用固定正弦函数生成位置向量，不训练|[1.4](course/ch01/1.4.md)|
 |linear|线性层|`y = xW + b`|1.6|
 |bias|偏置|线性层里的 `b`|1.6|
 |batch|批|同时处理的多条输入，对应第一维 `B`|1.7|
