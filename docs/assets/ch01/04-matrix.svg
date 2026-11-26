@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 330" role="img" aria-labelledby="title desc">
+  <title id="title">2 维张量就是矩阵</title>
+  <desc id="desc">形状 [2, 3] 的矩阵：2 行、每行 3 个数，所有行一样长。</desc>
+  <rect width="720" height="330" fill="#ffffff"/>
+  <text x="30" y="36" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="18" font-weight="600" fill="#1f2937">2 维张量 = 矩阵：形状 [2, 3]</text>
+
+  <text x="285" y="78" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#64748b">列 0</text>
+  <text x="385" y="78" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#64748b">列 1</text>
+  <text x="485" y="78" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#64748b">列 2</text>
+
+  <text x="200" y="125" text-anchor="end" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#64748b">行 0</text>
+  <text x="200" y="195" text-anchor="end" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#64748b">行 1</text>
+
+  <g stroke="#94a3b8" stroke-width="1.5" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16" fill="#1f2937" text-anchor="middle">
+    <rect x="240" y="90" width="90" height="60" fill="#e0ecff"/>
+    <rect x="330" y="90" width="90" height="60" fill="#e0ecff"/>
+    <rect x="420" y="90" width="90" height="60" fill="#e0ecff"/>
+    <rect x="240" y="150" width="90" height="60" fill="#e0ecff"/>
+    <rect x="330" y="150" width="90" height="60" fill="#e0ecff"/>
+    <rect x="420" y="150" width="90" height="60" fill="#e0ecff"/>
+    <text x="285" y="127">1</text>
+    <text x="375" y="127">2</text>
+    <text x="465" y="127">3</text>
+    <text x="285" y="187">4</text>
+    <text x="375" y="187">5</text>
+    <text x="465" y="187">6</text>
+  </g>
+
+  <text x="30" y="270" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#475569">2 行、3 列；所有行一样长，所以它是矩阵。</text>
+  <text x="30" y="296" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#475569">如果第一行 3 个、第二行 5 个，就不是张量。</text>
+</svg>
