@@ -316,3 +316,4 @@ uv run python scripts/show_placeholder.py --stage 1 "the cat sat"
 - 2026-11-27：公式改用 MkDocs `pymdownx.arithmatex` + MathJax 渲染；正文一律用 `$...$`/`$$...$$`，不再用代码块或反引号写公式。
 - 2026-11-27：新增全书变量表 `docs/variables.md`；短变量首次出现必须说明含义；修正“X 是 [..]”为“X 的形状是 [..]”，并区分特征维 `C` 与 `Linear` 的 `in_features`/`out_features`。
 - 2026-11-27：写作规范补充“每个公式下面给最小计算范例”；1.6 展开“头/拆头/多头”和“softmax 的性质、动机、与注意力的关系”。
+- 2026-11-27：规范补充“矩阵/向量/张量值和运算用数学公式，不用代码块”；1.6 的矩阵例子改为 `bmatrix`/`aligned`，1.5/1.4 的小例子同步。
