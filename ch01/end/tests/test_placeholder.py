@@ -4,7 +4,7 @@ import pytest
 import torch
 
 from llm101.layers import Embedding
-from llm101.placeholder import VOCAB_SIZE, WIDTH, run
+from llm101.placeholder import VOCAB_SIZE, WIDTH, argmax, run
 from llm101.tokenizer import DEFAULT_VOCABULARY, CharacterTokenizer
 
 EXAMPLE = "the cat sat"
@@ -15,9 +15,8 @@ def test_stage_one_uses_placeholder_ids() -> None:
 
     assert result.ids == [ord(character) % VOCAB_SIZE for character in EXAMPLE]
     assert result.vectors.shape == (1, len(EXAMPLE), WIDTH)
-    assert result.mixed.shape == (1, len(EXAMPLE), WIDTH)
     assert result.scores.shape == (VOCAB_SIZE,)
-    assert len(result.top) == 3
+    assert 0 <= result.answer < VOCAB_SIZE
 
 
 def test_stage_one_is_deterministic() -> None:
@@ -25,6 +24,7 @@ def test_stage_one_is_deterministic() -> None:
     second = run(EXAMPLE, stage=1)
 
     assert first.ids == second.ids
+    assert first.answer == second.answer
     torch.testing.assert_close(first.scores, second.scores)
 
 
@@ -44,6 +44,10 @@ def test_stage_three_uses_the_embedding_table() -> None:
 
     torch.testing.assert_close(result.vectors, expected)
     assert result.scores.shape == (VOCAB_SIZE,)
+
+
+def test_argmax_returns_the_first_largest_index() -> None:
+    assert argmax(torch.tensor([1.0, 3.0, 3.0, 2.0])) == 1
 
 
 def test_future_stage_is_not_implemented() -> None:
