@@ -37,8 +37,8 @@
 |activation|激活函数|逐元素的非线性函数，如 ReLU、GELU|[1.5](course/ch01/1.5.md)|
 |gain|增益|LayerNorm 的缩放参数，初始为 1|[1.5](course/ch01/1.5.md)|
 |bias|偏置|归一化/线性层里的可学习偏移|[1.5](course/ch01/1.5.md)|
-|Pre-LN|前置层归一化|先 LayerNorm 再进子层；与 Post-LN 相对|[1.5](course/ch01/1.5.md)|
-|Post-LN|后置层归一化|先子层和残差再 LayerNorm|[1.5](course/ch01/1.5.md)|
+|Pre-LN|前置层归一化|先 LayerNorm 再进子层；与 Post-LN 相对|1.7|
+|Post-LN|后置层归一化|先子层和残差再 LayerNorm|1.7|
 |subLayer|子层|block 里的注意力或 MLP 分支；1.7 组装|[1.5](course/ch01/1.5.md)|
 |ReLU|线性整流单元|Rectified Linear Unit；max(0,x)|[1.5](course/ch01/1.5.md)|
 |BatchNorm|批归一化|Batch Normalization；沿批次维求统计量|[1.5](course/ch01/1.5.md)|
