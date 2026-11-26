@@ -15,3 +15,13 @@
 |`<bos>`|起始词元|beginning of sequence 的缩写；标出输入的开头|[1.2](course/ch01/1.2.md)|
 |`<eos>`|结束词元|end of sequence 的缩写；标出输入的结尾|[1.2](course/ch01/1.2.md)|
 |`<pad>`|填充词元|padding 的缩写；把短的输入补齐；本章不用|[1.2](course/ch01/1.2.md)|
+|tensor|张量|多维数组；本书用 `torch.Tensor` 存数字|[1.3](course/ch01/1.3.md)|
+|parameter|参数|模型里可调整的数字；`Parameter` 另留一块同形状缓冲|[1.3](course/ch01/1.3.md)|
+|shape|形状|张量每一维的长度，如 `[B, T, C]`|[1.3](course/ch01/1.3.md)|
+|autograd|自动求导|PyTorch 的自动微分机制；本书不用|[1.3](course/ch01/1.3.md)|
+|batch|批|同时处理的多条输入，对应第一维 `B`|[1.3](course/ch01/1.3.md)|
+|hidden state|隐藏状态|中间层输出的 `[B, T, C]` 数字|[1.3](course/ch01/1.3.md)|
+|linear|线性层|`y = xW + b`|[1.3](course/ch01/1.3.md)|
+|weight|权重|线性层里的 `W`|[1.3](course/ch01/1.3.md)|
+|bias|偏置|线性层里的 `b`|[1.3](course/ch01/1.3.md)|
+|embedding|嵌入表|按编号取行的查表|[1.3](course/ch01/1.3.md)|

@@ -27,6 +27,7 @@ nav:
       - 章节总览: course/ch01/index.md
       - 1.1 起点与本章交付物: course/ch01/1.1.md
       - 1.2 字符级 tokenizer 与接口: course/ch01/1.2.md
+      - 1.3 参数与张量形状约定: course/ch01/1.3.md
   - BPE tokenizer: course/bpe.md
   - 手写梯度: course/manual-gradients.md
   - 因果自注意力: course/causal-attention.md
