@@ -29,6 +29,8 @@ def main() -> None:
         print(
             f"output          {[round(value, 3) for value in result.output.tolist()]}"
         )
+    if result.attention_weights is not None:
+        print(f"attention       {tuple(result.attention_weights.shape)}")
     if result.scores is not None:
         best = result.scores.max(dim=0)
         print(

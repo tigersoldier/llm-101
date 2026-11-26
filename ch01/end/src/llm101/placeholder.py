@@ -33,6 +33,7 @@ class PipelineResult:
     position_vectors: torch.Tensor | None = None
     output: torch.Tensor | None = None
     scores: torch.Tensor | None = None
+    attention_weights: torch.Tensor | None = None
 
 
 _OUTPUT_MATRIX: torch.Tensor = (
@@ -58,8 +59,8 @@ def run(text: str, stage: int = 1) -> PipelineResult:
         raise ValueError("stage must be between 1 and 11")
     if not text:
         raise ValueError("text must contain at least one character")
-    if stage >= 6:
-        raise NotImplementedError("attention lands in section 1.6")
+    if stage >= 7:
+        raise NotImplementedError("the full model lands in section 1.7")
 
     if stage >= 2:
         from llm101.tokenizer import DEFAULT_VOCABULARY, CharacterTokenizer
@@ -96,6 +97,15 @@ def run(text: str, stage: int = 1) -> PipelineResult:
                 layer_norm = LayerNorm(WIDTH)
                 gelu = GELU()
                 vectors = gelu.forward(layer_norm.forward(vectors))
+            attention_weights = None
+            if stage >= 6:
+                from llm101.attention import MultiHeadSelfAttention
+
+                attention = MultiHeadSelfAttention(
+                    WIDTH, 2, generator=torch.Generator().manual_seed(2)
+                )
+                vectors, attention_cache = attention.forward(vectors)
+                attention_weights = attention_cache["weights"]
             output = vectors.sum(dim=0)
             scores = output @ _OUTPUT_MATRIX
             answer = int(scores.max(dim=0).indices)
@@ -109,6 +119,7 @@ def run(text: str, stage: int = 1) -> PipelineResult:
                 position_vectors=position_vectors,
                 output=output,
                 scores=scores,
+                attention_weights=attention_weights,
             )
 
         answer = _placeholder_answer(ids)

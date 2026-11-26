@@ -4,7 +4,7 @@ import pytest
 import torch
 import torch.nn.functional as F
 
-from llm101.layers import Embedding, GELU, LayerNorm
+from llm101.layers import Embedding, GELU, LayerNorm, Linear
 
 
 def test_embedding_shapes_and_lookup() -> None:
@@ -97,3 +97,24 @@ def test_gelu_matches_torch_reference() -> None:
     torch.testing.assert_close(
         gelu.forward(inputs), F.gelu(inputs), atol=2e-3, rtol=2e-3
     )
+
+
+def test_linear_shapes_and_values() -> None:
+    linear = Linear(3, 2, generator=torch.Generator().manual_seed(0))
+    inputs = torch.randn(4, 3, generator=torch.Generator().manual_seed(1))
+
+    outputs = linear.forward(inputs)
+
+    assert outputs.shape == (4, 2)
+    torch.testing.assert_close(outputs, inputs @ linear.weight + linear.bias)
+
+
+def test_linear_bias_and_last_dim_check() -> None:
+    linear = Linear(3, 2)
+    linear.bias = torch.tensor([1.0, -1.0])
+
+    outputs = linear.forward(torch.zeros(1, 3))
+
+    torch.testing.assert_close(outputs, torch.tensor([[1.0, -1.0]]))
+    with pytest.raises(ValueError, match="in_features"):
+        linear.forward(torch.zeros(1, 4))

@@ -29,6 +29,34 @@ def test_forward_shapes() -> None:
     assert not logits.requires_grad
 
 
+def test_attention_shapes_and_row_sums() -> None:
+    attention = MultiHeadSelfAttention(
+        16, 2, generator=torch.Generator().manual_seed(0)
+    )
+    inputs = torch.randn(5, 16, generator=torch.Generator().manual_seed(1))
+
+    outputs, cache = attention.forward(inputs)
+
+    assert outputs.shape == (5, 16)
+    assert cache["q"].shape == (2, 5, 8)
+    assert cache["weights"].shape == (2, 5, 5)
+    torch.testing.assert_close(
+        cache["weights"].sum(dim=-1), torch.ones(2, 5), atol=1e-5, rtol=0
+    )
+
+
+def test_attention_is_causal() -> None:
+    attention = MultiHeadSelfAttention(
+        16, 2, generator=torch.Generator().manual_seed(0)
+    )
+    inputs = torch.randn(5, 16, generator=torch.Generator().manual_seed(1))
+
+    _, cache = attention.forward(inputs)
+    upper = torch.triu(torch.ones(5, 5, dtype=torch.bool), diagonal=1)
+
+    assert torch.all(cache["weights"][:, upper] == 0)
+
+
 def test_causal_mask_hides_future() -> None:
     """TODO 1.6: changing a later token must not change earlier outputs."""
     attention = MultiHeadSelfAttention(

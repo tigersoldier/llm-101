@@ -27,8 +27,8 @@ STEPS = [
     ),
     ("数字", "Embedding（嵌入表）", "", 3, lambda stage: stage >= 3),
     ("位置", "位置嵌入", "", 4, lambda stage: stage >= 4),
-    ("混合", "因果多头注意力", "", 6, lambda stage: stage >= 6),
     ("调匀/筛选", "LayerNorm + GELU", "", 5, lambda stage: stage >= 5),
+    ("混合", "因果多头注意力", "", 6, lambda stage: stage >= 6),
     (
         "答案",
         "68 个分数 → argmax → 字符",

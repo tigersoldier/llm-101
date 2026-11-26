@@ -52,6 +52,16 @@
 |running statistics|滑动统计量|BatchNorm 在训练中累积、推理时使用的均值/方差|[1.5](course/ch01/1.5.md)|
 |epsilon|小常数|加在方差上防止除零；本章 1e-5|[1.5](course/ch01/1.5.md)|
 |linear|线性层|`y = xW + b`|1.6|
+|attention|注意力|让每个位置按相关程度加权读取其他位置|[1.6](course/ch01/1.6.md)|
+|self-attention|自注意力|query/key/value 都来自同一串输入的注意力|[1.6](course/ch01/1.6.md)|
+|query|查询|当前位置发出的“我想找什么”向量|[1.6](course/ch01/1.6.md)|
+|key|键|每个位置提供的“我有什么标签”向量|[1.6](course/ch01/1.6.md)|
+|value|值|每个位置实际被读取的向量|[1.6](course/ch01/1.6.md)|
+|softmax|归一化指数|把一组分数变成和为 1 的权重|[1.6](course/ch01/1.6.md)|
+|causal mask|因果掩码|把未来位置的分数填成 -inf，保证只能看前面|[1.6](course/ch01/1.6.md)|
+|multi-head|多头|把 C 维拆成 H 个头并行做注意力|[1.6](course/ch01/1.6.md)|
+|head|头|多头里的一个 D 维注意力子空间|[1.6](course/ch01/1.6.md)|
+|scaled dot-product|缩放点积|QK^T/sqrt(D) 的打分方式|[1.6](course/ch01/1.6.md)|
 |batch|批次|同时处理的一组输入；batch size 是批次大小，第一维 `B` 叫批次维；也说一批、批量处理|1.7|
 |hidden state|隐藏状态|中间层输出的 `[B, T, C]` 数字|1.7|
 |parameter|参数|模型里可调整的数字；`Parameter` 另留一块同形状缓冲|第 3 章|

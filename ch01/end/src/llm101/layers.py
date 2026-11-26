@@ -8,7 +8,7 @@ import torch
 
 
 class Linear:
-    """y = x W + b. Implemented in section 1.6."""
+    """y = x W + b."""
 
     def __init__(
         self,
@@ -18,10 +18,20 @@ class Linear:
         generator: torch.Generator | None = None,
         dtype: torch.dtype = torch.float32,
     ) -> None:
-        raise NotImplementedError("TODO 1.6: create weight and bias")
+        if in_features <= 0 or out_features <= 0:
+            raise ValueError("linear dimensions must be positive")
+        self.in_features = in_features
+        self.out_features = out_features
+        self.weight = (
+            torch.randn(in_features, out_features, generator=generator, dtype=dtype)
+            * 0.02
+        )
+        self.bias = torch.zeros(out_features, dtype=dtype)
 
     def forward(self, inputs: torch.Tensor) -> torch.Tensor:
-        raise NotImplementedError("TODO 1.6")
+        if inputs.shape[-1] != self.in_features:
+            raise ValueError("last dimension does not match in_features")
+        return inputs @ self.weight + self.bias
 
 
 class Embedding:
