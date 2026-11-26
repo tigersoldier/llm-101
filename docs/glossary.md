@@ -17,7 +17,9 @@
 |tensor|张量|多维数组；每一维长度固定，二维就是矩阵|[1.3](course/ch01/1.3.md)|
 |shape|形状|张量每一维的长度，如 `[T, C]`|[1.3](course/ch01/1.3.md)|
 |one-hot|独热编码|词表大小维的向量，只有一个位置是 1，其余是 0|[1.3](course/ch01/1.3.md)|
-|embedding|嵌入表|按编号取行的查表|[1.3](course/ch01/1.3.md)|
+|embedding|嵌入表、嵌入|embed 是“嵌入”；把离散 token 放进连续向量空间；表是 embedding table，行是 embedding vector|[1.3](course/ch01/1.3.md)|
+|forward|前向、前向计算|从输入算到输出；PyTorch 模块的计算方法名；反向的 backward 第 3 章|[1.3](course/ch01/1.3.md)|
+|backward|反向、反向传播|从输出或损失算回参数；第 3 章展开|[1.3](course/ch01/1.3.md)|
 |weight|权重|模型里可调整的矩阵；Embedding 的表就是一张权重|[1.3](course/ch01/1.3.md)|
 |output matrix|输出矩阵|把输出向量变成词表分数的矩阵，形状 `[16, 68]`；本节固定，1.7 可训练|[1.3](course/ch01/1.3.md)|
 |score|分数|输出矩阵给每个词表编号的得分；最高分对应答案|[1.3](course/ch01/1.3.md)|
