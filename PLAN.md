@@ -315,3 +315,4 @@ uv run python scripts/show_placeholder.py --stage 1 "the cat sat"
 - 2026-11-26：新增“概念的引入时机”规范（`STYLE.md`）与第 1 章编排审计（第 13 节）：tensor 移到 1.3、`<pad>` 删除、`Parameter` 移到第 3 章、`Linear` 移到 1.6。
 - 2026-11-27：公式改用 MkDocs `pymdownx.arithmatex` + MathJax 渲染；正文一律用 `$...$`/`$$...$$`，不再用代码块或反引号写公式。
 - 2026-11-27：新增全书变量表 `docs/variables.md`；短变量首次出现必须说明含义；修正“X 是 [..]”为“X 的形状是 [..]”，并区分特征维 `C` 与 `Linear` 的 `in_features`/`out_features`。
+- 2026-11-27：写作规范补充“每个公式下面给最小计算范例”；1.6 展开“头/拆头/多头”和“softmax 的性质、动机、与注意力的关系”。
