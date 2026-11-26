@@ -313,3 +313,4 @@ uv run python scripts/show_placeholder.py --stage 1 "the cat sat"
 - 2026-11-26：每节按“接口 → 参考实现 → 逐函数实例结果”组织，解释结果并配矩阵/多阶段图。
 - 2026-11-26：全书采用教科书式风格（`STYLE.md`）：概念与函数逐个介绍，复杂实现给分步分析与图例。
 - 2026-11-26：新增“概念的引入时机”规范（`STYLE.md`）与第 1 章编排审计（第 13 节）：tensor 移到 1.3、`<pad>` 删除、`Parameter` 移到第 3 章、`Linear` 移到 1.6。
+- 2026-11-27：公式改用 MkDocs `pymdownx.arithmatex` + MathJax 渲染；正文一律用 `$...$`/`$$...$$`，不再用代码块或反引号写公式。
