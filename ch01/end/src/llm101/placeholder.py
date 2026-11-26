@@ -58,8 +58,8 @@ def run(text: str, stage: int = 1) -> PipelineResult:
         raise ValueError("stage must be between 1 and 11")
     if not text:
         raise ValueError("text must contain at least one character")
-    if stage >= 5:
-        raise NotImplementedError("LayerNorm and GELU land in section 1.5")
+    if stage >= 6:
+        raise NotImplementedError("attention lands in section 1.6")
 
     if stage >= 2:
         from llm101.tokenizer import DEFAULT_VOCABULARY, CharacterTokenizer
@@ -90,6 +90,12 @@ def run(text: str, stage: int = 1) -> PipelineResult:
                 positions = torch.arange(len(ids), dtype=torch.long)
                 position_vectors = position_embedding.forward(positions)
                 vectors = vectors + position_vectors
+            if stage >= 5:
+                from llm101.layers import GELU, LayerNorm
+
+                layer_norm = LayerNorm(WIDTH)
+                gelu = GELU()
+                vectors = gelu.forward(layer_norm.forward(vectors))
             output = vectors.sum(dim=0)
             scores = output @ _OUTPUT_MATRIX
             answer = int(scores.max(dim=0).indices)

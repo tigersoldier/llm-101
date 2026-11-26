@@ -29,8 +29,16 @@
 |absolute position|绝对位置|位置表按 0、1、… 的绝对编号取行|[1.4](course/ch01/1.4.md)|
 |relative position|相对位置|用两个位置的差表示距离；相对方案更容易外推|[1.4](course/ch01/1.4.md)|
 |sinusoidal position encoding|正弦位置编码|原论文用固定正弦函数生成位置向量，不训练|[1.4](course/ch01/1.4.md)|
+|LayerNorm|层归一化|Layer Normalization；对每个位置最后一维求均值/方差，再缩放平移|[1.5](course/ch01/1.5.md)|
+|GELU|高斯误差线性单元|Gaussian Error Linear Unit；用 erf 或 tanh 近似的平滑激活|[1.5](course/ch01/1.5.md)|
+|activation|激活函数|逐元素的非线性函数，如 ReLU、GELU|[1.5](course/ch01/1.5.md)|
+|gain|增益|LayerNorm 的缩放参数，初始为 1|[1.5](course/ch01/1.5.md)|
+|bias|偏置|归一化/线性层里的可学习偏移|[1.5](course/ch01/1.5.md)|
+|Pre-LN|前置层归一化|先 LayerNorm 再进子层；与 Post-LN 相对|[1.5](course/ch01/1.5.md)|
+|Post-LN|后置层归一化|先子层和残差再 LayerNorm|[1.5](course/ch01/1.5.md)|
+|subLayer|子层|block 里的注意力或 MLP 分支；1.7 组装|[1.5](course/ch01/1.5.md)|
+|epsilon|小常数|加在方差上防止除零；本章 1e-5|[1.5](course/ch01/1.5.md)|
 |linear|线性层|`y = xW + b`|1.6|
-|bias|偏置|线性层里的 `b`|1.6|
 |batch|批次|同时处理的一组输入；batch size 是批次大小，第一维 `B` 叫批次维；也说一批、批量处理|1.7|
 |hidden state|隐藏状态|中间层输出的 `[B, T, C]` 数字|1.7|
 |parameter|参数|模型里可调整的数字；`Parameter` 另留一块同形状缓冲|第 3 章|

@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import math
+
 import torch
 
 
@@ -36,9 +38,7 @@ class Embedding:
         if num_embeddings <= 0 or embedding_dim <= 0:
             raise ValueError("embedding dimensions must be positive")
         initial = (
-            torch.randn(
-                num_embeddings, embedding_dim, generator=generator, dtype=dtype
-            )
+            torch.randn(num_embeddings, embedding_dim, generator=generator, dtype=dtype)
             * 0.02
         )
         self.weight = initial
@@ -66,14 +66,26 @@ class LayerNorm:
         eps: float = 1e-5,
         dtype: torch.dtype = torch.float32,
     ) -> None:
-        raise NotImplementedError("TODO 1.5: create gain and bias")
+        if normalized_shape <= 0:
+            raise ValueError("normalized_shape must be positive")
+        self.normalized_shape = normalized_shape
+        self.eps = eps
+        self.gain = torch.ones(normalized_shape, dtype=dtype)
+        self.bias = torch.zeros(normalized_shape, dtype=dtype)
 
     def forward(self, inputs: torch.Tensor) -> torch.Tensor:
-        raise NotImplementedError("TODO 1.5")
+        if inputs.shape[-1] != self.normalized_shape:
+            raise ValueError("last dimension does not match normalized_shape")
+        mean = inputs.mean(dim=-1, keepdim=True)
+        variance = inputs.var(dim=-1, unbiased=False, keepdim=True)
+        normalized = (inputs - mean) / torch.sqrt(variance + self.eps)
+        return normalized * self.gain + self.bias
 
 
 class GELU:
     """Smooth activation used inside the feed-forward block."""
 
     def forward(self, inputs: torch.Tensor) -> torch.Tensor:
-        raise NotImplementedError("TODO 1.5")
+        cubic = inputs.pow(3)
+        inner = math.sqrt(2.0 / math.pi) * (inputs + 0.044715 * cubic)
+        return 0.5 * inputs * (1.0 + torch.tanh(inner))

@@ -63,7 +63,7 @@ ch01/
 - [x] 1.2 字符级 tokenizer 与接口
 - [x] 1.3 嵌入表与张量形状
 - [x] 1.4 位置嵌入
-- [ ] 1.5 LayerNorm 与 GELU
+- [x] 1.5 LayerNorm 与 GELU
 - [ ] 1.6 因果多头自注意力
 - [ ] 1.7 Transformer block 与整模型
 - [ ] 1.8 把前向拆成逐层可调用
