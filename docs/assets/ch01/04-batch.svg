@@ -23,7 +23,7 @@
 <text x="830" y="187" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#047857">B=0: [T, 16]</text>
 <rect x="735" y="220" width="190" height="44" rx="6" fill="#ecfdf5" stroke="#047857"/>
 <text x="830" y="247" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#047857">B=1: [T, 16]</text>
-<text x="60" y="360" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#475569">第 0 条和第 1 条互不影响；同一个 token 在不同序列里各自查表。</text>
-<text x="60" y="392" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#64748b">训练时 B 条序列的梯度求平均；推理时 B 条请求并排算。</text>
-<text x="60" y="452" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#64748b">批次大小是 B；序列长度不同时先 padding 到同一个 T。</text>
+<text x="60" y="360" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#475569">第 0 条序列和第 1 条序列互不影响；同一个 token 在不同序列里各自查表。</text>
+<text x="60" y="392" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#64748b">训练时对 B 条序列的梯度求平均；推理时 B 条请求并排计算。</text>
+<text x="60" y="452" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#64748b">批次大小是 B；序列长度不同时，先用填充符（padding）补齐到同一个长度 T。</text>
 <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#64748b"/></marker></defs></svg>

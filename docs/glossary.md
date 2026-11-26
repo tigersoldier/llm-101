@@ -16,6 +16,8 @@
 |`<eos>`|结束词元|end of sequence 的缩写；标出输入的结尾|[1.2](course/ch01/1.2.md)|
 |tensor|张量|多维数组；每一维长度固定，二维就是矩阵|[1.3](course/ch01/1.3.md)|
 |shape|形状|张量每一维的长度，如 `[T, C]`|[1.3](course/ch01/1.3.md)|
+|feature|特征|特征向量的一维；本章 `C = 16`|[1.3](course/ch01/1.3.md)|
+|feature vector|特征向量|一个位置的 `C` 个数字组成的一行；`[T, C]` 的每一行|[1.3](course/ch01/1.3.md)|
 |one-hot|独热编码|词表大小维的向量，只有一个位置是 1，其余是 0|[1.3](course/ch01/1.3.md)|
 |embedding|嵌入表、嵌入|embed 是“嵌入”；把离散 token 放进连续向量空间；表是 embedding table，行是 embedding vector|[1.3](course/ch01/1.3.md)|
 |forward|前向、前向计算|从输入算到输出；PyTorch 模块的计算方法名；反向的 backward 第 3 章|[1.3](course/ch01/1.3.md)|
@@ -25,6 +27,7 @@
 |score|分数|输出矩阵给每个词表编号的得分；最高分对应答案|[1.3](course/ch01/1.3.md)|
 |position embedding|位置嵌入|为每个位置学一行可加向量，让模型知道顺序|[1.4](course/ch01/1.4.md)|
 |position id|位置编号|序列中的位置 0..T-1，不是 token id|[1.4](course/ch01/1.4.md)|
+|padding|填充|用填充符把不同长度的序列补齐到同一长度|[1.4](course/ch01/1.4.md)|
 |context length|上下文长度|模型一次最多处理的位置数；本章 16|[1.4](course/ch01/1.4.md)|
 |absolute position|绝对位置|位置表按 0、1、… 的绝对编号取行|[1.4](course/ch01/1.4.md)|
 |relative position|相对位置|用两个位置的差表示距离；相对方案更容易外推|[1.4](course/ch01/1.4.md)|
