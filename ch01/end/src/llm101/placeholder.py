@@ -1,15 +1,13 @@
 """The chapter 1 placeholder pipeline, upgraded one section at a time.
 
-``run(text, stage)`` uses only the components in place at the end of ``stage``.
-Later sections replace the placeholder steps and this module is removed once
-the full model takes over.
+Stages 1 and 2 are pure Python lists; ``torch`` appears only when the embedding
+and linear layers arrive in section 1.3. Later sections replace the remaining
+placeholders and this module is removed once the full model takes over.
 """
 
 from __future__ import annotations
 
 from dataclasses import dataclass
-
-import torch
 
 VOCAB_SIZE = 68
 WIDTH = 16
@@ -22,43 +20,40 @@ class PipelineResult:
     stage: int
     text: str
     ids: list[int]
-    vectors: torch.Tensor
-    scores: torch.Tensor
+    vectors: list[list[float]]
+    scores: list[float]
     answer: int
-
-
-def _generator(seed: int) -> torch.Generator:
-    return torch.Generator().manual_seed(seed)
 
 
 def _placeholder_ids(text: str) -> list[int]:
     return [ord(character) % VOCAB_SIZE for character in text]
 
 
-def _placeholder_vectors(ids: list[int]) -> torch.Tensor:
+def _placeholder_vectors(ids: list[int]) -> list[list[float]]:
     rows: list[list[float]] = []
     total = 0
     for token_id in ids:
         total += token_id
         rows.append([float((total + index) % WIDTH) for index in range(WIDTH)])
-    return torch.tensor([rows], dtype=torch.float32)
+    return rows
 
 
-def _placeholder_scores(vectors: torch.Tensor) -> torch.Tensor:
-    last = vectors[0, -1].tolist()
+def _placeholder_scores(vectors: list[list[float]]) -> list[float]:
+    last = vectors[-1]
     seed = sum(int((index + 1) * value) for index, value in enumerate(last))
-    return torch.tensor(
-        [
-            float((seed * 31 + index * 17 + index * index * 7) % VOCAB_SIZE)
-            for index in range(VOCAB_SIZE)
-        ],
-        dtype=torch.float32,
-    )
+    return [
+        float((seed * 31 + index * 17 + index * index * 7) % VOCAB_SIZE)
+        for index in range(VOCAB_SIZE)
+    ]
 
 
-def argmax(values: torch.Tensor) -> int:
+def argmax(values: list[float]) -> int:
     """Return the index of the largest value; ties go to the first one."""
-    return int(torch.argmax(values).item())
+    best = 0
+    for index in range(1, len(values)):
+        if values[index] > values[best]:
+            best = index
+    return best
 
 
 def run(text: str, stage: int = 1) -> PipelineResult:
@@ -79,20 +74,21 @@ def run(text: str, stage: int = 1) -> PipelineResult:
         ids = _placeholder_ids(text)
 
     if stage >= 3:
-        from llm101.layers import Embedding
+        import torch
 
-        embedding = Embedding(VOCAB_SIZE, WIDTH, generator=_generator(0))
+        from llm101.layers import Embedding, Linear
+
+        embedding = Embedding(
+            VOCAB_SIZE, WIDTH, generator=torch.Generator().manual_seed(0)
+        )
         token_ids = torch.tensor([ids], dtype=torch.long)
-        vectors = embedding.forward(token_ids)
+        vectors = embedding.forward(token_ids)[0].tolist()
+
+        output = Linear(WIDTH, VOCAB_SIZE, generator=torch.Generator().manual_seed(1))
+        hidden = torch.tensor([vectors], dtype=torch.float32)
+        scores = output.forward(hidden)[0, -1].tolist()
     else:
         vectors = _placeholder_vectors(ids)
-
-    if stage >= 3:
-        from llm101.layers import Linear
-
-        output = Linear(WIDTH, VOCAB_SIZE, generator=_generator(1))
-        scores = output.forward(vectors)[0, -1]
-    else:
         scores = _placeholder_scores(vectors)
 
     return PipelineResult(

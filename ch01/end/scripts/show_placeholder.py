@@ -21,9 +21,7 @@ def main() -> None:
 
     print(f"stage {result.stage} | text: {result.text}")
     print(f"ids ({len(result.ids)})        {result.ids}")
-    print(
-        f"vectors[-1]     {[round(value, 3) for value in result.vectors[0, -1].tolist()]}"
-    )
+    print(f"vectors[-1]     {[round(value, 3) for value in result.vectors[-1]]}")
     print(f"answer          {result.answer}")
 
 
