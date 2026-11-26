@@ -1,14 +1,14 @@
 """Print the pipeline state after a given section.
 
 Example:
-    uv run python scripts/show_pipeline.py --stage 1 "the cat sat"
+    uv run python scripts/show_placeholder.py --stage 1 "the cat sat"
 """
 
 from __future__ import annotations
 
 import argparse
 
-from llm101.pipeline import run
+from llm101.placeholder import run
 
 
 def main() -> None:

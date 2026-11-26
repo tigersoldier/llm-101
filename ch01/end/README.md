@@ -10,9 +10,9 @@ ch01/end/
 ├── README.md               # 本章小结（由 1.11 写）
 ├── samples/stories.txt
 ├── src/llm101/{tokenizer,parameters,layers,attention,model,pipeline}.py
-├── scripts/{show_pipeline.py,render_architecture.py,serve_demo.py}
+├── scripts/{show_placeholder.py,render_architecture.py,serve_demo.py}
 ├── web/{app.py,schemas.py,static/{index.html,app.js,style.css}}
-└── tests/{test_structure.py,test_tokenizer.py,test_layers.py,test_pipeline.py,test_api.py}
+└── tests/{test_structure.py,test_tokenizer.py,test_layers.py,test_placeholder.py,test_api.py}
 ```
 
 ## 与 start 的关系
@@ -27,6 +27,6 @@ ch01/end/
 cd ch01/end
 uv sync --extra dev --extra demo
 uv run pytest -q
-uv run python scripts/show_pipeline.py --stage 7 "the cat sat"
+uv run python scripts/show_placeholder.py --stage 7 "the cat sat"
 uv run python scripts/serve_demo.py   # 打开 http://127.0.0.1:8000
 ```

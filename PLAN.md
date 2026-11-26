@@ -41,7 +41,7 @@ final/                    # 与 ch11/end 逐字节一致
 6. 可视化资源（HTML/JS/CSS）只存在于章节目录内，由本地服务器提供；`docs/` 只放说明页，不复制页面文件。
 7. **术语不提前出现。** 专业术语第一次出现不得早于具体介绍并实现它的那一章。在此之前，要么不使用该术语、也不提及相关内容，要么用通俗语言简单描述，并明确告诉读者后续会在哪一章介绍。第 1 章内部按小节执行同一规则：正文只使用本节或更早小节已经介绍过的术语；代码标识符可以照实展示，但要说明它对应哪件事。小节清单与导航是路线图，可以提前列出标题，正文不能假定读者已经认识这些名字。
 8. **术语译名与术语表。** 有通用中文译名的术语第一次出现时附上中文译名；有多种通用译法的全部列出（例如 tokenizer：分词器、标记器、词元切分器）。transformer 这类没有公认译名的术语不强译，保留原文。缩写与符号第一次出现时写出完整单词（如 `<bos>` = beginning of sequence）。书末维护术语表 `docs/glossary.md`：按首次出现顺序列出术语、中文译名、一句话说明，并链接到详细介绍或实现它的小节；每写完一节，把新术语补进表中。
-9. **图解、例子与数学补充。** 每个概念和计算都要配 SVG 图，说明结构与数据流；给出至少一组输入/输出例子（可运行的代码或可手算的数值）。每节末尾设“数学补充”小节，介绍本节用到的数学；本节没有新数学时用一句话说明。图放在 `docs/assets/chNN/`，文件名以小节编号开头。
+9. **图解、例子与数学补充。** 每个概念和计算都要配 SVG 图，说明结构与数据流；给出至少一组输入/输出例子（可运行的代码或可手算的数值）。数学补充只写大学及以上的内容；大学之前的数学（取余、基础向量/矩阵运算等）不解释，除非本节特别注明。没有需要补充的数学就不写这一节。图放在 `docs/assets/chNN/`，文件名以小节编号开头。
 10. **每节可运行（螺旋编排）。** 第 1 章每节结束都必须有一条能跑的管线：用同一个示例输入，展示本节改动后的完整输入→输出与过程；未实现的组件用简单占位，架构图标出真组件与占位组件。详见第 12 节。
 11. **Python 代码必须带严格类型注解。** 正文、示例和章节代码里的每个函数/方法都要写参数与返回注解（包括 `-> None`）；示例与真实代码保持一致。`tests/test_docs_examples.py` 会扫描 `docs/**/*.md` 的 Python 代码块。
 
@@ -222,7 +222,7 @@ final/                    # 与 ch11/end 逐字节一致
 
 ```bash
 cd ch01/end
-uv run python scripts/show_pipeline.py --stage 1 "the cat sat"
+uv run python scripts/show_placeholder.py --stage 1 "the cat sat"
 ```
 
 - `--stage N` 表示“第 N 节结束时的状态”：第 N 节及以前用真组件，之后用占位。
@@ -236,9 +236,9 @@ uv run python scripts/show_pipeline.py --stage 1 "the cat sat"
 
 ### 新增文件
 
-- `ch01/end/src/llm101/pipeline.py`：占位函数与 `run(text, stage)`；`--stage` 只用于教学演示，正式模型不依赖占位。
-- `ch01/end/scripts/show_pipeline.py`、`ch01/end/scripts/render_architecture.py`。
-- `ch01/end/tests/test_pipeline.py`：1.1 的确定性输出、各阶段形状、最终输出与 `TinyGPT.forward` 一致。
+- `ch01/end/src/llm101/placeholder.py`：占位函数与 `run(text, stage)`；`--stage` 只用于教学演示，正式模型不依赖占位。
+- `ch01/end/scripts/show_placeholder.py`、`ch01/end/scripts/render_architecture.py`。
+- `ch01/end/tests/test_placeholder.py`：1.1 的确定性输出、各阶段形状、最终输出与 `TinyGPT.forward` 一致。
 - `ch01/end/README.md` 的目录树与阅读顺序补上管线。
 - `docs/assets/ch01/architecture-{1..11}.svg`。
 
