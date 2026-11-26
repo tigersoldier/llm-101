@@ -1,6 +1,7 @@
 """The chapter 1 placeholder pipeline, upgraded one section at a time.
 
-Stages 1-3 turn text into ids and one 16-number row per position. The output
+Sections 1.1 and 1.2 map text to a placeholder answer directly. Section 1.3
+opens the box and returns the 16-number vector per position; the model output
 scores and argmax arrive with the full model in section 1.7. Later sections
 replace the remaining placeholders and this module is removed once the model
 takes over.
@@ -23,20 +24,16 @@ class PipelineResult:
     stage: int
     text: str
     ids: list[int]
-    vectors: torch.Tensor
+    answer: int | None = None
+    vectors: torch.Tensor | None = None
 
 
 def _placeholder_ids(text: str) -> list[int]:
     return [ord(character) % VOCAB_SIZE for character in text]
 
 
-def _placeholder_vectors(ids: list[int]) -> torch.Tensor:
-    rows: list[list[float]] = []
-    total = 0
-    for token_id in ids:
-        total += token_id
-        rows.append([float((total + index) % WIDTH) for index in range(WIDTH)])
-    return torch.tensor([rows], dtype=torch.float32)
+def _placeholder_answer(ids: list[int]) -> int:
+    return (sum(ids) * 31) % VOCAB_SIZE
 
 
 def run(text: str, stage: int = 1) -> PipelineResult:
@@ -64,7 +61,11 @@ def run(text: str, stage: int = 1) -> PipelineResult:
         )
         token_ids = torch.tensor([ids], dtype=torch.long)
         vectors = embedding.forward(token_ids)
-    else:
-        vectors = _placeholder_vectors(ids)
+        return PipelineResult(stage=stage, text=text, ids=ids, vectors=vectors)
 
-    return PipelineResult(stage=stage, text=text, ids=ids, vectors=vectors)
+    return PipelineResult(
+        stage=stage,
+        text=text,
+        ids=ids,
+        answer=_placeholder_answer(ids),
+    )

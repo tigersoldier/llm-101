@@ -15,8 +15,8 @@
 <text x="625" y="211" text-anchor="end" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#64748b">占位</text>
 <line x1="380" y1="240" x2="380" y2="260" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
 <rect x="110" y="264" width="540" height="64" rx="10" fill="#f8fafc" stroke="#94a3b8" stroke-dasharray="6 4"/>
-<text x="135" y="290" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="16" font-weight="600" fill="#1f2937">数字</text>
-<text x="135" y="314" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#475569">占位：累加取余</text>
+<text x="135" y="290" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="16" font-weight="600" fill="#1f2937">答案</text>
+<text x="135" y="314" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#475569">占位：直接算答案</text>
 <text x="625" y="303" text-anchor="end" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#64748b">占位</text>
 <text x="30" y="392" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#475569">只画本节已有的步骤；后面的组件在对应小节才出现。</text>
 <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#64748b"/></marker></defs>

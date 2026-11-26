@@ -15,15 +15,21 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parents[3]
 OUTPUT_DIR = REPO_ROOT / "docs" / "assets" / "ch01"
 
-# name, real detail, placeholder detail, introduced stage, real stage
+# name, real detail, placeholder detail, real stage, visible(stage)
 STEPS = [
-    ("文字", "the cat sat", "the cat sat", 0, 0),
-    ("编号", "CharacterTokenizer（分词器）", "占位：ord(ch) % 68", 1, 2),
-    ("数字", "Embedding（嵌入表）", "占位：累加取余", 1, 3),
-    ("位置", "位置嵌入", "", 4, 4),
-    ("混合", "因果多头注意力", "", 6, 6),
-    ("调匀/筛选", "LayerNorm + GELU", "", 5, 5),
-    ("分数/答案", "68 个分数 → argmax", "", 7, 7),
+    ("文字", "the cat sat", "the cat sat", 0, lambda stage: True),
+    ("编号", "CharacterTokenizer（分词器）", "占位：ord(ch) % 68", 2, lambda stage: True),
+    ("数字", "Embedding（嵌入表）", "", 3, lambda stage: stage >= 3),
+    ("位置", "位置嵌入", "", 4, lambda stage: stage >= 4),
+    ("混合", "因果多头注意力", "", 6, lambda stage: stage >= 6),
+    ("调匀/筛选", "LayerNorm + GELU", "", 5, lambda stage: stage >= 5),
+    (
+        "答案",
+        "68 个分数 → argmax",
+        "占位：直接算答案",
+        7,
+        lambda stage: stage <= 2 or stage >= 7,
+    ),
 ]
 
 
@@ -49,7 +55,7 @@ def _box(top: int, name: str, detail: str, real: bool) -> str:
 
 
 def render(stage: int) -> str:
-    steps = [step for step in STEPS if step[3] == 0 or stage >= step[3]]
+    steps = [step for step in STEPS if step[4](stage)]
     height = 80 + len(steps) * 92 + 60
     parts = [
         (
@@ -77,8 +83,8 @@ def render(stage: int) -> str:
         name,
         real_detail,
         placeholder_detail,
-        introduced,
         real_stage,
+        _,
     ) in enumerate(steps):
         real = stage >= real_stage
         detail = real_detail if real else placeholder_detail

@@ -10,11 +10,13 @@ from llm101.tokenizer import DEFAULT_VOCABULARY, CharacterTokenizer
 EXAMPLE = "the cat sat"
 
 
-def test_stage_one_uses_placeholder_ids() -> None:
+def test_stage_one_uses_placeholder_ids_and_answer() -> None:
     result = run(EXAMPLE, stage=1)
 
     assert result.ids == [ord(character) % VOCAB_SIZE for character in EXAMPLE]
-    assert result.vectors.shape == (1, len(EXAMPLE), WIDTH)
+    assert result.vectors is None
+    assert result.answer is not None
+    assert 0 <= result.answer < VOCAB_SIZE
 
 
 def test_stage_one_is_deterministic() -> None:
@@ -22,7 +24,7 @@ def test_stage_one_is_deterministic() -> None:
     second = run(EXAMPLE, stage=1)
 
     assert first.ids == second.ids
-    torch.testing.assert_close(first.vectors, second.vectors)
+    assert first.answer == second.answer
 
 
 def test_stage_two_uses_the_tokenizer() -> None:
@@ -31,14 +33,17 @@ def test_stage_two_uses_the_tokenizer() -> None:
 
     assert result.ids == tokenizer.encode(EXAMPLE, add_bos=True, add_eos=True)
     assert len(result.ids) == len(EXAMPLE) + 2
-    assert result.vectors.shape == (1, len(result.ids), WIDTH)
+    assert result.vectors is None
+    assert result.answer is not None
 
 
-def test_stage_three_uses_the_embedding_table() -> None:
+def test_stage_three_returns_the_embedding_vectors() -> None:
     result = run(EXAMPLE, stage=3)
     embedding = Embedding(VOCAB_SIZE, WIDTH, generator=torch.Generator().manual_seed(0))
     expected = embedding.forward(torch.tensor([result.ids], dtype=torch.long))
 
+    assert result.answer is None
+    assert result.vectors is not None
     torch.testing.assert_close(result.vectors, expected)
 
 

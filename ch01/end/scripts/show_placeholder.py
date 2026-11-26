@@ -21,7 +21,10 @@ def main() -> None:
 
     print(f"stage {result.stage} | text: {result.text}")
     print(f"ids ({len(result.ids)})        {result.ids}")
-    print(f"vectors[-1]     {[round(value, 3) for value in result.vectors[0, -1].tolist()]}")
+    if result.vectors is not None:
+        print(f"vectors[-1]     {[round(value, 3) for value in result.vectors[0, -1].tolist()]}")
+    if result.answer is not None:
+        print(f"answer          {result.answer}")
 
 
 if __name__ == "__main__":
