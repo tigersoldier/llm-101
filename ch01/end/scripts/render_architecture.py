@@ -23,16 +23,8 @@ STEPS = [
     ("位置", "位置嵌入", "", 4, 4),
     ("混合", "因果多头注意力", "", 6, 6),
     ("调匀/筛选", "LayerNorm + GELU", "", 5, 5),
-    ("答案", "argmax", "argmax（占位分数）", 1, 1),
+    ("分数/答案", "68 个分数 → argmax", "", 7, 7),
 ]
-
-
-def _answer_detail(stage: int) -> str:
-    if stage >= 7:
-        return "argmax（模型分数）"
-    if stage >= 3:
-        return "argmax（Linear 分数）"
-    return "argmax（占位分数）"
 
 
 def _box(top: int, name: str, detail: str, real: bool) -> str:
@@ -90,8 +82,6 @@ def render(stage: int) -> str:
     ) in enumerate(steps):
         real = stage >= real_stage
         detail = real_detail if real else placeholder_detail
-        if name == "答案":
-            detail = _answer_detail(stage)
         top = 80 + index * 92
         parts.append(_box(top, name, detail, real))
         if index + 1 < len(steps):

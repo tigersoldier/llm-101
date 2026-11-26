@@ -8,7 +8,6 @@
 |transformer|不译|第 1 章要搭的模型结构；没有公认中文译名，保留英文|[第 1 章总览](course/ch01/index.md)（1.7 组装）|
 |tensor|张量|多维数组；每一维长度固定，二维就是矩阵|[1.1](course/ch01/1.1.md)|
 |shape|形状|张量每一维的长度，如 `[B, T, C]`|[1.1](course/ch01/1.1.md)|
-|argmax|取最大值位置|给一排数，返回最大值的下标；并列取第一个|[1.1](course/ch01/1.1.md)|
 |tokenizer|分词器、标记器、词元切分器|把文本切成 token，并把 token 映射成编号|[1.2](course/ch01/1.2.md)|
 |token|词元、标记|切分后的最小单位；本章按单个字符切|[1.2](course/ch01/1.2.md)|
 |vocabulary|词表、词汇表|所有可选 token 的清单|[1.2](course/ch01/1.2.md)|
