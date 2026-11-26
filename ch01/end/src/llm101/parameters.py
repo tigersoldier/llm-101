@@ -1,6 +1,7 @@
-"""Trainable tensors (chapter 1).
+"""A named holder for one tensor (chapter 1).
 
-Chapter 1 never touches ``grad``; chapter 3 starts writing into it.
+Chapter 1 only reads ``value``. Chapter 3 adds the ``grad`` buffer and
+``zero_grad`` when backpropagation needs them.
 """
 
 from __future__ import annotations
@@ -9,7 +10,7 @@ import torch
 
 
 class Parameter:
-    """A tensor plus a same-shaped ``grad`` buffer for later updates."""
+    """A named holder for one tensor value."""
 
     def __init__(self, value: torch.Tensor) -> None:
         if not isinstance(value, torch.Tensor):
@@ -20,7 +21,3 @@ class Parameter:
             raise TypeError("parameter values must use a floating-point dtype")
 
         self.value = value.clone()
-        self.grad = torch.zeros_like(self.value)
-
-    def zero_grad(self) -> None:
-        self.grad.zero_()

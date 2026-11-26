@@ -42,7 +42,7 @@ def test_stage_two_decodes_the_answer() -> None:
 def test_stage_three_returns_the_embedding_vectors() -> None:
     result = run(EXAMPLE, stage=3)
     embedding = Embedding(VOCAB_SIZE, WIDTH, generator=torch.Generator().manual_seed(0))
-    expected = embedding.forward(torch.tensor([result.ids], dtype=torch.long))
+    expected = embedding.forward(torch.tensor(result.ids, dtype=torch.long))
 
     assert result.answer is None
     assert result.character is None

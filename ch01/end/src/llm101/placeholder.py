@@ -63,7 +63,7 @@ def run(text: str, stage: int = 1) -> PipelineResult:
             embedding = Embedding(
                 VOCAB_SIZE, WIDTH, generator=torch.Generator().manual_seed(0)
             )
-            token_ids = torch.tensor([ids], dtype=torch.long)
+            token_ids = torch.tensor(ids, dtype=torch.long)
             vectors = embedding.forward(token_ids)
             return PipelineResult(
                 stage=stage,
