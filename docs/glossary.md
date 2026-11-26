@@ -11,7 +11,7 @@
 |vocabulary|词表、词汇表|所有可选 token 的清单|[1.2](course/ch01/1.2.md)|
 |token id|词元编号|token 在词表里的位置，简称编号|[1.2](course/ch01/1.2.md)|
 |special token|特殊词元、特殊符号|有固定用途的 token，如 `<unk>`、`<bos>`、`<eos>`、`<pad>`|[1.2](course/ch01/1.2.md)|
-|`<unk>`|未知词元|词表外字符的替身|[1.2](course/ch01/1.2.md)|
-|`<bos>`|起始词元|标出输入的开头|[1.2](course/ch01/1.2.md)|
-|`<eos>`|结束词元|标出输入的结尾|[1.2](course/ch01/1.2.md)|
-|`<pad>`|填充词元|把短的输入补齐；本章不用|[1.2](course/ch01/1.2.md)|
+|`<unk>`|未知词元|unknown 的缩写；词表外字符的替身|[1.2](course/ch01/1.2.md)|
+|`<bos>`|起始词元|beginning of sequence 的缩写；标出输入的开头|[1.2](course/ch01/1.2.md)|
+|`<eos>`|结束词元|end of sequence 的缩写；标出输入的结尾|[1.2](course/ch01/1.2.md)|
+|`<pad>`|填充词元|padding 的缩写；把短的输入补齐；本章不用|[1.2](course/ch01/1.2.md)|
