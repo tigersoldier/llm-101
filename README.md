@@ -2,13 +2,15 @@
 
 这是一个面向会 Python 的读者的手把手课程：从公开短故事语料出发，逐步实现 tokenizer、decoder-only Transformer、预训练与推理，最终得到一个能续写短句的小模型。
 
+在线阅读：<https://tigersoldier.github.io/llm-101/>
+
 ## 教学目标
 
 - 用 PyTorch 张量和矩阵运算，但不依赖 autograd；手写有代表性的反向传播与参数更新。
 - 以清晰、可读、CPU 可运行优先，不以性能优化为目标。
 - 只训练一个中英混合模型；语料不加入语言控制标记，靠提示文本区分语言。
 - 用验证集 loss/perplexity 和固定提示词生成结果评估；按时长实验选出最短达标版本。
-- 教程内容使用中文，代码和练习在本地运行；网站由 MkDocs 生成，可部署到 GitHub Pages。
+- 教程内容使用中文，代码和练习在本地运行；网站由 MkDocs 生成，部署在 GitHub Pages。
 
 ## 当前状态
 
