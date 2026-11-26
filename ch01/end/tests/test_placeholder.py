@@ -15,6 +15,8 @@ def test_stage_one_uses_placeholder_ids_and_character() -> None:
 
     assert result.ids == [ord(character) % VOCAB_SIZE for character in EXAMPLE]
     assert result.vectors is None
+    assert result.output is None
+    assert result.scores is None
     assert result.answer is not None
     assert result.character == ALPHABET[result.answer % len(ALPHABET)]
 
@@ -35,6 +37,8 @@ def test_stage_two_decodes_the_answer() -> None:
     assert result.ids == tokenizer.encode(EXAMPLE, add_bos=True, add_eos=True)
     assert len(result.ids) == len(EXAMPLE) + 2
     assert result.vectors is None
+    assert result.output is None
+    assert result.scores is None
     assert result.answer is not None
     assert result.character == tokenizer.decode([result.answer])
 
@@ -48,6 +52,12 @@ def test_stage_three_returns_the_embedding_vectors() -> None:
     assert result.character == ALPHABET[result.answer % len(ALPHABET)]
     assert result.vectors is not None
     torch.testing.assert_close(result.vectors, expected)
+    assert result.output is not None
+    assert result.output.shape == (WIDTH,)
+    torch.testing.assert_close(result.output, expected.sum(dim=0))
+    assert result.scores is not None
+    assert result.scores.shape == (VOCAB_SIZE,)
+    assert result.answer == int(result.scores.max(dim=0).indices)
 
 
 def test_future_stage_is_not_implemented() -> None:

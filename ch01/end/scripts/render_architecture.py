@@ -18,7 +18,13 @@ OUTPUT_DIR = REPO_ROOT / "docs" / "assets" / "ch01"
 # name, real detail, placeholder detail, real stage, visible(stage)
 STEPS = [
     ("文字", "the cat sat", "the cat sat", 0, lambda stage: True),
-    ("编号", "CharacterTokenizer（分词器）", "占位：ord(ch) % 68", 2, lambda stage: True),
+    (
+        "编号",
+        "CharacterTokenizer（分词器）",
+        "占位：ord(ch) % 68",
+        2,
+        lambda stage: True,
+    ),
     ("数字", "Embedding（嵌入表）", "", 3, lambda stage: stage >= 3),
     ("位置", "位置嵌入", "", 4, lambda stage: stage >= 4),
     ("混合", "因果多头注意力", "", 6, lambda stage: stage >= 6),
@@ -37,7 +43,7 @@ def _answer_detail(stage: int) -> str:
     if stage >= 7:
         return "68 个分数 → argmax → 字符"
     if stage >= 3:
-        return "临时：向量 → 字符"
+        return "临时：输出向量 → 分数 → 字符"
     return "占位：编号 → 字符"
 
 

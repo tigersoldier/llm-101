@@ -1,10 +1,11 @@
 """The chapter 1 placeholder pipeline, upgraded one section at a time.
 
 Sections 1.1 and 1.2 map text to a placeholder answer id and then to a
-character. Section 1.3 opens the box and returns the 16-number vector per
-position; the model output scores and argmax arrive with the full model in
-section 1.7. Later sections replace the remaining placeholders and this module
-is removed once the model takes over.
+character. Section 1.3 embeds every position, sums the vectors, and uses a
+fixed output matrix to score the 68 vocabulary entries; the trained output
+layer and argmax arrive with the full model in section 1.7. Later sections
+replace the remaining placeholders and this module is removed once the model
+takes over.
 """
 
 from __future__ import annotations
@@ -28,6 +29,13 @@ class PipelineResult:
     answer: int | None = None
     character: str | None = None
     vectors: torch.Tensor | None = None
+    output: torch.Tensor | None = None
+    scores: torch.Tensor | None = None
+
+
+_OUTPUT_MATRIX: torch.Tensor = (
+    torch.randn(WIDTH, VOCAB_SIZE, generator=torch.Generator().manual_seed(24)) * 0.1
+)
 
 
 def _placeholder_ids(text: str) -> list[int]:
@@ -65,7 +73,9 @@ def run(text: str, stage: int = 1) -> PipelineResult:
             )
             token_ids = torch.tensor(ids, dtype=torch.long)
             vectors = embedding.forward(token_ids)
-            answer = int(vectors[-1].sum().mul(1000).item()) % VOCAB_SIZE
+            output = vectors.sum(dim=0)
+            scores = output @ _OUTPUT_MATRIX
+            answer = int(scores.max(dim=0).indices)
             return PipelineResult(
                 stage=stage,
                 text=text,
@@ -73,6 +83,8 @@ def run(text: str, stage: int = 1) -> PipelineResult:
                 answer=answer,
                 character=_placeholder_character(answer),
                 vectors=vectors,
+                output=output,
+                scores=scores,
             )
 
         answer = _placeholder_answer(ids)

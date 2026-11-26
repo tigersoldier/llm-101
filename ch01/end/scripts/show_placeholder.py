@@ -22,7 +22,17 @@ def main() -> None:
     print(f"stage {result.stage} | text: {result.text}")
     print(f"ids ({len(result.ids)})        {result.ids}")
     if result.vectors is not None:
-        print(f"vectors[-1]     {[round(value, 3) for value in result.vectors[-1].tolist()]}")
+        print(f"vectors         {tuple(result.vectors.shape)}")
+    if result.output is not None:
+        print(
+            f"output          {[round(value, 3) for value in result.output.tolist()]}"
+        )
+    if result.scores is not None:
+        best = result.scores.max(dim=0)
+        print(
+            f"scores          {result.scores.numel()} | "
+            f"max {round(float(best.values), 3)} at {int(best.indices)}"
+        )
     if result.answer is not None:
         print(f"answer          {result.answer}")
     if result.character is not None:

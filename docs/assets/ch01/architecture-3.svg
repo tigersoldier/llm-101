@@ -1,6 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 508" role="img" aria-labelledby="title desc">
-<title id="title">第 3 节结束时的管线架构</title>
-<desc id="desc">实线表示本节已经实现的步骤，虚线表示仍在使用的占位。后续小节的组件只在对应小节出现。</desc>
+/home/pi/chat/2026-10-26-我想系统学习一下llm的基础知识-包括训练-架构-和推理-我打算搞一个llm-1/llm-101/docs/assets/ch01/architecture-3.svg
+sc id="desc">实线表示本节已经实现的步骤，虚线表示仍在使用的占位。后续小节的组件只在对应小节出现。</desc>
 <rect width="760" height="508" fill="#ffffff"/>
 <text x="30" y="36" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="18" font-weight="600" fill="#1f2937">第 3 节结束时的管线</text>
 <text x="730" y="36" text-anchor="end" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#64748b">实线 = 已实现，虚线 = 占位</text>
@@ -21,7 +20,7 @@
 <line x1="380" y1="332" x2="380" y2="352" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
 <rect x="110" y="356" width="540" height="64" rx="10" fill="#f8fafc" stroke="#94a3b8" stroke-dasharray="6 4"/>
 <text x="135" y="382" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="16" font-weight="600" fill="#1f2937">答案</text>
-<text x="135" y="406" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#475569">临时：向量 → 字符</text>
+<text x="135" y="406" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#475569">临时：输出向量 → 分数 → 字符</text>
 <text x="625" y="395" text-anchor="end" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#64748b">占位</text>
 <text x="30" y="484" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#475569">只画本节已有的步骤；后面的组件在对应小节才出现。</text>
 <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#64748b"/></marker></defs>
