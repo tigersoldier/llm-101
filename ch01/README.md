@@ -2,7 +2,7 @@
 
 第 1 章把完整但很小的 decoder-only transformer 一次搭起来，只做前向，并用一个 Python web server 把每一层的输入输出显示在浏览器里。后续章节在这批模块上继续加东西：第 2 章换 tokenizer，第 3 章加手写梯度，第 5 章放大到最终维度。
 
-整体规划见仓库根目录 `PLAN.md`，全书写作风格见 `STYLE.md`。
+整体规划见仓库根目录 `PLAN.md`，全书写作风格见 `STYLE.md`；第 1 章的概念引入时机调整见 `PLAN.md` 第 13 节。
 
 ## 目录
 
