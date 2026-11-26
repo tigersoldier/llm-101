@@ -16,6 +16,7 @@
 |`<unk>`|未知词元|unknown 的缩写；词表外字符的替身|[1.2](course/ch01/1.2.md)|
 |`<bos>`|起始词元|beginning of sequence 的缩写；标出输入的开头|[1.2](course/ch01/1.2.md)|
 |`<eos>`|结束词元|end of sequence 的缩写；标出输入的结尾|[1.2](course/ch01/1.2.md)|
+|one-hot|独热编码|词表大小维的向量，只有一个位置是 1，其余是 0|[1.3](course/ch01/1.3.md)|
 |parameter|参数|模型里可调整的数字；`Parameter` 另留一块同形状缓冲|[1.3](course/ch01/1.3.md)|
 |autograd|自动求导|PyTorch 的自动微分机制；本书不用|[1.3](course/ch01/1.3.md)|
 |batch|批|同时处理的多条输入，对应第一维 `B`|[1.3](course/ch01/1.3.md)|
