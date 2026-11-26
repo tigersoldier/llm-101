@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 720" role="img" aria-labelledby="title desc">
+<title id="title">LayerNorm 与 BatchNorm 的统计量方向</title>
+<desc id="desc">LayerNorm 沿每个位置的行求均值方差；BatchNorm 沿每个特征的列跨批次求。</desc>
+<rect width="1100" height="720" fill="#ffffff"/>
+<text x="30" y="38" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="19" font-weight="600" fill="#1f2937">LayerNorm 与 BatchNorm：统计量沿哪一维求</text>
+<text x="30" y="64" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">同一个 [T, C] 网格；本章没有批次维，所以用 LayerNorm。</text>
+<text x="80" y="126" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="15" font-weight="600" fill="#1f2937">LayerNorm：每一行（一个位置）</text>
+<rect x="80" y="170" width="52" height="52" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+<rect x="136" y="170" width="52" height="52" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+<rect x="192" y="170" width="52" height="52" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+<rect x="248" y="170" width="52" height="52" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+<rect x="80" y="226" width="52" height="52" fill="#ede9fe" stroke="#6d28d9" stroke-width="2"/>
+<rect x="136" y="226" width="52" height="52" fill="#ede9fe" stroke="#6d28d9" stroke-width="2"/>
+<rect x="192" y="226" width="52" height="52" fill="#ede9fe" stroke="#6d28d9" stroke-width="2"/>
+<rect x="248" y="226" width="52" height="52" fill="#ede9fe" stroke="#6d28d9" stroke-width="2"/>
+<rect x="80" y="282" width="52" height="52" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+<rect x="136" y="282" width="52" height="52" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+<rect x="192" y="282" width="52" height="52" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+<rect x="248" y="282" width="52" height="52" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+<line x1="66" y1="252" x2="314" y2="252" stroke="#6d28d9" stroke-width="3" marker-end="url(#arrow)"/>
+<text x="80" y="286" font-family="ui-monospace, monospace" font-size="12" fill="#6d28d9">mean/var 沿这一行</text>
+<text x="320" y="257" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#64748b">一个位置</text>
+<text x="62" y="160" font-family="ui-monospace, monospace" font-size="11" fill="#64748b">T</text>
+<text x="312" y="166" font-family="ui-monospace, monospace" font-size="11" fill="#64748b">C</text>
+<text x="620" y="126" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="15" font-weight="600" fill="#1f2937">BatchNorm：每一列（一个特征）</text>
+<rect x="620" y="170" width="52" height="52" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+<rect x="676" y="170" width="52" height="52" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+<rect x="732" y="170" width="52" height="52" fill="#ffedd5" stroke="#c2410c" stroke-width="2"/>
+<rect x="788" y="170" width="52" height="52" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+<rect x="620" y="226" width="52" height="52" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+<rect x="676" y="226" width="52" height="52" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+<rect x="732" y="226" width="52" height="52" fill="#ffedd5" stroke="#c2410c" stroke-width="2"/>
+<rect x="788" y="226" width="52" height="52" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+<rect x="620" y="282" width="52" height="52" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+<rect x="676" y="282" width="52" height="52" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+<rect x="732" y="282" width="52" height="52" fill="#ffedd5" stroke="#c2410c" stroke-width="2"/>
+<rect x="788" y="282" width="52" height="52" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+<line x1="758" y1="156" x2="758" y2="348" stroke="#c2410c" stroke-width="3" marker-end="url(#arrow)"/>
+<text x="774" y="364" font-family="ui-monospace, monospace" font-size="12" fill="#c2410c">沿这一列</text>
+<text x="774" y="382" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#64748b">一个特征，跨批次</text>
+<text x="602" y="160" font-family="ui-monospace, monospace" font-size="11" fill="#64748b">T</text>
+<text x="852" y="166" font-family="ui-monospace, monospace" font-size="11" fill="#64748b">C</text>
+<text x="80" y="540" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#475569">对每个位置独立计算，不跨位置、不跨批次；13 个位置就是 13 组统计量。</text>
+<text x="620" y="540" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#475569">对每个特征跨批次计算；批次太小会抖，推理时还得保存 running statistics。</text>
+<text x="80" y="620" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#64748b">本章的输入是 [T, C]；1.7 加批次维后，LayerNorm 仍然只沿最后一维 C。</text>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#64748b"/></marker></defs></svg>

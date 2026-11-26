@@ -37,6 +37,16 @@
 |Pre-LN|前置层归一化|先 LayerNorm 再进子层；与 Post-LN 相对|[1.5](course/ch01/1.5.md)|
 |Post-LN|后置层归一化|先子层和残差再 LayerNorm|[1.5](course/ch01/1.5.md)|
 |subLayer|子层|block 里的注意力或 MLP 分支；1.7 组装|[1.5](course/ch01/1.5.md)|
+|ReLU|线性整流单元|Rectified Linear Unit；max(0,x)|[1.5](course/ch01/1.5.md)|
+|BatchNorm|批归一化|Batch Normalization；沿批次维求统计量|[1.5](course/ch01/1.5.md)|
+|sigmoid|S 形函数|把实数压到 0–1 的平滑函数|[1.5](course/ch01/1.5.md)|
+|tanh|双曲正切|把实数压到 -1–1 的平滑函数|[1.5](course/ch01/1.5.md)|
+|ELU|指数线性单元|Exponential Linear Unit；负数区平滑的 ReLU 变体|[1.5](course/ch01/1.5.md)|
+|warmup|预热|训练初期把学习率从小逐渐调大|[1.5](course/ch01/1.5.md)|
+|erf|误差函数|高斯积分的误差函数；GELU 的精确式用它|[1.5](course/ch01/1.5.md)|
+|internal covariate shift|内部协变量偏移|深层网络各层输入分布随训练变化|[1.5](course/ch01/1.5.md)|
+|vanishing gradient|梯度消失|深层网络反传时梯度逐层变小|[1.5](course/ch01/1.5.md)|
+|running statistics|滑动统计量|BatchNorm 在训练中累积、推理时使用的均值/方差|[1.5](course/ch01/1.5.md)|
 |epsilon|小常数|加在方差上防止除零；本章 1e-5|[1.5](course/ch01/1.5.md)|
 |linear|线性层|`y = xW + b`|1.6|
 |batch|批次|同时处理的一组输入；batch size 是批次大小，第一维 `B` 叫批次维；也说一批、批量处理|1.7|
