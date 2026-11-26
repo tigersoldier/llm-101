@@ -4,7 +4,7 @@
 
   let overlay;
   let stage;
-  let zoomImage;
+  let zoomCanvas;
   let closeButton;
   let scale = 1;
   let offsetX = 0;
@@ -12,6 +12,7 @@
   let moved = false;
   let dragStart = null;
   let pinchStart = null;
+  let openToken = 0;
   const pointers = new Map();
 
   function clamp(value, low, high) {
@@ -19,7 +20,7 @@
   }
 
   function applyTransform() {
-    zoomImage.style.transform =
+    zoomCanvas.style.transform =
       `translate3d(${offsetX}px, ${offsetY}px, 0) scale(${scale})`;
   }
 
@@ -50,14 +51,55 @@
     return { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 };
   }
 
-  function openZoom(source) {
-    zoomImage.src = source.currentSrc || source.src;
-    zoomImage.alt = source.alt || "";
+  function showImageFallback(src, alt) {
+    const image = document.createElement("img");
+    image.src = src;
+    image.alt = alt;
+    image.draggable = false;
+    zoomCanvas.replaceChildren(image);
+  }
+
+  async function openZoom(source) {
+    const token = ++openToken;
+    const src = source.currentSrc || source.src;
+    const alt = source.alt || "";
+
+    zoomCanvas.replaceChildren();
     resetTransform();
     overlay.classList.add("is-open");
     overlay.setAttribute("aria-hidden", "false");
     document.body.classList.add("image-zoom-open");
     closeButton.focus({ preventScroll: true });
+
+    if (!src.toLowerCase().endsWith(".svg")) {
+      showImageFallback(src, alt);
+      return;
+    }
+
+    try {
+      const response = await fetch(src);
+      if (!response.ok) throw new Error(`SVG request failed: ${response.status}`);
+      const markup = await response.text();
+      if (token !== openToken) return;
+      const documentNode = new DOMParser().parseFromString(markup, "image/svg+xml");
+      const svg = documentNode.documentElement;
+      if (svg.nodeName !== "svg") throw new Error("not an SVG document");
+      const viewBox = (svg.getAttribute("viewBox") || "")
+        .trim()
+        .split(/[\s,]+/)
+        .map(Number);
+      if (viewBox.length === 4 && viewBox.every(Number.isFinite)) {
+        svg.setAttribute("width", String(viewBox[2]));
+        svg.setAttribute("height", String(viewBox[3]));
+      }
+      svg.setAttribute("preserveAspectRatio", "xMidYMid meet");
+      svg.setAttribute("role", "img");
+      svg.setAttribute("aria-label", alt);
+      zoomCanvas.replaceChildren(document.importNode(svg, true));
+    } catch (error) {
+      if (token !== openToken) return;
+      showImageFallback(src, alt);
+    }
   }
 
   function closeZoom() {
@@ -65,6 +107,7 @@
     overlay.classList.remove("is-open");
     overlay.setAttribute("aria-hidden", "true");
     document.body.classList.remove("image-zoom-open");
+    openToken += 1;
     pointers.clear();
     dragStart = null;
     pinchStart = null;
@@ -91,11 +134,9 @@
 
     stage = overlay.querySelector(".image-zoom__stage");
     closeButton = overlay.querySelector('[data-action="close"]');
-    zoomImage = document.createElement("img");
-    zoomImage.className = "image-zoom__image";
-    zoomImage.alt = "";
-    zoomImage.draggable = false;
-    stage.appendChild(zoomImage);
+    zoomCanvas = document.createElement("div");
+    zoomCanvas.className = "image-zoom__canvas";
+    stage.appendChild(zoomCanvas);
 
     overlay.querySelector(".image-zoom__toolbar").addEventListener("click", (event) => {
       const button = event.target.closest("button[data-action]");
