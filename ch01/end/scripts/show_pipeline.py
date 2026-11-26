@@ -1,0 +1,39 @@
+"""Print the pipeline state after a given section.
+
+Example:
+    uv run python scripts/show_pipeline.py --stage 1 "the cat sat"
+"""
+
+from __future__ import annotations
+
+import argparse
+
+from llm101.pipeline import run
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("text", nargs="?", default="the cat sat")
+    parser.add_argument("--stage", type=int, default=1)
+    args = parser.parse_args()
+
+    result = run(args.text, stage=args.stage)
+
+    print(f"stage {result.stage} | text: {result.text}")
+    print(f"ids ({len(result.ids)})        {result.ids}")
+    print(
+        f"vectors[-1]     {[round(value, 3) for value in result.vectors[0, -1].tolist()]}"
+    )
+    print(
+        f"mixed[-1]       {[round(value, 3) for value in result.mixed[0, -1].tolist()]}"
+    )
+    print(
+        f"scores[:8]      {[round(value, 3) for value in result.scores[:8].tolist()]}"
+    )
+    print(
+        f"top-3           {[(index, round(value, 3)) for index, value in result.top]}"
+    )
+
+
+if __name__ == "__main__":
+    main()

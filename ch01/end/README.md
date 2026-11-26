@@ -9,15 +9,15 @@ ch01/end/
 ├── pyproject.toml          # 与 start 相同，可加 demo 依赖
 ├── README.md               # 本章小结（由 1.11 写）
 ├── samples/stories.txt
-├── src/llm101/{tokenizer,parameters,layers,attention,model}.py
+├── src/llm101/{tokenizer,parameters,layers,attention,model,pipeline}.py
+├── scripts/{show_pipeline.py,render_architecture.py,serve_demo.py}
 ├── web/{app.py,schemas.py,static/{index.html,app.js,style.css}}
-├── scripts/serve_demo.py
-└── tests/{test_structure.py,test_tokenizer.py,test_layers.py,test_api.py}
+└── tests/{test_structure.py,test_tokenizer.py,test_layers.py,test_pipeline.py,test_api.py}
 ```
 
 ## 与 start 的关系
 
-- 同一批文件、同一批函数签名；差别只是实现与新增的测试、`web/`、`scripts/`。
+- 同一批文件、同一批函数签名；差别只是实现与新增的测试、管线、`web/`、`scripts/`。
 - 所有 `TODO 1.x` 都被替换，`start` 里 3 个红测试在 `end` 中全绿。
 - 下一章（第 2 章）的 `start/` 必须与这里逐字节一致，改动请回写到本章。
 
@@ -27,5 +27,6 @@ ch01/end/
 cd ch01/end
 uv sync --extra dev --extra demo
 uv run pytest -q
+uv run python scripts/show_pipeline.py --stage 7 "the cat sat"
 uv run python scripts/serve_demo.py   # 打开 http://127.0.0.1:8000
 ```
