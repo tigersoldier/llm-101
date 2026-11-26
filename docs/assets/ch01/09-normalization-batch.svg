@@ -35,11 +35,10 @@
 <text x="282.0" y="272" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" fill="#64748b">4</text>
 <line x1="90" y1="254" x2="90" y2="95" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
 <text x="76" y="182.0" text-anchor="middle" transform="rotate(-90 76 182.0)" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#475569">B（批次）</text>
-<line x1="120" y1="288" x2="338" y2="288" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<line x1="120" y1="340" x2="338" y2="340" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
 <text x="210.0" y="312" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#475569">C（特征）</text>
 <line x1="210.0" y1="262" x2="210.0" y2="292" stroke="#c2410c" stroke-width="2" marker-end="url(#arrow)"/>
 <text x="218.0" y="296" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="10" fill="#c2410c">沿这一列</text>
-<text x="116" y="50" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#c2410c">一列 = 一个特征</text>
 <text x="24" y="440" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="10" fill="#64748b">T/B 是竖直轴，C 是水平轴；高亮的部分是求均值/方差的方向。</text>
 <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#475569"/></marker></defs>
 </svg>
