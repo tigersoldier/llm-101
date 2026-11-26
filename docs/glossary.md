@@ -31,7 +31,7 @@
 |sinusoidal position encoding|正弦位置编码|原论文用固定正弦函数生成位置向量，不训练|[1.4](course/ch01/1.4.md)|
 |linear|线性层|`y = xW + b`|1.6|
 |bias|偏置|线性层里的 `b`|1.6|
-|batch|批|同时处理的多条输入，对应第一维 `B`|1.7|
+|batch|批次|同时处理的一组输入；batch size 是批次大小，第一维 `B` 叫批次维；也说一批、批量处理|1.7|
 |hidden state|隐藏状态|中间层输出的 `[B, T, C]` 数字|1.7|
 |parameter|参数|模型里可调整的数字；`Parameter` 另留一块同形状缓冲|第 3 章|
 |autograd|自动求导|PyTorch 的自动微分机制；本书不用|第 3 章|

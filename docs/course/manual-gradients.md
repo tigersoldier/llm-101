@@ -12,7 +12,7 @@ dW = xᵀ dy
 db = sum_rows(dy)
 ```
 
-代码位于 `src/llm101/layers.py` 的 `Linear`。输入有 batch 和其他前导维度时，先把这些维度展平，再计算 `dW` 和 `db`。
+代码位于 `src/llm101/layers.py` 的 `Linear`。输入有批次和其他前导维度时，先把这些维度展平，再计算 `dW` 和 `db`。
 
 ## Embedding
 

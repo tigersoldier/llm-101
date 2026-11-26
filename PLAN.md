@@ -271,7 +271,7 @@ uv run python scripts/show_placeholder.py --stage 1 "the cat sat"
 |`Parameter` / `grad`|1.3（已只留 value）|第 3 章反向传播|`Parameter` 的动机是记录调整量，1.3 用不到|第 3 章再引入 `Parameter` 和 `grad`；1.3 的权重直接用张量|
 |`Linear`|1.3|1.6 的 Q/K/V、1.7 的 MLP/输出|1.3 的管线只到 Embedding，`Linear` 不改变本节输出|移到 1.6 首次使用；1.7 再用 MLP/输出|
 |`parameters()` / 参数量|1.3、1.7|1.7 汇总模型|1.3 不需要|推迟到 1.7|
-|batch / 隐藏状态|已从 1.3 移除|1.7 或训练|—|保持推迟|
+|批次 / 隐藏状态|已从 1.3 移除|1.7 或训练|—|保持推迟|
 |`d_model`|1.3 提及|1.7 的配置|1.3 只用 `C`|1.3 只写 `C`，`d_model` 到 1.7|
 |`Embedding`|1.3|1.3 的管线|本节输出就是它|保留|
 |`LayerNorm` / `GELU`|1.5|1.7 的 block/MLP|零件本身的意图（调匀、筛选）可独立说明|保留；1.5 要明确它们服务于 1.7 的 block|

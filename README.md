@@ -36,7 +36,7 @@ uv run python scripts/prepare_training_data.py
 uv run python scripts/train_model.py --hours 5
 ```
 
-课程只训练中英混合模型：联合词表、完整两边训练切分、不加语言控制 token。训练默认 CPU、batch size 4、上下文 128、AdamW 学习率 `3e-4`，每 5 分钟记录验证指标并保存断点。将实验延长到 12 小时可在原运行目录加 `--resume`；具体评估流程见[实验方案](docs/course/experiment-protocol.md)。生成示例：
+课程只训练中英混合模型：联合词表、完整两边训练切分、不加语言控制 token。训练默认 CPU、批次大小（batch size）4、上下文 128、AdamW 学习率 `3e-4`，每 5 分钟记录验证指标并保存断点。将实验延长到 12 小时可在原运行目录加 `--resume`；具体评估流程见[实验方案](docs/course/experiment-protocol.md)。生成示例：
 
 ```bash
 uv run python scripts/generate.py \

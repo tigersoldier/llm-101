@@ -34,7 +34,7 @@ Tokenizer 合并规则使用每种语言的 512 篇 reservoir 样本训练；初
 4. 调用手写 `TinyGPT.backward` 累积各参数梯度。
 5. 按全模型 global norm 做梯度裁剪，再运行 AdamW。
 
-默认参数：4 层、`d_model=256`、4 个注意力头、`d_ff=1024`、上下文 128；batch size 4、AdamW 学习率 `3e-4`、`β=(0.9, 0.999)`、`epsilon=1e-8`、weight decay `0.01`、global gradient norm 上限 1.0。参数可在训练命令行覆盖；当前主实验使用固定学习率，不使用 dropout 或 scheduler。
+默认参数：4 层、`d_model=256`、4 个注意力头、`d_ff=1024`、上下文 128；批次大小（batch size）4、AdamW 学习率 `3e-4`、`β=(0.9, 0.999)`、`epsilon=1e-8`、weight decay `0.01`、global gradient norm 上限 1.0。参数可在训练命令行覆盖；当前主实验使用固定学习率，不使用 dropout 或 scheduler。
 
 ```bash
 uv run python scripts/train_model.py --hours 5
@@ -44,9 +44,9 @@ uv run python scripts/train_model.py --hours 5
 
 ## 验证和恢复
 
-每 5 分钟默认用验证流抽样 20 个 batch；验证分混合、纯中文、纯英文三份流，分别记录指标。结束时增加到至少 50 个 batch。运行配置还会记录验证 batch 数、验证/保存间隔、AdamW beta 和 epsilon，便于复现实验。loss/perplexity 是可比较的量化指标，固定提示词生成则用于人工检查可读性与语言表现。
+每 5 分钟默认用验证流抽样 20 个批次；验证分混合、纯中文、纯英文三份流，分别记录指标。结束时增加到至少 50 个批次。运行配置还会记录验证批次数量、验证/保存间隔、AdamW beta 和 epsilon，便于复现实验。loss/perplexity 是可比较的量化指标，固定提示词生成则用于人工检查可读性与语言表现。
 
-每 5 分钟保存模型、AdamW 一阶/二阶矩、累计训练时间、语言覆盖计数和 batch sampler 的随机数状态。系统信号会在当前训练步骤完成后保存并退出。比如把实验从 5 小时延长到 12 小时：
+每 5 分钟保存模型、AdamW 一阶/二阶矩、累计训练时间、语言覆盖计数和 批次采样器（batch sampler）的随机数状态。系统信号会在当前训练步骤完成后保存并退出。比如把实验从 5 小时延长到 12 小时：
 
 ```bash
 uv run python scripts/train_model.py \
@@ -54,6 +54,6 @@ uv run python scripts/train_model.py \
   --run-dir artifacts/runs/bilingual-5h-seed20261027 --resume
 ```
 
-恢复时数据摘要、模型配置、batch size、学习率、seed 等必须与原实验一致；目标总时长必须大于已累计训练时间。暂停的日历时间不计入训练时长。
+恢复时数据摘要、模型配置、批次大小、学习率、seed 等必须与原实验一致；目标总时长必须大于已累计训练时间。暂停的日历时间不计入训练时长。
 
 训练结束会生成 `model-5h.pt`、`best-model.pt` 和固定提示词样例 JSON。原始数据、token 流、检查点都在 Git 忽略目录；是否对外发布权重还需完成数据许可复核。

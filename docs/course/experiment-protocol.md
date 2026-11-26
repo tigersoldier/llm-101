@@ -44,6 +44,6 @@ uv run python scripts/train_model.py --hours 5 \
 
 ## 必须保留的证据
 
-每个运行目录记录模型配置、数据源与 tokenizer 的 SHA-256、目标与实际训练秒数、step 数、呈现给模型的 token 位置数、各语言覆盖数、验证 loss/perplexity 和固定提示词样例。语言覆盖数统计实际 batch 窗口中的输入 token 位置，窗口会重复，因此不等同于独立 token 数或完整语料遍历数。数据来源修订号、SHA-256、许可证与切分方法见[数据与许可](../datasets.md)及 `data/processed/experiment_manifest.json`。
+每个运行目录记录模型配置、数据源与 tokenizer 的 SHA-256、目标与实际训练秒数、step 数、呈现给模型的 token 位置数、各语言覆盖数、验证 loss/perplexity 和固定提示词样例。语言覆盖数统计实际批次窗口中的输入 token 位置，窗口会重复，因此不等同于独立 token 数或完整语料遍历数。数据来源修订号、SHA-256、许可证与切分方法见[数据与许可](../datasets.md)及 `data/processed/experiment_manifest.json`。
 
 原始语料与 checkpoint 不提交到 Git。权重发布前需单独复核 TinyStories 的 CDLA-Sharing-1.0 来源链、中文翻译数据的上游许可和适用的再发布条件；许可问题未解决时不发布。
