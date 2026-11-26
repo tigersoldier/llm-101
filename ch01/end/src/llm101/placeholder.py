@@ -1,10 +1,10 @@
 """The chapter 1 placeholder pipeline, upgraded one section at a time.
 
-Sections 1.1 and 1.2 map text to a placeholder answer directly. Section 1.3
-opens the box and returns the 16-number vector per position; the model output
-scores and argmax arrive with the full model in section 1.7. Later sections
-replace the remaining placeholders and this module is removed once the model
-takes over.
+Sections 1.1 and 1.2 map text to a placeholder answer id and then to a
+character. Section 1.3 opens the box and returns the 16-number vector per
+position; the model output scores and argmax arrive with the full model in
+section 1.7. Later sections replace the remaining placeholders and this module
+is removed once the model takes over.
 """
 
 from __future__ import annotations
@@ -15,6 +15,7 @@ import torch
 
 VOCAB_SIZE = 68
 WIDTH = 16
+ALPHABET = "abcdefghijklmnopqrstuvwxyz"
 
 
 @dataclass(frozen=True)
@@ -25,6 +26,7 @@ class PipelineResult:
     text: str
     ids: list[int]
     answer: int | None = None
+    character: str | None = None
     vectors: torch.Tensor | None = None
 
 
@@ -34,6 +36,10 @@ def _placeholder_ids(text: str) -> list[int]:
 
 def _placeholder_answer(ids: list[int]) -> int:
     return (sum(ids) * 31) % VOCAB_SIZE
+
+
+def _placeholder_character(answer: int) -> str:
+    return ALPHABET[answer % len(ALPHABET)]
 
 
 def run(text: str, stage: int = 1) -> PipelineResult:
@@ -50,22 +56,37 @@ def run(text: str, stage: int = 1) -> PipelineResult:
 
         tokenizer = CharacterTokenizer(DEFAULT_VOCABULARY)
         ids = tokenizer.encode(text, add_bos=True, add_eos=True)
-    else:
-        ids = _placeholder_ids(text)
 
-    if stage >= 3:
-        from llm101.layers import Embedding
+        if stage >= 3:
+            from llm101.layers import Embedding
 
-        embedding = Embedding(
-            VOCAB_SIZE, WIDTH, generator=torch.Generator().manual_seed(0)
+            embedding = Embedding(
+                VOCAB_SIZE, WIDTH, generator=torch.Generator().manual_seed(0)
+            )
+            token_ids = torch.tensor([ids], dtype=torch.long)
+            vectors = embedding.forward(token_ids)
+            return PipelineResult(
+                stage=stage,
+                text=text,
+                ids=ids,
+                vectors=vectors,
+            )
+
+        answer = _placeholder_answer(ids)
+        return PipelineResult(
+            stage=stage,
+            text=text,
+            ids=ids,
+            answer=answer,
+            character=tokenizer.decode([answer]),
         )
-        token_ids = torch.tensor([ids], dtype=torch.long)
-        vectors = embedding.forward(token_ids)
-        return PipelineResult(stage=stage, text=text, ids=ids, vectors=vectors)
 
+    ids = _placeholder_ids(text)
+    answer = _placeholder_answer(ids)
     return PipelineResult(
         stage=stage,
         text=text,
         ids=ids,
-        answer=_placeholder_answer(ids),
+        answer=answer,
+        character=_placeholder_character(answer),
     )

@@ -25,8 +25,8 @@ STEPS = [
     ("调匀/筛选", "LayerNorm + GELU", "", 5, lambda stage: stage >= 5),
     (
         "答案",
-        "68 个分数 → argmax",
-        "占位：直接算答案",
+        "68 个分数 → argmax → 字符",
+        "占位：编号 → 字符",
         7,
         lambda stage: stage <= 2 or stage >= 7,
     ),
