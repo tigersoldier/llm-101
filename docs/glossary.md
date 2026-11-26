@@ -51,7 +51,7 @@
 |vanishing gradient|梯度消失|深层网络反传时梯度逐层变小|[1.5](course/ch01/1.5.md)|
 |running statistics|滑动统计量|BatchNorm 在训练中累积、推理时使用的均值/方差|[1.5](course/ch01/1.5.md)|
 |epsilon|小常数|加在方差上防止除零；本章 1e-5|[1.5](course/ch01/1.5.md)|
-|linear|线性层|`y = xW + b`|1.6|
+|linear|线性层|`y = xW + b`；linear 指每个输出是输入的线性组合（有 `b` 时严格说是仿射）|1.6|
 |attention|注意力|让每个位置按相关程度加权读取其他位置|[1.6](course/ch01/1.6.md)|
 |self-attention|自注意力|query/key/value 都来自同一串输入的注意力|[1.6](course/ch01/1.6.md)|
 |query|查询|当前位置发出的“我想找什么”向量|[1.6](course/ch01/1.6.md)|
