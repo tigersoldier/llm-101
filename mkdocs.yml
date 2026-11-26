@@ -34,6 +34,7 @@ extra_javascript:
 nav:
   - 首页: index.md
   - 课程路线: course/roadmap.md
+  - 变量表: variables.md
   - 第 1 章 看得见的 transformer:
       - 章节总览: course/ch01/index.md
       - 1.1 起点与本章交付物: course/ch01/1.1.md
