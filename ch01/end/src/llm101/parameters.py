@@ -1,6 +1,6 @@
-"""A named holder for one tensor (chapter 1).
+"""A named holder for one tensor (chapter 3).
 
-Chapter 1 only reads ``value``. Chapter 3 adds the ``grad`` buffer and
+Chapter 1 does not use ``Parameter``. Chapter 3 adds the gradient buffer and
 ``zero_grad`` when backpropagation needs them.
 """
 
@@ -13,11 +13,7 @@ class Parameter:
     """A named holder for one tensor value."""
 
     def __init__(self, value: torch.Tensor) -> None:
-        if not isinstance(value, torch.Tensor):
-            raise TypeError("parameter value must be a torch.Tensor")
-        if value.requires_grad:
-            raise ValueError("LLM 101 does not use autograd")
-        if not value.is_floating_point():
-            raise TypeError("parameter values must use a floating-point dtype")
+        raise NotImplementedError("TODO 3: hold the value")
 
-        self.value = value.clone()
+    def zero_grad(self) -> None:
+        raise NotImplementedError("TODO 3")
