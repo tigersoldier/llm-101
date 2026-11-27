@@ -55,12 +55,10 @@ def _placeholder_character(answer: int) -> str:
 
 def run(text: str, stage: int = 1) -> PipelineResult:
     """Run the pipeline as it stands at the end of section ``stage``."""
-    if not 1 <= stage <= 11:
-        raise ValueError("stage must be between 1 and 11")
+    if not 1 <= stage <= 7:
+        raise ValueError("stage must be between 1 and 7")
     if not text:
         raise ValueError("text must contain at least one character")
-    if stage >= 8:
-        raise NotImplementedError("the trace lands in section 1.8")
 
     if stage >= 2:
         from llm101.tokenizer import DEFAULT_VOCABULARY, CharacterTokenizer

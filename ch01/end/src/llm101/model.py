@@ -162,7 +162,3 @@ class TinyGPT:
             hidden, _ = block.forward(hidden)
         hidden = self.final_norm.forward(hidden)
         return hidden @ self.token_embedding.weight.transpose(-1, -2)
-
-    def forward_with_trace(self, token_ids: torch.Tensor) -> dict[str, object]:
-        """Same result as ``forward`` plus every intermediate tensor."""
-        raise NotImplementedError("TODO 1.8")

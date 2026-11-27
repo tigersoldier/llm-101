@@ -156,11 +156,6 @@ def test_stage_seven_returns_full_model_logits() -> None:
     assert result.character == tokenizer.decode([result.answer])
 
 
-def test_future_stage_is_not_implemented() -> None:
-    with pytest.raises(NotImplementedError, match="1.8"):
-        run(EXAMPLE, stage=8)
-
-
 def test_empty_text_is_rejected() -> None:
     with pytest.raises(ValueError, match="at least one"):
         run("", stage=1)
