@@ -22,7 +22,7 @@ ch01/
 |1.2|字符级 tokenizer 与接口|文本 ↔ id，定下第 2 章要复用的五个成员|
 |1.3|嵌入表与张量形状|tensor 是多维数组，为什么需要 Embedding，`[T]` 与 `[T,C]`|
 |1.4|位置嵌入与批次|位置向量、上下文上限、批次与批次维|
-|1.5|LayerNorm 与 GELU|两个零件的公式与前向，Pre-LN 的顺序理由|
+|1.5|LayerNorm 与 GELU|两个零件的公式与前向；Pre-LN 的顺序理由移到 1.7|
 |1.6|因果多头自注意力|Q/K/V、缩放、掩码、多头，返回中间量|
 |1.7|Transformer block 与整模型|残差、共享嵌入、5,824 参数、logits|
 |1.8|把前向拆成逐层可调用|`forward_with_trace` 与键名约定|
@@ -65,7 +65,7 @@ ch01/
 - [x] 1.4 位置嵌入
 - [x] 1.5 LayerNorm 与 GELU
 - [x] 1.6 因果多头自注意力
-- [ ] 1.7 Transformer block 与整模型
+- [x] 1.7 Transformer block 与整模型
 - [ ] 1.8 把前向拆成逐层可调用
 - [ ] 1.9 服务器与接口契约
 - [ ] 1.10 前端页面

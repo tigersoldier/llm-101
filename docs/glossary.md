@@ -37,8 +37,8 @@
 |activation|激活函数|逐元素的非线性函数，如 ReLU、GELU|[1.5](course/ch01/1.5.md)|
 |gain|增益|LayerNorm 的缩放参数，初始为 1|[1.5](course/ch01/1.5.md)|
 |bias|偏置|归一化/线性层里的可学习偏移|[1.5](course/ch01/1.5.md)|
-|Pre-LN|前置层归一化|先 LayerNorm 再进子层；与 Post-LN 相对|1.7|
-|Post-LN|后置层归一化|先子层和残差再 LayerNorm|1.7|
+|Pre-LN|前置层归一化|先 LayerNorm 再进子层；与 Post-LN 相对|[1.7](course/ch01/1.7.md)|
+|Post-LN|后置层归一化|先子层和残差再 LayerNorm|[1.7](course/ch01/1.7.md)|
 |subLayer|子层|block 里的注意力或 MLP 分支；1.7 组装|[1.5](course/ch01/1.5.md)|
 |ReLU|线性整流单元|Rectified Linear Unit；max(0,x)|[1.5](course/ch01/1.5.md)|
 |BatchNorm|批归一化|Batch Normalization；沿批次维求统计量|[1.5](course/ch01/1.5.md)|
@@ -62,7 +62,13 @@
 |multi-head|多头|把 C 维拆成 H 个头并行做注意力|[1.6](course/ch01/1.6.md)|
 |head|头|多头里的一个 D 维注意力子空间|[1.6](course/ch01/1.6.md)|
 |scaled dot-product|缩放点积|QK^T/sqrt(D) 的打分方式|[1.6](course/ch01/1.6.md)|
-|batch|批次|同时处理的一组输入；batch size 是批次大小，第一维 `B` 叫批次维；也说一批、批量处理|1.7|
-|hidden state|隐藏状态|中间层输出的 `[B, T, C]` 数字|1.7|
-|parameter|参数|模型里可调整的数字；`Parameter` 另留一块同形状缓冲|第 3 章|
+|batch|批次|同时处理的一组输入；batch size 是批次大小，第一维 `B` 叫批次维；也说一批、批量处理|[1.4](course/ch01/1.4.md)|
+|hidden state|隐藏状态|中间层输出的 `[B, T, C]` 数字|[1.7](course/ch01/1.7.md)|
+|block|块、层块|两个残差子层（注意力 + MLP）组成的一层；本章叠 2 层|[1.7](course/ch01/1.7.md)|
+|residual connection|残差连接|把输入直接加回子层输出：y = x + F(x)|[1.7](course/ch01/1.7.md)|
+|MLP|多层感知机|multi-layer perceptron；本章 Linear → GELU → Linear|[1.7](course/ch01/1.7.md)|
+|weight tying|权重绑定、共享嵌入|输入词嵌入和输出矩阵共用同一张 [vocab, C] 表|[1.7](course/ch01/1.7.md)|
+|logits|未归一化分数|模型最后输出的 [B, T, vocab] 分数；argmax 前不 softmax|[1.7](course/ch01/1.7.md)|
+|argmax|取最大值的下标|取 logits 最大的词表编号|[1.7](course/ch01/1.7.md)|
+|parameter|参数|模型里可调整的数字；本章数清 5,824 个；`Parameter` 类和梯度缓冲第 3 章|[1.7](course/ch01/1.7.md)|
 |autograd|自动求导|PyTorch 的自动微分机制；本书不用|第 3 章|

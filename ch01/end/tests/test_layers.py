@@ -4,7 +4,7 @@ import pytest
 import torch
 import torch.nn.functional as F
 
-from llm101.layers import Embedding, GELU, LayerNorm, Linear
+from llm101.layers import GELU, Embedding, LayerNorm, Linear
 
 
 def test_embedding_shapes_and_lookup() -> None:

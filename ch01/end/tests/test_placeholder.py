@@ -4,7 +4,8 @@ import pytest
 import torch
 
 from llm101.attention import MultiHeadSelfAttention
-from llm101.layers import Embedding, GELU, LayerNorm
+from llm101.layers import GELU, Embedding, LayerNorm
+from llm101.model import GPTConfig, TinyGPT
 from llm101.placeholder import ALPHABET, MAX_SEQ_LEN, VOCAB_SIZE, WIDTH, run
 from llm101.tokenizer import DEFAULT_VOCABULARY, CharacterTokenizer
 
@@ -132,9 +133,32 @@ def test_stage_six_adds_attention() -> None:
     assert result.answer == int(result.scores.max(dim=0).indices)
 
 
+def test_stage_seven_returns_full_model_logits() -> None:
+    result = run(EXAMPLE, stage=7)
+    tokenizer = CharacterTokenizer(DEFAULT_VOCABULARY)
+    model = TinyGPT(
+        GPTConfig(
+            vocab_size=VOCAB_SIZE,
+            d_model=WIDTH,
+            n_layers=2,
+            n_heads=2,
+            d_ff=32,
+            max_seq_len=MAX_SEQ_LEN,
+        ),
+        generator=torch.Generator().manual_seed(3),
+    )
+    logits = model.forward(torch.tensor(result.ids, dtype=torch.long))
+
+    assert result.scores is not None
+    assert result.scores.shape == (VOCAB_SIZE,)
+    torch.testing.assert_close(result.scores, logits[-1])
+    assert result.answer == int(result.scores.argmax(dim=0))
+    assert result.character == tokenizer.decode([result.answer])
+
+
 def test_future_stage_is_not_implemented() -> None:
-    with pytest.raises(NotImplementedError, match="1.7"):
-        run(EXAMPLE, stage=7)
+    with pytest.raises(NotImplementedError, match="1.8"):
+        run(EXAMPLE, stage=8)
 
 
 def test_empty_text_is_rejected() -> None:

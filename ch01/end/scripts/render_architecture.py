@@ -29,6 +29,10 @@ STEPS = [
     ("位置", "位置嵌入", "", 4, lambda stage: stage >= 4),
     ("调匀/筛选", "LayerNorm + GELU", "", 5, lambda stage: stage >= 5),
     ("混合", "因果多头注意力", "", 6, lambda stage: stage >= 6),
+    ("残差 + MLP", "x + MLP(LayerNorm(x))", "", 7, lambda stage: stage >= 7),
+    ("重复 ×2", "两个 TransformerBlock 串联", "", 7, lambda stage: stage >= 7),
+    ("最终 LayerNorm", "LayerNorm", "", 7, lambda stage: stage >= 7),
+    ("共享输出", "hidden @ 词嵌入ᵀ → logits", "", 7, lambda stage: stage >= 7),
     (
         "答案",
         "68 个分数 → argmax → 字符",

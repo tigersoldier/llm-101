@@ -59,14 +59,41 @@ def run(text: str, stage: int = 1) -> PipelineResult:
         raise ValueError("stage must be between 1 and 11")
     if not text:
         raise ValueError("text must contain at least one character")
-    if stage >= 7:
-        raise NotImplementedError("the full model lands in section 1.7")
+    if stage >= 8:
+        raise NotImplementedError("the trace lands in section 1.8")
 
     if stage >= 2:
         from llm101.tokenizer import DEFAULT_VOCABULARY, CharacterTokenizer
 
         tokenizer = CharacterTokenizer(DEFAULT_VOCABULARY)
         ids = tokenizer.encode(text, add_bos=True, add_eos=True)
+
+        if stage == 7:
+            from llm101.model import GPTConfig, TinyGPT
+
+            config = GPTConfig(
+                vocab_size=VOCAB_SIZE,
+                d_model=WIDTH,
+                n_layers=2,
+                n_heads=2,
+                d_ff=32,
+                max_seq_len=MAX_SEQ_LEN,
+            )
+            model = TinyGPT(
+                config,
+                generator=torch.Generator().manual_seed(3),
+            )
+            logits = model.forward(torch.tensor(ids, dtype=torch.long))
+            scores = logits[-1]
+            answer = int(scores.argmax(dim=0))
+            return PipelineResult(
+                stage=stage,
+                text=text,
+                ids=ids,
+                answer=answer,
+                character=tokenizer.decode([answer]),
+                scores=scores,
+            )
 
         if stage >= 3:
             from llm101.layers import Embedding

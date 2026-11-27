@@ -19,7 +19,7 @@ def small_config() -> GPTConfig:
 
 
 def test_forward_shapes() -> None:
-    """TODO 1.7: [B, T] ids in, [B, T, vocab] logits out."""
+    """[B, T] ids in, [B, T, vocab] logits out."""
     model = TinyGPT(small_config(), generator=torch.Generator().manual_seed(0))
     token_ids = torch.tensor([[1, 2, 3], [4, 5, 6]], dtype=torch.long)
 
@@ -82,19 +82,40 @@ def test_context_limit() -> None:
 
 
 def test_batch_dimension() -> None:
-    """1.4: [B, T] ids produce [B, T, C] embeddings."""
+    """1.7: [B, T] ids produce [B, T, vocab] logits."""
     model = TinyGPT(small_config(), generator=torch.Generator().manual_seed(0))
     batch = torch.tensor([[1, 2, 3], [4, 5, 6]], dtype=torch.long)
 
     outputs = model.forward(batch)
 
-    assert outputs.shape == (2, 3, 16)
+    assert outputs.shape == (2, 3, 68)
 
 
 def test_position_changes_the_embedding() -> None:
     """1.4: the same token at different positions gets different vectors."""
     model = TinyGPT(small_config(), generator=torch.Generator().manual_seed(0))
-    alone = model.forward(torch.tensor([1], dtype=torch.long))
-    later = model.forward(torch.tensor([0, 1], dtype=torch.long))
+    token = model.token_embedding.forward(torch.tensor([1], dtype=torch.long))[0]
+    first = token + model.position_embedding.forward(torch.tensor([0]))[0]
+    second = token + model.position_embedding.forward(torch.tensor([1]))[0]
 
-    assert not torch.allclose(alone[0], later[1])
+    assert not torch.allclose(first, second)
+
+
+def test_parameter_count() -> None:
+    """1.7: the two-layer model has exactly 5,824 parameters."""
+    model = TinyGPT(small_config(), generator=torch.Generator().manual_seed(0))
+
+    assert len(model.parameters()) > 0
+    assert sum(parameter.numel() for parameter in model.parameters()) == 5824
+
+
+def test_last_position_logits_and_argmax() -> None:
+    """1.7: the last position has one score per vocabulary entry."""
+    model = TinyGPT(small_config(), generator=torch.Generator().manual_seed(0))
+
+    logits = model.forward(torch.tensor([[1, 2, 3]], dtype=torch.long))
+    last = logits[0, -1]
+
+    assert logits.shape == (1, 3, 68)
+    assert last.shape == (68,)
+    assert 0 <= int(last.argmax()) < 68
