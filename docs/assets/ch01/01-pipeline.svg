@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 660" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="660" style="width:100%;height:auto" viewBox="0 0 1120 660" role="img" aria-labelledby="title desc">
 <title id="title">从文字到字符：第 1 节的管线</title>
 <desc id="desc">the cat sat 的字符按 ord(ch) % 68 变成占位编号，11 个编号求和乘 31 取余得到答案 19，再查小写字母表得到 t。</desc>
 <rect width="1120" height="660" fill="#ffffff"/>

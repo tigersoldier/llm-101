@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 416" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="416" style="width:100%;height:auto" viewBox="0 0 760 416" role="img" aria-labelledby="title desc">
 <title id="title">第 1 节结束时的管线架构</title>
 <desc id="desc">实线表示本节已经实现的步骤，虚线表示仍在使用的占位。后续小节的组件只在对应小节出现。</desc>
 <rect width="760" height="416" fill="#ffffff"/>
