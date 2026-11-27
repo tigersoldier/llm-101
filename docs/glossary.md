@@ -29,6 +29,8 @@
 |weight|权重|模型里可调整的矩阵；Embedding 的表就是一张权重|[1.3](course/ch01/1.3.md)|
 |output matrix|输出矩阵|把输出向量变成词表分数的矩阵，形状 `[16, 68]`；本节固定，1.8 改为共享嵌入并可训练|[1.3](course/ch01/1.3.md)|
 |score|分数|输出矩阵给每个词表编号的得分；最高分对应答案|[1.3](course/ch01/1.3.md)|
+|distributional hypothesis|分布假说|一个词的意思由它常出现的上下文决定；上下文相似的词意义相近|[1.3](course/ch01/1.3.md)|
+|word2vec|不译|Mikolov 等 2013 年提出的词向量训练方法；用上下文预测目标词或反过来，把词学成稠密向量|[1.3](course/ch01/1.3.md)|
 |position embedding|位置嵌入|为每个位置学一行可加向量，让模型知道顺序|[1.4](course/ch01/1.4.md)|
 |position id|位置编号|序列中的位置 0..T-1，不是 token id|[1.4](course/ch01/1.4.md)|
 |padding|填充|用填充符把不同长度的序列补齐到同一长度|[1.4](course/ch01/1.4.md)|
