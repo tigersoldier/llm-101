@@ -69,7 +69,7 @@
 |MLP|多层感知机|multi-layer perceptron；也叫前馈网络（feed-forward network，FFN）；本章 Linear → GELU → Linear|[1.7](course/ch01/1.7.md)|
 |feed-forward network|前馈网络|FFN；block 里的逐位置 MLP 子层|[1.7](course/ch01/1.7.md)|
 |weight tying|权重绑定、共享嵌入|输入词嵌入和输出矩阵共用同一张 [vocab, C] 表|[1.7](course/ch01/1.7.md)|
-|logits|未归一化分数|模型最后输出的 [B, T, vocab] 分数；argmax 前不 softmax|[1.7](course/ch01/1.7.md)|
+|logits|未归一化分数|logit 是 softmax 之前的原始分数；每个位置、每个词表编号一个；形状 [B, T, vocab]；argmax 前不 softmax|[1.7](course/ch01/1.7.md)|
 |argmax|取最大值的下标|取 logits 最大的词表编号|[1.7](course/ch01/1.7.md)|
 |parameter|参数|模型里可调整的数字；本章数清 5,824 个；`Parameter` 类和梯度缓冲第 3 章|[1.7](course/ch01/1.7.md)|
 |autograd|自动求导|PyTorch 的自动微分机制；本书不用|第 3 章|
