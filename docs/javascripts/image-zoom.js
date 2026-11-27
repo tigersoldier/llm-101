@@ -59,10 +59,27 @@
     zoomCanvas.replaceChildren(image);
   }
 
-  async function openZoom(source) {
+  async function openZoom(source, pushHistory = true) {
     const token = ++openToken;
     const src = source.currentSrc || source.src;
     const alt = source.alt || "";
+    const wasOpen = overlay.classList.contains("is-open");
+    const path = location.pathname + location.search + location.hash;
+    if (!wasOpen && pushHistory) {
+      const currentState =
+        history.state && typeof history.state === "object" ? history.state : {};
+      history.pushState(
+        { ...currentState, imageZoom: { src, alt, path } },
+        "",
+        location.href,
+      );
+    } else if (wasOpen && history.state?.imageZoom) {
+      history.replaceState(
+        { ...history.state, imageZoom: { src, alt, path } },
+        "",
+        location.href,
+      );
+    }
 
     zoomCanvas.replaceChildren();
     resetTransform();
@@ -102,8 +119,8 @@
     }
   }
 
-  function closeZoom() {
-    if (!overlay) return;
+  function closeZoom({ fromHistory = false, syncHistory = true } = {}) {
+    if (!overlay || !overlay.classList.contains("is-open")) return;
     overlay.classList.remove("is-open");
     overlay.setAttribute("aria-hidden", "true");
     document.body.classList.remove("image-zoom-open");
@@ -111,6 +128,9 @@
     pointers.clear();
     dragStart = null;
     pinchStart = null;
+    if (!fromHistory && syncHistory && history.state?.imageZoom) {
+      history.back();
+    }
   }
 
   function bindOverlay() {
@@ -247,6 +267,22 @@
         closeZoom();
       }
     });
+
+    window.addEventListener("popstate", (event) => {
+      const saved = event.state?.imageZoom;
+      if (overlay.classList.contains("is-open")) {
+        if (!saved) closeZoom({ fromHistory: true });
+        return;
+      }
+      if (!saved || typeof saved.src !== "string") return;
+      if (saved.path && saved.path !== location.pathname + location.search + location.hash) {
+        return;
+      }
+      openZoom(
+        { currentSrc: saved.src, src: saved.src, alt: saved.alt || "" },
+        false,
+      );
+    });
   }
 
   function bindPageImages() {
@@ -263,7 +299,7 @@
   if (typeof document$ !== "undefined") {
     document$.subscribe(() => {
       if (!overlay) bindOverlay();
-      closeZoom();
+      closeZoom({ syncHistory: false });
       bindPageImages();
     });
   } else {
