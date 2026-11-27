@@ -1,0 +1,138 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="830" viewBox="0 0 1080 830" role="img" aria-labelledby="title desc">
+<title id="title">权重绑定：输入查表与输出打分共用同一张 E [68,16]</title>
+<desc id="desc">the cat sat 的第一个 token id 66（字符 t）查 E 的第 66 行得到 16 维向量；最后一个位置的隐藏状态 Z [16] 与 E 的每一行做点积，即乘 Eᵀ，得到 logits [68]。两条路径共用同一张 E；不绑定会多出 1,088 个参数，总参数从 6,912 降到 5,824。</desc>
+<rect width="1080" height="830" fill="#ffffff"/>
+<text x="40" y="40" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="19" font-weight="600" fill="#1f2937">权重绑定：输入查表与输出打分共用同一张 E [68,16]</text>
+<text x="40" y="66" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="12" fill="#64748b">例：the cat sat；第一个 token id 是 66（字符 't'），最后一个位置的隐藏状态是 Z [16]。</text>
+<text x="40" y="88" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="12" fill="#475569">E 只存一份：输入查表读第 66 行，输出打分用它的转置（Eᵀ）。</text>
+<text x="40" y="106" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="11" fill="#64748b">数值来自 seed=3 的随机权重，只用于核对形状和共享关系；答案没有语义。</text>
+<text x="560" y="170" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="14" font-weight="600" fill="#1f2937">E [68,16]（token 嵌入表）</text>
+<text x="560" y="192" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="10.5" font-weight="600" fill="#1f2937">列：特征（C = 16）→</text>
+<text x="720" y="192" text-anchor="start" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="10.5" font-weight="600" fill="#1f2937">行：词表（vocab = 68）↓</text>
+<text x="464" y="208" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="9" fill="#64748b">0</text>
+<text x="512" y="208" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="9" fill="#64748b">1</text>
+<text x="560" y="208" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="9" fill="#64748b">⋯</text>
+<text x="608" y="208" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="9" fill="#64748b">14</text>
+<text x="656" y="208" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="9" fill="#64748b">15</text>
+<rect x="440" y="220" width="48" height="54" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="464" y="250" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="9.5" fill="#1f2937">-0.002</text>
+<rect x="488" y="220" width="48" height="54" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="512" y="250" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="9.5" fill="#1f2937">0.007</text>
+<rect x="536" y="220" width="48" height="54" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="560" y="250" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="9.5" fill="#1f2937">⋯</text>
+<rect x="584" y="220" width="48" height="54" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="608" y="250" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="9.5" fill="#1f2937">0.011</text>
+<rect x="632" y="220" width="48" height="54" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="656" y="250" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="9.5" fill="#1f2937">0.008</text>
+<text x="692" y="251" text-anchor="start" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10" fill="#64748b">0</text>
+<rect x="440" y="274" width="48" height="54" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="464" y="304" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="9.5" fill="#1f2937">0.005</text>
+<rect x="488" y="274" width="48" height="54" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="512" y="304" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="9.5" fill="#1f2937">0.019</text>
+<rect x="536" y="274" width="48" height="54" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="560" y="304" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="9.5" fill="#1f2937">⋯</text>
+<rect x="584" y="274" width="48" height="54" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="608" y="304" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="9.5" fill="#1f2937">0.049</text>
+<rect x="632" y="274" width="48" height="54" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="656" y="304" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="9.5" fill="#1f2937">-0.003</text>
+<text x="692" y="305" text-anchor="start" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10" fill="#64748b">1</text>
+<rect x="440" y="328" width="48" height="54" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="464" y="358" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="9.5" fill="#1f2937">⋮</text>
+<rect x="488" y="328" width="48" height="54" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="512" y="358" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="9.5" fill="#1f2937">⋮</text>
+<rect x="536" y="328" width="48" height="54" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="560" y="358" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="9.5" fill="#1f2937">⋮</text>
+<rect x="584" y="328" width="48" height="54" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="608" y="358" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="9.5" fill="#1f2937">⋮</text>
+<rect x="632" y="328" width="48" height="54" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="656" y="358" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="9.5" fill="#1f2937">⋮</text>
+<text x="692" y="359" text-anchor="start" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10" fill="#64748b">⋮</text>
+<rect x="440" y="382" width="48" height="54" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="464" y="412" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="9.5" fill="#1f2937">0.002</text>
+<rect x="488" y="382" width="48" height="54" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="512" y="412" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="9.5" fill="#1f2937">-0.014</text>
+<rect x="536" y="382" width="48" height="54" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="560" y="412" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="9.5" fill="#1f2937">⋯</text>
+<rect x="584" y="382" width="48" height="54" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="608" y="412" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="9.5" fill="#1f2937">0.02</text>
+<rect x="632" y="382" width="48" height="54" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="656" y="412" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="9.5" fill="#1f2937">0.01</text>
+<text x="692" y="413" text-anchor="start" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10" fill="#64748b">65</text>
+<rect x="440" y="436" width="48" height="54" fill="#fef3c7" stroke="#b45309"/>
+<text x="464" y="466" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="9.5" font-weight="600" fill="#78350f">0.036</text>
+<rect x="488" y="436" width="48" height="54" fill="#fef3c7" stroke="#b45309"/>
+<text x="512" y="466" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="9.5" font-weight="600" fill="#78350f">-0.007</text>
+<rect x="536" y="436" width="48" height="54" fill="#fef3c7" stroke="#b45309"/>
+<text x="560" y="466" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="9.5" font-weight="600" fill="#78350f">⋯</text>
+<rect x="584" y="436" width="48" height="54" fill="#fef3c7" stroke="#b45309"/>
+<text x="608" y="466" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="9.5" font-weight="600" fill="#78350f">-0.044</text>
+<rect x="632" y="436" width="48" height="54" fill="#fef3c7" stroke="#b45309"/>
+<text x="656" y="466" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="9.5" font-weight="600" fill="#78350f">-0.03</text>
+<rect x="440" y="436" width="240" height="54" fill="none" stroke="#b45309" stroke-width="2"/>
+<text x="692" y="467" text-anchor="start" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10" font-weight="600" fill="#b45309">66</text>
+<rect x="440" y="490" width="48" height="54" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="464" y="520" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="9.5" fill="#1f2937">0.032</text>
+<rect x="488" y="490" width="48" height="54" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="512" y="520" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="9.5" fill="#1f2937">-0.013</text>
+<rect x="536" y="490" width="48" height="54" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="560" y="520" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="9.5" fill="#1f2937">⋯</text>
+<rect x="584" y="490" width="48" height="54" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="608" y="520" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="9.5" fill="#1f2937">0.026</text>
+<rect x="632" y="490" width="48" height="54" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="656" y="520" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="9.5" fill="#1f2937">0.005</text>
+<text x="692" y="521" text-anchor="start" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10" fill="#64748b">67</text>
+<rect x="70" y="433" width="200" height="60" rx="8" fill="#eef2f7" stroke="#94a3b8"/>
+<text x="170" y="458" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="13" font-weight="600" fill="#1f2937">token id 66</text>
+<text x="170" y="478" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="9.5" fill="#64748b">'t'（the cat sat 第 0 位）</text>
+<line x1="270" y1="463" x2="438" y2="463" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="280" y="443" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="11" font-weight="600" fill="#1f2937">输入路径：查表</text>
+<text x="280" y="483" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="10" fill="#b45309">取第 66 行 → 向量 [16]</text>
+<text x="720" y="467" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="10.5" font-weight="600" fill="#b45309">E[66] = 16 维向量</text>
+<text x="720" y="481" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="9.5" fill="#64748b">（'t' 的输入向量）</text>
+<rect x="280" y="610" width="60" height="32" fill="#ede9fe" stroke="#6d28d9"/>
+<text x="310" y="630" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="9" fill="#1f2937">1.983</text>
+<text x="270" y="630" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="9" fill="#64748b">0</text>
+<rect x="280" y="642" width="60" height="32" fill="#ede9fe" stroke="#6d28d9"/>
+<text x="310" y="662" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="9" fill="#1f2937">0.339</text>
+<text x="270" y="662" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="9" fill="#64748b">1</text>
+<rect x="280" y="674" width="60" height="32" fill="#ede9fe" stroke="#6d28d9"/>
+<text x="310" y="694" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="9" fill="#1f2937">⋮</text>
+<text x="270" y="694" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="9" fill="#64748b">⋮</text>
+<rect x="280" y="706" width="60" height="32" fill="#ede9fe" stroke="#6d28d9"/>
+<text x="310" y="726" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="9" fill="#1f2937">0.168</text>
+<text x="270" y="726" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="9" fill="#64748b">14</text>
+<rect x="280" y="738" width="60" height="32" fill="#ede9fe" stroke="#6d28d9"/>
+<text x="310" y="758" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="9" fill="#1f2937">0.479</text>
+<text x="270" y="758" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="9" fill="#64748b">15</text>
+<text x="310" y="596" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="10.5" font-weight="600" fill="#6d28d9">Z [16]（最后一个位置）</text>
+<text x="572" y="596" text-anchor="start" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="10" fill="#b45309">Eᵀ：同一张 E</text>
+<text x="572" y="610" text-anchor="start" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="9" fill="#64748b">不新增参数</text>
+<line x1="560" y1="544" x2="560" y2="658" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+<rect x="470" y="660" width="180" height="60" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+<text x="560" y="686" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="13" font-weight="600" fill="#4c1d95">Z × Eᵀ</text>
+<text x="560" y="706" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="9.5" fill="#475569">逐行点积</text>
+<line x1="340" y1="690" x2="468" y2="690" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="350" y="672" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="11" font-weight="600" fill="#1f2937">输出路径：打分</text>
+<text x="350" y="710" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="9.5" fill="#475569">Z 与 E 的每一行做点积</text>
+<text x="900" y="636" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="12" font-weight="600" fill="#4c1d95">logits [68]</text>
+<text x="804" y="654" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="8.5" fill="#64748b">0</text>
+<rect x="780" y="660" width="48" height="60" fill="#f5f3ff" stroke="#6d28d9"/>
+<text x="804" y="694" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="9" fill="#1f2937">0.048</text>
+<text x="852" y="654" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="8.5" fill="#64748b">1</text>
+<rect x="828" y="660" width="48" height="60" fill="#f5f3ff" stroke="#6d28d9"/>
+<text x="852" y="694" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="9" fill="#1f2937">-0.080</text>
+<text x="900" y="654" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="8.5" fill="#64748b">2</text>
+<rect x="876" y="660" width="48" height="60" fill="#f5f3ff" stroke="#6d28d9"/>
+<text x="900" y="694" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="9" fill="#1f2937">0.010</text>
+<text x="948" y="654" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="8.5" fill="#64748b">⋯</text>
+<rect x="924" y="660" width="48" height="60" fill="#f5f3ff" stroke="#6d28d9"/>
+<text x="948" y="694" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="9" fill="#1f2937">⋯</text>
+<text x="996" y="654" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="8.5" fill="#64748b">67</text>
+<rect x="972" y="660" width="48" height="60" fill="#f5f3ff" stroke="#6d28d9"/>
+<text x="996" y="694" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="9" fill="#1f2937">0.199</text>
+<line x1="650" y1="690" x2="778" y2="690" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="662" y="672" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="10" fill="#4c1d95">68 个分数</text>
+<text x="40" y="790" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="12" font-weight="600" fill="#1f2937">不绑定：额外的 Linear(C, vocab)（16 × 68）增加 1,088 个参数。</text>
+<text x="40" y="812" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="11" fill="#475569">本章总参数：6,912 → 5,824；输入和输出共用同一张 E，参数只算一次。</text>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#64748b"/></marker></defs>
+</svg>

@@ -112,7 +112,7 @@ def render(stage: int) -> str:
         parts.append(_box(top, name, detail, real))
         if index + 1 < len(steps):
             parts.append(
-                f'<line x1="380" y1="{top + 68}" x2="380" y2="{top + 88}" '
+                f'<line x1="380" y1="{top + 64}" x2="380" y2="{top + 90}" '
                 'stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>'
             )
 
