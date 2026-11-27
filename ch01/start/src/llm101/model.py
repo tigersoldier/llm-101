@@ -49,14 +49,10 @@ class TinyGPT:
         generator: torch.Generator | None = None,
         dtype: torch.dtype = torch.float32,
     ) -> None:
-        raise NotImplementedError("TODO 1.7")
+        raise NotImplementedError("TODO 1.8")
 
     def parameters(self) -> tuple[Parameter, ...]:
-        raise NotImplementedError("TODO 1.7")
+        raise NotImplementedError("TODO 1.8")
 
     def forward(self, token_ids: torch.Tensor) -> torch.Tensor:
-        raise NotImplementedError("TODO 1.7")
-
-    def forward_with_trace(self, token_ids: torch.Tensor) -> dict[str, object]:
-        """Same result as ``forward`` plus every intermediate tensor."""
         raise NotImplementedError("TODO 1.8")

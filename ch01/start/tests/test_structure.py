@@ -19,7 +19,7 @@ def small_config() -> GPTConfig:
 
 
 def test_forward_shapes() -> None:
-    """TODO 1.7: [B, T] ids in, [B, T, vocab] logits out."""
+    """TODO 1.8: [B, T] ids in, [B, T, vocab] logits out."""
     model = TinyGPT(small_config(), generator=torch.Generator().manual_seed(0))
     token_ids = torch.tensor([[1, 2, 3], [4, 5, 6]], dtype=torch.long)
 

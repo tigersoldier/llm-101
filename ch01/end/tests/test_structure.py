@@ -82,7 +82,7 @@ def test_context_limit() -> None:
 
 
 def test_batch_dimension() -> None:
-    """1.7: [B, T] ids produce [B, T, vocab] logits."""
+    """1.8: [B, T] ids produce [B, T, vocab] logits."""
     model = TinyGPT(small_config(), generator=torch.Generator().manual_seed(0))
     batch = torch.tensor([[1, 2, 3], [4, 5, 6]], dtype=torch.long)
 
@@ -120,7 +120,7 @@ def test_block_parameter_count() -> None:
 
 
 def test_parameter_count() -> None:
-    """1.7: the two-layer model has exactly 5,824 parameters."""
+    """1.8: the two-layer model has exactly 5,824 parameters."""
     model = TinyGPT(small_config(), generator=torch.Generator().manual_seed(0))
 
     assert len(model.parameters()) > 0
@@ -128,7 +128,7 @@ def test_parameter_count() -> None:
 
 
 def test_last_position_logits_and_argmax() -> None:
-    """1.7: the last position has one score per vocabulary entry."""
+    """1.8: the last position has one score per vocabulary entry."""
     model = TinyGPT(small_config(), generator=torch.Generator().manual_seed(0))
 
     logits = model.forward(torch.tensor([[1, 2, 3]], dtype=torch.long))

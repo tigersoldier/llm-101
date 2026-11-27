@@ -14,7 +14,7 @@ uv run pytest -q
 
 |测试|在哪一节转绿|
 |---|---|
-|`test_forward_shapes`|1.7 组装整模型|
+|`test_forward_shapes`|1.8 组装整模型|
 |`test_causal_mask_hides_future`|1.6 因果注意力|
 |`test_context_limit`|1.4 位置与上下文上限|
 
