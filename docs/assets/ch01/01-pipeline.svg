@@ -5,116 +5,115 @@
 <text x="30" y="36" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="19" font-weight="600" fill="#1f2937">从文字到字符：第 1 节的管线</text>
 <text x="30" y="60" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">the cat sat（11 个字符）；中间省略 6 个。占位编号 = ord(ch) % 68；编号和答案都是占位。</text>
 <text x="30" y="92" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#3b6ea5">输入文字</text>
-<rect x="90" y="100" width="100" height="34" rx="6" fill="#eef2f7" stroke="#94a3b8"/><text x="140.0" y="121.33333333333333" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">t</text>
-<rect x="230" y="100" width="100" height="34" rx="6" fill="#eef2f7" stroke="#94a3b8"/><text x="280.0" y="121.33333333333333" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">h</text>
-<rect x="370" y="100" width="100" height="34" rx="6" fill="#eef2f7" stroke="#94a3b8"/><text x="420.0" y="121.33333333333333" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">e</text>
-<rect x="510" y="100" width="100" height="34" rx="6" fill="#eef2f7" stroke="#94a3b8"/><text x="560.0" y="121.33333333333333" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">…</text>
-<rect x="650" y="100" width="100" height="34" rx="6" fill="#eef2f7" stroke="#94a3b8"/><text x="700.0" y="121.33333333333333" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">a</text>
-<rect x="790" y="100" width="100" height="34" rx="6" fill="#eef2f7" stroke="#94a3b8"/><text x="840.0" y="121.33333333333333" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">t</text>
-<rect x="930" y="100" width="100" height="34" rx="6" fill="#f1f5f9"/><text x="980" y="121" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#64748b">11 个字符</text>
-<line x1="140" y1="134" x2="140" y2="172" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
-<line x1="280" y1="134" x2="280" y2="172" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
-<line x1="420" y1="134" x2="420" y2="172" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
-<line x1="560" y1="134" x2="560" y2="172" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
-<line x1="700" y1="134" x2="700" y2="172" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
-<line x1="840" y1="134" x2="840" y2="172" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
-<rect x="90" y="174" width="100" height="40" rx="6" fill="#f8fafc" stroke="#94a3b8" stroke-dasharray="6 4"/><text x="140.0" y="198.33333333333334" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">48</text>
-<rect x="230" y="174" width="100" height="40" rx="6" fill="#f8fafc" stroke="#94a3b8" stroke-dasharray="6 4"/><text x="280.0" y="198.33333333333334" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">36</text>
-<rect x="370" y="174" width="100" height="40" rx="6" fill="#f8fafc" stroke="#94a3b8" stroke-dasharray="6 4"/><text x="420.0" y="198.33333333333334" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">33</text>
-<rect x="510" y="174" width="100" height="40" rx="6" fill="#f8fafc" stroke="#94a3b8" stroke-dasharray="6 4"/><text x="560.0" y="198.33333333333334" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">…</text>
-<rect x="650" y="174" width="100" height="40" rx="6" fill="#f8fafc" stroke="#94a3b8" stroke-dasharray="6 4"/><text x="700.0" y="198.33333333333334" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">29</text>
-<rect x="790" y="174" width="100" height="40" rx="6" fill="#f8fafc" stroke="#94a3b8" stroke-dasharray="6 4"/><text x="840.0" y="198.33333333333334" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">48</text>
-<rect x="930" y="174" width="100" height="40" rx="6" fill="#f1f5f9"/><text x="980" y="198" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#64748b">11 个编号</text>
+<rect x="110" y="100" width="100" height="34" rx="6" fill="#eef2f7" stroke="#94a3b8"/><text x="160.0" y="121.33333333333333" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">t</text>
+<rect x="270" y="100" width="100" height="34" rx="6" fill="#eef2f7" stroke="#94a3b8"/><text x="320.0" y="121.33333333333333" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">h</text>
+<rect x="430" y="100" width="100" height="34" rx="6" fill="#eef2f7" stroke="#94a3b8"/><text x="480.0" y="121.33333333333333" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">e</text>
+<rect x="590" y="100" width="100" height="34" rx="6" fill="#eef2f7" stroke="#94a3b8"/><text x="640.0" y="121.33333333333333" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">…</text>
+<rect x="750" y="100" width="100" height="34" rx="6" fill="#eef2f7" stroke="#94a3b8"/><text x="800.0" y="121.33333333333333" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">a</text>
+<rect x="910" y="100" width="100" height="34" rx="6" fill="#eef2f7" stroke="#94a3b8"/><text x="960.0" y="121.33333333333333" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">t</text>
+<line x1="160" y1="134" x2="160" y2="172" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+<line x1="320" y1="134" x2="320" y2="172" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+<line x1="480" y1="134" x2="480" y2="172" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+<line x1="640" y1="134" x2="640" y2="172" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+<line x1="800" y1="134" x2="800" y2="172" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+<line x1="960" y1="134" x2="960" y2="172" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="110" y="174" width="100" height="40" rx="6" fill="#f8fafc" stroke="#94a3b8" stroke-dasharray="6 4"/><text x="160.0" y="198.33333333333334" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">48</text>
+<rect x="270" y="174" width="100" height="40" rx="6" fill="#f8fafc" stroke="#94a3b8" stroke-dasharray="6 4"/><text x="320.0" y="198.33333333333334" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">36</text>
+<rect x="430" y="174" width="100" height="40" rx="6" fill="#f8fafc" stroke="#94a3b8" stroke-dasharray="6 4"/><text x="480.0" y="198.33333333333334" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">33</text>
+<rect x="590" y="174" width="100" height="40" rx="6" fill="#f8fafc" stroke="#94a3b8" stroke-dasharray="6 4"/><text x="640.0" y="198.33333333333334" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">…</text>
+<rect x="750" y="174" width="100" height="40" rx="6" fill="#f8fafc" stroke="#94a3b8" stroke-dasharray="6 4"/><text x="800.0" y="198.33333333333334" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">29</text>
+<rect x="910" y="174" width="100" height="40" rx="6" fill="#f8fafc" stroke="#94a3b8" stroke-dasharray="6 4"/><text x="960.0" y="198.33333333333334" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">48</text>
 <text x="30" y="198" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#64748b">占位编号</text>
-<line x1="560" y1="214" x2="560" y2="252" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
-<rect x="260" y="254" width="600" height="66" rx="8" fill="#f8fafc" stroke="#3b6ea5" stroke-dasharray="6 4"/><text x="560.0" y="280.0" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#1f2937">sum(ids) = 48 + 36 + 33 + … + 29 + 48 = 413</text>
-<text x="560" y="302" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#64748b">求和乘 31 再对 68 取余</text>
-<line x1="560" y1="320" x2="560" y2="358" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
-<rect x="300" y="360" width="520" height="54" rx="8" fill="#fff7ed" stroke="#c2410c" stroke-dasharray="6 4"/><text x="560.0" y="391.0" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#1f2937">answer = (413 × 31) mod 68 = 19</text>
+<line x1="640" y1="214" x2="640" y2="252" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="660" y="238" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#64748b">11 个编号</text>
+<rect x="340" y="254" width="600" height="66" rx="8" fill="#f8fafc" stroke="#3b6ea5" stroke-dasharray="6 4"/><text x="640.0" y="280.0" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#1f2937">sum(ids) = 48 + 36 + 33 + … + 29 + 48 = 413</text>
+<text x="640" y="302" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#64748b">求和乘 31 再对 68 取余</text>
+<line x1="640" y1="320" x2="640" y2="358" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="380" y="360" width="520" height="54" rx="8" fill="#fff7ed" stroke="#c2410c" stroke-dasharray="6 4"/><text x="640.0" y="391.0" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#1f2937">answer = (413 × 31) mod 68 = 19</text>
 <text x="30" y="390" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#c2410c">占位答案</text>
-<line x1="560" y1="414" x2="560" y2="452" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+<line x1="640" y1="414" x2="640" y2="452" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
 <text x="30" y="469" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#64748b">小写字母表</text>
 <text x="30" y="487" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#64748b">a=0，b=1，…，t=19</text>
-<rect x="172" y="454" width="26" height="40" fill="#ffffff" stroke="#cbd5e1"/>
-<text x="185" y="471" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">a</text>
-<text x="185" y="485" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" fill="#64748b">0</text>
-<rect x="202" y="454" width="26" height="40" fill="#ffffff" stroke="#cbd5e1"/>
-<text x="215" y="471" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">b</text>
-<text x="215" y="485" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" fill="#64748b">1</text>
-<rect x="232" y="454" width="26" height="40" fill="#ffffff" stroke="#cbd5e1"/>
-<text x="245" y="471" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">c</text>
-<text x="245" y="485" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" fill="#64748b">2</text>
-<rect x="262" y="454" width="26" height="40" fill="#ffffff" stroke="#cbd5e1"/>
-<text x="275" y="471" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">d</text>
-<text x="275" y="485" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" fill="#64748b">3</text>
-<rect x="292" y="454" width="26" height="40" fill="#ffffff" stroke="#cbd5e1"/>
-<text x="305" y="471" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">e</text>
-<text x="305" y="485" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" fill="#64748b">4</text>
-<rect x="322" y="454" width="26" height="40" fill="#ffffff" stroke="#cbd5e1"/>
-<text x="335" y="471" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">f</text>
-<text x="335" y="485" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" fill="#64748b">5</text>
-<rect x="352" y="454" width="26" height="40" fill="#ffffff" stroke="#cbd5e1"/>
-<text x="365" y="471" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">g</text>
-<text x="365" y="485" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" fill="#64748b">6</text>
-<rect x="382" y="454" width="26" height="40" fill="#ffffff" stroke="#cbd5e1"/>
-<text x="395" y="471" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">h</text>
-<text x="395" y="485" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" fill="#64748b">7</text>
-<rect x="412" y="454" width="26" height="40" fill="#ffffff" stroke="#cbd5e1"/>
-<text x="425" y="471" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">i</text>
-<text x="425" y="485" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" fill="#64748b">8</text>
-<rect x="442" y="454" width="26" height="40" fill="#ffffff" stroke="#cbd5e1"/>
-<text x="455" y="471" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">j</text>
-<text x="455" y="485" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" fill="#64748b">9</text>
-<rect x="472" y="454" width="26" height="40" fill="#ffffff" stroke="#cbd5e1"/>
-<text x="485" y="471" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">k</text>
-<text x="485" y="485" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" fill="#64748b">10</text>
-<rect x="502" y="454" width="26" height="40" fill="#ffffff" stroke="#cbd5e1"/>
-<text x="515" y="471" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">l</text>
-<text x="515" y="485" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" fill="#64748b">11</text>
-<rect x="532" y="454" width="26" height="40" fill="#ffffff" stroke="#cbd5e1"/>
-<text x="545" y="471" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">m</text>
-<text x="545" y="485" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" fill="#64748b">12</text>
-<rect x="562" y="454" width="26" height="40" fill="#ffffff" stroke="#cbd5e1"/>
-<text x="575" y="471" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">n</text>
-<text x="575" y="485" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" fill="#64748b">13</text>
-<rect x="592" y="454" width="26" height="40" fill="#ffffff" stroke="#cbd5e1"/>
-<text x="605" y="471" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">o</text>
-<text x="605" y="485" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" fill="#64748b">14</text>
-<rect x="622" y="454" width="26" height="40" fill="#ffffff" stroke="#cbd5e1"/>
-<text x="635" y="471" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">p</text>
-<text x="635" y="485" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" fill="#64748b">15</text>
-<rect x="652" y="454" width="26" height="40" fill="#ffffff" stroke="#cbd5e1"/>
-<text x="665" y="471" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">q</text>
-<text x="665" y="485" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" fill="#64748b">16</text>
-<rect x="682" y="454" width="26" height="40" fill="#ffffff" stroke="#cbd5e1"/>
-<text x="695" y="471" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">r</text>
-<text x="695" y="485" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" fill="#64748b">17</text>
-<rect x="712" y="454" width="26" height="40" fill="#ffffff" stroke="#cbd5e1"/>
-<text x="725" y="471" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">s</text>
-<text x="725" y="485" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" fill="#64748b">18</text>
-<rect x="742" y="454" width="26" height="40" fill="#ffedd5" stroke="#c2410c"/>
-<text x="755" y="471" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">t</text>
-<text x="755" y="485" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" fill="#64748b">19</text>
-<rect x="772" y="454" width="26" height="40" fill="#ffffff" stroke="#cbd5e1"/>
-<text x="785" y="471" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">u</text>
-<text x="785" y="485" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" fill="#64748b">20</text>
-<rect x="802" y="454" width="26" height="40" fill="#ffffff" stroke="#cbd5e1"/>
-<text x="815" y="471" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">v</text>
-<text x="815" y="485" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" fill="#64748b">21</text>
-<rect x="832" y="454" width="26" height="40" fill="#ffffff" stroke="#cbd5e1"/>
-<text x="845" y="471" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">w</text>
-<text x="845" y="485" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" fill="#64748b">22</text>
-<rect x="862" y="454" width="26" height="40" fill="#ffffff" stroke="#cbd5e1"/>
-<text x="875" y="471" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">x</text>
-<text x="875" y="485" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" fill="#64748b">23</text>
-<rect x="892" y="454" width="26" height="40" fill="#ffffff" stroke="#cbd5e1"/>
-<text x="905" y="471" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">y</text>
-<text x="905" y="485" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" fill="#64748b">24</text>
-<rect x="922" y="454" width="26" height="40" fill="#ffffff" stroke="#cbd5e1"/>
-<text x="935" y="471" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">z</text>
-<text x="935" y="485" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" fill="#64748b">25</text>
-<line x1="755" y1="494" x2="755" y2="532" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
-<rect x="652" y="534" width="206" height="54" rx="8" fill="#fff7ed" stroke="#c2410c" stroke-dasharray="6 4"/><text x="755.0" y="566.0" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#1f2937">字符 t</text>
+<rect x="252" y="454" width="26" height="40" fill="#ffffff" stroke="#cbd5e1"/>
+<text x="265" y="471" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">a</text>
+<text x="265" y="485" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" fill="#64748b">0</text>
+<rect x="282" y="454" width="26" height="40" fill="#ffffff" stroke="#cbd5e1"/>
+<text x="295" y="471" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">b</text>
+<text x="295" y="485" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" fill="#64748b">1</text>
+<rect x="312" y="454" width="26" height="40" fill="#ffffff" stroke="#cbd5e1"/>
+<text x="325" y="471" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">c</text>
+<text x="325" y="485" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" fill="#64748b">2</text>
+<rect x="342" y="454" width="26" height="40" fill="#ffffff" stroke="#cbd5e1"/>
+<text x="355" y="471" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">d</text>
+<text x="355" y="485" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" fill="#64748b">3</text>
+<rect x="372" y="454" width="26" height="40" fill="#ffffff" stroke="#cbd5e1"/>
+<text x="385" y="471" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">e</text>
+<text x="385" y="485" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" fill="#64748b">4</text>
+<rect x="402" y="454" width="26" height="40" fill="#ffffff" stroke="#cbd5e1"/>
+<text x="415" y="471" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">f</text>
+<text x="415" y="485" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" fill="#64748b">5</text>
+<rect x="432" y="454" width="26" height="40" fill="#ffffff" stroke="#cbd5e1"/>
+<text x="445" y="471" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">g</text>
+<text x="445" y="485" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" fill="#64748b">6</text>
+<rect x="462" y="454" width="26" height="40" fill="#ffffff" stroke="#cbd5e1"/>
+<text x="475" y="471" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">h</text>
+<text x="475" y="485" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" fill="#64748b">7</text>
+<rect x="492" y="454" width="26" height="40" fill="#ffffff" stroke="#cbd5e1"/>
+<text x="505" y="471" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">i</text>
+<text x="505" y="485" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" fill="#64748b">8</text>
+<rect x="522" y="454" width="26" height="40" fill="#ffffff" stroke="#cbd5e1"/>
+<text x="535" y="471" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">j</text>
+<text x="535" y="485" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" fill="#64748b">9</text>
+<rect x="552" y="454" width="26" height="40" fill="#ffffff" stroke="#cbd5e1"/>
+<text x="565" y="471" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">k</text>
+<text x="565" y="485" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" fill="#64748b">10</text>
+<rect x="582" y="454" width="26" height="40" fill="#ffffff" stroke="#cbd5e1"/>
+<text x="595" y="471" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">l</text>
+<text x="595" y="485" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" fill="#64748b">11</text>
+<rect x="612" y="454" width="26" height="40" fill="#ffffff" stroke="#cbd5e1"/>
+<text x="625" y="471" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">m</text>
+<text x="625" y="485" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" fill="#64748b">12</text>
+<rect x="642" y="454" width="26" height="40" fill="#ffffff" stroke="#cbd5e1"/>
+<text x="655" y="471" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">n</text>
+<text x="655" y="485" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" fill="#64748b">13</text>
+<rect x="672" y="454" width="26" height="40" fill="#ffffff" stroke="#cbd5e1"/>
+<text x="685" y="471" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">o</text>
+<text x="685" y="485" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" fill="#64748b">14</text>
+<rect x="702" y="454" width="26" height="40" fill="#ffffff" stroke="#cbd5e1"/>
+<text x="715" y="471" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">p</text>
+<text x="715" y="485" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" fill="#64748b">15</text>
+<rect x="732" y="454" width="26" height="40" fill="#ffffff" stroke="#cbd5e1"/>
+<text x="745" y="471" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">q</text>
+<text x="745" y="485" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" fill="#64748b">16</text>
+<rect x="762" y="454" width="26" height="40" fill="#ffffff" stroke="#cbd5e1"/>
+<text x="775" y="471" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">r</text>
+<text x="775" y="485" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" fill="#64748b">17</text>
+<rect x="792" y="454" width="26" height="40" fill="#ffffff" stroke="#cbd5e1"/>
+<text x="805" y="471" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">s</text>
+<text x="805" y="485" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" fill="#64748b">18</text>
+<rect x="822" y="454" width="26" height="40" fill="#ffedd5" stroke="#c2410c"/>
+<text x="835" y="471" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">t</text>
+<text x="835" y="485" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" fill="#64748b">19</text>
+<rect x="852" y="454" width="26" height="40" fill="#ffffff" stroke="#cbd5e1"/>
+<text x="865" y="471" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">u</text>
+<text x="865" y="485" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" fill="#64748b">20</text>
+<rect x="882" y="454" width="26" height="40" fill="#ffffff" stroke="#cbd5e1"/>
+<text x="895" y="471" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">v</text>
+<text x="895" y="485" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" fill="#64748b">21</text>
+<rect x="912" y="454" width="26" height="40" fill="#ffffff" stroke="#cbd5e1"/>
+<text x="925" y="471" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">w</text>
+<text x="925" y="485" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" fill="#64748b">22</text>
+<rect x="942" y="454" width="26" height="40" fill="#ffffff" stroke="#cbd5e1"/>
+<text x="955" y="471" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">x</text>
+<text x="955" y="485" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" fill="#64748b">23</text>
+<rect x="972" y="454" width="26" height="40" fill="#ffffff" stroke="#cbd5e1"/>
+<text x="985" y="471" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">y</text>
+<text x="985" y="485" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" fill="#64748b">24</text>
+<rect x="1002" y="454" width="26" height="40" fill="#ffffff" stroke="#cbd5e1"/>
+<text x="1015" y="471" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">z</text>
+<text x="1015" y="485" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" fill="#64748b">25</text>
+<line x1="835" y1="494" x2="835" y2="532" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="732" y="534" width="206" height="54" rx="8" fill="#fff7ed" stroke="#c2410c" stroke-dasharray="6 4"/><text x="835.0" y="566.0" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="14" fill="#1f2937">字符 t</text>
 <text x="30" y="632" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#64748b">1.1 的编号和答案都是占位；1.2 换上 tokenizer，1.3 才展开数字，1.8 才有真正的分数。</text>
 <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#64748b"/></marker></defs>
 </svg>
