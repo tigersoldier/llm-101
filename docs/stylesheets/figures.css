@@ -28,3 +28,29 @@
     grid-template-columns: 1fr;
   }
 }
+
+
+.math-pair,
+.math-trio {
+  display: grid;
+  grid-template-columns: repeat(var(--math-cols, 2), minmax(0, 1fr));
+  gap: 0.5rem 1rem;
+  align-items: center;
+  margin: 0.75rem 0;
+}
+
+.math-trio {
+  --math-cols: 3;
+}
+
+.math-pair > .arithmatex,
+.math-trio > .arithmatex {
+  margin: 0;
+}
+
+@media (max-width: 700px) {
+  .math-pair,
+  .math-trio {
+    grid-template-columns: 1fr;
+  }
+}
