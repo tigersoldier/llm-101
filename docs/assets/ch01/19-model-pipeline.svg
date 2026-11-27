@@ -1,10 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1280" viewBox="0 0 1200 1280" role="img" aria-labelledby="title desc">
-<title id="title">1.8 整模型管线：嵌入、两个 block、共享输出、argmax</title>
-<desc id="desc">ids → 嵌入 → block 0 → block 1 → 最终 LayerNorm（final LayerNorm） → 共享输出 H Eᵀ → logits [13,68] → 最后一个位置 argmax 3 → d。</desc>
+<title id="title">1.8 整模型管线：嵌入、两个 block、共享输出（weight tying）、argmax</title>
+<desc id="desc">ids → 嵌入 → block 0 → block 1 → 最终 LayerNorm（final LayerNorm） → 共享输出（weight tying） Z Eᵀ → logits [13,68] → 最后一个位置 argmax 3 → d。</desc>
 <rect width="1200" height="1280" fill="#ffffff"/>
-<text x="30" y="38" text-anchor="start" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="19" font-weight="600" fill="#1f2937">1.8 整模型管线：嵌入、两个 block、共享输出、argmax</text>
+<text x="30" y="38" text-anchor="start" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="19" font-weight="600" fill="#1f2937">1.8 整模型管线：嵌入、两个 block、共享输出（weight tying）、argmax</text>
 <text x="30" y="62" text-anchor="start" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="12" font-weight="normal" fill="#64748b">the cat sat；13 个位置；样例值来自 seed=3 的随机权重，答案没有语义。</text>
 <text x="200" y="102" text-anchor="start" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="10.5" font-weight="600" fill="#1f2937">ids [13]</text>
+<line x1="280" y1="118" x2="920" y2="118" stroke="#94a3b8" stroke-width="1"/>
 <rect x="280" y="86" width="90" height="32" rx="6" fill="#eef2f7" stroke="#94a3b8"/>
 <text x="325" y="107" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" font-weight="normal" fill="#1f2937">66</text>
 <text x="325" y="130" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="8" font-weight="normal" fill="#64748b">位置 0</text>
@@ -195,8 +196,8 @@
 <text x="630" y="800" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">⋯</text>
 <text x="690" y="800" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">15</text>
 <line x1="600" y1="934" x2="600" y2="992" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
-<text x="560" y="956" text-anchor="end" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="10.5" font-weight="600" fill="#4c1d95">共享输出：logits = <tspan font-style="italic">H E</tspan>ᵀ</text>
-<text x="560" y="972" text-anchor="end" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="9.5" font-weight="normal" fill="#475569">E 即 token 嵌入 [68,16]，输入输出共用</text>
+<text x="560" y="956" text-anchor="end" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="10.5" font-weight="600" fill="#4c1d95">共享输出（weight tying）：logits = <tspan font-style="italic">Z E</tspan>ᵀ</text>
+<text x="560" y="972" text-anchor="end" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="9.5" font-weight="normal" fill="#475569">E 即 token 嵌入 [68,16]，输入与输出共用同一张表</text>
 <rect x="200" y="994" width="800" height="140" rx="10" fill="#f8fafc" stroke="#6d28d9"/>
 <text x="600" y="1020" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="12" font-weight="600" fill="#4c1d95">logits [13, 68]</text>
 <text x="831" y="1038" text-anchor="end" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="10.5" font-weight="600" fill="#1f2937">候选词（vocab 列）→</text>
