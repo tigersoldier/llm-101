@@ -68,6 +68,11 @@
 |residual connection|残差连接|把输入直接加回子层输出：y = x + F(x)；何恺明（Kaiming He）等 2015 在 ResNet 提出|[1.7](course/ch01/1.7.md)|
 |MLP|多层感知机|multi-layer perceptron；也叫前馈网络（feed-forward network，FFN）；本章 Linear → GELU → Linear|[1.7](course/ch01/1.7.md)|
 |feed-forward network|前馈网络|FFN；block 里的逐位置 MLP 子层|[1.7](course/ch01/1.7.md)|
+|perceptron|感知机|早期线性阈值单元；单层学不会 XOR|[1.7](course/ch01/1.7.md)|
+|XOR|异或|两个输入不同时为 1，相同时为 0|[1.7](course/ch01/1.7.md)|
+|hidden layer|隐藏层|MLP 中间那层；把输入特征混合成新特征|[1.7](course/ch01/1.7.md)|
+|universal approximation theorem|万能近似定理|足够宽的一层隐藏层可以逼近连续函数|[1.7](course/ch01/1.7.md)|
+
 |weight tying|权重绑定、共享嵌入|输入词嵌入和输出矩阵共用同一张 [vocab, C] 表|[1.8](course/ch01/1.8.md)|
 |logits|未归一化分数|logit 是 softmax 之前的原始分数；每个位置、每个词表编号一个；形状 [B, T, vocab]；argmax 前不 softmax|[1.8](course/ch01/1.8.md)|
 |argmax|取最大值的下标|取 logits 最大的词表编号|[1.8](course/ch01/1.8.md)|

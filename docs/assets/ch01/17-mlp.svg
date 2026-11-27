@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 640" role="img" aria-labelledby="title desc">
+<title id="title">MLP：隐藏层为什么能解决 XOR</title>
+<desc id="desc">左：每个位置的 Linear → GELU → Linear；右：2-2-1 的 XOR 特例，h1=ReLU(a-b)，h2=ReLU(b-a)，y=h1+h2。</desc>
+<rect width="1000" height="640" fill="#ffffff"/>
+<text x="30" y="36" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="18" font-weight="600" fill="#1f2937">MLP：隐藏层为什么能解决 XOR</text>
+<text x="30" y="60" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="11.5" fill="#64748b">左：每个位置的 Linear → GELU → Linear；右：2-2-1 的 XOR 特例。</text>
+
+<rect x="30" y="90" width="450" height="500" rx="10" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="50" y="116" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="13" font-weight="600" fill="#1f2937">通用 MLP（每个位置独立）</text>
+
+<rect x="165" y="140" width="180" height="42" rx="8" fill="#eef2f7" stroke="#94a3b8"/>
+<text x="255" y="166" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">x [C]</text>
+<line x1="255" y1="182" x2="255" y2="210" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+<rect x="130" y="214" width="250" height="54" rx="8" fill="#e0ecff" stroke="#3b6ea5"/>
+<text x="255" y="236" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="12" fill="#1e3a5f">Linear：混合 + 扩大</text>
+<text x="255" y="255" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" fill="#475569">C = 16 → d_ff = 32</text>
+<line x1="255" y1="268" x2="255" y2="296" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+<rect x="130" y="300" width="250" height="54" rx="8" fill="#ede9fe" stroke="#6d28d9"/>
+<text x="255" y="322" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="12" fill="#5b21b6">GELU：逐元素非线性</text>
+<text x="255" y="341" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="10" fill="#6d28d9">不混合特征</text>
+<line x1="255" y1="354" x2="255" y2="382" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+<rect x="130" y="386" width="250" height="54" rx="8" fill="#e0ecff" stroke="#3b6ea5"/>
+<text x="255" y="408" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="12" fill="#1e3a5f">Linear：组合 + 压回 C</text>
+<text x="255" y="427" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" fill="#475569">d_ff = 32 → C = 16</text>
+<line x1="255" y1="440" x2="255" y2="468" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+<rect x="165" y="472" width="180" height="42" rx="8" fill="#ecfdf5" stroke="#047857"/>
+<text x="255" y="498" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#065f46">y [C]</text>
+<text x="50" y="540" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="10.5" fill="#64748b">每个位置共用同一组权重；不混合位置。</text>
+<text x="50" y="560" font-family="ui-monospace, monospace" font-size="10" fill="#64748b">参数：C·d_ff + d_ff + d_ff·C + C = 1,072</text>
+
+<rect x="510" y="90" width="460" height="500" rx="10" fill="#fffdf8" stroke="#fed7aa"/>
+<text x="530" y="116" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="13" font-weight="600" fill="#1f2937">2-2-1 的 XOR 特例</text>
+
+<rect x="540" y="140" width="70" height="38" rx="7" fill="#eef2f7" stroke="#94a3b8"/>
+<text x="575" y="164" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">a</text>
+<rect x="640" y="140" width="70" height="38" rx="7" fill="#eef2f7" stroke="#94a3b8"/>
+<text x="675" y="164" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">b</text>
+<text x="740" y="164" font-family="ui-monospace, monospace" font-size="10" fill="#64748b">W1 = [[1,-1],[-1,1]]</text>
+
+<line x1="575" y1="178" x2="595" y2="210" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="675" y1="178" x2="655" y2="210" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+<rect x="530" y="214" width="190" height="46" rx="8" fill="#e0ecff" stroke="#3b6ea5"/>
+<text x="625" y="235" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1e3a5f">h1 = ReLU(a - b)</text>
+<text x="625" y="251" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="9" fill="#475569">a 比 b 大多少</text>
+<rect x="740" y="214" width="190" height="46" rx="8" fill="#e0ecff" stroke="#3b6ea5"/>
+<text x="835" y="235" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1e3a5f">h2 = ReLU(b - a)</text>
+<text x="835" y="251" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="9" fill="#475569">b 比 a 大多少</text>
+
+<line x1="625" y1="260" x2="625" y2="292" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="835" y1="260" x2="835" y2="292" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+<rect x="620" y="296" width="220" height="46" rx="8" fill="#ecfdf5" stroke="#047857"/>
+<text x="730" y="317" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#065f46">y = h1 + h2</text>
+<text x="730" y="333" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#475569">W2 = [1, 1]</text>
+
+<text x="530" y="374" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="10.5" fill="#64748b">用 ReLU 近似 GELU：</text>
+<g font-family="ui-monospace, monospace" font-size="10" fill="#1f2937">
+<rect x="530" y="386" width="50" height="28" fill="#f8fafc" stroke="#94a3b8"/><text x="555" y="405" text-anchor="middle">a</text>
+<rect x="580" y="386" width="50" height="28" fill="#f8fafc" stroke="#94a3b8"/><text x="605" y="405" text-anchor="middle">b</text>
+<rect x="630" y="386" width="50" height="28" fill="#f8fafc" stroke="#94a3b8"/><text x="655" y="405" text-anchor="middle">h1</text>
+<rect x="680" y="386" width="50" height="28" fill="#f8fafc" stroke="#94a3b8"/><text x="705" y="405" text-anchor="middle">h2</text>
+<rect x="730" y="386" width="50" height="28" fill="#ecfdf5" stroke="#047857"/><text x="755" y="405" text-anchor="middle">y</text>
+<rect x="530" y="414" width="50" height="28" fill="#f8fafc" stroke="#94a3b8"/><text x="555" y="433" text-anchor="middle">0</text>
+<rect x="580" y="414" width="50" height="28" fill="#f8fafc" stroke="#94a3b8"/><text x="605" y="433" text-anchor="middle">0</text>
+<rect x="630" y="414" width="50" height="28" fill="#f8fafc" stroke="#94a3b8"/><text x="655" y="433" text-anchor="middle">0</text>
+<rect x="680" y="414" width="50" height="28" fill="#f8fafc" stroke="#94a3b8"/><text x="705" y="433" text-anchor="middle">0</text>
+<rect x="730" y="414" width="50" height="28" fill="#ecfdf5" stroke="#047857"/><text x="755" y="433" text-anchor="middle">0</text>
+<rect x="530" y="442" width="50" height="28" fill="#f8fafc" stroke="#94a3b8"/><text x="555" y="461" text-anchor="middle">0</text>
+<rect x="580" y="442" width="50" height="28" fill="#f8fafc" stroke="#94a3b8"/><text x="605" y="461" text-anchor="middle">1</text>
+<rect x="630" y="442" width="50" height="28" fill="#f8fafc" stroke="#94a3b8"/><text x="655" y="461" text-anchor="middle">0</text>
+<rect x="680" y="442" width="50" height="28" fill="#f8fafc" stroke="#94a3b8"/><text x="705" y="461" text-anchor="middle">1</text>
+<rect x="730" y="442" width="50" height="28" fill="#ecfdf5" stroke="#047857"/><text x="755" y="461" text-anchor="middle">1</text>
+<rect x="530" y="470" width="50" height="28" fill="#f8fafc" stroke="#94a3b8"/><text x="555" y="489" text-anchor="middle">1</text>
+<rect x="580" y="470" width="50" height="28" fill="#f8fafc" stroke="#94a3b8"/><text x="605" y="489" text-anchor="middle">0</text>
+<rect x="630" y="470" width="50" height="28" fill="#f8fafc" stroke="#94a3b8"/><text x="655" y="489" text-anchor="middle">1</text>
+<rect x="680" y="470" width="50" height="28" fill="#f8fafc" stroke="#94a3b8"/><text x="705" y="489" text-anchor="middle">0</text>
+<rect x="730" y="470" width="50" height="28" fill="#ecfdf5" stroke="#047857"/><text x="755" y="489" text-anchor="middle">1</text>
+<rect x="530" y="498" width="50" height="28" fill="#f8fafc" stroke="#94a3b8"/><text x="555" y="517" text-anchor="middle">1</text>
+<rect x="580" y="498" width="50" height="28" fill="#f8fafc" stroke="#94a3b8"/><text x="605" y="517" text-anchor="middle">1</text>
+<rect x="630" y="498" width="50" height="28" fill="#f8fafc" stroke="#94a3b8"/><text x="655" y="517" text-anchor="middle">0</text>
+<rect x="680" y="498" width="50" height="28" fill="#f8fafc" stroke="#94a3b8"/><text x="705" y="517" text-anchor="middle">0</text>
+<rect x="730" y="498" width="50" height="28" fill="#ecfdf5" stroke="#047857"/><text x="755" y="517" text-anchor="middle">0</text>
+</g>
+<text x="530" y="552" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="10.5" fill="#64748b">这正是 XOR；GELU 是 ReLU 的平滑版，数值不会正好是 0/1。</text>
+
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#64748b"/></marker></defs>
+</svg>
