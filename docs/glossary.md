@@ -15,6 +15,8 @@
 |`<bos>`|起始词元|beginning of sequence 的缩写；标出输入的开头|[1.2](course/ch01/1.2.md)|
 |`<eos>`|结束词元|end of sequence 的缩写；标出输入的结尾|[1.2](course/ch01/1.2.md)|
 |word-level|词级|以整词为切分单位，词表通常有几万到几十万个词|[1.2](course/ch01/1.2.md)|
+|RNN|循环神经网络|recurrent neural network；按时间步处理序列的神经网络|[1.2](course/ch01/1.2.md)|
+|OOV|未登录词|out-of-vocabulary；词表外的词，通常映射成 `<unk>`|[1.2](course/ch01/1.2.md)|
 |character-level|字符级|以单个字符为切分单位，本章词表有 68 个符号|[1.2](course/ch01/1.2.md)|
 |tensor|张量|多维数组；每一维长度固定，二维就是矩阵|[1.3](course/ch01/1.3.md)|
 |shape|形状|张量每一维的长度，如 `[T, C]`|[1.3](course/ch01/1.3.md)|
