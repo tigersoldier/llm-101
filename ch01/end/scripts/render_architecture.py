@@ -32,7 +32,7 @@ STEPS = [
     ("残差 + MLP", "x + MLP(LayerNorm(x))", "", 7, lambda stage: stage >= 7),
     ("重复 ×2", "两个 TransformerBlock 串联", "", 7, lambda stage: stage >= 7),
     ("最终 LayerNorm", "LayerNorm", "", 7, lambda stage: stage >= 7),
-    ("共享输出", "hidden @ 词嵌入ᵀ → logits", "", 7, lambda stage: stage >= 7),
+    ("共享输出", "Z Eᵀ → logits", "", 7, lambda stage: stage >= 7),
     (
         "答案",
         "68 个分数 → argmax → 字符",

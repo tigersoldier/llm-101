@@ -154,7 +154,7 @@
 <text x="630" y="628" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">⋯</text>
 <text x="690" y="628" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">15</text>
 <line x1="600" y1="746" x2="600" y2="804" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
-<text x="560" y="776" text-anchor="end" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="10.5" font-weight="600" fill="#1f2937">最终 LayerNorm（final LayerNorm） [13,16]</text>
+<text x="560" y="776" text-anchor="end" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="10.5" font-weight="600" fill="#1f2937">最终 LayerNorm（final LayerNorm）：Z [13,16]</text>
 <rect x="480" y="806" width="60" height="32" fill="#ede9fe" stroke="#6d28d9"/>
 <text x="510" y="826" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">1.397</text>
 <rect x="540" y="806" width="60" height="32" fill="#ede9fe" stroke="#6d28d9"/>
@@ -199,7 +199,7 @@
 <text x="560" y="956" text-anchor="end" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="10.5" font-weight="600" fill="#4c1d95">共享输出（weight tying）：logits = <tspan font-style="italic">Z E</tspan>ᵀ</text>
 <text x="560" y="972" text-anchor="end" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="9.5" font-weight="normal" fill="#475569">E 即 token 嵌入 [68,16]，输入与输出共用同一张表</text>
 <rect x="200" y="994" width="800" height="140" rx="10" fill="#f8fafc" stroke="#6d28d9"/>
-<text x="600" y="1020" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="12" font-weight="600" fill="#4c1d95">logits [13, 68]</text>
+<text x="600" y="1020" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="12" font-weight="600" fill="#4c1d95">logits [13,68]</text>
 <text x="831" y="1038" text-anchor="end" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="10.5" font-weight="600" fill="#1f2937">候选词（vocab 列）→</text>
 <text x="359" y="1077" text-anchor="end" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">⋮</text>
 <text x="359" y="1107" text-anchor="end" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">12</text>

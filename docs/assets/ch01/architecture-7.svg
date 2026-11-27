@@ -51,7 +51,7 @@
 <line x1="380" y1="884" x2="380" y2="904" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
 <rect x="110" y="908" width="540" height="64" rx="10" fill="#e0ecff" stroke="#3b6ea5"/>
 <text x="135" y="934" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="16" font-weight="600" fill="#1f2937">共享输出</text>
-<text x="135" y="958" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#475569">hidden @ 词嵌入ᵀ → logits</text>
+<text x="135" y="958" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#475569">Z Eᵀ → logits</text>
 <text x="625" y="947" text-anchor="end" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#047857">真</text>
 <line x1="380" y1="976" x2="380" y2="996" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
 <rect x="110" y="1000" width="540" height="64" rx="10" fill="#e0ecff" stroke="#3b6ea5"/>
