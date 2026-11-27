@@ -1,18 +1,18 @@
 # 课程重构计划：快照链
 
-记录日期：2026-11-23。状态：**规划草案，尚未实现任何章目录。**
+记录日期：2026-11-23；最近调整：2026-11-27。状态：**第 1 章已完成；第 2–11 章按 §5 执行，本文件仍是可调整的规划草案。**
 
 > 本文件记录的是目前讨论的结论，不是最终决定。章节划分、目录命名、模型规模、页面形式都可能在实现过程中调整；不要把它当成不可变的规范。每次调整请同步修改相关段落，并在末尾“修订记录”追加一条，避免文档与实际代码不一致。
 
-本文件汇总目前的课程结构设想，供以后回顾。当前仓库里的 `src/`、`scripts/`、`tests/` 仍是旧的“先实现、再补文档”形态；若本计划落地，它们会被拆进 `ch01/` … `ch11/` 的快照链，`final/` 由 `ch11/end` 产生。
+本文件汇总目前的课程结构设想，供以后回顾。当前仓库里的 `src/`、`scripts/`、`tests/` 仍是旧的“先实现、再补文档”形态；`ch01/` 已落地，`ch02/` … `ch11/` 待建，`final/` 由 `ch11/end` 产生。
 
 ## 1. 教学目标的变化
 
 旧路线是“先讲 tokenizer、手写梯度、注意力，最后才拼出模型”，读者要读到第 5 章才见到一个能跑的 transformer，前置太长，也看不到全貌。
 
-新路线：**第 1 章先搭出完整但很小的 decoder-only transformer，用 SVG 图、命令行输出和测试把每一步的输入、输出与形状展示出来；之后每章在这个骨架上加一层细节，最终收敛到 `final/`。**
+新路线：**第 1 章先搭出完整但很小的 decoder-only transformer，用 SVG 图、命令行输出和测试把每一步的输入、输出与形状展示出来；之后按“会学习 → 真实数据 → 放大 → 生成 → 限时训练 → 评估”加细节，最终收敛到 `final/`。**
 
-这也是为什么第 1 章不是一个演示用的 `demo.py`：第 1 章的代码就是最终代码的雏形，后续章节只做增量。
+全书分四段：第 1–2 章建立前向与 tokenizer；第 3–6 章讲梯度、优化器和训练循环；第 7–8 章接真实语料并放大；第 9–11 章做生成、限时训练和评估。第 1 章的代码是最终代码的雏形，后续章节只做增量。
 
 ## 2. 目录结构
 
@@ -31,143 +31,175 @@ final/                    # 与 ch11/end 逐字节一致
 
 ## 3. 已定决策
 
-以下十五项是目前采纳的方案；若后续实验或读者反馈暴露问题，可以再改，改动时同步更新本章节与修订记录。
+以下十七项是目前采纳的方案；若后续实验或读者反馈暴露问题，可以再改，改动时同步更新本章节与修订记录。
 
 1. 目录名用 `start/` 与 `end/`，避免与根目录的 `final/` 混淆。
 2. `uv.lock` 只保留在仓库根和 `final/`；各章 README 用 `uv sync`（不带 `--locked`），避免 22 份锁文件副本淹没历史。
 3. **不做 web server，也不做浏览器前端。** 第 1 章用 SVG 图、`show_placeholder.py` 的命令行输出和 `pytest` 展示数据流；原理在 1.1–1.8 已经足够清楚，不需要再实现一套逐层 API/页面。后续章节如果确实需要交互，再单独评估，不作为第 1 章的交付物。
-4. CI 只运行每个 `end/` 的测试（共用一套环境，`PYTHONPATH` 指向各快照）；`start/` 不跑测试，只校验它与上一章 `end/` 逐字节一致。
-5. 第 1 章直接采用与 `final/` 相同的模块划分，只是暂时只有 `forward`。
+4. CI 运行根目录测试和每个 `end/` 的测试（共用一套环境，`PYTHONPATH` 指向各快照）；`start/` 不跑测试，只由 `scripts/check_snapshots.py` 校验核心库文件与上一章 `end/` 一致；`final/` 与 `ch11/end` 逐字节一致。
+5. 第 1 章采用与 `final/` 相同的核心模块划分（`tokenizer`、`layers`、`attention`、`model`），只是暂时只有 `forward`；`placeholder` 等章节专用文件不进入 `final/`。
 6. 第 1 章不引入 HTML/JS/CSS 或前端构建步骤；图放在 `docs/assets/ch01/`，运行示例由命令行脚本输出。
 7. **术语不提前出现。** 专业术语第一次出现不得早于具体介绍并实现它的那一章。在此之前，要么不使用该术语、也不提及相关内容，要么用通俗语言简单描述，并明确告诉读者后续会在哪一章介绍。第 1 章内部按小节执行同一规则：正文只使用本节或更早小节已经介绍过的术语；代码标识符可以照实展示，但要说明它对应哪件事。小节清单与导航是路线图，可以提前列出标题，正文不能假定读者已经认识这些名字。
 8. **术语译名与术语表。** 有通用中文译名的术语第一次出现时附上中文译名；有多种通用译法的全部列出（例如 tokenizer：分词器、标记器、词元切分器）。transformer 这类没有公认译名的术语不强译，保留原文。缩写与符号第一次出现时写出完整单词（如 `<bos>` = beginning of sequence）。书末维护术语表 `docs/glossary.md`：按首次出现顺序列出术语、中文译名、一句话说明，并链接到详细介绍或实现它的小节；每写完一节，把新术语补进表中。
 9. **图解、例子与数学补充。** 结构、数据流、矩阵或多阶段变化能说明问题的概念与计算，各配 SVG 图；只承载一条公式、删掉也不损失信息的图不画。完整图规则见 `docs/figures.md`。给出至少一组输入/输出例子（可运行的代码或可手算的数值）。数学补充只写大学及以上的内容；大学之前的数学（取余、基础向量/矩阵运算等）不解释，除非本节特别注明。没有需要补充的数学就不写这一节。图放在 `docs/assets/chNN/`，文件名用“序号-语义名”（如 `16-attention-pipeline.svg`）；架构图用 `architecture-N.svg`。
-10. **每节可运行（螺旋编排）。** 第 1 章每节结束都必须有一条能跑的管线：用同一个示例输入，展示本节改动后的完整输入→输出与过程；未实现的组件用简单占位，架构图标出真组件与占位组件。详见第 12 节。
+10. **可运行检查点。** 第 1 章每节结束都必须有一条能跑的管线：用同一个示例输入，展示本节改动后的完整输入→输出与过程；未实现的组件用简单占位，架构图标出真组件与占位组件。第 2 章起每章至少有一个章末端到端命令/测试，节内是否画管线按需。详见第 12 节。
 11. **Python 代码必须带严格类型注解。** 正文、示例和章节代码里的每个函数/方法都要写参数与返回注解（包括 `-> None`）；示例与真实代码保持一致。`tests/test_docs_examples.py` 会扫描 `docs/**/*.md` 的 Python 代码块。
 12. **概念本质与扩展阅读。** 概念在最早需要它的章节引入，先讲本质（如 tensor 是多维数组：标量、向量、矩阵都是它的特例）；有重要新概念的章节在最后加“扩展阅读”，讲为什么需要它、没有它会怎样。
 13. **本节需要实现的函数、参考实现与逐函数示例。** 每节按教科书式逐函数介绍：函数名、如何被使用、输入输出、输入输出样例、带注释的签名；不使用表格。函数有独立概念小节时，介绍放进该小节，不要集中堆在节首。再给参考实现；最后逐个函数给实际结果与解释，必要时配矩阵/多阶段图；能用公式表达的，先给矩阵/张量公式，再给代数式或逐元素展开。
 14. **教科书式写作风格。** 全书按 `STYLE.md` 执行：新概念与专有函数逐个介绍；复杂实现与算法给编号步骤、最小例子、中间结果和图例；每节按“概念 → 函数 → 分步分析 → 参考实现 → 结果”组织。
 15. **概念的引入时机。** 概念只在读者能理解其意图时引入；判断标准与反例见 `STYLE.md` 的“引入时机”；第 1 章的逐项审计见第 13 节。
+16. **第 1 章 API 是基线。** 后续章节保留 `ch01/end` 的公开接口和数值语义；`final/` 只作算法参考，第 11 章再由 `ch11/end` 重新生成。允许的数值“毕业”只有第 3 章的精确 GELU 和第 8 章的初始化，且必须附差异测试与文档说明。
+17. **章节专用文件不进入累计库。** `placeholder.py`、演示脚本、该章测试和教学语料属于章节专用；`start/` 可以删除上一章的章节专用文件，但要在 README 和快照清单中列出。
 
 ## 4. 连续性规则
 
-- **同名模块只增语义，不改已有行为。** 第 3 章给 `layers.py` 加 `backward`，不重写 `forward`。
-- **必须重构时附带等价性测试**：例如第 2 章把字符级词表换成 BPE，要有一个测试证明同一权重下手写输入得到的 logits 与重构前一致。
+- **第 1 章 API 是基线。** 后续章节保留 `ch01/end` 的公开接口和数值语义；同名模块只增语义，不重写 `forward` 的返回结构。`final/` 只作算法参考，第 11 章再由 `ch11/end` 重新生成。
+- **允许两处数值“毕业”。** 第 3 章把 `GELU` 从 1.5 的 tanh 近似换成精确 `erf` 形式，并附输出差异测试；第 8 章放大维度时把 `Linear` 初始化从 `0.02` 换成 `sqrt(2/(in_features+out_features))`，并说明理由。其他前向数值变化必须单独提案，不得静默发生。
+- **必须重构时附带等价性测试。** 第 2 章换 tokenizer 的等价性定义为：同一 `GPTConfig`、同一 seed、同一手写 id 序列的 logits 回归（证明模型代码没变），加上 tokenizer 契约测试（`encode`/`decode`/`vocab_size`/`bos_id`/`eos_id`、未知字符、特殊 token、往返）；不以“同一文本的新旧 token id”作等价。
+- **章节专用文件与累计库分开。** `placeholder.py`、`show_placeholder.py`、`render_architecture.py`、该章的演示测试和教学语料属于章节专用；`start/` 可以删除上一章的章节专用文件，但必须在 README 和快照清单中列出。累计库核心是 `src/llm101/` 中跨章使用的模块（`tokenizer`、`parameters`、`layers`、`attention`、`model`、`losses`、`optim`、`training`、`corpus`、`checkpoint`、`inference`）。
 - 每章 `start/README.md` 固定写三段：本章要做什么、先跑哪个失败测试、按什么顺序读代码。
 - 每章 `end/README.md` 固定写：本章新增了什么、怎么验证、下一章的入口在哪。
+- 章节目录里的 `pyproject.toml` 保持同一份模板；`uv.lock` 只保留根目录和 `final/`。
 
 ## 5. 章节清单
 
 ### 第 1 章 看得见的 transformer
 
 - `start/`：工程脚手架 + 三个失败测试（输出形状、因果掩码、上下文上限）。
-- `end/`：`tokenizer.py`（字符级）、`parameters.py`（`Parameter`，含全零 `grad` 但本章不用）、`layers.py`（`Linear`、`Embedding`、`LayerNorm`、`GELU`，只有 `forward`）、`attention.py`（`MultiHeadSelfAttention`，只有 `forward`）、`model.py`（`GPTConfig`、`TransformerBlock`、`TinyGPT`，只保留 `forward`）、`placeholder.py`、`scripts/show_placeholder.py`、`scripts/render_architecture.py`。
-- 小节骨架：`ch01/sections/1.1.md` 到 `1.9.md`，每份只写目标、内容安排、涉及代码、验收与写作注意，正文留给后续。
-- 验收：`pytest` 全绿；`show_placeholder.py --stage 7` 输出与 `TinyGPT.forward` 一致；改后段 token 不影响前段注意力输出；1.9 只做验收、小结与交接，不做逐层 trace。
+- `end/`：`tokenizer.py`（字符级）、`parameters.py`（第 3 章的占位空壳，本章不导入）、`layers.py`（`Linear`、`Embedding`、`LayerNorm`、`GELU`，只有 `forward`）、`attention.py`（`MultiHeadSelfAttention`，只有 `forward`）、`model.py`（`GPTConfig`、`TransformerBlock`、`TinyGPT`，只保留 `forward`）、`placeholder.py`、`scripts/show_placeholder.py`、`scripts/render_architecture.py`。
+- 小节：`ch01/sections/1.1.md`–`1.9.md` 已全部完成，正文在 `docs/course/ch01/`。
+- 验收：`ch01/end` 的 39 个测试全绿；`show_placeholder.py --stage 7` 输出与 `TinyGPT.forward` 一致；改后段 token 不影响前段注意力输出；1.9 只做验收、小结与交接。
+- 本章不做什么：不换 BPE、不做反向传播、不训练、不读真实语料、不做网页。
 
 ### 第 2 章 真正的 tokenizer
 
-- 增量：`tokenizer.py`（BPE）替换字符级词表；`GPTConfig.vocab_size` 来自训练好的词表；命令行示例显示切词结果与 token id。
-- 等价性测试：固定权重下，手写 token id 序列的 logits 与重构前一致。
+- 增量：`tokenizer.py` 换成 BPE；提供 `BPETokenizer.train`、`encode`、`decode`、保存/加载；`GPTConfig.vocab_size` 来自教学词表（目标约 512，实际由语料决定，不要求精确值）。
+- 内容：从 Unicode 码点出发的合并；英文空格与中文无空格的处理；联合词表；`<unk>`/`<bos>`/`<eos>`；词表大小、压缩率、OOV 与序列长度；建立英中教学语料（数百条，自写或明确许可），供第 2–6 章使用。
+- 契约：`encode`/`decode`/`vocab_size`/`bos_id`/`eos_id` 行为不变；构造/训练/加载接口可以不同，但要提供 `train`/`load`；`<pad>` 暂不加入，直到真正实现 padding。
+- 等价性：固定 `GPTConfig`、seed 和手写 id 的 logits 回归（证明模型代码没变）；tokenizer 契约测试；tokenizer 与模型 `vocab_size` 一致性测试。
+- 验收：英文/中文往返；未知字符；特殊 token；合并示例；新词表下 `TinyGPT` 前向形状正确；教学语料可重复生成。
+- 不做什么：不接 TinyStories；不做 8192 词表（第 7 章）；不训练。
 
 ### 第 3 章 参数、层与手写梯度
 
-- 增量：给 `parameters.py`、`layers.py` 加 `backward`，新增 `losses.py`（softmax 交叉熵）；有限差分测试。
-- 模型计算不变，本章解释这些数字是**怎么算出来的**。
+- 增量：`Parameter`（`value`、`grad`、`zero_grad`、`numel`）；`Linear`、`Embedding`、`LayerNorm`、`GELU` 的 `backward`；`losses.py` 的稳定 softmax 交叉熵；next-token 目标（shift、所有位置平均、perplexity）；中心差分与 float64 校验。
+- 数值毕业：GELU 从 1.5 的 tanh 近似换成精确 `erf` 形式，附输出差异小于 2e-3 的测试；其余前向数值不变。
+- 迁移：`parameters()` 从裸张量改为 `Parameter`，保留 `numel()`；第 1 章的参数量测试仍应通过。
+- 验收：各层有限差分；GELU 新旧差异；交叉熵梯度；单句 next-token loss 与手算一致。
+- 不做什么：不实现注意力/block/整模型反向（第 4 章）；不优化、不训练。
 
-### 第 4 章 因果多头自注意力（拆解）
+### 第 4 章 注意力、block 与整模型反向
 
-- 增量：注意力 `backward`；Q/K/V 推导；缩放因子；掩码实现细节。
-- 验收：注意力全参数有限差分；改未来 token 不影响过去。
+- 增量：注意力 `backward`（softmax 雅可比、因果 mask、多头、输出投影）；`TransformerBlock.backward`（残差、Pre-LN、MLP）；`TinyGPT.backward`（final norm、绑定输出头的梯度累加）；内部缓存与第 1 章返回的 cache 共存。
+- 内容：前向只做一页回顾，不重讲 Q/K/V、缩放和 mask；重点讲梯度形状、mask 的零梯度、多头合并、绑定权重。
+- 验收：注意力全参数有限差分；block/整模型 tiny config 全参数有限差分；未出现在输入里的 token 只从输出头得到梯度；改未来 token 不影响过去。
+- 不做什么：不缩放（第 8 章）；不优化、不训练。
 
-### 第 5 章 整模型与维度选择
+### 第 5 章 优化器
 
-- 增量：把配置提到 `d_model=256`、4 层、4 头、`d_ff=1024`、上下文 128；共享输入/输出嵌入；参数量 5,289,472（`vocab=8192`）。
-- 验收：整模型全参数有限差分；参数量与理论值一致。
+- 增量：`optim.py` 的 SGD、AdamW（偏差修正、decoupled weight decay、epsilon、`state_dict`）；全模型梯度裁剪；可选 warmup/学习率调度的动机与取舍。
+- 验收：AdamW 单步与手算一致；状态往返后行为一致；裁剪后的全局范数正确。
+- 不做什么：不接数据、不跑训练循环；不引入最终模型尺寸。
 
-### 第 6 章 优化器
+### 第 6 章 训练循环
 
-- 增量：`optim.py`（SGD、AdamW、`state_dict`）；全模型梯度裁剪。
-- 验收：AdamW 单步与手算一致；状态往返后行为一致。
+- 增量：`training.py` 的内存采样器与 `train_step`；next-token shift、所有位置平均损失、验证 loss/perplexity；loss 曲线、梯度范数、学习率、吞吐量等诊断；过拟合一个小批次的 sanity check。
+- 数据：第 2 章的教学语料；第 1/2 章的小配置；不依赖外部语料。
+- 验收：固定 seed 可复现；小模型 loss 下降；验证 PPL 可计算；小批次可过拟合。
+- 不做什么：不引入 int32/mmap `TokenStream`（第 7 章）；不做 checkpoint/续训/限时（第 10 章）；不用 5M 模型。
 
-### 第 7 章 训练循环
+### 第 7 章 真实语料与最终 tokenizer
 
-- 增量：`training.py`（`TokenStream`、`clip_grad_norm_`、`train_step`）、验证 loss/perplexity。
-- 数据：仓库内自带的自写短句，不依赖外部语料。
+- 增量：`corpus.py`、`scripts/download_datasets.py`、`scripts/prepare_training_data.py`；固定修订号与 SHA-256；中文归档的哈希切分；去重/过滤；中英配比；BPE 8192；并行编码；int32 `TokenStream`；manifest；许可讨论。
+- 内容：故事边界与 `BOS`/`EOS`；随机窗口跨故事；无语言控制 token；token 预算与语言覆盖计数；tokenizer 压缩率与 OOV。
+- 验收：manifest 可复现；token 数与词表尺寸记录；抽样解码正确；`TokenStream` 批次形状正确；许可说明齐全。
+- 不做什么：不训练（第 10 章）；不缩放（第 8 章）。
 
-### 第 8 章 真实语料管道
+### 第 8 章 缩放与预算
 
-- 增量：`corpus.py`、`scripts/download_datasets.py`、`scripts/prepare_training_data.py`；固定修订号与 SHA-256；中文归档的哈希切分；并行编码；manifest。
-- 本章开始讨论数据许可。
+- 增量：最终 `GPTConfig`（`d_model=256`、4 层、4 头、`d_ff=1024`、上下文 128、`vocab=8192`）；参数量 5,289,472；每 token FLOPs、激活内存、批次大小与上下文成本；`Linear` 初始化从 0.02 换成 `sqrt(2/(in_features+out_features))`；`GPTConfig` 校验；最终配置的抽样梯度检查。
+- 内容：为什么 4 层/256 宽/4 头/4C/128 上下文；放大后 Pre-LN、初始化和梯度裁剪的关系；不再重复 1.8 的权重绑定与参数量基础。
+- 验收：参数量与理论值一致；一次前向/反向的 CPU 时间与内存估算；最终配置抽样梯度检查；tiny config 全参数有限差分仍通过。
+- 不做什么：不跑完整 1/3/5 小时训练（第 10 章）；不换 tokenizer。
 
-### 第 9 章 限时训练、checkpoint 与续训
+### 第 9 章 推理与生成
 
-- 增量：`checkpoint.py`、`scripts/train_model.py`；按时长停止、信号安全保存、`--resume`。
-- 验收：短跑产出 `last.pt`、`best-model.pt`、`model-<h>h.pt`、`metrics.jsonl`、`run_manifest.json`、`samples-<h>h.json`。
+- 增量：`inference.py`、`scripts/generate.py`；贪心、temperature、top-k、`EOS` 停止、上下文截断；固定 seed 可复现；用第 6 章的小模型对比随机权重与训练后权重。
+- 内容：为什么每步重算上下文；KV cache、top-p、beam search 为什么不在主线；生成样例只用于观察，不作为评测。
+- 验收：temperature=0 确定性；top-k 截断；EOS 停止；prompt 往返；生成不依赖 autograd。
+- 不做什么：不做 KV cache/top-p/beam；不做网页；不跑长训练。
 
-### 第 10 章 推理与生成
+### 第 10 章 限时训练、checkpoint 与续训
 
-- 增量：`inference.py`、`scripts/generate.py`；贪心、temperature、top-k、`EOS` 停止。
-- 命令行生成：加载训练过的权重，对比随机权重与训练后权重的输出；不新增网页。
+- 增量：`checkpoint.py`、`scripts/train_model.py`；按时长停止、信号安全保存、`--resume`；`metrics.jsonl`、`run_manifest.json`、`last.pt`、`best-model.pt`、`model-<h>h.pt`；用第 9 章 `generate` 产出 `samples-<h>h.json`；固定提示词；实验协议。
+- 数据/配置：第 7 章语料与 tokenizer，第 8 章最终配置。
+- 验收：短跑产出全部 artifact；续训后行为与不中断运行一致；样例 JSON 可复现；不要求 1/3/5 小时全跑。
+- 不做什么：不重讲优化器/训练循环；不做评估方法论（第 11 章）。
 
 ### 第 11 章 实验、评估与发布
 
-- 增量：`experiment-protocol.md`、`results.md`、许可说明；`ch11/end` 即 `final/`。
-- 验收：1/3/5 小时数字可用同一批固定验证窗口重算；`final/` 独立 `uv sync` 与 `pytest` 通过。
+- 增量：`results.md`、评估方法、许可说明、`ch11/end` 即 `final/`；1/3/5 小时同一轨迹比较；固定验证窗口；分语言 PPL；多 seed/采样方差；固定提示词人读样例；记忆/污染/局限；后续方向。
+- 验收：结果可用 `ch11/end` 重算；`final/` 独立 `uv sync` 与 `pytest` 通过；许可与“不是什么模型”写清楚；给出后续课程方向。
+- 不做什么：不做指令微调/RLHF/分布式训练；不发布未复核许可的权重。
 
 ## 6. 第 1 章详细设计
 
 - 词表：字符级 68 个 token（大小写字母、空格、常用标点、`BOS`/`EOS`），任意英文可输入。
 - 结构：2 层 Pre-LN decoder-only，`d_model=16`、2 头（每头 8 维）、`d_ff=32`、上下文 16，可学习绝对位置，共享输入/输出嵌入。
-- 规模：5,824 个参数；float32 权重 23 KiB，网页端 JSON 约 40 KB。刻意保持这么小，是为了让每层的张量能一屏放下、数值可以手算核对；第 5 章再把维度提到 `d_model=256`、4 层，并说明每一步放大了什么。
+- 规模：5,824 个参数；float32 权重约 23 KiB。刻意保持这么小，是为了让每层的张量能一屏放下、数值可以手算核对；第 8 章再把维度提到 `d_model=256`、4 层，并说明每一步放大了什么。
 - 权重：固定 seed 随机初始化，只有 forward。图注和命令行输出必须写明“输出是噪声，看的是结构与数据流”，避免读者误以为模型已经会说话。
 - 展示方式：1.3–1.8 的 SVG 图 + `show_placeholder.py --stage N`；不实现逐层 API、服务器或网页。
 - 测试：`tests/test_structure.py`（形状、掩码、上下文上限）和 `tests/test_placeholder.py`；不新增 `test_api.py`，不依赖 Node。
 
 ## 7. 数据与许可边界
 
-- 第 1–7 章使用仓库内自带的自写短句（约 100 条），不嵌入任何数据集的原文，避免把 CDLA-Sharing 内容带进代码仓库。
-- 第 8 章起接入真实语料：英文 `roneneldan/TinyStories`、中文 `52AI/TinyStoriesZh`，沿用现有 SHA-256 固定与哈希切分。
-- 权重再发布仍需先完成上游许可复核；在结论明确前只发布代码与文档。
+- 第 1 章使用内置的 6 行示例；第 2 章建立英中教学语料（数百条，自写或明确许可），供第 2–6 章使用，不嵌入任何数据集原文，避免把 CDLA-Sharing 内容带进代码仓库。
+- 第 7 章起接入真实语料：英文 `roneneldan/TinyStories`、中文 `52AI/TinyStoriesZh`，沿用现有 SHA-256 固定与哈希切分，并补去重/过滤、语言配比和 token 预算。
+- 第 7 章开始讨论数据许可；权重再发布仍需先完成上游许可复核，在结论明确前只发布代码与文档。
 
 ## 8. 工程约束
 
 - 每个 `end/` 可独立 `uv sync`（不带 `--locked`）并 `pytest`。
 - 快照只含代码、测试、脚本、`pyproject.toml` 与 README；不含 `data/`、`artifacts/`、`site/`、`.venv/`。
-- 新增 `scripts/check_snapshots.py`：校验 `chNN/start` 与 `ch(N-1)/end` 逐字节一致、`final` 与 `ch11/end` 一致，并对每个 `end/` 运行测试。
+- 新增 `scripts/check_snapshots.py`：校验 `chNN/start` 与 `ch(N-1)/end` 的累计库核心文件一致；章节专用文件、README、新空壳/红测试按清单允许差异；`final/` 与 `ch11/end` 逐字节一致；对每个 `end/` 运行测试。
+- CI 增加章节矩阵：根目录测试、每个 `end/` 测试、`scripts/check_snapshots.py`、文档示例注解检查；`start/` 只做快照校验，不跑测试。
 - 体积估算：每份快照约 450 KB 文本、约 5 千行；23 份合计约 10 MB，Git 增量压缩后更小。
 - 第 1 章不放前端静态资源，也没有服务器启动步骤；`docs/` 只放说明页和 SVG 图，所以站点不需要额外构建步骤。
 
 ## 9. 与现状的关系
 
-- 现有的模块与测试是各章 `end/` 的内容来源；第 1 章从中删出“只有 forward”的版本，其余章节按上述增量重新分配。
-- 现有 `docs/course/*.md` 将拆入对应章节，`roadmap.md` 改为章节索引。
-- 现有根目录 `final/` 暂时保留；`ch11/end` 完成后由其取代并保持同步。
+- 现有 `src/`、`scripts/`、`tests/` 是旧实现，作为各章 `end/` 的算法来源，不再继续演进；章节快照是正文的唯一代码权威。
+- 现有 `docs/course/*.md` 按新章节拆分：`bpe.md`→第 2 章，`manual-gradients.md`→第 3 章，`causal-attention.md`→第 4 章，`transformer-model.md`→第 1 章前向 + 第 8 章缩放，`training-loop.md`→第 6/10 章，`inference.md`→第 9 章，`experiment-protocol.md`→第 10 章，`results.md`→第 11 章。对应章节上线后旧页删除或改成跳转。
+- `roadmap.md` 改为章节索引，与新顺序一致。
+- 现有根目录 `final/` 只作算法参考；第 11 章由 `ch11/end` 重新生成，已发布的 1/3/5 小时结果标注为旧实现结果，或由第 11 章重跑。
 - 代码已收敛为单一中英混合模型，章节计划沿用这一结论，不再保留纯英文或纯中文训练路径。
 
 ## 10. 交接清单
 
-截至 2026-11-23 的状态：
+截至 2026-11-27 的状态：
 
-- `ch01/` 骨架已建立：`README.md`（总览、小节清单、写作流程、进度勾选）、`sections/1.1.md`–`1.9.md`（目标 / 内容安排 / 涉及代码 / 验收 / 写作注意）、`start/`（模块空壳 + 3 个红测试 + 示例文本）、`end/`（只有说明，待填写）。
-- `start/` 已验证可运行：`cd ch01/start && uv sync --extra dev && uv run pytest -q` → 3 failed，全部是 `NotImplementedError`，分别对应 1.4（上下文上限）、1.6（掩码）、1.7（形状）。
-- 章节目录还没有接入 CI；`scripts/check_snapshots.py` 尚未实现。提交时不要带上 `uv.lock`、`.venv/`、缓存或 `egg-info`。
+- 第 1 章已完成：`ch01/start/` 是脚手架（3 个红测试），`ch01/end/` 是完成态（39 passed），正文在 `docs/course/ch01/1.1.md`–`1.9.md`。
+- 第 2 章尚未开始；`ch02/` 还不存在。
+- `scripts/check_snapshots.py` 尚未实现；CI 只跑根目录和 `ch01/end`，还没有章节矩阵。
+- 第 1 章正文里指向旧章号的句子暂不回填；等第 2 章开工或章节号稳定后统一做一次指针修订，以本文件 §5 为准。
 
-新 session 从 1.1 开始时的步骤：
+新 session 从第 2 章开始时的步骤：
 
-1. 读 `ch01/sections/1.1.md` 与 `ch01/README.md` 的写作流程。
-2. 把 `ch01/start/` 整体复制为 `ch01/end/`（只做一次），之后只改 `end/`。
-3. 正文写到 `docs/course/ch01/<编号>.md`；1.1 时顺带建 `index.md` 与 `mkdocs.yml` 子导航。
-4. 每节按“验收”跑测试；新测试放 `ch01/end/tests/`。
-5. 完成后把 `sections/<编号>.md` 的状态改为“完成”，并在 `ch01/README.md` 的进度清单里打勾。
+1. 读本文件 §5 的第 2 章、`ch01/README.md`、`STYLE.md`。
+2. 从 `ch01/end/` 复制出 `ch02/start/`；写 `ch02/README.md`；决定 `placeholder.py`、`show_placeholder.py`、`render_architecture.py`、`test_placeholder.py` 是删除还是保留为兼容层，并在 README 里列出。
+3. 建立 `ch02/start/samples/` 的英中教学语料；写 `ch02/sections/` 的小节计划与验收。
+4. 实现 BPE 与五个成员接口；测试放 `ch02/end/tests/`：tokenizer 契约、固定 id logits 回归、tokenizer/模型词表一致性。
+5. 同时补 `scripts/check_snapshots.py` 与 CI 章节矩阵；不要等第 11 章再补。
+6. 不接 TinyStories、不做 8192 词表、不训练；这些分别留给第 7、10 章。
 
-写作约束：`start/` 里的函数签名已固定，后续章节依赖它们；第 1 章只做前向；不做 web server、前端页面或逐层 trace。
+写作约束：第 2 章只换 tokenizer，不引入反向传播、优化器或真实语料；`ch01/end/` 的公开接口是基线，`final/` 不是。
 
 ## 11. 尚未决定
 
-- KV cache 是否作为第 12 章（当前代码未实现，`roadmap.md` 已列为后续）。
-- 第 10 章如果以后要做生成演示，是否只在命令行里对比随机权重与训练后权重；当前不做网页。
-- 章节的中文标题与固定 URL 命名。
+- KV cache 不进入主线；第 9 章讲清每步重算的成本，KV cache 作为附录或第 12 章扩展，暂不排入 11 章。
+- top-p、beam search、指令微调/RLHF、GPU/分布式训练不进入基础主线；第 11 章给后续方向。
+- 章节中文标题与固定 URL 命名按 §5 的标题执行；页面统一放在 `docs/course/chNN/`。
+- 教学语料的最终条数与许可形式（自写、模板生成或明确许可的公共领域文本）在第 2 章开工前定；不把 TinyStories 原文带进第 2–6 章。
 
 ## 12. 第 1 章的螺旋编排
 
@@ -288,8 +320,9 @@ uv run python scripts/show_placeholder.py --stage 1 "the cat sat"
 3. 1.3：删掉 `Parameter`、`Linear`、`parameters()`；保留张量、`Embedding`、形状和手算查表；小节标题改为“嵌入表与张量形状”。
 4. 1.6：引入 `Linear`（Q/K/V）和线性层手算例子。
 5. 1.7：引入 MLP 和 block；1.8：引入整模型、共享输出、`parameters()`、参数量和 argmax。
-6. 第 3 章：引入 `Parameter` + `grad`，把 1.3/1.6/1.7 的裸张量包起来，并加等价性测试。
-7. 上述每步同步更新小节计划、README、章节总览、导航、图和测试。
+6. 第 3 章：引入 `Parameter` + `grad`，把 1.3/1.6/1.7 的裸张量包起来，并加等价性测试；GELU 换成精确 `erf`，附差异测试。
+7. 第 4 章：注意力、block、整模型反向；第 5–11 章按 §5 的新顺序执行。
+8. 上述每步同步更新小节计划、README、章节总览、导航、图和测试。
 
 ## 修订记录
 
@@ -312,3 +345,4 @@ uv run python scripts/show_placeholder.py --stage 1 "the cat sat"
 - 2026-11-27：规范补充“矩阵/向量/张量值和运算用数学公式，不用代码块”；1.6 的矩阵例子改为 `bmatrix`/`aligned`，1.5/1.4 的小例子同步。
 - 2026-11-27：取消第 1 章的 web server、浏览器前端和逐层 trace（含 `forward_with_trace`、stage 8、`test_api.py`、`web/`）；第 1 章收为 1.1–1.9，1.9 只做验收、小结与交接，原理展示继续用 SVG 图、命令行输出和测试。
 - 2026-11-27：补写作规范：新增 `docs/figures.md` 图规则入口；`STYLE.md` 增补“断言配例、先修顺序、术语来历、库函数介绍、每节两张图、公式复核、轴标签/边距”；`ch01/README.md` 增补提交与发布、指针自检、图审核；修正过期 1.10/服务器引用、39/40 测试数字、1.7 上游图角色和根 README 章节数；CI 增加 `ch01/end` 测试。
+- 2026-11-27：按全书流程重排第 5–11 章为“优化器 → 小模型训练 → 真实语料/最终 tokenizer → 缩放 → 推理 → 限时训练 → 评估”；明确第 1 章 API 为基线、`final/` 第 11 章再生成、第 2 章 tokenizer 契约测试、第 3 章 GELU 精确化、第 8 章初始化/缩放、教学语料和快照校验规则；同步第 10/11 节交接与未决项。
