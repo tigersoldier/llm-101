@@ -27,6 +27,7 @@
 |$o$|1.3 的输出向量|`[C]`|[1.3](course/ch01/1.3.md)|
 |$W_{\text{out}}$|1.3 的固定输出矩阵|`[C, vocab]`|[1.3](course/ch01/1.3.md)|
 |$E$|词嵌入表 / token embedding table（代码里叫 `token_embedding.weight`）|`[vocab, C]`|[1.3](course/ch01/1.3.md)|
+|$P$|位置嵌入表 / position embedding table（代码里叫 `position_embedding.weight`）|`[max_seq_len, C]`|[1.4](course/ch01/1.4.md)|
 |$scores$|1.3 的 68 个分数|`[vocab]`|[1.3](course/ch01/1.3.md)|
 |$Q$、$K$、$V$|注意力的查询/键/值|`[T, C]`|[1.6](course/ch01/1.6.md)|
 |$h_t$|位置 $t$ 的 token + 位置向量|`[C]`|[1.4](course/ch01/1.4.md)|

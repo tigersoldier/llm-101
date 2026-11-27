@@ -35,6 +35,7 @@
 |position id|位置编号|序列中的位置 0..T-1，不是 token id|[1.4](course/ch01/1.4.md)|
 |padding|填充|用填充符把不同长度的序列补齐到同一长度|[1.4](course/ch01/1.4.md)|
 |context length|上下文长度|模型一次最多处理的位置数；本章 16|[1.4](course/ch01/1.4.md)|
+|batch|批次|同时处理的一组输入；batch size 是批次大小，第一维 `B` 叫批次维；也说一批、批量处理|[1.4](course/ch01/1.4.md)|
 |absolute position|绝对位置|位置表按 0、1、… 的绝对编号取行|[1.4](course/ch01/1.4.md)|
 |relative position|相对位置|用两个位置的差表示距离；相对方案更容易外推|[1.4](course/ch01/1.4.md)|
 |sinusoidal position encoding|正弦位置编码|原论文用固定正弦函数生成位置向量，不训练|[1.4](course/ch01/1.4.md)|
@@ -68,7 +69,6 @@
 |multi-head|多头|把 C 维拆成 H 个头并行做注意力|[1.6](course/ch01/1.6.md)|
 |head|头|多头里的一个 D 维注意力子空间|[1.6](course/ch01/1.6.md)|
 |scaled dot-product|缩放点积|QK^T/sqrt(D) 的打分方式|[1.6](course/ch01/1.6.md)|
-|batch|批次|同时处理的一组输入；batch size 是批次大小，第一维 `B` 叫批次维；也说一批、批量处理|[1.4](course/ch01/1.4.md)|
 |hidden state|隐藏状态|中间层输出的 `[B, T, C]` 数字|[1.7](course/ch01/1.7.md)|
 |block|块、层块|两个残差子层（注意力 + MLP）组成的一层；本章叠 2 层|[1.7](course/ch01/1.7.md)|
 |residual connection|残差连接|把输入直接加回子层输出：y = x + F(x)；何恺明（Kaiming He）等 2015 在 ResNet 提出|[1.7](course/ch01/1.7.md)|
