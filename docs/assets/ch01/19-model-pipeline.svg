@@ -1,0 +1,226 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1320" role="img" aria-labelledby="title desc">
+<title id="title">1.8 整模型管线：嵌入、两个 block、共享输出、argmax</title>
+<desc id="desc">ids → 嵌入 → block 0 → block 1 → final LayerNorm → logits [13,68] → 最后一个位置 argmax 3 → d。</desc>
+<rect width="1200" height="1320" fill="#ffffff"/>
+<text x="30" y="38" text-anchor="start" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="19" font-weight="600" fill="#1f2937">1.8 整模型管线：嵌入、两个 block、共享输出、argmax</text>
+<text x="30" y="62" text-anchor="start" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="12" font-weight="normal" fill="#64748b">the cat sat；13 个位置；样例值来自 seed=3 的随机权重，答案没有语义。</text>
+<text x="70" y="104" text-anchor="start" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="10.5" font-weight="600" fill="#1f2937">ids [13]</text>
+<rect x="200" y="94" width="90" height="32" rx="6" fill="#eef2f7" stroke="#94a3b8"/>
+<text x="245" y="115" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" font-weight="normal" fill="#1f2937">66</text>
+<text x="245" y="138" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="8" font-weight="normal" fill="#64748b">pos 0</text>
+<rect x="330" y="94" width="90" height="32" rx="6" fill="#eef2f7" stroke="#94a3b8"/>
+<text x="375" y="115" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" font-weight="normal" fill="#1f2937">19</text>
+<text x="375" y="138" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="8" font-weight="normal" fill="#64748b">pos 1</text>
+<rect x="460" y="94" width="90" height="32" rx="6" fill="#eef2f7" stroke="#94a3b8"/>
+<text x="505" y="115" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" font-weight="normal" fill="#1f2937">7</text>
+<text x="505" y="138" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="8" font-weight="normal" fill="#64748b">pos 2</text>
+<rect x="590" y="94" width="90" height="32" rx="6" fill="#eef2f7" stroke="#94a3b8"/>
+<text x="635" y="115" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" font-weight="normal" fill="#1f2937">…</text>
+<rect x="720" y="94" width="90" height="32" rx="6" fill="#eef2f7" stroke="#94a3b8"/>
+<text x="765" y="115" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" font-weight="normal" fill="#1f2937">19</text>
+<text x="765" y="138" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="8" font-weight="normal" fill="#64748b">pos 11</text>
+<rect x="850" y="94" width="90" height="32" rx="6" fill="#eef2f7" stroke="#94a3b8"/>
+<text x="895" y="115" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" font-weight="normal" fill="#1f2937">67</text>
+<text x="895" y="138" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="8" font-weight="normal" fill="#64748b">pos 12</text>
+<line x1="520" y1="126" x2="520" y2="208" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="360" y="188" text-anchor="start" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="10.5" font-weight="600" fill="#1f2937">嵌入 [13,16]</text>
+<rect x="360" y="210" width="60" height="32" fill="#eef2f7" stroke="#94a3b8"/>
+<text x="390.0" y="230.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">0.023</text>
+<rect x="420" y="210" width="60" height="32" fill="#eef2f7" stroke="#94a3b8"/>
+<text x="450.0" y="230.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">0.017</text>
+<rect x="480" y="210" width="60" height="32" fill="#eef2f7" stroke="#94a3b8"/>
+<text x="510.0" y="230.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">⋯</text>
+<rect x="540" y="210" width="60" height="32" fill="#eef2f7" stroke="#94a3b8"/>
+<text x="570.0" y="230.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">-0.038</text>
+<rect x="360" y="242" width="60" height="32" fill="#eef2f7" stroke="#94a3b8"/>
+<text x="390.0" y="262.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">0.043</text>
+<rect x="420" y="242" width="60" height="32" fill="#eef2f7" stroke="#94a3b8"/>
+<text x="450.0" y="262.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">-0.024</text>
+<rect x="480" y="242" width="60" height="32" fill="#eef2f7" stroke="#94a3b8"/>
+<text x="510.0" y="262.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">⋯</text>
+<rect x="540" y="242" width="60" height="32" fill="#eef2f7" stroke="#94a3b8"/>
+<text x="570.0" y="262.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">-0.050</text>
+<rect x="360" y="274" width="60" height="32" fill="#eef2f7" stroke="#94a3b8"/>
+<text x="390.0" y="294.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">⋮</text>
+<rect x="420" y="274" width="60" height="32" fill="#eef2f7" stroke="#94a3b8"/>
+<text x="450.0" y="294.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">⋮</text>
+<rect x="480" y="274" width="60" height="32" fill="#eef2f7" stroke="#94a3b8"/>
+<text x="510.0" y="294.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">⋮</text>
+<rect x="540" y="274" width="60" height="32" fill="#eef2f7" stroke="#94a3b8"/>
+<text x="570.0" y="294.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">⋮</text>
+<rect x="360" y="306" width="60" height="32" fill="#eef2f7" stroke="#94a3b8"/>
+<text x="390.0" y="326.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">0.059</text>
+<rect x="420" y="306" width="60" height="32" fill="#eef2f7" stroke="#94a3b8"/>
+<text x="450.0" y="326.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">0.015</text>
+<rect x="480" y="306" width="60" height="32" fill="#eef2f7" stroke="#94a3b8"/>
+<text x="510.0" y="326.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">⋯</text>
+<rect x="540" y="306" width="60" height="32" fill="#eef2f7" stroke="#94a3b8"/>
+<text x="570.0" y="326.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">0.018</text>
+<text x="350" y="230.0" text-anchor="end" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">0</text>
+<text x="350" y="262.0" text-anchor="end" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">1</text>
+<text x="350" y="294.0" text-anchor="end" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">⋮</text>
+<text x="350" y="326.0" text-anchor="end" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">12</text>
+<text x="390.0" y="204" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">0</text>
+<text x="450.0" y="204" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">1</text>
+<text x="510.0" y="204" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">⋯</text>
+<text x="570.0" y="204" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">15</text>
+<line x1="480" y1="358" x2="480" y2="398" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+<rect x="200" y="400" width="800" height="140" rx="10" fill="#fef3c7" stroke="#b45309"/>
+<text x="600" y="426" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="12" font-weight="600" fill="#7c2d12">TransformerBlock 0</text>
+<rect x="360" y="444" width="60" height="24" fill="#fffbeb" stroke="#b45309"/>
+<text x="390.0" y="460.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" font-weight="normal" fill="#1f2937">0.034</text>
+<rect x="420" y="444" width="60" height="24" fill="#fffbeb" stroke="#b45309"/>
+<text x="450.0" y="460.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" font-weight="normal" fill="#1f2937">0.019</text>
+<rect x="480" y="444" width="60" height="24" fill="#fffbeb" stroke="#b45309"/>
+<text x="510.0" y="460.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" font-weight="normal" fill="#1f2937">⋯</text>
+<rect x="540" y="444" width="60" height="24" fill="#fffbeb" stroke="#b45309"/>
+<text x="570.0" y="460.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" font-weight="normal" fill="#1f2937">-0.030</text>
+<rect x="360" y="468" width="60" height="24" fill="#fffbeb" stroke="#b45309"/>
+<text x="390.0" y="484.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" font-weight="normal" fill="#1f2937">0.060</text>
+<rect x="420" y="468" width="60" height="24" fill="#fffbeb" stroke="#b45309"/>
+<text x="450.0" y="484.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" font-weight="normal" fill="#1f2937">-0.021</text>
+<rect x="480" y="468" width="60" height="24" fill="#fffbeb" stroke="#b45309"/>
+<text x="510.0" y="484.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" font-weight="normal" fill="#1f2937">⋯</text>
+<rect x="540" y="468" width="60" height="24" fill="#fffbeb" stroke="#b45309"/>
+<text x="570.0" y="484.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" font-weight="normal" fill="#1f2937">-0.042</text>
+<rect x="360" y="492" width="60" height="24" fill="#fffbeb" stroke="#b45309"/>
+<text x="390.0" y="508.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" font-weight="normal" fill="#1f2937">⋮</text>
+<rect x="420" y="492" width="60" height="24" fill="#fffbeb" stroke="#b45309"/>
+<text x="450.0" y="508.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" font-weight="normal" fill="#1f2937">⋮</text>
+<rect x="480" y="492" width="60" height="24" fill="#fffbeb" stroke="#b45309"/>
+<text x="510.0" y="508.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" font-weight="normal" fill="#1f2937">⋮</text>
+<rect x="540" y="492" width="60" height="24" fill="#fffbeb" stroke="#b45309"/>
+<text x="570.0" y="508.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" font-weight="normal" fill="#1f2937">⋮</text>
+<rect x="360" y="516" width="60" height="24" fill="#fffbeb" stroke="#b45309"/>
+<text x="390.0" y="532.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" font-weight="normal" fill="#1f2937">0.066</text>
+<rect x="420" y="516" width="60" height="24" fill="#fffbeb" stroke="#b45309"/>
+<text x="450.0" y="532.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" font-weight="normal" fill="#1f2937">0.017</text>
+<rect x="480" y="516" width="60" height="24" fill="#fffbeb" stroke="#b45309"/>
+<text x="510.0" y="532.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" font-weight="normal" fill="#1f2937">⋯</text>
+<rect x="540" y="516" width="60" height="24" fill="#fffbeb" stroke="#b45309"/>
+<text x="570.0" y="532.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" font-weight="normal" fill="#1f2937">0.020</text>
+<text x="350" y="460.0" text-anchor="end" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">0</text>
+<text x="350" y="484.0" text-anchor="end" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">1</text>
+<text x="350" y="508.0" text-anchor="end" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">⋮</text>
+<text x="350" y="532.0" text-anchor="end" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">12</text>
+<text x="390.0" y="438" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">0</text>
+<text x="450.0" y="438" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">1</text>
+<text x="510.0" y="438" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">⋯</text>
+<text x="570.0" y="438" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">15</text>
+<line x1="600" y1="540" x2="600" y2="578" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+<rect x="200" y="580" width="800" height="140" rx="10" fill="#fef3c7" stroke="#b45309"/>
+<text x="600" y="606" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="12" font-weight="600" fill="#7c2d12">TransformerBlock 1</text>
+<rect x="360" y="624" width="60" height="24" fill="#fffbeb" stroke="#b45309"/>
+<text x="390.0" y="640.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" font-weight="normal" fill="#1f2937">0.037</text>
+<rect x="420" y="624" width="60" height="24" fill="#fffbeb" stroke="#b45309"/>
+<text x="450.0" y="640.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" font-weight="normal" fill="#1f2937">0.006</text>
+<rect x="480" y="624" width="60" height="24" fill="#fffbeb" stroke="#b45309"/>
+<text x="510.0" y="640.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" font-weight="normal" fill="#1f2937">⋯</text>
+<rect x="540" y="624" width="60" height="24" fill="#fffbeb" stroke="#b45309"/>
+<text x="570.0" y="640.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" font-weight="normal" fill="#1f2937">-0.049</text>
+<rect x="360" y="648" width="60" height="24" fill="#fffbeb" stroke="#b45309"/>
+<text x="390.0" y="664.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" font-weight="normal" fill="#1f2937">0.062</text>
+<rect x="420" y="648" width="60" height="24" fill="#fffbeb" stroke="#b45309"/>
+<text x="450.0" y="664.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" font-weight="normal" fill="#1f2937">-0.031</text>
+<rect x="480" y="648" width="60" height="24" fill="#fffbeb" stroke="#b45309"/>
+<text x="510.0" y="664.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" font-weight="normal" fill="#1f2937">⋯</text>
+<rect x="540" y="648" width="60" height="24" fill="#fffbeb" stroke="#b45309"/>
+<text x="570.0" y="664.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" font-weight="normal" fill="#1f2937">-0.053</text>
+<rect x="360" y="672" width="60" height="24" fill="#fffbeb" stroke="#b45309"/>
+<text x="390.0" y="688.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" font-weight="normal" fill="#1f2937">⋮</text>
+<rect x="420" y="672" width="60" height="24" fill="#fffbeb" stroke="#b45309"/>
+<text x="450.0" y="688.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" font-weight="normal" fill="#1f2937">⋮</text>
+<rect x="480" y="672" width="60" height="24" fill="#fffbeb" stroke="#b45309"/>
+<text x="510.0" y="688.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" font-weight="normal" fill="#1f2937">⋮</text>
+<rect x="540" y="672" width="60" height="24" fill="#fffbeb" stroke="#b45309"/>
+<text x="570.0" y="688.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" font-weight="normal" fill="#1f2937">⋮</text>
+<rect x="360" y="696" width="60" height="24" fill="#fffbeb" stroke="#b45309"/>
+<text x="390.0" y="712.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" font-weight="normal" fill="#1f2937">0.072</text>
+<rect x="420" y="696" width="60" height="24" fill="#fffbeb" stroke="#b45309"/>
+<text x="450.0" y="712.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" font-weight="normal" fill="#1f2937">0.023</text>
+<rect x="480" y="696" width="60" height="24" fill="#fffbeb" stroke="#b45309"/>
+<text x="510.0" y="712.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" font-weight="normal" fill="#1f2937">⋯</text>
+<rect x="540" y="696" width="60" height="24" fill="#fffbeb" stroke="#b45309"/>
+<text x="570.0" y="712.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" font-weight="normal" fill="#1f2937">0.027</text>
+<text x="350" y="640.0" text-anchor="end" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">0</text>
+<text x="350" y="664.0" text-anchor="end" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">1</text>
+<text x="350" y="688.0" text-anchor="end" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">⋮</text>
+<text x="350" y="712.0" text-anchor="end" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">12</text>
+<text x="390.0" y="618" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">0</text>
+<text x="450.0" y="618" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">1</text>
+<text x="510.0" y="618" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">⋯</text>
+<text x="570.0" y="618" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">15</text>
+<line x1="600" y1="720" x2="600" y2="768" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="360" y="748" text-anchor="start" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="10.5" font-weight="600" fill="#1f2937">final LayerNorm [13,16]</text>
+<rect x="360" y="770" width="60" height="32" fill="#ede9fe" stroke="#6d28d9"/>
+<text x="390.0" y="790.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">1.397</text>
+<rect x="420" y="770" width="60" height="32" fill="#ede9fe" stroke="#6d28d9"/>
+<text x="450.0" y="790.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">0.509</text>
+<rect x="480" y="770" width="60" height="32" fill="#ede9fe" stroke="#6d28d9"/>
+<text x="510.0" y="790.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">⋯</text>
+<rect x="540" y="770" width="60" height="32" fill="#ede9fe" stroke="#6d28d9"/>
+<text x="570.0" y="790.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">-1.047</text>
+<rect x="360" y="802" width="60" height="32" fill="#ede9fe" stroke="#6d28d9"/>
+<text x="390.0" y="822.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">2.432</text>
+<rect x="420" y="802" width="60" height="32" fill="#ede9fe" stroke="#6d28d9"/>
+<text x="450.0" y="822.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">-0.690</text>
+<rect x="480" y="802" width="60" height="32" fill="#ede9fe" stroke="#6d28d9"/>
+<text x="510.0" y="822.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">⋯</text>
+<rect x="540" y="802" width="60" height="32" fill="#ede9fe" stroke="#6d28d9"/>
+<text x="570.0" y="822.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">-1.460</text>
+<rect x="360" y="834" width="60" height="32" fill="#ede9fe" stroke="#6d28d9"/>
+<text x="390.0" y="854.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">⋮</text>
+<rect x="420" y="834" width="60" height="32" fill="#ede9fe" stroke="#6d28d9"/>
+<text x="450.0" y="854.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">⋮</text>
+<rect x="480" y="834" width="60" height="32" fill="#ede9fe" stroke="#6d28d9"/>
+<text x="510.0" y="854.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">⋮</text>
+<rect x="540" y="834" width="60" height="32" fill="#ede9fe" stroke="#6d28d9"/>
+<text x="570.0" y="854.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">⋮</text>
+<rect x="360" y="866" width="60" height="32" fill="#ede9fe" stroke="#6d28d9"/>
+<text x="390.0" y="886.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">1.983</text>
+<rect x="420" y="866" width="60" height="32" fill="#ede9fe" stroke="#6d28d9"/>
+<text x="450.0" y="886.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">0.339</text>
+<rect x="480" y="866" width="60" height="32" fill="#ede9fe" stroke="#6d28d9"/>
+<text x="510.0" y="886.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">⋯</text>
+<rect x="540" y="866" width="60" height="32" fill="#ede9fe" stroke="#6d28d9"/>
+<text x="570.0" y="886.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">0.479</text>
+<text x="350" y="790.0" text-anchor="end" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">0</text>
+<text x="350" y="822.0" text-anchor="end" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">1</text>
+<text x="350" y="854.0" text-anchor="end" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">⋮</text>
+<text x="350" y="886.0" text-anchor="end" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">12</text>
+<text x="390.0" y="764" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">0</text>
+<text x="450.0" y="764" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">1</text>
+<text x="510.0" y="764" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">⋯</text>
+<text x="570.0" y="764" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">15</text>
+<line x1="480" y1="918" x2="480" y2="958" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+<rect x="200" y="960" width="800" height="170" rx="10" fill="#f8fafc" stroke="#6d28d9"/>
+<text x="600" y="986" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="12" font-weight="600" fill="#4c1d95">logits [13, 68]</text>
+<rect x="330" y="1014" width="90" height="30" fill="#f5f3ff" stroke="#6d28d9"/>
+<text x="375.0" y="1033.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">0.048</text>
+<rect x="420" y="1014" width="90" height="30" fill="#f5f3ff" stroke="#6d28d9"/>
+<text x="465.0" y="1033.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">-0.080</text>
+<rect x="510" y="1014" width="90" height="30" fill="#f5f3ff" stroke="#6d28d9"/>
+<text x="555.0" y="1033.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">⋯</text>
+<rect x="600" y="1014" width="90" height="30" fill="#f5f3ff" stroke="#6d28d9"/>
+<text x="645.0" y="1033.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">0.199</text>
+<rect x="330" y="1044" width="90" height="30" fill="#f5f3ff" stroke="#6d28d9"/>
+<text x="375.0" y="1063.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">⋮</text>
+<rect x="420" y="1044" width="90" height="30" fill="#f5f3ff" stroke="#6d28d9"/>
+<text x="465.0" y="1063.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">⋮</text>
+<rect x="510" y="1044" width="90" height="30" fill="#f5f3ff" stroke="#6d28d9"/>
+<text x="555.0" y="1063.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">⋮</text>
+<rect x="600" y="1044" width="90" height="30" fill="#f5f3ff" stroke="#6d28d9"/>
+<text x="645.0" y="1063.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">⋮</text>
+<text x="320" y="1033.0" text-anchor="end" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">12</text>
+<text x="375.0" y="1008" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">0</text>
+<text x="465.0" y="1008" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">1</text>
+<text x="555.0" y="1008" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">⋯</text>
+<text x="645.0" y="1008" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">67</text>
+<text x="860" y="1052" text-anchor="start" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="10.5" font-weight="600" fill="#047857">max 0.205</text>
+<text x="860" y="1074" text-anchor="start" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="10.5" font-weight="600" fill="#047857">at 3</text>
+<line x1="600" y1="1130" x2="600" y2="1168" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+<rect x="400" y="1170" width="400" height="58" rx="8" fill="#ecfdf5" stroke="#047857"/>
+<text x="600" y="1196" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="13" font-weight="600" fill="#064e3b">argmax → 3</text>
+<text x="600" y="1218" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="10.5" font-weight="normal" fill="#475569">→ 'd'（随机权重，无意义）</text>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#64748b"/></marker></defs>
+</svg>

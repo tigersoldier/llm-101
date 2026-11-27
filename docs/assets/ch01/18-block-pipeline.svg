@@ -1,0 +1,250 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1400" role="img" aria-labelledby="title desc">
+<title id="title">1.7 block 管线：LayerNorm、注意力、残差、MLP</title>
+<desc id="desc">x → LayerNorm → 多头自注意力 → 加 x → x1 → LayerNorm → MLP → 加 x1 → x2；样例 C=4，d_ff=8，T=3。</desc>
+<rect width="1000" height="1400" fill="#ffffff"/>
+<text x="30" y="38" text-anchor="start" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="19" font-weight="600" fill="#1f2937">1.7 block 管线：LayerNorm、注意力、残差、MLP</text>
+<text x="30" y="62" text-anchor="start" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="12" font-weight="normal" fill="#64748b">样例：C=4，d_ff=8，T=3；权重随机，数值只用来核对形状和残差。</text>
+<text x="360" y="66" text-anchor="start" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="10.5" font-weight="600" fill="#1f2937">x [3,4]</text>
+<rect x="360" y="90" width="60" height="35" fill="#eef2f7" stroke="#94a3b8"/>
+<text x="390.0" y="111.5" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" font-weight="normal" fill="#1f2937">1</text>
+<rect x="420" y="90" width="60" height="35" fill="#eef2f7" stroke="#94a3b8"/>
+<text x="450.0" y="111.5" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" font-weight="normal" fill="#1f2937">0</text>
+<rect x="480" y="90" width="60" height="35" fill="#eef2f7" stroke="#94a3b8"/>
+<text x="510.0" y="111.5" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" font-weight="normal" fill="#1f2937">0</text>
+<rect x="540" y="90" width="60" height="35" fill="#eef2f7" stroke="#94a3b8"/>
+<text x="570.0" y="111.5" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" font-weight="normal" fill="#1f2937">0</text>
+<rect x="360" y="125" width="60" height="35" fill="#eef2f7" stroke="#94a3b8"/>
+<text x="390.0" y="146.5" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" font-weight="normal" fill="#1f2937">0</text>
+<rect x="420" y="125" width="60" height="35" fill="#eef2f7" stroke="#94a3b8"/>
+<text x="450.0" y="146.5" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" font-weight="normal" fill="#1f2937">1</text>
+<rect x="480" y="125" width="60" height="35" fill="#eef2f7" stroke="#94a3b8"/>
+<text x="510.0" y="146.5" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" font-weight="normal" fill="#1f2937">0</text>
+<rect x="540" y="125" width="60" height="35" fill="#eef2f7" stroke="#94a3b8"/>
+<text x="570.0" y="146.5" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" font-weight="normal" fill="#1f2937">0</text>
+<rect x="360" y="160" width="60" height="35" fill="#eef2f7" stroke="#94a3b8"/>
+<text x="390.0" y="181.5" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" font-weight="normal" fill="#1f2937">0</text>
+<rect x="420" y="160" width="60" height="35" fill="#eef2f7" stroke="#94a3b8"/>
+<text x="450.0" y="181.5" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" font-weight="normal" fill="#1f2937">0</text>
+<rect x="480" y="160" width="60" height="35" fill="#eef2f7" stroke="#94a3b8"/>
+<text x="510.0" y="181.5" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" font-weight="normal" fill="#1f2937">1</text>
+<rect x="540" y="160" width="60" height="35" fill="#eef2f7" stroke="#94a3b8"/>
+<text x="570.0" y="181.5" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" font-weight="normal" fill="#1f2937">0</text>
+<text x="350" y="111.5" text-anchor="end" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">0</text>
+<text x="350" y="146.5" text-anchor="end" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">1</text>
+<text x="350" y="181.5" text-anchor="end" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">2</text>
+<text x="390.0" y="84" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">0</text>
+<text x="450.0" y="84" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">1</text>
+<text x="510.0" y="84" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">2</text>
+<text x="570.0" y="84" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">3</text>
+<line x1="480" y1="205" x2="480" y2="238" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="360" y="216" text-anchor="start" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="10.5" font-weight="600" fill="#1f2937">LN1(x) [3,4]</text>
+<rect x="360" y="240" width="60" height="35" fill="#ede9fe" stroke="#6d28d9"/>
+<text x="390.0" y="261.5" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">1.732</text>
+<rect x="420" y="240" width="60" height="35" fill="#ede9fe" stroke="#6d28d9"/>
+<text x="450.0" y="261.5" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">-0.577</text>
+<rect x="480" y="240" width="60" height="35" fill="#ede9fe" stroke="#6d28d9"/>
+<text x="510.0" y="261.5" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">-0.577</text>
+<rect x="540" y="240" width="60" height="35" fill="#ede9fe" stroke="#6d28d9"/>
+<text x="570.0" y="261.5" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">-0.577</text>
+<rect x="360" y="275" width="60" height="35" fill="#ede9fe" stroke="#6d28d9"/>
+<text x="390.0" y="296.5" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">-0.577</text>
+<rect x="420" y="275" width="60" height="35" fill="#ede9fe" stroke="#6d28d9"/>
+<text x="450.0" y="296.5" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">1.732</text>
+<rect x="480" y="275" width="60" height="35" fill="#ede9fe" stroke="#6d28d9"/>
+<text x="510.0" y="296.5" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">-0.577</text>
+<rect x="540" y="275" width="60" height="35" fill="#ede9fe" stroke="#6d28d9"/>
+<text x="570.0" y="296.5" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">-0.577</text>
+<rect x="360" y="310" width="60" height="35" fill="#ede9fe" stroke="#6d28d9"/>
+<text x="390.0" y="331.5" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">-0.577</text>
+<rect x="420" y="310" width="60" height="35" fill="#ede9fe" stroke="#6d28d9"/>
+<text x="450.0" y="331.5" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">-0.577</text>
+<rect x="480" y="310" width="60" height="35" fill="#ede9fe" stroke="#6d28d9"/>
+<text x="510.0" y="331.5" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">1.732</text>
+<rect x="540" y="310" width="60" height="35" fill="#ede9fe" stroke="#6d28d9"/>
+<text x="570.0" y="331.5" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">-0.577</text>
+<text x="350" y="261.5" text-anchor="end" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">0</text>
+<text x="350" y="296.5" text-anchor="end" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">1</text>
+<text x="350" y="331.5" text-anchor="end" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">2</text>
+<text x="390.0" y="234" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">0</text>
+<text x="450.0" y="234" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">1</text>
+<text x="510.0" y="234" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">2</text>
+<text x="570.0" y="234" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">3</text>
+<line x1="480" y1="355" x2="480" y2="388" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+<rect x="150" y="390" width="700" height="150" rx="10" fill="#fef3c7" stroke="#b45309"/>
+<text x="500" y="404" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="12" font-weight="600" fill="#7c2d12">多头自注意力 [3,4]</text>
+<rect x="360" y="430" width="60" height="30" fill="#fffbeb" stroke="#b45309"/>
+<text x="390.0" y="449.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" font-weight="normal" fill="#1f2937">-0.000</text>
+<rect x="420" y="430" width="60" height="30" fill="#fffbeb" stroke="#b45309"/>
+<text x="450.0" y="449.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" font-weight="normal" fill="#1f2937">-0.001</text>
+<rect x="480" y="430" width="60" height="30" fill="#fffbeb" stroke="#b45309"/>
+<text x="510.0" y="449.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" font-weight="normal" fill="#1f2937">-0.000</text>
+<rect x="540" y="430" width="60" height="30" fill="#fffbeb" stroke="#b45309"/>
+<text x="570.0" y="449.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" font-weight="normal" fill="#1f2937">-0.000</text>
+<rect x="360" y="460" width="60" height="30" fill="#fffbeb" stroke="#b45309"/>
+<text x="390.0" y="479.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" font-weight="normal" fill="#1f2937">-0.001</text>
+<rect x="420" y="460" width="60" height="30" fill="#fffbeb" stroke="#b45309"/>
+<text x="450.0" y="479.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" font-weight="normal" fill="#1f2937">-0.000</text>
+<rect x="480" y="460" width="60" height="30" fill="#fffbeb" stroke="#b45309"/>
+<text x="510.0" y="479.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" font-weight="normal" fill="#1f2937">0.001</text>
+<rect x="540" y="460" width="60" height="30" fill="#fffbeb" stroke="#b45309"/>
+<text x="570.0" y="479.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" font-weight="normal" fill="#1f2937">0.001</text>
+<rect x="360" y="490" width="60" height="30" fill="#fffbeb" stroke="#b45309"/>
+<text x="390.0" y="509.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" font-weight="normal" fill="#1f2937">-0.001</text>
+<rect x="420" y="490" width="60" height="30" fill="#fffbeb" stroke="#b45309"/>
+<text x="450.0" y="509.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" font-weight="normal" fill="#1f2937">-0.000</text>
+<rect x="480" y="490" width="60" height="30" fill="#fffbeb" stroke="#b45309"/>
+<text x="510.0" y="509.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" font-weight="normal" fill="#1f2937">0.001</text>
+<rect x="540" y="490" width="60" height="30" fill="#fffbeb" stroke="#b45309"/>
+<text x="570.0" y="509.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" font-weight="normal" fill="#1f2937">0.001</text>
+<text x="350" y="449.0" text-anchor="end" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">0</text>
+<text x="350" y="479.0" text-anchor="end" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">1</text>
+<text x="350" y="509.0" text-anchor="end" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">2</text>
+<text x="390.0" y="424" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">0</text>
+<text x="450.0" y="424" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">1</text>
+<text x="510.0" y="424" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">2</text>
+<text x="570.0" y="424" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">3</text>
+<path d="M 600 160 L 900 160 L 900 575 L 562 575" fill="none" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="480" y1="540" x2="480" y2="543" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+<rect x="400" y="545" width="160" height="34" rx="7" fill="#f8fafc" stroke="#475569"/>
+<text x="480" y="567" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="13" font-weight="600" fill="#1f2937">+ 残差 1</text>
+<line x1="480" y1="594" x2="480" y2="618" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="360" y="596" text-anchor="start" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="10.5" font-weight="600" fill="#1f2937">x1 [3,4]</text>
+<rect x="360" y="620" width="60" height="35" fill="#ecfdf5" stroke="#047857"/>
+<text x="390.0" y="641.5" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">1.000</text>
+<rect x="420" y="620" width="60" height="35" fill="#ecfdf5" stroke="#047857"/>
+<text x="450.0" y="641.5" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">-0.001</text>
+<rect x="480" y="620" width="60" height="35" fill="#ecfdf5" stroke="#047857"/>
+<text x="510.0" y="641.5" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">-0.000</text>
+<rect x="540" y="620" width="60" height="35" fill="#ecfdf5" stroke="#047857"/>
+<text x="570.0" y="641.5" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">-0.000</text>
+<rect x="360" y="655" width="60" height="35" fill="#ecfdf5" stroke="#047857"/>
+<text x="390.0" y="676.5" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">-0.001</text>
+<rect x="420" y="655" width="60" height="35" fill="#ecfdf5" stroke="#047857"/>
+<text x="450.0" y="676.5" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">1.000</text>
+<rect x="480" y="655" width="60" height="35" fill="#ecfdf5" stroke="#047857"/>
+<text x="510.0" y="676.5" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">0.001</text>
+<rect x="540" y="655" width="60" height="35" fill="#ecfdf5" stroke="#047857"/>
+<text x="570.0" y="676.5" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">0.001</text>
+<rect x="360" y="690" width="60" height="35" fill="#ecfdf5" stroke="#047857"/>
+<text x="390.0" y="711.5" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">-0.001</text>
+<rect x="420" y="690" width="60" height="35" fill="#ecfdf5" stroke="#047857"/>
+<text x="450.0" y="711.5" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">-0.000</text>
+<rect x="480" y="690" width="60" height="35" fill="#ecfdf5" stroke="#047857"/>
+<text x="510.0" y="711.5" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">1.001</text>
+<rect x="540" y="690" width="60" height="35" fill="#ecfdf5" stroke="#047857"/>
+<text x="570.0" y="711.5" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">0.001</text>
+<text x="350" y="641.5" text-anchor="end" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">0</text>
+<text x="350" y="676.5" text-anchor="end" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">1</text>
+<text x="350" y="711.5" text-anchor="end" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">2</text>
+<text x="390.0" y="614" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">0</text>
+<text x="450.0" y="614" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">1</text>
+<text x="510.0" y="614" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">2</text>
+<text x="570.0" y="614" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">3</text>
+<line x1="480" y1="735" x2="480" y2="768" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="360" y="746" text-anchor="start" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="10.5" font-weight="600" fill="#1f2937">LN2(x1) [3,4]</text>
+<rect x="360" y="770" width="60" height="35" fill="#ede9fe" stroke="#6d28d9"/>
+<text x="390.0" y="791.5" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">1.732</text>
+<rect x="420" y="770" width="60" height="35" fill="#ede9fe" stroke="#6d28d9"/>
+<text x="450.0" y="791.5" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">-0.578</text>
+<rect x="480" y="770" width="60" height="35" fill="#ede9fe" stroke="#6d28d9"/>
+<text x="510.0" y="791.5" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">-0.577</text>
+<rect x="540" y="770" width="60" height="35" fill="#ede9fe" stroke="#6d28d9"/>
+<text x="570.0" y="791.5" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">-0.577</text>
+<rect x="360" y="805" width="60" height="35" fill="#ede9fe" stroke="#6d28d9"/>
+<text x="390.0" y="826.5" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">-0.580</text>
+<rect x="420" y="805" width="60" height="35" fill="#ede9fe" stroke="#6d28d9"/>
+<text x="450.0" y="826.5" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">1.732</text>
+<rect x="480" y="805" width="60" height="35" fill="#ede9fe" stroke="#6d28d9"/>
+<text x="510.0" y="826.5" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">-0.576</text>
+<rect x="540" y="805" width="60" height="35" fill="#ede9fe" stroke="#6d28d9"/>
+<text x="570.0" y="826.5" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">-0.575</text>
+<rect x="360" y="840" width="60" height="35" fill="#ede9fe" stroke="#6d28d9"/>
+<text x="390.0" y="861.5" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">-0.579</text>
+<rect x="420" y="840" width="60" height="35" fill="#ede9fe" stroke="#6d28d9"/>
+<text x="450.0" y="861.5" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">-0.578</text>
+<rect x="480" y="840" width="60" height="35" fill="#ede9fe" stroke="#6d28d9"/>
+<text x="510.0" y="861.5" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">1.732</text>
+<rect x="540" y="840" width="60" height="35" fill="#ede9fe" stroke="#6d28d9"/>
+<text x="570.0" y="861.5" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">-0.575</text>
+<text x="350" y="791.5" text-anchor="end" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">0</text>
+<text x="350" y="826.5" text-anchor="end" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">1</text>
+<text x="350" y="861.5" text-anchor="end" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">2</text>
+<text x="390.0" y="764" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">0</text>
+<text x="450.0" y="764" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">1</text>
+<text x="510.0" y="764" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">2</text>
+<text x="570.0" y="764" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">3</text>
+<line x1="480" y1="885" x2="480" y2="918" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+<rect x="150" y="920" width="700" height="150" rx="10" fill="#fff7ed" stroke="#c2410c"/>
+<text x="500" y="934" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="12" font-weight="600" fill="#7c2d12">MLP：Linear 4→8 → GELU → Linear 8→4</text>
+<rect x="360" y="960" width="60" height="30" fill="#fffbeb" stroke="#c2410c"/>
+<text x="390.0" y="979.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" font-weight="normal" fill="#1f2937">0.002</text>
+<rect x="420" y="960" width="60" height="30" fill="#fffbeb" stroke="#c2410c"/>
+<text x="450.0" y="979.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" font-weight="normal" fill="#1f2937">0.001</text>
+<rect x="480" y="960" width="60" height="30" fill="#fffbeb" stroke="#c2410c"/>
+<text x="510.0" y="979.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" font-weight="normal" fill="#1f2937">-0.001</text>
+<rect x="540" y="960" width="60" height="30" fill="#fffbeb" stroke="#c2410c"/>
+<text x="570.0" y="979.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" font-weight="normal" fill="#1f2937">-0.000</text>
+<rect x="360" y="990" width="60" height="30" fill="#fffbeb" stroke="#c2410c"/>
+<text x="390.0" y="1009.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" font-weight="normal" fill="#1f2937">0.001</text>
+<rect x="420" y="990" width="60" height="30" fill="#fffbeb" stroke="#c2410c"/>
+<text x="450.0" y="1009.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" font-weight="normal" fill="#1f2937">0.003</text>
+<rect x="480" y="990" width="60" height="30" fill="#fffbeb" stroke="#c2410c"/>
+<text x="510.0" y="1009.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" font-weight="normal" fill="#1f2937">-0.001</text>
+<rect x="540" y="990" width="60" height="30" fill="#fffbeb" stroke="#c2410c"/>
+<text x="570.0" y="1009.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" font-weight="normal" fill="#1f2937">0.000</text>
+<rect x="360" y="1020" width="60" height="30" fill="#fffbeb" stroke="#c2410c"/>
+<text x="390.0" y="1039.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" font-weight="normal" fill="#1f2937">-0.000</text>
+<rect x="420" y="1020" width="60" height="30" fill="#fffbeb" stroke="#c2410c"/>
+<text x="450.0" y="1039.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" font-weight="normal" fill="#1f2937">-0.002</text>
+<rect x="480" y="1020" width="60" height="30" fill="#fffbeb" stroke="#c2410c"/>
+<text x="510.0" y="1039.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" font-weight="normal" fill="#1f2937">0.001</text>
+<rect x="540" y="1020" width="60" height="30" fill="#fffbeb" stroke="#c2410c"/>
+<text x="570.0" y="1039.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" font-weight="normal" fill="#1f2937">-0.000</text>
+<text x="350" y="979.0" text-anchor="end" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">0</text>
+<text x="350" y="1009.0" text-anchor="end" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">1</text>
+<text x="350" y="1039.0" text-anchor="end" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">2</text>
+<text x="390.0" y="954" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">0</text>
+<text x="450.0" y="954" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">1</text>
+<text x="510.0" y="954" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">2</text>
+<text x="570.0" y="954" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">3</text>
+<path d="M 600 680 L 900 680 L 900 1105 L 562 1105" fill="none" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="480" y1="1070" x2="480" y2="1073" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+<rect x="400" y="1075" width="160" height="34" rx="7" fill="#f8fafc" stroke="#475569"/>
+<text x="480" y="1097" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="13" font-weight="600" fill="#1f2937">+ 残差 2</text>
+<line x1="480" y1="1124" x2="480" y2="1148" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="360" y="1126" text-anchor="start" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="10.5" font-weight="600" fill="#1f2937">x2 [3,4]</text>
+<rect x="360" y="1150" width="60" height="35" fill="#ecfdf5" stroke="#047857"/>
+<text x="390.0" y="1171.5" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">1.002</text>
+<rect x="420" y="1150" width="60" height="35" fill="#ecfdf5" stroke="#047857"/>
+<text x="450.0" y="1171.5" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">-0.000</text>
+<rect x="480" y="1150" width="60" height="35" fill="#ecfdf5" stroke="#047857"/>
+<text x="510.0" y="1171.5" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">-0.001</text>
+<rect x="540" y="1150" width="60" height="35" fill="#ecfdf5" stroke="#047857"/>
+<text x="570.0" y="1171.5" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">-0.001</text>
+<rect x="360" y="1185" width="60" height="35" fill="#ecfdf5" stroke="#047857"/>
+<text x="390.0" y="1206.5" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">0.000</text>
+<rect x="420" y="1185" width="60" height="35" fill="#ecfdf5" stroke="#047857"/>
+<text x="450.0" y="1206.5" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">1.002</text>
+<rect x="480" y="1185" width="60" height="35" fill="#ecfdf5" stroke="#047857"/>
+<text x="510.0" y="1206.5" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">0.001</text>
+<rect x="540" y="1185" width="60" height="35" fill="#ecfdf5" stroke="#047857"/>
+<text x="570.0" y="1206.5" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">0.002</text>
+<rect x="360" y="1220" width="60" height="35" fill="#ecfdf5" stroke="#047857"/>
+<text x="390.0" y="1241.5" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">-0.001</text>
+<rect x="420" y="1220" width="60" height="35" fill="#ecfdf5" stroke="#047857"/>
+<text x="450.0" y="1241.5" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">-0.003</text>
+<rect x="480" y="1220" width="60" height="35" fill="#ecfdf5" stroke="#047857"/>
+<text x="510.0" y="1241.5" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">1.002</text>
+<rect x="540" y="1220" width="60" height="35" fill="#ecfdf5" stroke="#047857"/>
+<text x="570.0" y="1241.5" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">0.001</text>
+<text x="350" y="1171.5" text-anchor="end" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">0</text>
+<text x="350" y="1206.5" text-anchor="end" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">1</text>
+<text x="350" y="1241.5" text-anchor="end" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">2</text>
+<text x="390.0" y="1144" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">0</text>
+<text x="450.0" y="1144" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">1</text>
+<text x="510.0" y="1144" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">2</text>
+<text x="570.0" y="1144" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">3</text>
+<text x="30" y="1240" text-anchor="start" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="11" font-weight="normal" fill="#64748b">两条残差都保持 [3,4]；注意力混合位置，MLP 逐位置变换。</text>
+<text x="30" y="1262" text-anchor="start" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="11" font-weight="normal" fill="#64748b">一个 block 的参数量：2,224；两层 block：4,448。</text>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#64748b"/></marker></defs>
+</svg>
