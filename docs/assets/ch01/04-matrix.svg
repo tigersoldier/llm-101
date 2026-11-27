@@ -18,12 +18,12 @@
     <rect x="240" y="150" width="90" height="60" fill="#e0ecff"/>
     <rect x="330" y="150" width="90" height="60" fill="#e0ecff"/>
     <rect x="420" y="150" width="90" height="60" fill="#e0ecff"/>
-    <text x="285" y="127">1</text>
-    <text x="375" y="127">2</text>
-    <text x="465" y="127">3</text>
-    <text x="285" y="187">4</text>
-    <text x="375" y="187">5</text>
-    <text x="465" y="187">6</text>
+    <text x="285" y="127" stroke="none">1</text>
+    <text x="375" y="127" stroke="none">2</text>
+    <text x="465" y="127" stroke="none">3</text>
+    <text x="285" y="187" stroke="none">4</text>
+    <text x="375" y="187" stroke="none">5</text>
+    <text x="465" y="187" stroke="none">6</text>
   </g>
 
   <text x="30" y="270" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#475569">2 行、3 列；所有行一样长，所以它是矩阵。</text>
