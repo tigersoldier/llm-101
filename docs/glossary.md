@@ -51,7 +51,7 @@
 |vanishing gradient|梯度消失|深层网络反传时梯度逐层变小|[1.5](course/ch01/1.5.md)|
 |running statistics|滑动统计量|BatchNorm 在训练中累积、推理时使用的均值/方差|[1.5](course/ch01/1.5.md)|
 |epsilon|小常数|加在方差上防止除零；本章 1e-5|[1.5](course/ch01/1.5.md)|
-|linear|线性层|`y = xW + b`；linear 指每个输出是输入的线性组合（有 `b` 时严格说是仿射）|1.6|
+|linear|线性层|`y = xW + b`；linear 指每个输出是输入的线性组合（有 `b` 时严格说是仿射）|[1.6](course/ch01/1.6.md)|
 |attention|注意力|让每个位置按相关程度加权读取其他位置|[1.6](course/ch01/1.6.md)|
 |self-attention|自注意力|query/key/value 都来自同一串输入的注意力|[1.6](course/ch01/1.6.md)|
 |query|查询|当前位置发出的“我想找什么”向量|[1.6](course/ch01/1.6.md)|
@@ -72,7 +72,6 @@
 |XOR|异或|两个输入不同时为 1，相同时为 0|[1.7](course/ch01/1.7.md)|
 |hidden layer|隐藏层|MLP 中间那层；把输入特征混合成新特征|[1.7](course/ch01/1.7.md)|
 |universal approximation theorem|万能近似定理|足够宽的一层隐藏层可以逼近连续函数|[1.7](course/ch01/1.7.md)|
-
 |weight tying|权重绑定、共享嵌入|输入词嵌入和输出矩阵共用同一张 [vocab, C] 表|[1.8](course/ch01/1.8.md)|
 |logits|未归一化分数|logit 是 softmax 之前的原始分数；每个位置、每个词表编号一个；形状 [B, T, vocab]；argmax 前不 softmax|[1.8](course/ch01/1.8.md)|
 |argmax|取最大值的下标|取 logits 最大的词表编号|[1.8](course/ch01/1.8.md)|

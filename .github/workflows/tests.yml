@@ -23,6 +23,11 @@ jobs:
         run: uv sync --locked --extra dev
       - name: Run tests
         run: uv run pytest -q
+      - name: Run chapter 1 tests
+        run: |
+          cd ch01/end
+          uv sync --extra dev
+          uv run pytest -q
       - name: Run lint
         run: uv run ruff check src tests scripts
       - name: Check formatting
