@@ -4,7 +4,7 @@ import pytest
 import torch
 
 from llm101.attention import MultiHeadSelfAttention
-from llm101.model import GPTConfig, TinyGPT
+from llm101.model import GPTConfig, TinyGPT, TransformerBlock
 
 
 def small_config() -> GPTConfig:
@@ -99,6 +99,24 @@ def test_position_changes_the_embedding() -> None:
     second = token + model.position_embedding.forward(torch.tensor([1]))[0]
 
     assert not torch.allclose(first, second)
+
+
+def test_block_shapes() -> None:
+    """1.7: one block keeps [B, T, C] and exposes attention intermediates."""
+    block = TransformerBlock(small_config(), generator=torch.Generator().manual_seed(0))
+    inputs = torch.randn(2, 3, 16, generator=torch.Generator().manual_seed(1))
+
+    outputs, cache = block.forward(inputs)
+
+    assert outputs.shape == (2, 3, 16)
+    assert "attention" in cache
+
+
+def test_block_parameter_count() -> None:
+    """1.7: one block has 2,224 parameters."""
+    block = TransformerBlock(small_config(), generator=torch.Generator().manual_seed(0))
+
+    assert sum(parameter.numel() for parameter in block.parameters()) == 2224
 
 
 def test_parameter_count() -> None:

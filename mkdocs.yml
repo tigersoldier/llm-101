@@ -44,7 +44,8 @@ nav:
       - 1.4 位置嵌入与批次: course/ch01/1.4.md
       - 1.5 LayerNorm 与 GELU: course/ch01/1.5.md
       - 1.6 因果多头自注意力: course/ch01/1.6.md
-      - 1.7 Transformer block 与整模型: course/ch01/1.7.md
+      - 1.7 Transformer block: course/ch01/1.7.md
+      - 1.8 输出层与整模型: course/ch01/1.8.md
   - BPE tokenizer: course/bpe.md
   - 手写梯度: course/manual-gradients.md
   - 因果自注意力: course/causal-attention.md

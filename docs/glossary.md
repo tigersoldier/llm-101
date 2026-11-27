@@ -5,7 +5,7 @@
 |术语|中文|说明|详细介绍|
 |---|---|---|---|
 |model|模型|把输入加工成输出的程序；本书指这个很小的语言模型|[1.1](course/ch01/1.1.md)|
-|transformer|不译|第 1 章要搭的模型结构；没有公认中文译名，保留英文|[第 1 章总览](course/ch01/index.md)（1.7 组装）|
+|transformer|不译|第 1 章要搭的模型结构；没有公认中文译名，保留英文|[第 1 章总览](course/ch01/index.md)（1.8 组装）|
 |tokenizer|分词器、标记器、词元切分器|把文本切成 token，并把 token 映射成编号|[1.2](course/ch01/1.2.md)|
 |token|词元、标记|切分后的最小单位；本章按单个字符切|[1.2](course/ch01/1.2.md)|
 |vocabulary|词表、词汇表|所有可选 token 的清单|[1.2](course/ch01/1.2.md)|
@@ -39,7 +39,7 @@
 |bias|偏置|归一化/线性层里的可学习偏移|[1.5](course/ch01/1.5.md)|
 |Pre-LN|前置层归一化|先 LayerNorm 再进子层；与 Post-LN 相对|[1.7](course/ch01/1.7.md)|
 |Post-LN|后置层归一化|先子层和残差再 LayerNorm|[1.7](course/ch01/1.7.md)|
-|subLayer|子层|block 里的注意力或 MLP 分支；1.7 组装|[1.5](course/ch01/1.5.md)|
+|subLayer|子层|block 里的注意力或 MLP 分支；1.7 组装|[1.7](course/ch01/1.7.md)|
 |ReLU|线性整流单元|Rectified Linear Unit；max(0,x)|[1.5](course/ch01/1.5.md)|
 |BatchNorm|批归一化|Batch Normalization；沿批次维求统计量|[1.5](course/ch01/1.5.md)|
 |sigmoid|S 形函数|把实数压到 0–1 的平滑函数|[1.5](course/ch01/1.5.md)|
@@ -68,8 +68,8 @@
 |residual connection|残差连接|把输入直接加回子层输出：y = x + F(x)；何恺明（Kaiming He）等 2015 在 ResNet 提出|[1.7](course/ch01/1.7.md)|
 |MLP|多层感知机|multi-layer perceptron；也叫前馈网络（feed-forward network，FFN）；本章 Linear → GELU → Linear|[1.7](course/ch01/1.7.md)|
 |feed-forward network|前馈网络|FFN；block 里的逐位置 MLP 子层|[1.7](course/ch01/1.7.md)|
-|weight tying|权重绑定、共享嵌入|输入词嵌入和输出矩阵共用同一张 [vocab, C] 表|[1.7](course/ch01/1.7.md)|
-|logits|未归一化分数|logit 是 softmax 之前的原始分数；每个位置、每个词表编号一个；形状 [B, T, vocab]；argmax 前不 softmax|[1.7](course/ch01/1.7.md)|
-|argmax|取最大值的下标|取 logits 最大的词表编号|[1.7](course/ch01/1.7.md)|
-|parameter|参数|模型里可调整的数字；本章数清 5,824 个；`Parameter` 类和梯度缓冲第 3 章|[1.7](course/ch01/1.7.md)|
+|weight tying|权重绑定、共享嵌入|输入词嵌入和输出矩阵共用同一张 [vocab, C] 表|[1.8](course/ch01/1.8.md)|
+|logits|未归一化分数|logit 是 softmax 之前的原始分数；每个位置、每个词表编号一个；形状 [B, T, vocab]；argmax 前不 softmax|[1.8](course/ch01/1.8.md)|
+|argmax|取最大值的下标|取 logits 最大的词表编号|[1.8](course/ch01/1.8.md)|
+|parameter|参数|模型里可调整的数字；本章数清 5,824 个；`Parameter` 类和梯度缓冲第 3 章|[1.8](course/ch01/1.8.md)|
 |autograd|自动求导|PyTorch 的自动微分机制；本书不用|第 3 章|

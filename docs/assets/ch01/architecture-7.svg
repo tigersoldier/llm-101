@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 1152" role="img" aria-labelledby="title desc">
-<title id="title">第 7 节结束时的管线架构</title>
+<title id="title">第 8 节结束时的管线架构</title>
 <desc id="desc">实线表示本节已经实现的步骤，虚线表示仍在使用的占位。后续小节的组件只在对应小节出现。</desc>
 <rect width="760" height="1152" fill="#ffffff"/>
-<text x="30" y="36" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="18" font-weight="600" fill="#1f2937">第 7 节结束时的管线</text>
+<text x="30" y="36" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="18" font-weight="600" fill="#1f2937">第 8 节结束时的管线</text>
 <text x="730" y="36" text-anchor="end" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#64748b">实线 = 已实现，虚线 = 占位</text>
 <rect x="110" y="80" width="540" height="64" rx="10" fill="#e0ecff" stroke="#3b6ea5"/>
 <text x="135" y="106" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="16" font-weight="600" fill="#1f2937">文字</text>
