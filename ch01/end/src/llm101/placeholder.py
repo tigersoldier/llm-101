@@ -3,9 +3,10 @@
 Sections 1.1 and 1.2 map text to a placeholder answer id and then to a
 character. Section 1.3 embeds every position, sums the vectors, and uses a
 fixed output matrix to score the 68 vocabulary entries; the trained output
-layer and argmax arrive with the full model in section 1.7. Later sections
-replace the remaining placeholders and this module is removed once the model
-takes over.
+layer and argmax arrive with the full model in section 1.8. Later sections
+fill the remaining placeholders; this module stays as the per-stage demo
+entry point through section 1.9, and the full-model branch simply stops
+calling the placeholder functions.
 """
 
 from __future__ import annotations
