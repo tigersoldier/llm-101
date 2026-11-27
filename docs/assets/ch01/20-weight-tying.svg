@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1080" height="830" viewBox="0 0 1080 830" role="img" aria-labelledby="title desc">
 <title id="title">权重绑定：输入查表与输出打分共用同一张 E [68,16]</title>
-<desc id="desc">the cat sat 的第一个 token id 66（字符 t）查 E 的第 66 行得到 16 维向量；最后一个位置的隐藏状态 Z [16] 与 E 的每一行做点积，即乘 Eᵀ，得到 logits [68]。两条路径共用同一张 E；不绑定会多出 1,088 个参数，总参数从 6,912 降到 5,824。</desc>
+<desc id="desc">the cat sat 的第一个 token id 66（字符 t）查 E 的第 66 行得到 16 维向量；最后一个位置的隐藏状态 Z [16] 与 E 的每一行做点积，即乘 Eᵀ，得到 logits [68]。两条路径共用同一张 E；不绑定时会多出 1,088 个参数，总参数是 6,912；绑定后是 5,824。</desc>
 <rect width="1080" height="830" fill="#ffffff"/>
 <text x="40" y="40" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="19" font-weight="600" fill="#1f2937">权重绑定：输入查表与输出打分共用同一张 E [68,16]</text>
 <text x="40" y="66" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="12" fill="#64748b">例：the cat sat；第一个 token id 是 66（字符 't'），最后一个位置的隐藏状态是 Z [16]。</text>
@@ -114,6 +114,7 @@
 <line x1="340" y1="690" x2="468" y2="690" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
 <text x="350" y="672" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="11" font-weight="600" fill="#1f2937">输出路径：打分</text>
 <text x="350" y="710" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="9.5" fill="#475569">Z 与 E 的每一行做点积</text>
+<text x="900" y="612" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="10.5" font-weight="600" fill="#1f2937">候选词（vocab 列）→</text>
 <text x="900" y="636" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="12" font-weight="600" fill="#4c1d95">logits [68]</text>
 <text x="804" y="654" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="8.5" fill="#64748b">0</text>
 <rect x="780" y="660" width="48" height="60" fill="#f5f3ff" stroke="#6d28d9"/>
