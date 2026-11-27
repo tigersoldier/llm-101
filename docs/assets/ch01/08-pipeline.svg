@@ -197,33 +197,33 @@
 <text x="550" y="1176" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="12" font-weight="600" fill="#7c2d12">自注意力输出矩阵 [13, 16]</text>
 <text x="550" y="1196" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="10" fill="#92400e">每一行是一个位置混合后的 16 维向量；中间省略</text>
 <g font-family="ui-monospace, monospace" font-size="9" fill="#1f2937">
-<text x="300" y="1222" text-anchor="middle">0</text>
-<text x="400" y="1222" text-anchor="middle">1</text>
-<text x="500" y="1222" text-anchor="middle">⋯</text>
-<text x="600" y="1222" text-anchor="middle">15</text>
-<text x="235" y="1245" text-anchor="end">0</text>
-<rect x="250" y="1228" width="100" height="18" fill="#fffbeb" stroke="#b45309"/><text x="300" y="1241" text-anchor="middle">0.000</text>
-<rect x="350" y="1228" width="100" height="18" fill="#fffbeb" stroke="#b45309"/><text x="400" y="1241" text-anchor="middle">-0.002</text>
-<rect x="450" y="1228" width="100" height="18" fill="#fffbeb" stroke="#b45309"/><text x="500" y="1241" text-anchor="middle">⋯</text>
-<rect x="550" y="1228" width="100" height="18" fill="#fffbeb" stroke="#b45309"/><text x="600" y="1241" text-anchor="middle">0.000</text>
-<text x="235" y="1263" text-anchor="end">1</text>
-<rect x="250" y="1246" width="100" height="18" fill="#fffbeb" stroke="#b45309"/><text x="300" y="1259" text-anchor="middle">0.001</text>
-<rect x="350" y="1246" width="100" height="18" fill="#fffbeb" stroke="#b45309"/><text x="400" y="1259" text-anchor="middle">-0.001</text>
-<rect x="450" y="1246" width="100" height="18" fill="#fffbeb" stroke="#b45309"/><text x="500" y="1259" text-anchor="middle">⋯</text>
-<rect x="550" y="1246" width="100" height="18" fill="#fffbeb" stroke="#b45309"/><text x="600" y="1259" text-anchor="middle">0.001</text>
-<text x="235" y="1281" text-anchor="end">⋮</text>
-<rect x="250" y="1264" width="100" height="18" fill="#fffbeb" stroke="#b45309"/><text x="300" y="1277" text-anchor="middle">⋮</text>
-<rect x="350" y="1264" width="100" height="18" fill="#fffbeb" stroke="#b45309"/><text x="400" y="1277" text-anchor="middle">⋮</text>
-<rect x="450" y="1264" width="100" height="18" fill="#fffbeb" stroke="#b45309"/><text x="500" y="1277" text-anchor="middle">⋮</text>
-<rect x="550" y="1264" width="100" height="18" fill="#fffbeb" stroke="#b45309"/><text x="600" y="1277" text-anchor="middle">⋮</text>
-<text x="235" y="1299" text-anchor="end">12</text>
-<rect x="250" y="1282" width="100" height="18" fill="#fffbeb" stroke="#b45309"/><text x="300" y="1295" text-anchor="middle">0.000</text>
-<rect x="350" y="1282" width="100" height="18" fill="#fffbeb" stroke="#b45309"/><text x="400" y="1295" text-anchor="middle">-0.000</text>
-<rect x="450" y="1282" width="100" height="18" fill="#fffbeb" stroke="#b45309"/><text x="500" y="1295" text-anchor="middle">⋯</text>
-<rect x="550" y="1282" width="100" height="18" fill="#fffbeb" stroke="#b45309"/><text x="600" y="1295" text-anchor="middle">0.002</text>
+<text x="400" y="1214" text-anchor="middle">0</text>
+<text x="500" y="1214" text-anchor="middle">1</text>
+<text x="600" y="1214" text-anchor="middle">⋯</text>
+<text x="700" y="1214" text-anchor="middle">15</text>
+<text x="335" y="1234" text-anchor="end">0</text>
+<rect x="350" y="1220" width="100" height="15" fill="#fffbeb" stroke="#b45309"/><text x="400" y="1231" text-anchor="middle">0.000</text>
+<rect x="450" y="1220" width="100" height="15" fill="#fffbeb" stroke="#b45309"/><text x="500" y="1231" text-anchor="middle">-0.002</text>
+<rect x="550" y="1220" width="100" height="15" fill="#fffbeb" stroke="#b45309"/><text x="600" y="1231" text-anchor="middle">⋯</text>
+<rect x="650" y="1220" width="100" height="15" fill="#fffbeb" stroke="#b45309"/><text x="700" y="1231" text-anchor="middle">0.000</text>
+<text x="335" y="1249" text-anchor="end">1</text>
+<rect x="350" y="1235" width="100" height="15" fill="#fffbeb" stroke="#b45309"/><text x="400" y="1246" text-anchor="middle">0.001</text>
+<rect x="450" y="1235" width="100" height="15" fill="#fffbeb" stroke="#b45309"/><text x="500" y="1246" text-anchor="middle">-0.001</text>
+<rect x="550" y="1235" width="100" height="15" fill="#fffbeb" stroke="#b45309"/><text x="600" y="1246" text-anchor="middle">⋯</text>
+<rect x="650" y="1235" width="100" height="15" fill="#fffbeb" stroke="#b45309"/><text x="700" y="1246" text-anchor="middle">0.001</text>
+<text x="335" y="1264" text-anchor="end">⋮</text>
+<rect x="350" y="1250" width="100" height="15" fill="#fffbeb" stroke="#b45309"/><text x="400" y="1261" text-anchor="middle">⋮</text>
+<rect x="450" y="1250" width="100" height="15" fill="#fffbeb" stroke="#b45309"/><text x="500" y="1261" text-anchor="middle">⋮</text>
+<rect x="550" y="1250" width="100" height="15" fill="#fffbeb" stroke="#b45309"/><text x="600" y="1261" text-anchor="middle">⋮</text>
+<rect x="650" y="1250" width="100" height="15" fill="#fffbeb" stroke="#b45309"/><text x="700" y="1261" text-anchor="middle">⋮</text>
+<text x="335" y="1279" text-anchor="end">12</text>
+<rect x="350" y="1265" width="100" height="15" fill="#fffbeb" stroke="#b45309"/><text x="400" y="1276" text-anchor="middle">0.000</text>
+<rect x="450" y="1265" width="100" height="15" fill="#fffbeb" stroke="#b45309"/><text x="500" y="1276" text-anchor="middle">-0.000</text>
+<rect x="550" y="1265" width="100" height="15" fill="#fffbeb" stroke="#b45309"/><text x="600" y="1276" text-anchor="middle">⋯</text>
+<rect x="650" y="1265" width="100" height="15" fill="#fffbeb" stroke="#b45309"/><text x="700" y="1276" text-anchor="middle">0.002</text>
 </g>
-<text x="700" y="1242" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="10" fill="#92400e">13 行</text>
-<text x="700" y="1262" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="10" fill="#92400e">× 16 列</text>
+<text x="800" y="1240" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="10" fill="#92400e">13 行</text>
+<text x="800" y="1260" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="10" fill="#92400e">× 16 列</text>
 <line x1="105" y1="1106" x2="105" y2="1146" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
 <line x1="275" y1="1106" x2="275" y2="1146" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
 <line x1="445" y1="1106" x2="445" y2="1146" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
