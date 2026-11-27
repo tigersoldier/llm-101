@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 470" role="img" aria-labelledby="title desc">
+<title id="title">字符级切分：12 个字符全部保留</title>
+<desc id="desc">the catz sat 逐个字符切成 t、h、e、空格、c、a、t、z、空格、s、a、t 共 12 个 token；每个字符都在 68 个符号的词表里，拼写完整保留，但序列比词级更长。</desc>
+<rect width="560" height="470" fill="#ffffff"/>
+<text x="24" y="34" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="17" font-weight="600" fill="#1f2937">字符级切分</text>
+<text x="24" y="58" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#64748b">按单个字符切（包括空格）；每个字符都在 68 个符号的词表里。</text>
+<rect x="140" y="84" width="280" height="40" rx="8" fill="#eef2f7" stroke="#94a3b8"/>
+<text x="280" y="109" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="12.5" fill="#1f2937">输入：the catz sat（12 个字符）</text>
+<line x1="280" y1="124" x2="280" y2="156" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="290" y="146" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="10.5" fill="#64748b">逐字符切分</text>
+<rect x="30" y="170" width="38" height="52" rx="6" fill="#f8fafc" stroke="#475569" stroke-width="1.5"/>
+<text x="49" y="202" text-anchor="middle" font-family="ui-monospace, monospace" font-size="16" fill="#1f2937">t</text>
+<rect x="72" y="170" width="38" height="52" rx="6" fill="#f8fafc" stroke="#475569" stroke-width="1.5"/>
+<text x="91" y="202" text-anchor="middle" font-family="ui-monospace, monospace" font-size="16" fill="#1f2937">h</text>
+<rect x="114" y="170" width="38" height="52" rx="6" fill="#f8fafc" stroke="#475569" stroke-width="1.5"/>
+<text x="133" y="202" text-anchor="middle" font-family="ui-monospace, monospace" font-size="16" fill="#1f2937">e</text>
+<rect x="156" y="170" width="38" height="52" rx="6" fill="#e0ecff" stroke="#2563eb" stroke-width="1.5" stroke-dasharray="5 3"/>
+<path d="M 167 188 L 167 202 L 183 202 L 183 188" fill="none" stroke="#1e3a8a" stroke-width="1.8"/>
+<text x="175" y="214" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="8.5" fill="#1e3a8a">空格</text>
+<rect x="198" y="170" width="38" height="52" rx="6" fill="#f8fafc" stroke="#475569" stroke-width="1.5"/>
+<text x="217" y="202" text-anchor="middle" font-family="ui-monospace, monospace" font-size="16" fill="#1f2937">c</text>
+<rect x="240" y="170" width="38" height="52" rx="6" fill="#f8fafc" stroke="#475569" stroke-width="1.5"/>
+<text x="259" y="202" text-anchor="middle" font-family="ui-monospace, monospace" font-size="16" fill="#1f2937">a</text>
+<rect x="282" y="170" width="38" height="52" rx="6" fill="#f8fafc" stroke="#475569" stroke-width="1.5"/>
+<text x="301" y="202" text-anchor="middle" font-family="ui-monospace, monospace" font-size="16" fill="#1f2937">t</text>
+<rect x="324" y="170" width="38" height="52" rx="6" fill="#f8fafc" stroke="#475569" stroke-width="1.5"/>
+<text x="343" y="202" text-anchor="middle" font-family="ui-monospace, monospace" font-size="16" fill="#1f2937">z</text>
+<rect x="366" y="170" width="38" height="52" rx="6" fill="#e0ecff" stroke="#2563eb" stroke-width="1.5" stroke-dasharray="5 3"/>
+<path d="M 377 188 L 377 202 L 393 202 L 393 188" fill="none" stroke="#1e3a8a" stroke-width="1.8"/>
+<text x="385" y="214" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="8.5" fill="#1e3a8a">空格</text>
+<rect x="408" y="170" width="38" height="52" rx="6" fill="#f8fafc" stroke="#475569" stroke-width="1.5"/>
+<text x="427" y="202" text-anchor="middle" font-family="ui-monospace, monospace" font-size="16" fill="#1f2937">s</text>
+<rect x="450" y="170" width="38" height="52" rx="6" fill="#f8fafc" stroke="#475569" stroke-width="1.5"/>
+<text x="469" y="202" text-anchor="middle" font-family="ui-monospace, monospace" font-size="16" fill="#1f2937">a</text>
+<rect x="492" y="170" width="38" height="52" rx="6" fill="#f8fafc" stroke="#475569" stroke-width="1.5"/>
+<text x="511" y="202" text-anchor="middle" font-family="ui-monospace, monospace" font-size="16" fill="#1f2937">t</text>
+<rect x="92" y="252" width="376" height="50" rx="8" fill="#ecfdf5" stroke="#047857"/>
+<text x="280" y="271" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="10.5" fill="#065f46">12 个字符 = 12 个 token；每个字符都能查到编号。</text>
+<text x="280" y="289" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="9.5" fill="#047857">拼写完整保留，代价是序列变长。</text>
+<rect x="92" y="322" width="176" height="58" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="180" y="342" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="10.5" fill="#64748b">token 数</text>
+<text x="180" y="369" text-anchor="middle" font-family="ui-monospace, monospace" font-size="22" font-weight="600" fill="#1f2937">12</text>
+<rect x="292" y="322" width="176" height="58" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="380" y="342" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="10.5" fill="#64748b">词表大小</text>
+<text x="380" y="369" text-anchor="middle" font-family="ui-monospace, monospace" font-size="16" fill="#1f2937">68</text>
+<line x1="92" y1="420" x2="122" y2="420" stroke="#475569" stroke-width="2"/>
+<text x="128" y="424" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="10" fill="#475569">灰色实线：普通字符</text>
+<line x1="278" y1="420" x2="308" y2="420" stroke="#2563eb" stroke-width="2" stroke-dasharray="5 3"/>
+<text x="314" y="424" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="10" fill="#2563eb">蓝色虚线：空格</text>
+<text x="24" y="448" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="10" fill="#64748b">逐个字符保留拼写；12 个 token 比词级的 3 个更长。</text>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#64748b"/></marker></defs>
+</svg>

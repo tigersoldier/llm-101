@@ -14,6 +14,8 @@
 |`<unk>`|未知词元|unknown 的缩写；词表外字符的替身|[1.2](course/ch01/1.2.md)|
 |`<bos>`|起始词元|beginning of sequence 的缩写；标出输入的开头|[1.2](course/ch01/1.2.md)|
 |`<eos>`|结束词元|end of sequence 的缩写；标出输入的结尾|[1.2](course/ch01/1.2.md)|
+|word-level|词级|以整词为切分单位，词表通常有几万到几十万个词|[1.2](course/ch01/1.2.md)|
+|character-level|字符级|以单个字符为切分单位，本章词表有 68 个符号|[1.2](course/ch01/1.2.md)|
 |tensor|张量|多维数组；每一维长度固定，二维就是矩阵|[1.3](course/ch01/1.3.md)|
 |shape|形状|张量每一维的长度，如 `[T, C]`|[1.3](course/ch01/1.3.md)|
 |feature|特征|特征向量的一维；本章 `C = 16`|[1.3](course/ch01/1.3.md)|
