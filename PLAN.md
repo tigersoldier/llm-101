@@ -10,7 +10,7 @@
 
 旧路线是“先讲 tokenizer、手写梯度、注意力，最后才拼出模型”，读者要读到第 5 章才见到一个能跑的 transformer，前置太长，也看不到全貌。
 
-新路线：**第 1 章先搭出完整但很小的 decoder-only transformer，并用交互网页把每层的输入输出显示出来；之后每章在这个骨架上加一层细节，最终收敛到 `final/`。**
+新路线：**第 1 章先搭出完整但很小的 decoder-only transformer，用 SVG 图、命令行输出和测试把每一步的输入、输出与形状展示出来；之后每章在这个骨架上加一层细节，最终收敛到 `final/`。**
 
 这也是为什么第 1 章不是一个演示用的 `demo.py`：第 1 章的代码就是最终代码的雏形，后续章节只做增量。
 
@@ -35,10 +35,10 @@ final/                    # 与 ch11/end 逐字节一致
 
 1. 目录名用 `start/` 与 `end/`，避免与根目录的 `final/` 混淆。
 2. `uv.lock` 只保留在仓库根和 `final/`；各章 README 用 `uv sync`（不带 `--locked`），避免 22 份锁文件副本淹没历史。
-3. 可视化用 **Python web server + 浏览器前端**的分离结构：服务器导入本章代码，为每一层提供一个 API，请求体是上一层的输出，响应是本层的中间量与输出；浏览器只发请求和渲染，不重复实现任何数学。服务器用 FastAPI + uvicorn（作为 `demo` 可选依赖），测试用 `TestClient` 校验每个端点的形状，并有一个“接口链结果 == `TinyGPT.forward`”的等价性测试。放弃浏览器端 JS 前向方案：它要么重写一遍数学、容易与 Python 漂移，要么只能选预置句子。
+3. **不做 web server，也不做浏览器前端。** 第 1 章用 SVG 图、`show_placeholder.py` 的命令行输出和 `pytest` 展示数据流；原理在 1.1–1.8 已经足够清楚，不需要再实现一套逐层 API/页面。后续章节如果确实需要交互，再单独评估，不作为第 1 章的交付物。
 4. CI 只运行每个 `end/` 的测试（共用一套环境，`PYTHONPATH` 指向各快照）；`start/` 不跑测试，只校验它与上一章 `end/` 逐字节一致。
 5. 第 1 章直接采用与 `final/` 相同的模块划分，只是暂时只有 `forward`。
-6. 可视化资源（HTML/JS/CSS）只存在于章节目录内，由本地服务器提供；`docs/` 只放说明页，不复制页面文件。
+6. 第 1 章不引入 HTML/JS/CSS 或前端构建步骤；图放在 `docs/assets/ch01/`，运行示例由命令行脚本输出。
 7. **术语不提前出现。** 专业术语第一次出现不得早于具体介绍并实现它的那一章。在此之前，要么不使用该术语、也不提及相关内容，要么用通俗语言简单描述，并明确告诉读者后续会在哪一章介绍。第 1 章内部按小节执行同一规则：正文只使用本节或更早小节已经介绍过的术语；代码标识符可以照实展示，但要说明它对应哪件事。小节清单与导航是路线图，可以提前列出标题，正文不能假定读者已经认识这些名字。
 8. **术语译名与术语表。** 有通用中文译名的术语第一次出现时附上中文译名；有多种通用译法的全部列出（例如 tokenizer：分词器、标记器、词元切分器）。transformer 这类没有公认译名的术语不强译，保留原文。缩写与符号第一次出现时写出完整单词（如 `<bos>` = beginning of sequence）。书末维护术语表 `docs/glossary.md`：按首次出现顺序列出术语、中文译名、一句话说明，并链接到详细介绍或实现它的小节；每写完一节，把新术语补进表中。
 9. **图解、例子与数学补充。** 每个概念和计算都要配 SVG 图，说明结构与数据流；给出至少一组输入/输出例子（可运行的代码或可手算的数值）。数学补充只写大学及以上的内容；大学之前的数学（取余、基础向量/矩阵运算等）不解释，除非本节特别注明。没有需要补充的数学就不写这一节。图放在 `docs/assets/chNN/`，文件名以小节编号开头。
@@ -61,19 +61,19 @@ final/                    # 与 ch11/end 逐字节一致
 ### 第 1 章 看得见的 transformer
 
 - `start/`：工程脚手架 + 三个失败测试（输出形状、因果掩码、上下文上限）。
-- `end/`：`tokenizer.py`（字符级）、`parameters.py`（`Parameter`，含全零 `grad` 但本章不用）、`layers.py`（`Linear`、`Embedding`、`LayerNorm`、`GELU`，只有 `forward`）、`attention.py`（`MultiHeadSelfAttention`，只有 `forward`）、`model.py`（`GPTConfig`、`TransformerBlock`、`TinyGPT`，并把逐层中间量暴露出来）、`web/`（FastAPI 应用 + 静态前端）、`scripts/serve_demo.py`、`tests/test_api.py`。
-- 小节骨架：`ch01/sections/1.1.md` 到 `1.11.md`，每份只写目标、内容安排、涉及代码、验收与写作注意，正文留给后续。
-- 验收：`pytest` 全绿；`uv run python scripts/serve_demo.py` 后浏览器能输入文本并逐层查看张量；接口链拼接出的 logits 与 `TinyGPT.forward` 一致；改后段 token 不影响前段注意力输出。
+- `end/`：`tokenizer.py`（字符级）、`parameters.py`（`Parameter`，含全零 `grad` 但本章不用）、`layers.py`（`Linear`、`Embedding`、`LayerNorm`、`GELU`，只有 `forward`）、`attention.py`（`MultiHeadSelfAttention`，只有 `forward`）、`model.py`（`GPTConfig`、`TransformerBlock`、`TinyGPT`，只保留 `forward`）、`placeholder.py`、`scripts/show_placeholder.py`、`scripts/render_architecture.py`。
+- 小节骨架：`ch01/sections/1.1.md` 到 `1.9.md`，每份只写目标、内容安排、涉及代码、验收与写作注意，正文留给后续。
+- 验收：`pytest` 全绿；`show_placeholder.py --stage 7` 输出与 `TinyGPT.forward` 一致；改后段 token 不影响前段注意力输出；1.9 只做验收、小结与交接，不做逐层 trace。
 
 ### 第 2 章 真正的 tokenizer
 
-- 增量：`tokenizer.py`（BPE）替换字符级词表；`GPTConfig.vocab_size` 来自训练好的词表；页面显示切词结果与 token id。
+- 增量：`tokenizer.py`（BPE）替换字符级词表；`GPTConfig.vocab_size` 来自训练好的词表；命令行示例显示切词结果与 token id。
 - 等价性测试：固定权重下，手写 token id 序列的 logits 与重构前一致。
 
 ### 第 3 章 参数、层与手写梯度
 
 - 增量：给 `parameters.py`、`layers.py` 加 `backward`，新增 `losses.py`（softmax 交叉熵）；有限差分测试。
-- 页面不变，本章解释页面里那些数字是**怎么算出来的**。
+- 模型计算不变，本章解释这些数字是**怎么算出来的**。
 
 ### 第 4 章 因果多头自注意力（拆解）
 
@@ -108,7 +108,7 @@ final/                    # 与 ch11/end 逐字节一致
 ### 第 10 章 推理与生成
 
 - 增量：`inference.py`、`scripts/generate.py`；贪心、temperature、top-k、`EOS` 停止。
-- 页面升级：加载训练过的权重，同一个界面切换“随机权重 / 训练后权重”，对比输出。
+- 命令行生成：加载训练过的权重，对比随机权重与训练后权重的输出；不新增网页。
 
 ### 第 11 章 实验、评估与发布
 
@@ -120,14 +120,9 @@ final/                    # 与 ch11/end 逐字节一致
 - 词表：字符级 68 个 token（大小写字母、空格、常用标点、`BOS`/`EOS`），任意英文可输入。
 - 结构：2 层 Pre-LN decoder-only，`d_model=16`、2 头（每头 8 维）、`d_ff=32`、上下文 16，可学习绝对位置，共享输入/输出嵌入。
 - 规模：5,824 个参数；float32 权重 23 KiB，网页端 JSON 约 40 KB。刻意保持这么小，是为了让每层的张量能一屏放下、数值可以手算核对；第 5 章再把维度提到 `d_model=256`、4 层，并说明每一步放大了什么。
-- 权重：固定 seed 随机初始化，只有 forward。页面必须明确写“输出是噪声，看的是结构与数据流”，避免读者误以为模型已经会说话。
-- 页面交互（前端只负责显示）：
-  - 输入文本 → 调 `/api/tokenize` 与 `/api/embed`；
-  - 逐层步进：每一层一次请求，拿回 LayerNorm、Q/K/V、每头注意力矩阵（因果掩码区域灰显）、注意力输出、残差、MLP 隐藏层、残差；
-  - 每步显示张量形状与这一层参数量，热力图悬停显示数值；
-  - 末端调 `/api/logits` 得到 logits 与 top-5，`temperature` 滑块调 `/api/sample`。
-- 服务器接口：`GET /api/config`、`POST /api/tokenize`、`POST /api/embed`、`POST /api/layers/{0,1}`、`POST /api/logits`、`POST /api/sample`。每层请求体是上一层的输出，响应体是该层全部中间量与输出，形状与参数名固定。
-- 测试：`tests/test_structure.py`（形状、掩码、上下文上限）、`tests/test_api.py`（端点形状与接口链等价性，容差 1e-6）。不再依赖 Node。
+- 权重：固定 seed 随机初始化，只有 forward。图注和命令行输出必须写明“输出是噪声，看的是结构与数据流”，避免读者误以为模型已经会说话。
+- 展示方式：1.3–1.8 的 SVG 图 + `show_placeholder.py --stage N`；不实现逐层 API、服务器或网页。
+- 测试：`tests/test_structure.py`（形状、掩码、上下文上限）和 `tests/test_placeholder.py`；不新增 `test_api.py`，不依赖 Node。
 
 ## 7. 数据与许可边界
 
@@ -141,7 +136,7 @@ final/                    # 与 ch11/end 逐字节一致
 - 快照只含代码、测试、脚本、`pyproject.toml` 与 README；不含 `data/`、`artifacts/`、`site/`、`.venv/`。
 - 新增 `scripts/check_snapshots.py`：校验 `chNN/start` 与 `ch(N-1)/end` 逐字节一致、`final` 与 `ch11/end` 一致，并对每个 `end/` 运行测试。
 - 体积估算：每份快照约 450 KB 文本、约 5 千行；23 份合计约 10 MB，Git 增量压缩后更小。
-- 前端静态资源放在章节目录内（如 `ch01/end/web/static/`），由本地服务器提供；`docs/` 只放说明页，不复制页面文件，所以站点不需要额外构建步骤。
+- 第 1 章不放前端静态资源，也没有服务器启动步骤；`docs/` 只放说明页和 SVG 图，所以站点不需要额外构建步骤。
 
 ## 9. 与现状的关系
 
@@ -154,7 +149,7 @@ final/                    # 与 ch11/end 逐字节一致
 
 截至 2026-11-23 的状态：
 
-- `ch01/` 骨架已建立：`README.md`（总览、小节清单、写作流程、进度勾选）、`sections/1.1.md`–`1.11.md`（目标 / 内容安排 / 涉及代码 / 验收 / 写作注意）、`start/`（模块空壳 + 3 个红测试 + 示例文本）、`end/`（只有说明，待填写）。
+- `ch01/` 骨架已建立：`README.md`（总览、小节清单、写作流程、进度勾选）、`sections/1.1.md`–`1.9.md`（目标 / 内容安排 / 涉及代码 / 验收 / 写作注意）、`start/`（模块空壳 + 3 个红测试 + 示例文本）、`end/`（只有说明，待填写）。
 - `start/` 已验证可运行：`cd ch01/start && uv sync --extra dev && uv run pytest -q` → 3 failed，全部是 `NotImplementedError`，分别对应 1.4（上下文上限）、1.6（掩码）、1.7（形状）。
 - 章节目录还没有接入 CI；`scripts/check_snapshots.py` 尚未实现。提交时不要带上 `uv.lock`、`.venv/`、缓存或 `egg-info`。
 
@@ -166,12 +161,12 @@ final/                    # 与 ch11/end 逐字节一致
 4. 每节按“验收”跑测试；新测试放 `ch01/end/tests/`。
 5. 完成后把 `sections/<编号>.md` 的状态改为“完成”，并在 `ch01/README.md` 的进度清单里打勾。
 
-写作约束：`start/` 里的函数签名已固定，后续章节依赖它们；第 1 章只做前向；前端只发请求和渲染。
+写作约束：`start/` 里的函数签名已固定，后续章节依赖它们；第 1 章只做前向；不做 web server、前端页面或逐层 trace。
 
 ## 11. 尚未决定
 
 - KV cache 是否作为第 12 章（当前代码未实现，`roadmap.md` 已列为后续）。
-- 第 10 章页面加载训练后权重的具体形式：训练一个小号 2 层模型专门给页面用，还是对大模型做量化后导出。
+- 第 10 章如果以后要做生成演示，是否只在命令行里对比随机权重与训练后权重；当前不做网页。
 - 章节的中文标题与固定 URL 命名。
 
 ## 12. 第 1 章的螺旋编排
@@ -217,13 +212,11 @@ final/                    # 与 ch11/end 逐字节一致
 |1.4|位置嵌入|同一编号在不同位置的数字不同|
 |1.5|`LayerNorm`、`GELU`|调匀后的数字|
 |1.6|因果多头注意力|混合后的数字|
-|1.7|完整 `TinyGPT`（两层、残差、共享输出）|68 个分数 → argmax → 字符|
-|1.8|`forward_with_trace`|同一答案 + 逐层中间量|
-|1.9|本地服务器|HTTP 请求/响应里的同一答案|
-|1.10|页面|页面里逐层查看同一答案|
-|1.11|端到端检查与交接|最终检查结果|
+|1.7|`TransformerBlock`（残差、Pre-LN、MLP）|block 输出 `[13,16]` 的数字|
+|1.8|完整 `TinyGPT`（两层、残差、共享输出）|68 个分数 → argmax → 字符|
+|1.9|验收、小结与交接|同一答案 + 最终检查结果|
 
-1.9–1.11 不改模型，只改呈现方式；输出仍是同一个答案，变化在呈现与检查。
+1.9 不改模型，也不增加 stage；它只做回顾、测试和交接。
 
 小节顺序沿用现有的 1.2 tokenizer、1.3 embedding；如果要把 embedding 提前到 1.2，只需对调这两节。
 
@@ -249,7 +242,7 @@ uv run python scripts/show_placeholder.py --stage 1 "the cat sat"
 - `ch01/end/scripts/show_placeholder.py`、`ch01/end/scripts/render_architecture.py`。
 - `ch01/end/tests/test_placeholder.py`：1.1 的确定性输出、各阶段形状、最终输出与 `TinyGPT.forward` 一致。
 - `ch01/end/README.md` 的目录树与阅读顺序补上管线。
-- `docs/assets/ch01/architecture-{1..11}.svg`。
+- `docs/assets/ch01/architecture-{1..8}.svg`。
 
 ### 与现有页面的关系
 
@@ -285,8 +278,8 @@ uv run python scripts/show_placeholder.py --stage 1 "the cat sat"
 - 1.4：位置嵌入。
 - 1.5：`LayerNorm`、`GELU`（说明它们将用于 1.7 的 block）。
 - 1.6：因果注意力，用 `Linear` 做 Q/K/V；把 1.3 的 Linear 手算例子移到这里。
-- 1.7：Transformer block 与整模型：MLP、共享输出、参数量、分数与 argmax。
-- 1.8–1.11 不变。
+- 1.7：Transformer block：残差、Pre-LN、MLP；1.8：整模型、共享输出、参数量、分数与 argmax。
+- 1.8 完成；1.9 只做验收、小结与交接，不再增加 trace/服务器/页面。
 
 ### 落地顺序
 
@@ -317,3 +310,4 @@ uv run python scripts/show_placeholder.py --stage 1 "the cat sat"
 - 2026-11-27：新增全书变量表 `docs/variables.md`；短变量首次出现必须说明含义；修正“X 是 [..]”为“X 的形状是 [..]”，并区分特征维 `C` 与 `Linear` 的 `in_features`/`out_features`。
 - 2026-11-27：写作规范补充“每个公式下面给最小计算范例”；1.6 展开“头/拆头/多头”和“softmax 的性质、动机、与注意力的关系”。
 - 2026-11-27：规范补充“矩阵/向量/张量值和运算用数学公式，不用代码块”；1.6 的矩阵例子改为 `bmatrix`/`aligned`，1.5/1.4 的小例子同步。
+- 2026-11-27：取消第 1 章的 web server、浏览器前端和逐层 trace（含 `forward_with_trace`、stage 8、`test_api.py`、`web/`）；第 1 章收为 1.1–1.9，1.9 只做验收、小结与交接，原理展示继续用 SVG 图、命令行输出和测试。
