@@ -3,154 +3,148 @@
 <desc id="desc">13 个字符的词嵌入与位置嵌入逐元素相加，得到每个位置的向量；13 个向量相加得到输出向量，再经输出矩阵得到分数，编号 21 最高，解码成 v。</desc>
 <rect width="1120" height="1200" fill="#ffffff"/>
 <text x="30" y="36" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="19" font-weight="600" fill="#1f2937">从字符到答案：第 4 节的管线</text>
-<text x="30" y="60" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">词嵌入 E[token] 加上位置嵌入 P[t]，再逐元素相加；中间省略 8 个位置。</text>
-<rect x="50" y="80" width="110" height="34" rx="6" fill="#eef2f7" stroke="#94a3b8"/>
-<text x="105" y="102" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">&lt;bos&gt;</text>
-<line x1="105" y1="114" x2="105" y2="148" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
-<rect x="220" y="80" width="110" height="34" rx="6" fill="#eef2f7" stroke="#94a3b8"/>
-<text x="275" y="102" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">t</text>
-<line x1="275" y1="114" x2="275" y2="148" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
-<rect x="390" y="80" width="110" height="34" rx="6" fill="#eef2f7" stroke="#94a3b8"/>
-<text x="445" y="102" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">h</text>
-<line x1="445" y1="114" x2="445" y2="148" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
-<rect x="560" y="80" width="110" height="34" rx="6" fill="#eef2f7" stroke="#94a3b8"/>
-<text x="615" y="102" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">…</text>
-<line x1="615" y1="114" x2="615" y2="148" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
-<rect x="730" y="80" width="110" height="34" rx="6" fill="#eef2f7" stroke="#94a3b8"/>
-<text x="785" y="102" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">t</text>
-<line x1="785" y1="114" x2="785" y2="148" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
-<rect x="900" y="80" width="110" height="34" rx="6" fill="#eef2f7" stroke="#94a3b8"/>
-<text x="955" y="102" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">&lt;eos&gt;</text>
-<line x1="955" y1="114" x2="955" y2="148" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="30" y="60" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">词嵌入 E[token] 与位置嵌入 P[t] 逐元素相加；中间省略 8 个位置。</text>
+<rect x="80" y="80" width="110" height="34" rx="6" fill="#eef2f7" stroke="#94a3b8"/>
+<text x="135" y="102" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">&lt;bos&gt;</text>
+<line x1="135" y1="114" x2="135" y2="148" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+<rect x="250" y="80" width="110" height="34" rx="6" fill="#eef2f7" stroke="#94a3b8"/>
+<text x="305" y="102" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">t</text>
+<line x1="305" y1="114" x2="305" y2="148" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+<rect x="420" y="80" width="110" height="34" rx="6" fill="#eef2f7" stroke="#94a3b8"/>
+<text x="475" y="102" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">h</text>
+<line x1="475" y1="114" x2="475" y2="148" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+<rect x="590" y="80" width="110" height="34" rx="6" fill="#eef2f7" stroke="#94a3b8"/>
+<text x="645" y="102" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">…</text>
+<line x1="645" y1="114" x2="645" y2="148" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+<rect x="760" y="80" width="110" height="34" rx="6" fill="#eef2f7" stroke="#94a3b8"/>
+<text x="815" y="102" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">t</text>
+<line x1="815" y1="114" x2="815" y2="148" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+<rect x="930" y="80" width="110" height="34" rx="6" fill="#eef2f7" stroke="#94a3b8"/>
+<text x="985" y="102" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">&lt;eos&gt;</text>
+<line x1="985" y1="114" x2="985" y2="148" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
 <text x="30" y="140" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#3b6ea5">词嵌入 E[token]</text>
-<rect x="50" y="150" width="110" height="156" rx="8" fill="#e0ecff" stroke="#3b6ea5"/>
-<text x="105" y="180" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">-0.011</text>
-<text x="105" y="204" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">0.013</text>
-<text x="105" y="229" text-anchor="middle" font-family="ui-monospace, monospace" font-size="14" fill="#64748b">⋮</text>
-<text x="105" y="255" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">-0.021</text>
-<text x="105" y="279" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">0.017</text>
-<rect x="220" y="150" width="110" height="156" rx="8" fill="#e0ecff" stroke="#3b6ea5"/>
-<text x="275" y="180" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">-0.012</text>
-<text x="275" y="204" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">-0.004</text>
-<text x="275" y="229" text-anchor="middle" font-family="ui-monospace, monospace" font-size="14" fill="#64748b">⋮</text>
-<text x="275" y="255" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">-0.008</text>
-<text x="275" y="279" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">-0.005</text>
-<rect x="390" y="150" width="110" height="156" rx="8" fill="#e0ecff" stroke="#3b6ea5"/>
-<text x="445" y="180" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">-0.004</text>
-<text x="445" y="204" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">-0.049</text>
-<text x="445" y="229" text-anchor="middle" font-family="ui-monospace, monospace" font-size="14" fill="#64748b">⋮</text>
-<text x="445" y="255" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">0.018</text>
-<text x="445" y="279" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">0.028</text>
-<rect x="560" y="150" width="110" height="156" rx="8" fill="#f8fafc" stroke="#94a3b8" stroke-dasharray="6 4"/>
-<text x="615" y="228" text-anchor="middle" font-size="22" fill="#64748b">…</text>
-<text x="615" y="252" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="10" fill="#64748b">省略 8 个</text>
-<rect x="730" y="150" width="110" height="156" rx="8" fill="#e0ecff" stroke="#3b6ea5"/>
-<text x="785" y="180" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">-0.012</text>
-<text x="785" y="204" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">-0.004</text>
-<text x="785" y="229" text-anchor="middle" font-family="ui-monospace, monospace" font-size="14" fill="#64748b">⋮</text>
-<text x="785" y="255" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">-0.008</text>
-<text x="785" y="279" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">-0.005</text>
-<rect x="900" y="150" width="110" height="156" rx="8" fill="#e0ecff" stroke="#3b6ea5"/>
-<text x="955" y="180" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">-0.012</text>
-<text x="955" y="204" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">0.008</text>
-<text x="955" y="229" text-anchor="middle" font-family="ui-monospace, monospace" font-size="14" fill="#64748b">⋮</text>
-<text x="955" y="255" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">-0.043</text>
-<text x="955" y="279" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">0.007</text>
-<text x="30" y="340" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#3b6ea5">位置嵌入 P[t]</text>
-<rect x="50" y="350" width="110" height="156" rx="8" fill="#fff7ed" stroke="#c2410c"/>
-<text x="105" y="380" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">-0.031</text>
-<text x="105" y="404" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">-0.015</text>
-<text x="105" y="429" text-anchor="middle" font-family="ui-monospace, monospace" font-size="14" fill="#64748b">⋮</text>
-<text x="105" y="455" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">0.005</text>
-<text x="105" y="479" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">0.009</text>
-<text x="105" y="498" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#c2410c">t=0</text>
-<rect x="220" y="350" width="110" height="156" rx="8" fill="#fff7ed" stroke="#c2410c"/>
-<text x="275" y="380" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">-0.014</text>
-<text x="275" y="404" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">-0.023</text>
-<text x="275" y="429" text-anchor="middle" font-family="ui-monospace, monospace" font-size="14" fill="#64748b">⋮</text>
-<text x="275" y="455" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">-0.016</text>
-<text x="275" y="479" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">-0.003</text>
-<text x="275" y="498" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#c2410c">t=1</text>
-<rect x="390" y="350" width="110" height="156" rx="8" fill="#fff7ed" stroke="#c2410c"/>
-<text x="445" y="380" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">0.038</text>
-<text x="445" y="404" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">-0.001</text>
-<text x="445" y="429" text-anchor="middle" font-family="ui-monospace, monospace" font-size="14" fill="#64748b">⋮</text>
-<text x="445" y="455" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">0.031</text>
-<text x="445" y="479" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">-0.013</text>
-<text x="445" y="498" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#c2410c">t=2</text>
-<rect x="560" y="350" width="110" height="156" rx="8" fill="#f8fafc" stroke="#94a3b8" stroke-dasharray="6 4"/>
-<text x="615" y="428" text-anchor="middle" font-size="22" fill="#64748b">…</text>
-<text x="615" y="452" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="10" fill="#64748b">P[3]–P[10]</text>
-<rect x="730" y="350" width="110" height="156" rx="8" fill="#fff7ed" stroke="#c2410c"/>
-<text x="785" y="380" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">0.017</text>
-<text x="785" y="404" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">0.023</text>
-<text x="785" y="429" text-anchor="middle" font-family="ui-monospace, monospace" font-size="14" fill="#64748b">⋮</text>
-<text x="785" y="455" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">-0.007</text>
-<text x="785" y="479" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">0.019</text>
-<text x="785" y="498" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#c2410c">t=11</text>
-<rect x="900" y="350" width="110" height="156" rx="8" fill="#fff7ed" stroke="#c2410c"/>
-<text x="955" y="380" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">-0.011</text>
-<text x="955" y="404" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">0.017</text>
-<text x="955" y="429" text-anchor="middle" font-family="ui-monospace, monospace" font-size="14" fill="#64748b">⋮</text>
-<text x="955" y="455" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">0.015</text>
-<text x="955" y="479" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">0.001</text>
-<text x="955" y="498" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#c2410c">t=12</text>
-<text x="30" y="540" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#3b6ea5">h_t = E[token] + P[t]</text>
-<rect x="50" y="550" width="110" height="156" rx="8" fill="#ecfdf5" stroke="#047857"/>
-<text x="105" y="580" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">-0.042</text>
-<text x="105" y="604" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">-0.002</text>
-<text x="105" y="629" text-anchor="middle" font-family="ui-monospace, monospace" font-size="14" fill="#64748b">⋮</text>
-<text x="105" y="655" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">-0.017</text>
-<text x="105" y="679" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">0.026</text>
-<text x="105" y="698" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#047857">+</text>
-<rect x="220" y="550" width="110" height="156" rx="8" fill="#ecfdf5" stroke="#047857"/>
-<text x="275" y="580" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">-0.026</text>
-<text x="275" y="604" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">-0.028</text>
-<text x="275" y="629" text-anchor="middle" font-family="ui-monospace, monospace" font-size="14" fill="#64748b">⋮</text>
-<text x="275" y="655" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">-0.024</text>
-<text x="275" y="679" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">-0.008</text>
-<text x="275" y="698" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#047857">+</text>
-<rect x="390" y="550" width="110" height="156" rx="8" fill="#ecfdf5" stroke="#047857"/>
-<text x="445" y="580" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">0.033</text>
-<text x="445" y="604" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">-0.050</text>
-<text x="445" y="629" text-anchor="middle" font-family="ui-monospace, monospace" font-size="14" fill="#64748b">⋮</text>
-<text x="445" y="655" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">0.050</text>
-<text x="445" y="679" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">0.015</text>
-<text x="445" y="698" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#047857">+</text>
-<rect x="560" y="550" width="110" height="156" rx="8" fill="#f8fafc" stroke="#94a3b8" stroke-dasharray="6 4"/>
-<text x="615" y="628" text-anchor="middle" font-size="22" fill="#64748b">…</text>
-<text x="615" y="652" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="10" fill="#64748b">逐元素相加</text>
-<rect x="730" y="550" width="110" height="156" rx="8" fill="#ecfdf5" stroke="#047857"/>
-<text x="785" y="580" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">0.004</text>
-<text x="785" y="604" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">0.019</text>
-<text x="785" y="629" text-anchor="middle" font-family="ui-monospace, monospace" font-size="14" fill="#64748b">⋮</text>
-<text x="785" y="655" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">-0.015</text>
-<text x="785" y="679" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">0.014</text>
-<text x="785" y="698" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#047857">+</text>
-<rect x="900" y="550" width="110" height="156" rx="8" fill="#ecfdf5" stroke="#047857"/>
-<text x="955" y="580" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">-0.023</text>
-<text x="955" y="604" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">0.025</text>
-<text x="955" y="629" text-anchor="middle" font-family="ui-monospace, monospace" font-size="14" fill="#64748b">⋮</text>
-<text x="955" y="655" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">-0.028</text>
-<text x="955" y="679" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">0.008</text>
-<text x="955" y="698" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#047857">+</text>
-<text x="30" y="730" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#3b6ea5">13 个位置向量依次相加</text>
-<line x1="50" y1="740" x2="1050" y2="740" stroke="#64748b" stroke-width="1.5"/>
-<line x1="105" y1="706" x2="105" y2="740" stroke="#94a3b8" stroke-width="1"/>
-<line x1="275" y1="706" x2="275" y2="740" stroke="#94a3b8" stroke-width="1"/>
-<line x1="445" y1="706" x2="445" y2="740" stroke="#94a3b8" stroke-width="1"/>
-<line x1="615" y1="706" x2="615" y2="740" stroke="#94a3b8" stroke-width="1"/>
-<line x1="785" y1="706" x2="785" y2="740" stroke="#94a3b8" stroke-width="1"/>
-<line x1="955" y1="706" x2="955" y2="740" stroke="#94a3b8" stroke-width="1"/>
-<line x1="560" y1="740" x2="560" y2="760" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
-<rect x="300" y="764" width="520" height="46" rx="8" fill="#f8fafc" stroke="#3b6ea5"/><text x="560.0" y="791.3333333333334" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#1f2937">o = h0 + h1 + ⋯ + h12</text>
-<text x="560" y="800" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="10" fill="#475569">逐元素相加，结果仍是 16 维向量</text>
-<line x1="560" y1="808" x2="560" y2="848" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
-<text x="300" y="842" font-family="ui-monospace, monospace" font-size="11" fill="#1e3a5f">o</text>
+<rect x="80" y="150" width="110" height="156" rx="8" fill="#e0ecff" stroke="#3b6ea5"/>
+<text x="135" y="180" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">-0.011</text>
+<text x="135" y="204" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">0.013</text>
+<text x="135" y="229" text-anchor="middle" font-family="ui-monospace, monospace" font-size="14" fill="#64748b">⋮</text>
+<text x="135" y="255" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">-0.021</text>
+<text x="135" y="279" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">0.017</text>
+<rect x="250" y="150" width="110" height="156" rx="8" fill="#e0ecff" stroke="#3b6ea5"/>
+<text x="305" y="180" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">-0.012</text>
+<text x="305" y="204" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">-0.004</text>
+<text x="305" y="229" text-anchor="middle" font-family="ui-monospace, monospace" font-size="14" fill="#64748b">⋮</text>
+<text x="305" y="255" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">-0.008</text>
+<text x="305" y="279" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">-0.005</text>
+<rect x="420" y="150" width="110" height="156" rx="8" fill="#e0ecff" stroke="#3b6ea5"/>
+<text x="475" y="180" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">-0.004</text>
+<text x="475" y="204" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">-0.049</text>
+<text x="475" y="229" text-anchor="middle" font-family="ui-monospace, monospace" font-size="14" fill="#64748b">⋮</text>
+<text x="475" y="255" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">0.018</text>
+<text x="475" y="279" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">0.028</text>
+<rect x="590" y="150" width="110" height="156" rx="8" fill="#f8fafc" stroke="#94a3b8" stroke-dasharray="6 4"/>
+<text x="645" y="228" text-anchor="middle" font-size="22" fill="#64748b">…</text>
+<text x="645" y="252" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="10" fill="#64748b">省略 8 个</text>
+<rect x="760" y="150" width="110" height="156" rx="8" fill="#e0ecff" stroke="#3b6ea5"/>
+<text x="815" y="180" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">-0.012</text>
+<text x="815" y="204" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">-0.004</text>
+<text x="815" y="229" text-anchor="middle" font-family="ui-monospace, monospace" font-size="14" fill="#64748b">⋮</text>
+<text x="815" y="255" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">-0.008</text>
+<text x="815" y="279" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">-0.005</text>
+<rect x="930" y="150" width="110" height="156" rx="8" fill="#e0ecff" stroke="#3b6ea5"/>
+<text x="985" y="180" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">-0.012</text>
+<text x="985" y="204" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">0.008</text>
+<text x="985" y="229" text-anchor="middle" font-family="ui-monospace, monospace" font-size="14" fill="#64748b">⋮</text>
+<text x="985" y="255" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">-0.043</text>
+<text x="985" y="279" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">0.007</text>
+<text x="30" y="340" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#c2410c">位置嵌入 P[t]</text>
+<rect x="80" y="350" width="110" height="156" rx="8" fill="#fff7ed" stroke="#c2410c"/>
+<text x="135" y="380" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">-0.031</text>
+<text x="135" y="404" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">-0.015</text>
+<text x="135" y="429" text-anchor="middle" font-family="ui-monospace, monospace" font-size="14" fill="#64748b">⋮</text>
+<text x="135" y="455" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">0.005</text>
+<text x="135" y="479" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">0.009</text>
+<text x="135" y="524" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#c2410c">t=0</text>
+<rect x="250" y="350" width="110" height="156" rx="8" fill="#fff7ed" stroke="#c2410c"/>
+<text x="305" y="380" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">-0.014</text>
+<text x="305" y="404" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">-0.023</text>
+<text x="305" y="429" text-anchor="middle" font-family="ui-monospace, monospace" font-size="14" fill="#64748b">⋮</text>
+<text x="305" y="455" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">-0.016</text>
+<text x="305" y="479" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">-0.003</text>
+<text x="305" y="524" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#c2410c">t=1</text>
+<rect x="420" y="350" width="110" height="156" rx="8" fill="#fff7ed" stroke="#c2410c"/>
+<text x="475" y="380" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">0.038</text>
+<text x="475" y="404" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">-0.001</text>
+<text x="475" y="429" text-anchor="middle" font-family="ui-monospace, monospace" font-size="14" fill="#64748b">⋮</text>
+<text x="475" y="455" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">0.031</text>
+<text x="475" y="479" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">-0.013</text>
+<text x="475" y="524" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#c2410c">t=2</text>
+<rect x="590" y="350" width="110" height="156" rx="8" fill="#f8fafc" stroke="#94a3b8" stroke-dasharray="6 4"/>
+<text x="645" y="428" text-anchor="middle" font-size="22" fill="#64748b">…</text>
+<text x="645" y="452" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="10" fill="#64748b">P[3]–P[10]</text>
+<rect x="760" y="350" width="110" height="156" rx="8" fill="#fff7ed" stroke="#c2410c"/>
+<text x="815" y="380" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">0.017</text>
+<text x="815" y="404" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">0.023</text>
+<text x="815" y="429" text-anchor="middle" font-family="ui-monospace, monospace" font-size="14" fill="#64748b">⋮</text>
+<text x="815" y="455" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">-0.007</text>
+<text x="815" y="479" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">0.019</text>
+<text x="815" y="524" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#c2410c">t=11</text>
+<rect x="930" y="350" width="110" height="156" rx="8" fill="#fff7ed" stroke="#c2410c"/>
+<text x="985" y="380" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">-0.011</text>
+<text x="985" y="404" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">0.017</text>
+<text x="985" y="429" text-anchor="middle" font-family="ui-monospace, monospace" font-size="14" fill="#64748b">⋮</text>
+<text x="985" y="455" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">0.015</text>
+<text x="985" y="479" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">0.001</text>
+<text x="985" y="524" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#c2410c">t=12</text>
+<text x="30" y="540" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#047857"><tspan font-style="italic">h</tspan><tspan baseline-shift="sub" font-size="8">t</tspan> = <tspan font-style="italic">E</tspan>[token] + <tspan font-style="italic">P</tspan>[<tspan font-style="italic">t</tspan>]</text>
+<rect x="80" y="550" width="110" height="156" rx="8" fill="#ecfdf5" stroke="#047857"/>
+<text x="135" y="580" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">-0.042</text>
+<text x="135" y="604" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">-0.002</text>
+<text x="135" y="629" text-anchor="middle" font-family="ui-monospace, monospace" font-size="14" fill="#64748b">⋮</text>
+<text x="135" y="655" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">-0.017</text>
+<text x="135" y="679" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">0.026</text>
+<rect x="250" y="550" width="110" height="156" rx="8" fill="#ecfdf5" stroke="#047857"/>
+<text x="305" y="580" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">-0.026</text>
+<text x="305" y="604" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">-0.028</text>
+<text x="305" y="629" text-anchor="middle" font-family="ui-monospace, monospace" font-size="14" fill="#64748b">⋮</text>
+<text x="305" y="655" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">-0.024</text>
+<text x="305" y="679" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">-0.008</text>
+<rect x="420" y="550" width="110" height="156" rx="8" fill="#ecfdf5" stroke="#047857"/>
+<text x="475" y="580" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">0.033</text>
+<text x="475" y="604" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">-0.050</text>
+<text x="475" y="629" text-anchor="middle" font-family="ui-monospace, monospace" font-size="14" fill="#64748b">⋮</text>
+<text x="475" y="655" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">0.050</text>
+<text x="475" y="679" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">0.015</text>
+<rect x="590" y="550" width="110" height="156" rx="8" fill="#f8fafc" stroke="#94a3b8" stroke-dasharray="6 4"/>
+<text x="645" y="628" text-anchor="middle" font-size="22" fill="#64748b">…</text>
+<text x="645" y="652" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="10" fill="#64748b">逐元素相加</text>
+<rect x="760" y="550" width="110" height="156" rx="8" fill="#ecfdf5" stroke="#047857"/>
+<text x="815" y="580" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">0.004</text>
+<text x="815" y="604" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">0.019</text>
+<text x="815" y="629" text-anchor="middle" font-family="ui-monospace, monospace" font-size="14" fill="#64748b">⋮</text>
+<text x="815" y="655" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">-0.015</text>
+<text x="815" y="679" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">0.014</text>
+<rect x="930" y="550" width="110" height="156" rx="8" fill="#ecfdf5" stroke="#047857"/>
+<text x="985" y="580" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">-0.023</text>
+<text x="985" y="604" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">0.025</text>
+<text x="985" y="629" text-anchor="middle" font-family="ui-monospace, monospace" font-size="14" fill="#64748b">⋮</text>
+<text x="985" y="655" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">-0.028</text>
+<text x="985" y="679" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">0.008</text>
+<line x1="80" y1="740" x2="1040" y2="740" stroke="#64748b" stroke-width="1.5"/>
+<line x1="135" y1="706" x2="135" y2="740" stroke="#94a3b8" stroke-width="1"/>
+<line x1="305" y1="706" x2="305" y2="740" stroke="#94a3b8" stroke-width="1"/>
+<line x1="475" y1="706" x2="475" y2="740" stroke="#94a3b8" stroke-width="1"/>
+<line x1="645" y1="706" x2="645" y2="740" stroke="#94a3b8" stroke-width="1"/>
+<line x1="815" y1="706" x2="815" y2="740" stroke="#94a3b8" stroke-width="1"/>
+<line x1="985" y1="706" x2="985" y2="740" stroke="#94a3b8" stroke-width="1"/>
+<line x1="560" y1="740" x2="560" y2="756" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="300" y="756" width="520" height="60" rx="8" fill="#f8fafc" stroke="#3b6ea5"/><text x="560.0" y="777" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#1f2937"><tspan font-style="italic">o</tspan> = <tspan font-style="italic">h</tspan><tspan baseline-shift="sub" font-size="9">0</tspan> + <tspan font-style="italic">h</tspan><tspan baseline-shift="sub" font-size="9">1</tspan> + ⋯ + <tspan font-style="italic">h</tspan><tspan baseline-shift="sub" font-size="9">12</tspan></text>
+<text x="560" y="803" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="10" fill="#475569">13 个位置向量逐元素相加，结果仍是 16 维向量</text>
+<line x1="560" y1="816" x2="560" y2="848" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="300" y="842" font-family="ui-monospace, monospace" font-size="11" font-style="italic" fill="#1e3a5f">o</text>
 <rect x="300" y="850" width="520" height="60" rx="8" fill="#e0ecff" stroke="#3b6ea5"/><text x="560.0" y="884.3333333333334" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#1f2937">[-0.169, -0.089, …, -0.106, -0.022]</text>
 <text x="830" y="885" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="10" fill="#475569">16 维；中间省略 12 个分量</text>
 <line x1="560" y1="910" x2="560" y2="938" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
-<text x="570" y="930" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="10" fill="#475569">W_out：16×68</text>
+<text x="570" y="930" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="10" fill="#475569"><tspan font-style="italic">W</tspan><tspan baseline-shift="sub" font-size="7">out</tspan>：16×68</text>
 <text x="100" y="940" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="12" font-weight="600" fill="#1f2937">68 个分数</text>
 <text x="190" y="940" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="10" fill="#64748b">每一列对应一个编号</text>
 <line x1="100" y1="1020" x2="1020" y2="1020" stroke="#94a3b8" stroke-width="1"/>
@@ -229,14 +223,14 @@
 <text x="642.0" y="1040" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#64748b">40</text>
 <text x="910.0" y="1040" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#64748b">60</text>
 <text x="100" y="1064" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="10" fill="#64748b">绿色是最高分，蓝色是第二、三名</text>
-<line x1="560" y1="1070" x2="560" y2="1094" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
-<rect x="400" y="1098" width="150" height="54" rx="8" fill="#ecfdf5" stroke="#047857"/>
-<text x="475" y="1120" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#064e3b">分数最大的编号</text>
-<text x="475" y="1141" text-anchor="middle" font-family="ui-monospace, monospace" font-size="14" fill="#047857">21</text>
-<line x1="555" y1="1125" x2="578" y2="1125" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
-<rect x="580" y="1098" width="180" height="54" rx="8" fill="#e0ecff" stroke="#3b6ea5"/>
-<text x="670" y="1120" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#1e3a5f">tokenizer.decode</text>
-<text x="670" y="1141" text-anchor="middle" font-family="ui-monospace, monospace" font-size="14" fill="#1e3a5f">&quot;v&quot;</text>
-<text x="30" y="1180" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#64748b">位置表 P 是本节新增的；1.5 加调匀，1.6 加混合，1.7 才有可训练的输出矩阵。</text>
+<line x1="560" y1="1047" x2="560" y2="1097" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="485" y="1098" width="150" height="54" rx="8" fill="#ecfdf5" stroke="#047857"/>
+<text x="560" y="1120" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#064e3b">分数最大的编号</text>
+<text x="560" y="1141" text-anchor="middle" font-family="ui-monospace, monospace" font-size="14" fill="#047857">21</text>
+<line x1="635" y1="1125" x2="653" y2="1125" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="655" y="1098" width="180" height="54" rx="8" fill="#e0ecff" stroke="#3b6ea5"/>
+<text x="745" y="1120" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#1e3a5f">tokenizer.decode</text>
+<text x="745" y="1141" text-anchor="middle" font-family="ui-monospace, monospace" font-size="14" fill="#1e3a5f">&quot;v&quot;</text>
+<text x="30" y="1180" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#64748b">位置表 P 是本节新增的；1.5 加调匀，1.6 加混合，1.7 组装 block，1.8 换成共享的词嵌入矩阵（权重绑定）。</text>
 <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#64748b"/></marker></defs>
 </svg>
