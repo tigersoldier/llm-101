@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 560" role="img" aria-labelledby="title desc">
+<title id="title">embedding：同一组 4 个符号的 3 维坐标</title>
+<desc id="desc">4 个符号 a、b、c、d 各有一行 3 个稠密数字：a [0.2, -0.1, 0.4]，b [0.3, -0.2, 0.5]，c [-0.4, 0.3, -0.2]，d [-0.5, 0.4, -0.3]。蓝色表示正数，橙色表示负数，颜色越深绝对值越大。从 a 到 b、c、d 的距离分别约为 0.173、0.938、1.109，所以 a 离 b 最近、离 d 最远。</desc>
+<rect width="560" height="560" fill="#ffffff"/>
+<text x="24" y="34" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="17" font-weight="600" fill="#1f2937">embedding：每个符号一组坐标</text>
+<text x="24" y="58" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#64748b">同一组 4 个符号的 3 维嵌入；数值是训练后的示意值。</text>
+
+<text x="166" y="82" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="11" font-weight="600" fill="#475569">维度（3 列）→</text>
+<text x="24" y="198" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="11" font-weight="600" fill="#475569">符号（4 行）↓</text>
+
+<text x="204" y="100" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#475569">1</text>
+<text x="280" y="100" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#475569">2</text>
+<text x="356" y="100" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#475569">3</text>
+
+<text x="154" y="136" text-anchor="end" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">a</text>
+<text x="154" y="180" text-anchor="end" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">b</text>
+<text x="154" y="224" text-anchor="end" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">c</text>
+<text x="154" y="268" text-anchor="end" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">d</text>
+
+<g stroke="#94a3b8" stroke-width="1">
+  <rect x="166" y="110" width="76" height="44" fill="#dbeafe"/>
+  <rect x="242" y="110" width="76" height="44" fill="#ffedd5"/>
+  <rect x="318" y="110" width="76" height="44" fill="#93c5fd"/>
+  <rect x="166" y="154" width="76" height="44" fill="#bfdbfe"/>
+  <rect x="242" y="154" width="76" height="44" fill="#fed7aa"/>
+  <rect x="318" y="154" width="76" height="44" fill="#60a5fa"/>
+  <rect x="166" y="198" width="76" height="44" fill="#fb923c"/>
+  <rect x="242" y="198" width="76" height="44" fill="#bfdbfe"/>
+  <rect x="318" y="198" width="76" height="44" fill="#fed7aa"/>
+  <rect x="166" y="242" width="76" height="44" fill="#f97316"/>
+  <rect x="242" y="242" width="76" height="44" fill="#93c5fd"/>
+  <rect x="318" y="242" width="76" height="44" fill="#fdba74"/>
+</g>
+<g text-anchor="middle" font-family="ui-monospace, monospace" font-size="14" font-weight="600">
+  <text x="204" y="138" fill="#1e3a5f">0.2</text>
+  <text x="280" y="138" fill="#7c2d12">-0.1</text>
+  <text x="356" y="138" fill="#1e3a5f">0.4</text>
+  <text x="204" y="182" fill="#1e3a5f">0.3</text>
+  <text x="280" y="182" fill="#7c2d12">-0.2</text>
+  <text x="356" y="182" fill="#1e3a5f">0.5</text>
+  <text x="204" y="226" fill="#7c2d12">-0.4</text>
+  <text x="280" y="226" fill="#1e3a5f">0.3</text>
+  <text x="356" y="226" fill="#7c2d12">-0.2</text>
+  <text x="204" y="270" fill="#7c2d12">-0.5</text>
+  <text x="280" y="270" fill="#1e3a5f">0.4</text>
+  <text x="356" y="270" fill="#7c2d12">-0.3</text>
+</g>
+
+<text x="24" y="314" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="11.5" font-weight="600" fill="#475569">从 a 到其他符号的距离（3 维欧氏距离）</text>
+
+<line x1="128.8" y1="397.1" x2="431.2" y2="346.9" stroke="#3b6ea5" stroke-width="2.5"/>
+<line x1="129" y1="400" x2="431" y2="400" stroke="#94a3b8" stroke-width="1.5"/>
+<line x1="128.8" y1="402.9" x2="431.2" y2="453.1" stroke="#94a3b8" stroke-width="1.5"/>
+<text x="280" y="358" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" font-weight="600" fill="#3b6ea5">0.173</text>
+<text x="280" y="388" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#64748b">0.938</text>
+<text x="280" y="455" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#64748b">1.109</text>
+
+<circle cx="111" cy="400" r="18" fill="#dbeafe" stroke="#3b6ea5" stroke-width="1.5"/>
+<text x="111" y="405" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" font-weight="600" fill="#1e3a5f">a</text>
+<circle cx="449" cy="344" r="18" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5"/>
+<text x="449" y="349" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">b</text>
+<circle cx="449" cy="400" r="18" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5"/>
+<text x="449" y="405" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">c</text>
+<circle cx="449" cy="456" r="18" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5"/>
+<text x="449" y="461" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">d</text>
+
+<text x="24" y="492" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="9.5" fill="#64748b">节点位置只是示意，不按坐标比例。</text>
+
+<rect x="40" y="506" width="10" height="12" fill="#dbeafe"/>
+<rect x="52" y="506" width="10" height="12" fill="#93c5fd"/>
+<rect x="64" y="506" width="10" height="12" fill="#60a5fa"/>
+<text x="80" y="516" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="10" fill="#475569">正数</text>
+<rect x="150" y="506" width="10" height="12" fill="#ffedd5"/>
+<rect x="162" y="506" width="10" height="12" fill="#fdba74"/>
+<rect x="174" y="506" width="10" height="12" fill="#f97316"/>
+<text x="190" y="516" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="10" fill="#475569">负数</text>
+<text x="280" y="516" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="10" fill="#475569">颜色越深 = 绝对值越大</text>
+
+<text x="24" y="540" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="10.5" fill="#64748b">a 与 b 最近（0.173），a 与 d 最远（1.109）；距离由 3 个分量共同决定。</text>
+</svg>

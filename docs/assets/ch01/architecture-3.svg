@@ -8,17 +8,17 @@
 <text x="135" y="106" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="16" font-weight="600" fill="#1f2937">文字</text>
 <text x="135" y="130" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#475569">the cat sat</text>
 <text x="625" y="119" text-anchor="end" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#047857">真</text>
-<line x1="380" y1="148" x2="380" y2="168" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+<line x1="380" y1="144" x2="380" y2="170" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
 <rect x="110" y="172" width="540" height="64" rx="10" fill="#e0ecff" stroke="#3b6ea5"/>
 <text x="135" y="198" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="16" font-weight="600" fill="#1f2937">编号</text>
 <text x="135" y="222" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#475569">CharacterTokenizer（分词器）</text>
 <text x="625" y="211" text-anchor="end" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#047857">真</text>
-<line x1="380" y1="240" x2="380" y2="260" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+<line x1="380" y1="236" x2="380" y2="262" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
 <rect x="110" y="264" width="540" height="64" rx="10" fill="#e0ecff" stroke="#3b6ea5"/>
 <text x="135" y="290" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="16" font-weight="600" fill="#1f2937">数字</text>
 <text x="135" y="314" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#475569">Embedding（嵌入表）</text>
 <text x="625" y="303" text-anchor="end" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#047857">真</text>
-<line x1="380" y1="332" x2="380" y2="352" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+<line x1="380" y1="328" x2="380" y2="354" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
 <rect x="110" y="356" width="540" height="64" rx="10" fill="#f8fafc" stroke="#94a3b8" stroke-dasharray="6 4"/>
 <text x="135" y="382" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="16" font-weight="600" fill="#1f2937">答案</text>
 <text x="135" y="406" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#475569">临时：输出向量 → 分数 → 字符</text>

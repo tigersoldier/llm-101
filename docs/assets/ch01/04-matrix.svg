@@ -5,11 +5,11 @@
   <text x="30" y="36" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="18" font-weight="600" fill="#1f2937">2 维张量 = 矩阵：形状 [2, 3]</text>
 
   <text x="285" y="78" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#64748b">列 0</text>
-  <text x="385" y="78" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#64748b">列 1</text>
-  <text x="485" y="78" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#64748b">列 2</text>
+  <text x="375" y="78" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#64748b">列 1</text>
+  <text x="465" y="78" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#64748b">列 2</text>
 
   <text x="200" y="125" text-anchor="end" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#64748b">行 0</text>
-  <text x="200" y="195" text-anchor="end" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#64748b">行 1</text>
+  <text x="200" y="185" text-anchor="end" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#64748b">行 1</text>
 
   <g stroke="#94a3b8" stroke-width="1.5" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16" fill="#1f2937" text-anchor="middle">
     <rect x="240" y="90" width="90" height="60" fill="#e0ecff"/>

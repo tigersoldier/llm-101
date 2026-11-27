@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 560" role="img" aria-labelledby="title desc">
+<title id="title">one-hot：4 个符号的 4 维表示</title>
+<desc id="desc">4 个符号 a、b、c、d 各占一行，每行 4 个分量，只有对应符号的一格是 1，其余是 0。任意两行都在两个位置上一蓝一灰，所以欧氏距离都是 √2 ≈ 1.414，点积都是 0；灰色连线表示所有 6 对符号都等距。</desc>
+<rect width="560" height="560" fill="#ffffff"/>
+<text x="24" y="34" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="17" font-weight="600" fill="#1f2937">one-hot：每行只有一个 1</text>
+<text x="24" y="58" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#64748b">4 个符号、4 个分量；蓝色格子表示 1，灰色格子表示 0。</text>
+
+<text x="152" y="82" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="11" font-weight="600" fill="#475569">分量（4 列）→</text>
+<text x="24" y="198" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="11" font-weight="600" fill="#475569">符号（4 行）↓</text>
+
+<text x="184" y="100" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#475569">a</text>
+<text x="248" y="100" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#475569">b</text>
+<text x="312" y="100" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#475569">c</text>
+<text x="376" y="100" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#475569">d</text>
+
+<text x="140" y="136" text-anchor="end" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">a</text>
+<text x="140" y="180" text-anchor="end" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">b</text>
+<text x="140" y="224" text-anchor="end" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">c</text>
+<text x="140" y="268" text-anchor="end" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">d</text>
+
+<g stroke="#94a3b8" stroke-width="1">
+  <rect x="152" y="110" width="64" height="44" fill="#3b82f6"/>
+  <rect x="216" y="110" width="64" height="44" fill="#e5e7eb"/>
+  <rect x="280" y="110" width="64" height="44" fill="#e5e7eb"/>
+  <rect x="344" y="110" width="64" height="44" fill="#e5e7eb"/>
+  <rect x="152" y="154" width="64" height="44" fill="#e5e7eb"/>
+  <rect x="216" y="154" width="64" height="44" fill="#3b82f6"/>
+  <rect x="280" y="154" width="64" height="44" fill="#e5e7eb"/>
+  <rect x="344" y="154" width="64" height="44" fill="#e5e7eb"/>
+  <rect x="152" y="198" width="64" height="44" fill="#e5e7eb"/>
+  <rect x="216" y="198" width="64" height="44" fill="#e5e7eb"/>
+  <rect x="280" y="198" width="64" height="44" fill="#3b82f6"/>
+  <rect x="344" y="198" width="64" height="44" fill="#e5e7eb"/>
+  <rect x="152" y="242" width="64" height="44" fill="#e5e7eb"/>
+  <rect x="216" y="242" width="64" height="44" fill="#e5e7eb"/>
+  <rect x="280" y="242" width="64" height="44" fill="#e5e7eb"/>
+  <rect x="344" y="242" width="64" height="44" fill="#3b82f6"/>
+</g>
+<g text-anchor="middle" font-family="ui-monospace, monospace" font-size="14" font-weight="600">
+  <text x="184" y="138" fill="#ffffff">1</text>
+  <text x="248" y="138" fill="#475569">0</text>
+  <text x="312" y="138" fill="#475569">0</text>
+  <text x="376" y="138" fill="#475569">0</text>
+  <text x="184" y="182" fill="#475569">0</text>
+  <text x="248" y="182" fill="#ffffff">1</text>
+  <text x="312" y="182" fill="#475569">0</text>
+  <text x="376" y="182" fill="#475569">0</text>
+  <text x="184" y="226" fill="#475569">0</text>
+  <text x="248" y="226" fill="#475569">0</text>
+  <text x="312" y="226" fill="#ffffff">1</text>
+  <text x="376" y="226" fill="#475569">0</text>
+  <text x="184" y="270" fill="#475569">0</text>
+  <text x="248" y="270" fill="#475569">0</text>
+  <text x="312" y="270" fill="#475569">0</text>
+  <text x="376" y="270" fill="#ffffff">1</text>
+</g>
+
+<rect x="40" y="304" width="480" height="54" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="280" y="326" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="11.5" fill="#1f2937">任意两行只有 2 个分量不同：距离 √2 ≈ 1.414，点积 0。</text>
+<text x="280" y="344" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="10.5" fill="#64748b">所以 one-hot 看不出哪两个符号更接近。</text>
+
+<text x="40" y="382" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#475569">所有 6 对符号都等距（灰色连线）：</text>
+<text x="370" y="382" text-anchor="end" font-family="ui-monospace, monospace" font-size="10" fill="#64748b">每对 √2</text>
+
+<g font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">
+  <text x="40" y="410">a</text>
+  <line x1="52" y1="406" x2="92" y2="406" stroke="#94a3b8" stroke-width="2"/>
+  <text x="100" y="410">b</text>
+  <text x="134" y="410" font-size="10.5" fill="#64748b">√2</text>
+  <text x="205" y="410">a</text>
+  <line x1="217" y1="406" x2="257" y2="406" stroke="#94a3b8" stroke-width="2"/>
+  <text x="265" y="410">c</text>
+  <text x="299" y="410" font-size="10.5" fill="#64748b">√2</text>
+  <text x="370" y="410">a</text>
+  <line x1="382" y1="406" x2="422" y2="406" stroke="#94a3b8" stroke-width="2"/>
+  <text x="430" y="410">d</text>
+  <text x="464" y="410" font-size="10.5" fill="#64748b">√2</text>
+  <text x="40" y="442">b</text>
+  <line x1="52" y1="438" x2="92" y2="438" stroke="#94a3b8" stroke-width="2"/>
+  <text x="100" y="442">c</text>
+  <text x="134" y="442" font-size="10.5" fill="#64748b">√2</text>
+  <text x="205" y="442">b</text>
+  <line x1="217" y1="438" x2="257" y2="438" stroke="#94a3b8" stroke-width="2"/>
+  <text x="265" y="442">d</text>
+  <text x="299" y="442" font-size="10.5" fill="#64748b">√2</text>
+  <text x="370" y="442">c</text>
+  <line x1="382" y1="438" x2="422" y2="438" stroke="#94a3b8" stroke-width="2"/>
+  <text x="430" y="442">d</text>
+  <text x="464" y="442" font-size="10.5" fill="#64748b">√2</text>
+</g>
+
+<rect x="40" y="506" width="12" height="12" fill="#3b82f6"/>
+<text x="58" y="516" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="10" fill="#475569">蓝色格子 = 1</text>
+<rect x="190" y="506" width="12" height="12" fill="#e5e7eb" stroke="#94a3b8"/>
+<text x="208" y="516" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="10" fill="#475569">灰色格子 = 0</text>
+<line x1="340" y1="512" x2="370" y2="512" stroke="#94a3b8" stroke-width="2"/>
+<text x="378" y="516" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="10" fill="#475569">任意一对，距离相同</text>
+
+<text x="24" y="540" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="10" fill="#64748b">one-hot 能区分符号，但所有符号两两等距。</text>
+</svg>
