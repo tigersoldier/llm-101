@@ -65,7 +65,7 @@
 <text x="630.0" y="204" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">⋯</text>
 <text x="690.0" y="204" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">15</text>
 <line x1="600" y1="358" x2="600" y2="398" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
-<rect x="200" y="400" width="800" height="140" rx="10" fill="#fef3c7" stroke="#b45309"/>
+<rect x="200" y="400" width="800" height="156" rx="10" fill="#fef3c7" stroke="#b45309"/>
 <text x="600" y="420" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="12" font-weight="600" fill="#7c2d12">TransformerBlock 0</text>
 <rect x="480" y="444" width="60" height="24" fill="#fffbeb" stroke="#b45309"/>
 <text x="510.0" y="460.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" font-weight="normal" fill="#1f2937">0.034</text>
@@ -107,8 +107,8 @@
 <text x="570.0" y="438" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">1</text>
 <text x="630.0" y="438" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">⋯</text>
 <text x="690.0" y="438" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">15</text>
-<line x1="600" y1="540" x2="600" y2="578" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
-<rect x="200" y="580" width="800" height="140" rx="10" fill="#fef3c7" stroke="#b45309"/>
+<line x1="600" y1="556" x2="600" y2="578" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+<rect x="200" y="580" width="800" height="156" rx="10" fill="#fef3c7" stroke="#b45309"/>
 <text x="600" y="600" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="12" font-weight="600" fill="#7c2d12">TransformerBlock 1</text>
 <rect x="480" y="624" width="60" height="24" fill="#fffbeb" stroke="#b45309"/>
 <text x="510.0" y="640.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" font-weight="normal" fill="#1f2937">0.037</text>
@@ -150,7 +150,7 @@
 <text x="570.0" y="618" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">1</text>
 <text x="630.0" y="618" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">⋯</text>
 <text x="690.0" y="618" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">15</text>
-<line x1="600" y1="720" x2="600" y2="758" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="600" y1="736" x2="600" y2="758" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
 <text x="480" y="748" text-anchor="start" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="10.5" font-weight="600" fill="#1f2937">final LayerNorm [13,16]</text>
 <rect x="480" y="770" width="60" height="32" fill="#ede9fe" stroke="#6d28d9"/>
 <text x="510.0" y="790.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#1f2937">1.397</text>
