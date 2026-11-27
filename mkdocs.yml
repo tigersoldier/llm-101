@@ -34,7 +34,7 @@ extra_javascript:
 
 nav:
   - 首页: index.md
-  - 课程路线: course/roadmap.md
+  - 课程目录: course/roadmap.md
   - 变量表: variables.md
   - 图表规范: figures.md
   - 第 1 章 看得见的 transformer:
@@ -48,14 +48,35 @@ nav:
       - 1.7 Transformer block: course/ch01/1.7.md
       - 1.8 输出层与整模型: course/ch01/1.8.md
       - 1.9 验收、小结与交接: course/ch01/1.9.md
-  - BPE tokenizer: course/bpe.md
-  - 手写梯度: course/manual-gradients.md
-  - 因果自注意力: course/causal-attention.md
-  - Decoder-only Transformer: course/transformer-model.md
-  - 预训练循环与断点续训: course/training-loop.md
-  - 自回归推理与生成: course/inference.md
-  - 限时实验方案: course/experiment-protocol.md
-  - 实验结果: course/results.md
+  - 第 2 章 真正的 tokenizer:
+      - 章节大纲: course/ch02/index.md
+  - 第 3 章 参数、层与手写梯度:
+      - 章节大纲: course/ch03/index.md
+  - 第 4 章 注意力、block 与整模型反向:
+      - 章节大纲: course/ch04/index.md
+  - 第 5 章 优化器:
+      - 章节大纲: course/ch05/index.md
+  - 第 6 章 训练循环:
+      - 章节大纲: course/ch06/index.md
+  - 第 7 章 真实语料与最终 tokenizer:
+      - 章节大纲: course/ch07/index.md
+  - 第 8 章 缩放与预算:
+      - 章节大纲: course/ch08/index.md
+  - 第 9 章 推理与生成:
+      - 章节大纲: course/ch09/index.md
+  - 第 10 章 限时训练、checkpoint 与续训:
+      - 章节大纲: course/ch10/index.md
+  - 第 11 章 实验、评估与发布:
+      - 章节大纲: course/ch11/index.md
+  - 旧版单页（将被章节替换）:
+      - BPE tokenizer: course/bpe.md
+      - 手写梯度: course/manual-gradients.md
+      - 因果自注意力: course/causal-attention.md
+      - Decoder-only Transformer: course/transformer-model.md
+      - 预训练循环与断点续训: course/training-loop.md
+      - 自回归推理与生成: course/inference.md
+      - 限时实验方案: course/experiment-protocol.md
+      - 实验结果: course/results.md
   - 数据与许可: datasets.md
   - 内容许可: content-license.md
   - 术语表: glossary.md
