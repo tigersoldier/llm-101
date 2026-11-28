@@ -16,6 +16,8 @@ REPO_ROOT = Path(__file__).resolve().parents[3]
 OUTPUT_DIR = REPO_ROOT / "docs" / "assets" / "ch01"
 
 # name, real detail, placeholder detail, real stage, visible(stage)
+# Sections 1.5-1.6 show LayerNorm/GELU and attention as separate stages; from
+# 1.7 they are folded into TransformerBlock, so the aggregate replaces them.
 STEPS = [
     ("文字", "the cat sat", "the cat sat", 0, lambda stage: True),
     (
@@ -27,10 +29,15 @@ STEPS = [
     ),
     ("数字", "Embedding（嵌入表）", "", 3, lambda stage: stage >= 3),
     ("位置", "位置嵌入", "", 4, lambda stage: stage >= 4),
-    ("调匀/筛选", "LayerNorm + GELU", "", 5, lambda stage: stage >= 5),
-    ("混合", "因果多头注意力", "", 6, lambda stage: stage >= 6),
-    ("残差 + MLP", "x + MLP(LayerNorm(x))", "", 7, lambda stage: stage >= 7),
-    ("重复 ×2", "两个 TransformerBlock 串联", "", 7, lambda stage: stage >= 7),
+    ("调匀/筛选", "LayerNorm + GELU", "", 5, lambda stage: 5 <= stage <= 6),
+    ("混合", "因果多头注意力", "", 6, lambda stage: stage == 6),
+    (
+        "TransformerBlock ×2",
+        "两个 block 串联：注意力 + MLP，各带残差",
+        "",
+        7,
+        lambda stage: stage >= 7,
+    ),
     ("最终 LayerNorm", "LayerNorm", "", 7, lambda stage: stage >= 7),
     ("共享输出", "Z Eᵀ → logits", "", 7, lambda stage: stage >= 7),
     (
@@ -74,6 +81,16 @@ def _box(top: int, name: str, detail: str, real: bool) -> str:
 
 def render(stage: int) -> str:
     steps = [step for step in STEPS if step[4](stage)]
+    has_placeholder = any(stage < step[3] for step in steps)
+    if has_placeholder:
+        desc = "实线表示本节已经实现的步骤，虚线表示仍在使用的占位。"
+        legend = "实线 = 已实现，虚线 = 占位"
+        footer = "只画本节已有的步骤；后面的组件在对应小节才出现。"
+    else:
+        desc = "实线表示本节已经实现的步骤；本节没有占位。"
+        legend = "实线 = 已实现"
+        footer = "只画本节已有的步骤；本节没有占位。"
+    desc += "后续小节的组件只在对应小节出现。"
     height = 80 + len(steps) * 92 + 60
     parts = [
         (
@@ -81,10 +98,7 @@ def render(stage: int) -> str:
             'role="img" aria-labelledby="title desc">'
         ),
         f'<title id="title">第 {stage} 节结束时的管线架构</title>',
-        (
-            '<desc id="desc">实线表示本节已经实现的步骤，虚线表示仍在使用的占位。'
-            "后续小节的组件只在对应小节出现。</desc>"
-        ),
+        f'<desc id="desc">{desc}</desc>',
         f'<rect width="760" height="{height}" fill="#ffffff"/>',
         (
             f'<text x="30" y="36" font-family="system-ui, \'Noto Sans CJK SC\', sans-serif" '
@@ -93,7 +107,7 @@ def render(stage: int) -> str:
         (
             '<text x="730" y="36" text-anchor="end" '
             'font-family="system-ui, \'Noto Sans CJK SC\', sans-serif" font-size="13" '
-            'fill="#64748b">实线 = 已实现，虚线 = 占位</text>'
+            f'fill="#64748b">{legend}</text>'
         ),
     ]
 
@@ -119,7 +133,7 @@ def render(stage: int) -> str:
     parts.append(
         f'<text x="30" y="{height - 24}" '
         "font-family=\"system-ui, 'Noto Sans CJK SC', sans-serif\" "
-        'font-size="13" fill="#475569">只画本节已有的步骤；后面的组件在对应小节才出现。</text>'
+        f'font-size="13" fill="#475569">{footer}</text>'
     )
     parts.append(
         '<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" '

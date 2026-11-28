@@ -68,7 +68,7 @@
 <text x="630" y="172" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">⋯</text>
 <text x="690" y="172" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">15</text>
 <line x1="600" y1="306" x2="600" y2="364" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
-<rect x="200" y="366" width="800" height="160" rx="10" fill="#fef3c7" stroke="#b45309"/>
+<rect x="200" y="364" width="800" height="162" rx="10" fill="#fef3c7" stroke="#b45309"/>
 <text x="600" y="392" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="12" font-weight="600" fill="#7c2d12">TransformerBlock 0 [13,16]</text>
 <rect x="480" y="414" width="60" height="24" fill="#fffbeb" stroke="#b45309"/>
 <text x="510" y="430" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" font-weight="normal" fill="#1f2937">0.034</text>
@@ -111,7 +111,7 @@
 <text x="630" y="408" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">⋯</text>
 <text x="690" y="408" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">15</text>
 <line x1="600" y1="526" x2="600" y2="584" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
-<rect x="200" y="586" width="800" height="160" rx="10" fill="#fef3c7" stroke="#b45309"/>
+<rect x="200" y="584" width="800" height="162" rx="10" fill="#fef3c7" stroke="#b45309"/>
 <text x="600" y="612" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="12" font-weight="600" fill="#7c2d12">TransformerBlock 1 [13,16]</text>
 <rect x="480" y="634" width="60" height="24" fill="#fffbeb" stroke="#b45309"/>
 <text x="510" y="650" text-anchor="middle" font-family="ui-monospace, monospace" font-size="8" font-weight="normal" fill="#1f2937">0.037</text>
@@ -198,7 +198,7 @@
 <line x1="600" y1="934" x2="600" y2="992" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
 <text x="560" y="956" text-anchor="end" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="10.5" font-weight="600" fill="#4c1d95">共享输出（weight tying）：logits = <tspan font-style="italic">Z E</tspan>ᵀ</text>
 <text x="560" y="972" text-anchor="end" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="9.5" font-weight="normal" fill="#475569">E 即 token 嵌入 [68,16]，输入与输出共用同一张表</text>
-<rect x="200" y="994" width="800" height="140" rx="10" fill="#f8fafc" stroke="#6d28d9"/>
+<rect x="200" y="992" width="800" height="142" rx="10" fill="#f8fafc" stroke="#6d28d9"/>
 <text x="600" y="1020" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="12" font-weight="600" fill="#4c1d95">logits [13,68]</text>
 <text x="831" y="1038" text-anchor="end" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="10.5" font-weight="600" fill="#1f2937">候选词（vocab 列）→</text>
 <text x="359" y="1077" text-anchor="end" font-family="ui-monospace, monospace" font-size="9" font-weight="normal" fill="#64748b">⋮</text>
