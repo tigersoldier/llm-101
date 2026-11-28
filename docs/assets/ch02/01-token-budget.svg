@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="380" style="width:100%;height:auto" viewBox="0 0 800 380" role="img" aria-labelledby="title desc">
+<title id="title">字符级编号与 16 个上下文位置</title>
+<desc id="desc">英文样例有 24 个字符级编号，超过上下文 16；中文样例有 9 个编号，其中 7 个是未知词元；手写合并后英文有 15 个编号，进入上限。</desc>
+<defs>
+  <pattern id="unknownHatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+    <rect width="8" height="8" fill="#fff7ed"/>
+    <line x1="0" y1="0" x2="0" y2="8" stroke="#c2410c" stroke-width="3"/>
+  </pattern>
+</defs>
+<rect width="800" height="380" fill="#ffffff"/>
+
+<text x="28" y="34" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="20" font-weight="600" fill="#1f2937">字符级编号与 16 个上下文位置</text>
+<text x="28" y="58" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">两条样例都含 &lt;bos&gt; 和 &lt;eos&gt;；手写合并只用于本节对比，不是 2.2 的算法结果。</text>
+
+<rect x="28" y="76" width="12" height="12" fill="#3b6ea5"/>
+<text x="48" y="86" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#334155">已知 token</text>
+<rect x="150" y="76" width="12" height="12" fill="url(#unknownHatch)" stroke="#c2410c" stroke-width="0.8"/>
+<text x="170" y="86" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#334155">未知 &lt;unk&gt;</text>
+<rect x="290" y="76" width="12" height="12" fill="#2f7d5c"/>
+<text x="310" y="86" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#334155">手写合并</text>
+<rect x="410" y="76" width="12" height="12" fill="#c2410c"/>
+<text x="430" y="86" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#334155">超出 16</text>
+<text x="560" y="86" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#c2410c">上下文上限 16</text>
+
+<g stroke="#e2e8f0" stroke-width="1">
+  <line x1="210" y1="120" x2="210" y2="300"/>
+  <line x1="291.67" y1="120" x2="291.67" y2="300"/>
+  <line x1="373.33" y1="120" x2="373.33" y2="300"/>
+  <line x1="455" y1="120" x2="455" y2="300"/>
+  <line x1="536.67" y1="120" x2="536.67" y2="300"/>
+  <line x1="618.33" y1="120" x2="618.33" y2="300"/>
+  <line x1="700" y1="120" x2="700" y2="300"/>
+</g>
+
+<text x="28" y="141" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#1f2937">英文字符级（22 字符）</text>
+<rect x="210" y="120" width="326.67" height="32" fill="#3b6ea5"/>
+<rect x="536.67" y="120" width="163.33" height="32" fill="#c2410c"/>
+<text x="708" y="141" font-family="ui-monospace, monospace" font-size="12" fill="#c2410c">24（超出）</text>
+
+<text x="28" y="211" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#1f2937">中文字符级（7 字符）</text>
+<rect x="210" y="190" width="142.92" height="32" fill="url(#unknownHatch)" stroke="#c2410c" stroke-width="0.8"/>
+<rect x="352.92" y="190" width="40.83" height="32" fill="#3b6ea5"/>
+<text x="402" y="211" font-family="ui-monospace, monospace" font-size="12" fill="#c2410c">9（7 个未知）</text>
+
+<text x="28" y="281" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#1f2937">英文手写合并</text>
+<rect x="210" y="260" width="306.25" height="32" fill="#2f7d5c"/>
+<text x="220" y="281" font-family="ui-monospace, monospace" font-size="12" fill="#ffffff">15（13 + 2）</text>
+
+<line x1="210" y1="300" x2="700" y2="300" stroke="#64748b" stroke-width="1.5"/>
+<line x1="536.67" y1="104" x2="536.67" y2="300" stroke="#c2410c" stroke-width="1.5" stroke-dasharray="5 4"/>
+<g font-family="ui-monospace, monospace" font-size="11" fill="#64748b" text-anchor="middle">
+  <text x="210" y="322">0</text>
+  <text x="291.67" y="322">4</text>
+  <text x="373.33" y="322">8</text>
+  <text x="455" y="322">12</text>
+  <text x="536.67" y="322" fill="#c2410c">16</text>
+  <text x="618.33" y="322">20</text>
+  <text x="700" y="322">24</text>
+</g>
+<text x="455" y="344" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#475569">token 数（含 &lt;bos&gt;/&lt;eos&gt;）</text>
+</svg>
