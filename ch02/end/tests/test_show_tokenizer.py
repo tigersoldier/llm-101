@@ -1,4 +1,4 @@
-"""Tests for the section 2.1 stage-1 command-line report."""
+"""Tests for the stage 1–3 command-line reports."""
 
 from __future__ import annotations
 
@@ -63,3 +63,14 @@ def test_stage_two_learns_and_applies_merges() -> None:
     assert "'a' + 't' -> 'at'" in output
     assert "symbols (5)" in output
     assert "symbols (2)" in output
+
+
+def test_stage_three_trains_teaching_vocabulary() -> None:
+    output = _run_stage(3)
+
+    assert "stage 3 | vocabulary" in output
+    assert "vocab size      512" in output
+    assert "alphabet        143" in output
+    assert "merges          366" in output
+    assert "ids (4)" in output
+    assert "ids (3)" in output

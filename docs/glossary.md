@@ -92,3 +92,4 @@
 |byte-level BPE|字节级 BPE|从 UTF-8 字节而不是码点开始合并；本章只解释，不实现|[2.2](course/ch02/2.2.md)|
 |WordPiece|不译|按合并后语料出现概率的提升选择合并的子词方法；常见于 BERT 一类模型|[2.2](course/ch02/2.2.md)|
 |Unigram|不译|先准备大候选表，再按概率删减的子词方法|[2.2](course/ch02/2.2.md)|
+|initial alphabet|初始码点表|训练语料中出现过的所有不同码点；按字典序放在特殊 token 之后|[2.3](course/ch02/2.3.md)|

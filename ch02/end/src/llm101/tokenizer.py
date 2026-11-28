@@ -1,8 +1,9 @@
-"""BPE tokenizer skeleton (chapter 2).
+"""BPE tokenizer (chapter 2).
 
 The five members used by the rest of the course are ``encode``, ``decode``,
-``vocab_size``, ``bos_id`` and ``eos_id``. Chapter 2 adds ``train``, ``save``
-and ``load``; the merge helpers are introduced in section 2.2.
+``vocab_size``, ``bos_id`` and ``eos_id``. Section 2.2 implements the merge
+helpers; section 2.3 implements vocabulary construction and training. Encoding,
+decoding and persistence arrive in section 2.4.
 """
 
 from __future__ import annotations
@@ -90,7 +91,48 @@ class BPETokenizer:
         *,
         special_tokens: Sequence[str] = SPECIAL_TOKENS,
     ) -> None:
-        raise NotImplementedError("TODO 2.3: build the vocabulary")
+        special_tokens = tuple(special_tokens)
+        initial_tokens = tuple(initial_tokens)
+        merges = tuple((left, right) for left, right in merges)
+
+        if len(set(special_tokens)) != len(special_tokens):
+            raise ValueError("special_tokens must be unique")
+        if any(not token for token in special_tokens):
+            raise ValueError("special tokens cannot be empty")
+        required = {UNKNOWN_TOKEN, BOS_TOKEN, EOS_TOKEN}
+        if not required.issubset(special_tokens):
+            raise ValueError(f"special_tokens must include {sorted(required)}")
+        if len(set(initial_tokens)) != len(initial_tokens):
+            raise ValueError("initial_tokens must be unique")
+        if any(not token for token in initial_tokens):
+            raise ValueError("initial tokens cannot be empty")
+        if set(initial_tokens) & set(special_tokens):
+            raise ValueError("initial tokens cannot collide with special tokens")
+
+        vocabulary = list(special_tokens) + list(initial_tokens)
+        known_tokens = set(vocabulary)
+        special_set = set(special_tokens)
+        for left, right in merges:
+            if not left or not right:
+                raise ValueError("merge pairs cannot contain empty tokens")
+            if left not in known_tokens or right not in known_tokens:
+                raise ValueError(
+                    f"merge references an unknown token: {(left, right)!r}"
+                )
+            merged = left + right
+            if merged in special_set:
+                raise ValueError("a BPE merge cannot create a special token")
+            known_tokens.add(merged)
+            if merged not in vocabulary:
+                vocabulary.append(merged)
+
+        self.special_tokens = special_tokens
+        self.initial_tokens = initial_tokens
+        self.merges = merges
+        self._vocabulary = tuple(vocabulary)
+        self._token_to_id = {
+            token: index for index, token in enumerate(vocabulary)
+        }
 
     @classmethod
     def train(
@@ -102,32 +144,58 @@ class BPETokenizer:
         min_frequency: int = 2,
     ) -> BPETokenizer:
         """Learn a vocabulary from ``texts`` and return a tokenizer."""
-        raise NotImplementedError("TODO 2.3: train the vocabulary")
+        if vocab_size < 1:
+            raise ValueError("vocab_size must be positive")
+        if min_frequency < 1:
+            raise ValueError("min_frequency must be positive")
+
+        materialized = list(texts)
+        if not materialized or not any(materialized):
+            raise ValueError("cannot train without non-empty texts")
+        alphabet = sorted(set("".join(materialized)))
+        special_tokens = tuple(special_tokens)
+        minimum_size = len(special_tokens) + len(alphabet)
+        if vocab_size < minimum_size:
+            raise ValueError(
+                f"vocab_size={vocab_size} is too small for the observed alphabet; "
+                f"need at least {minimum_size}"
+            )
+
+        merges = learn_merges(
+            materialized,
+            vocab_size - minimum_size,
+            min_frequency=min_frequency,
+        )
+        return cls(
+            initial_tokens=tuple(alphabet),
+            merges=merges,
+            special_tokens=special_tokens,
+        )
 
     @property
     def vocabulary(self) -> tuple[str, ...]:
         """Tokens ordered by their integer ids."""
-        raise NotImplementedError("TODO 2.3: expose the vocabulary")
+        return self._vocabulary
 
     @property
     def vocab_size(self) -> int:
         """Number of entries in the vocabulary."""
-        raise NotImplementedError("TODO 2.3: expose the vocabulary size")
+        return len(self._vocabulary)
 
     @property
     def unk_id(self) -> int:
         """Id of the ``<unk>`` token."""
-        raise NotImplementedError("TODO 2.3: expose the unknown-token id")
+        return self._token_to_id[UNKNOWN_TOKEN]
 
     @property
     def bos_id(self) -> int:
         """Id of the ``<bos>`` token."""
-        raise NotImplementedError("TODO 2.3: expose the beginning-of-sequence id")
+        return self._token_to_id[BOS_TOKEN]
 
     @property
     def eos_id(self) -> int:
         """Id of the ``<eos>`` token."""
-        raise NotImplementedError("TODO 2.3: expose the end-of-sequence id")
+        return self._token_to_id[EOS_TOKEN]
 
     def encode(
         self,

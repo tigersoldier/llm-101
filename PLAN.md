@@ -185,7 +185,7 @@ final/                    # 与 ch11/end 逐字节一致
 截至 2026-11-27 的状态：
 
 - 第 1 章已完成：`ch01/start/` 是脚手架（3 个红测试），`ch01/end/` 是完成态（39 passed），正文在 `docs/course/ch01/1.1.md`–`1.9.md`。
-- 第 2 章已规划：`ch02/README.md` 与 `ch02/sections/2.1.md`–`2.6.md` 已写；2.1–2.2 已写完（`ch02/start/`、`ch02/end/`、图 2.1-1/2.1-2 与 2.2-1–2.2-4、正文），2.3–2.6 待写。
+- 第 2 章已规划：`ch02/README.md` 与 `ch02/sections/2.1.md`–`2.6.md` 已写；2.1–2.3 已写完（`ch02/start/`、`ch02/end/`、图 2.1-1/2.1-2、2.2-1–2.2-4 与 2.3-1/2.3-2、正文），2.4–2.6 待写。
 - `scripts/check_snapshots.py` 尚未实现；CI 只跑根目录和 `ch01/end`，还没有章节矩阵。
 - 第 1 章正文里指向旧章号的句子暂不回填；等第 2 章正文开工或章节号稳定后统一做一次指针修订，以本文件 §5 为准。
 
@@ -455,3 +455,5 @@ uv run python scripts/show_placeholder.py --stage 1 "the cat sat"
 
 - 2026-11-27：2.2 已写完：`merge_pair`、`count_pairs`、`learn_merges`，stage 2、7 项合并测试与 4 张图；2.3 起建立教学语料和词表。
 - 2026-11-27：2.2 评审修正：字节级 BPE 的首次介绍改为 2.2 扩展阅读，并同步术语表、章节 README 与正文的固定样例说明。
+
+- 2026-11-27：2.3 已写完：教学语料 `samples/`（400 行、12,709 字符、143 码点）、`BPETokenizer.train` 与 512 词表、stage 3、词表层图与增长图；2.4 起实现编解码。

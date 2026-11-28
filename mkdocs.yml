@@ -52,6 +52,7 @@ nav:
       - 章节大纲: course/ch02/index.md
       - 2.1 起点与本章交付物: course/ch02/2.1.md
       - 2.2 子词与相邻对合并（BPE）: course/ch02/2.2.md
+      - 2.3 训练词表：语料、特殊 token 与目标大小: course/ch02/2.3.md
   - 第 3 章 参数、层与手写梯度:
       - 章节大纲: course/ch03/index.md
   - 第 4 章 注意力、block 与整模型反向:

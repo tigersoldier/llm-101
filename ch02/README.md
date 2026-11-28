@@ -45,7 +45,7 @@ ch02/
 |---|---|---|
 |2.1|第 1 章字符基线 + 手写片段合并占位|英文 24>16；中文 7 个 `<unk>`；手写合并后 13 个符号（加特殊 token 15）|
 |2.2|`merge_pair`、`count_pairs`、`learn_merges`|16 条合并；英文 5 个、中文 2 个片段|
-|2.3|`BPETokenizer.train`、词表顺序、特殊 token|实际词表大小；英文/中文样例的 ids|
+|2.3|`BPETokenizer.train`、词表顺序、特殊 token|512 个 token；英文 4、中文 3 个片段|
 |2.4|`encode`、`decode`、`save`、`load`|往返文本；未知字符的 `<unk>` 行为|
 |2.5|`tokenizer_report.py`|英文/中文的字符数、token 数、压缩率、OOV|
 |2.6|`GPTConfig.vocab_size` + 固定 id 回归|`[T, V]` logits、argmax 片段；回归一致|
@@ -156,7 +156,7 @@ uv run python scripts/show_tokenizer.py --stage 6
 
 - [x] 2.1 起点与本章交付物
 - [x] 2.2 子词与相邻对合并（BPE）
-- [ ] 2.3 训练词表：语料、特殊 token 与目标大小
+- [x] 2.3 训练词表：语料、特殊 token 与目标大小
 - [ ] 2.4 编码与解码：接口与未知字符
 - [ ] 2.5 中英混合与词表评估
 - [ ] 2.6 接入模型、回归测试与交接

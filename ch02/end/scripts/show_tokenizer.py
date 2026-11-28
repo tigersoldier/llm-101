@@ -1,11 +1,13 @@
 """Print the tokenizer pipeline state after a given section.
 
-Section 2.1 implements stage 1 only. Later sections add the BPE stages.
+Stages 1–3 are implemented through section 2.3; later sections add stages 4–6.
 """
 
 from __future__ import annotations
 
 import argparse
+from collections.abc import Sequence
+from pathlib import Path
 
 from llm101.baseline import (
     CHINESE_SAMPLE,
@@ -15,8 +17,9 @@ from llm101.baseline import (
     context_error,
 )
 
-from llm101.tokenizer import Pair, learn_merges, merge_pair
+from llm101.tokenizer import BPETokenizer, Pair, learn_merges, merge_pair
 
+SAMPLES_DIR = Path(__file__).resolve().parents[1] / "samples"
 DEMO_TEXTS: tuple[str, ...] = (
     "the cat sat on the mat",
     "the cat sat on the mat",
@@ -50,7 +53,7 @@ def _print_report(report: BaselineReport) -> None:
     _line("model", "-" if error is None else f"ValueError: {error}")
 
 
-def _apply_merges(text: str, merges: list[Pair]) -> list[str]:
+def _apply_merges(text: str, merges: Sequence[Pair]) -> list[str]:
     symbols = list(text)
     for pair in merges:
         symbols = merge_pair(symbols, pair)
@@ -71,14 +74,55 @@ def _print_stage_two() -> None:
         _line(f"symbols ({len(symbols)})", symbols)
 
 
+def _load_training_texts() -> list[str]:
+    texts: list[str] = []
+    for name in ("english.txt", "chinese.txt"):
+        lines = (SAMPLES_DIR / name).read_text(encoding="utf-8").splitlines()
+        texts.extend(lines)
+    return texts
+
+
+def _print_stage_three() -> None:
+    texts = _load_training_texts()
+    tokenizer = BPETokenizer.train(texts, 512, min_frequency=2)
+    print("stage 3 | vocabulary")
+    _line("corpus", f"{len(texts)} lines")
+    _line("vocab size", tokenizer.vocab_size)
+    _line("alphabet", len(tokenizer.initial_tokens))
+    _line("merges", len(tokenizer.merges))
+    _line("specials", tokenizer.special_tokens)
+
+    print("first merges:")
+    for rank, pair in enumerate(tokenizer.merges[:10], start=1):
+        print(f"{rank:>2}. {pair[0]!r} + {pair[1]!r} -> {pair[0] + pair[1]!r}")
+
+    print("first vocabulary:")
+    for token_id, token in enumerate(tokenizer.vocabulary[:10]):
+        print(f"{token_id:>2}. {token!r}")
+
+    token_to_id = {
+        token: token_id for token_id, token in enumerate(tokenizer.vocabulary)
+    }
+    for text in (ENGLISH_SAMPLE, CHINESE_SAMPLE):
+        symbols = _apply_merges(text, tokenizer.merges)
+        ids = [token_to_id.get(piece, tokenizer.unk_id) for piece in symbols]
+        print()
+        _line("text", text)
+        _line(f"symbols ({len(symbols)})", symbols)
+        _line(f"ids ({len(ids)})", ids)
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--stage", type=int, default=1)
     args = parser.parse_args()
 
-    if args.stage not in (1, 2):
-        parser.error("only --stage 1 and 2 are implemented through section 2.2")
+    if args.stage not in (1, 2, 3):
+        parser.error("only --stage 1 to 3 are implemented through section 2.3")
 
+    if args.stage == 3:
+        _print_stage_three()
+        return
     if args.stage == 2:
         _print_stage_two()
         return

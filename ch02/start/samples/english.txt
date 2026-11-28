@@ -1,0 +1,200 @@
+the cat sat on the mat
+the cat sat on the mat
+the cat sat on the mat
+the cat sat on the mat in the morning.
+the woman sat on the mat after lunch and looked around.
+the girl sat on the mat in the rain.
+the dog sat on the mat on a sunny day and looked around.
+the child sat on the mat at night.
+the boy sat on the mat before dinner and looked around.
+the little rabbit sat on the mat after school.
+the fox sat on the mat in the afternoon and looked around.
+the old man sat on the mat before breakfast.
+the bird sat on the mat by the fire and looked around.
+the cat sat in the garden in the morning.
+the woman sat in the garden after lunch and looked around.
+the girl sat in the garden in the rain.
+the dog sat in the garden on a sunny day and looked around.
+the child sat in the garden at night.
+the boy sat in the garden before dinner and looked around.
+the little rabbit sat in the garden after school.
+the fox sat in the garden in the afternoon and looked around.
+the old man sat in the garden before breakfast.
+the bird sat in the garden by the fire and looked around.
+the cat sat by the door in the morning.
+the woman sat by the door after lunch and looked around.
+the girl sat by the door in the rain.
+the dog sat by the door on a sunny day and looked around.
+the child sat by the door at night.
+the boy sat by the door before dinner and looked around.
+the little rabbit sat by the door after school.
+the fox sat by the door in the afternoon and looked around.
+the old man sat by the door before breakfast.
+the bird sat by the door by the fire and looked around.
+the cat sat near the tree in the morning.
+the woman sat near the tree after lunch and looked around.
+the girl sat near the tree in the rain.
+the dog sat near the tree on a sunny day and looked around.
+the child sat near the tree at night.
+the boy sat near the tree before dinner and looked around.
+the little rabbit sat near the tree after school.
+the fox sat near the tree in the afternoon and looked around.
+the old man sat near the tree before breakfast.
+the bird sat near the tree by the fire and looked around.
+the cat sat on the bed in the morning.
+the woman sat on the bed after lunch and looked around.
+the girl sat on the bed in the rain.
+the dog sat on the bed on a sunny day and looked around.
+the child sat on the bed at night.
+the boy sat on the bed before dinner and looked around.
+the little rabbit sat on the bed after school.
+the fox sat on the bed in the afternoon and looked around.
+the old man sat on the bed before breakfast.
+the bird sat on the bed by the fire and looked around.
+the cat sat in the room in the morning.
+the woman sat in the room after lunch and looked around.
+the girl sat in the room in the rain.
+the dog sat in the room on a sunny day and looked around.
+the child sat in the room at night.
+the boy sat in the room before dinner and looked around.
+the little rabbit sat in the room after school.
+the fox sat in the room in the afternoon and looked around.
+the old man sat in the room before breakfast.
+the bird sat in the room by the fire and looked around.
+the cat sat at the window in the morning.
+the woman sat at the window after lunch and looked around.
+the girl sat at the window in the rain.
+the dog sat at the window on a sunny day and looked around.
+the child sat at the window at night.
+the boy sat at the window before dinner and looked around.
+the little rabbit sat at the window after school.
+the fox sat at the window in the afternoon and looked around.
+the old man sat at the window before breakfast.
+the bird sat at the window by the fire and looked around.
+the cat sat under the table in the morning.
+the woman sat under the table after lunch and looked around.
+the girl sat under the table in the rain.
+the dog sat under the table on a sunny day and looked around.
+the child sat under the table at night.
+the boy sat under the table before dinner and looked around.
+the little rabbit sat under the table after school.
+the fox sat under the table in the afternoon and looked around.
+the old man sat under the table before breakfast.
+the bird sat under the table by the fire and looked around.
+the cat sat by the river in the morning.
+the woman sat by the river after lunch and looked around.
+the girl sat by the river in the rain.
+the dog sat by the river on a sunny day and looked around.
+the child sat by the river at night.
+the boy sat by the river before dinner and looked around.
+the little rabbit sat by the river after school.
+the fox sat by the river in the afternoon and looked around.
+the old man sat by the river before breakfast.
+the bird sat by the river by the fire and looked around.
+the cat sat in the kitchen in the morning.
+the woman sat in the kitchen after lunch and looked around.
+the girl sat in the kitchen in the rain.
+the dog sat in the kitchen on a sunny day and looked around.
+the child sat in the kitchen at night.
+the boy sat in the kitchen before dinner and looked around.
+the little rabbit sat in the kitchen after school.
+the fox sat in the kitchen in the afternoon and looked around.
+the old man sat in the kitchen before breakfast.
+the bird sat in the kitchen by the fire and looked around.
+the cat ran on the mat in the morning.
+the woman ran on the mat after lunch and looked around.
+the girl ran on the mat in the rain.
+the dog ran on the mat on a sunny day and looked around.
+the child ran on the mat at night.
+the boy ran on the mat before dinner and looked around.
+the little rabbit ran on the mat after school.
+the fox ran on the mat in the afternoon and looked around.
+the old man ran on the mat before breakfast.
+the bird ran on the mat by the fire and looked around.
+the cat ran in the garden in the morning.
+the woman ran in the garden after lunch and looked around.
+the girl ran in the garden in the rain.
+the dog ran in the garden on a sunny day and looked around.
+the child ran in the garden at night.
+the boy ran in the garden before dinner and looked around.
+the little rabbit ran in the garden after school.
+the fox ran in the garden in the afternoon and looked around.
+the old man ran in the garden before breakfast.
+the bird ran in the garden by the fire and looked around.
+the cat ran by the door in the morning.
+the woman ran by the door after lunch and looked around.
+the girl ran by the door in the rain.
+the dog ran by the door on a sunny day and looked around.
+the child ran by the door at night.
+the boy ran by the door before dinner and looked around.
+the little rabbit ran by the door after school.
+the fox ran by the door in the afternoon and looked around.
+the old man ran by the door before breakfast.
+the bird ran by the door by the fire and looked around.
+the cat ran near the tree in the morning.
+the woman ran near the tree after lunch and looked around.
+the girl ran near the tree in the rain.
+the dog ran near the tree on a sunny day and looked around.
+the child ran near the tree at night.
+the boy ran near the tree before dinner and looked around.
+the little rabbit ran near the tree after school.
+the fox ran near the tree in the afternoon and looked around.
+the old man ran near the tree before breakfast.
+the bird ran near the tree by the fire and looked around.
+the cat ran on the bed in the morning.
+the woman ran on the bed after lunch and looked around.
+the girl ran on the bed in the rain.
+the dog ran on the bed on a sunny day and looked around.
+the child ran on the bed at night.
+the boy ran on the bed before dinner and looked around.
+the little rabbit ran on the bed after school.
+the fox ran on the bed in the afternoon and looked around.
+the old man ran on the bed before breakfast.
+the bird ran on the bed by the fire and looked around.
+the cat ran in the room in the morning.
+the woman ran in the room after lunch and looked around.
+the girl ran in the room in the rain.
+the dog ran in the room on a sunny day and looked around.
+the child ran in the room at night.
+the boy ran in the room before dinner and looked around.
+the little rabbit ran in the room after school.
+the fox ran in the room in the afternoon and looked around.
+the old man ran in the room before breakfast.
+the bird ran in the room by the fire and looked around.
+the cat ran at the window in the morning.
+the woman ran at the window after lunch and looked around.
+the girl ran at the window in the rain.
+the dog ran at the window on a sunny day and looked around.
+the child ran at the window at night.
+the boy ran at the window before dinner and looked around.
+the little rabbit ran at the window after school.
+the fox ran at the window in the afternoon and looked around.
+the old man ran at the window before breakfast.
+the bird ran at the window by the fire and looked around.
+the cat ran under the table in the morning.
+the woman ran under the table after lunch and looked around.
+the girl ran under the table in the rain.
+the dog ran under the table on a sunny day and looked around.
+the child ran under the table at night.
+the boy ran under the table before dinner and looked around.
+the little rabbit ran under the table after school.
+the fox ran under the table in the afternoon and looked around.
+the old man ran under the table before breakfast.
+the bird ran under the table by the fire and looked around.
+the cat ran by the river in the morning.
+the woman ran by the river after lunch and looked around.
+the girl ran by the river in the rain.
+the dog ran by the river on a sunny day and looked around.
+the child ran by the river at night.
+the boy ran by the river before dinner and looked around.
+the little rabbit ran by the river after school.
+the fox ran by the river in the afternoon and looked around.
+the old man ran by the river before breakfast.
+the bird ran by the river by the fire and looked around.
+the cat ran in the kitchen in the morning.
+the woman ran in the kitchen after lunch and looked around.
+the girl ran in the kitchen in the rain.
+the dog ran in the kitchen on a sunny day and looked around.
+the child ran in the kitchen at night.
+the boy ran in the kitchen before dinner and looked around.
+the little rabbit ran in the kitchen after school.

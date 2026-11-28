@@ -5,6 +5,7 @@ work, and the model check is part of the 2.6 acceptance. Failure messages
 contain the section that owns the missing implementation.
 """
 
+import pytest
 import torch
 
 from llm101.model import GPTConfig, TinyGPT
@@ -75,6 +76,79 @@ def test_learn_merges_stops_at_num_merges() -> None:
         ("l", "o"),
         ("lo", "w"),
     ]
+
+
+def test_vocabulary_order_and_ids() -> None:
+    """The vocabulary is special tokens, then alphabet, then merges."""
+    tokenizer = BPETokenizer.train(TEXTS, 12)
+
+    assert tokenizer.vocab_size == 12
+    assert tokenizer.vocabulary == (
+        "<unk>",
+        "<bos>",
+        "<eos>",
+        "e",
+        "l",
+        "o",
+        "r",
+        "s",
+        "t",
+        "w",
+        "lo",
+        "low",
+    )
+    assert (tokenizer.unk_id, tokenizer.bos_id, tokenizer.eos_id) == (0, 1, 2)
+
+
+def test_train_rejects_small_vocab_size() -> None:
+    """The target must fit the special tokens and the observed alphabet."""
+    with pytest.raises(ValueError, match="at least 10"):
+        BPETokenizer.train(TEXTS, 9)
+
+
+def test_train_merge_count_matches_target() -> None:
+    """The target size determines how many merges are attempted."""
+    assert len(BPETokenizer.train(TEXTS, 12).merges) == 2
+    assert len(BPETokenizer.train(TEXTS, 13).merges) == 3
+
+
+def test_train_stops_at_min_frequency() -> None:
+    """A high target can still stop when no pair reaches the threshold."""
+    tokenizer = BPETokenizer.train(TEXTS, 512, min_frequency=2)
+
+    assert tokenizer.vocab_size == 13
+    assert len(tokenizer.merges) == 3
+
+
+def test_train_rejects_duplicate_special_tokens() -> None:
+    """Special tokens must be unique."""
+    with pytest.raises(ValueError, match="unique"):
+        BPETokenizer.train(
+            TEXTS,
+            12,
+            special_tokens=("<unk>", "<bos>", "<eos>", "<eos>"),
+        )
+
+
+def test_duplicate_merge_result() -> None:
+    """A merged string that already exists does not grow the vocabulary."""
+    tokenizer = BPETokenizer(
+        ("a", "b", "c"),
+        (("a", "b"), ("b", "c"), ("ab", "c"), ("a", "bc")),
+    )
+
+    assert tokenizer.vocab_size == 9
+    assert tokenizer.vocabulary == (
+        "<unk>",
+        "<bos>",
+        "<eos>",
+        "a",
+        "b",
+        "c",
+        "ab",
+        "bc",
+        "abc",
+    )
 
 
 def test_tokenizer_contract_round_trip() -> None:

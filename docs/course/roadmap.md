@@ -12,7 +12,7 @@
 |章|标题|状态|这一章做什么|
 |---|---|---|---|
 |1|[看得见的 transformer](ch01/index.md)|已完成|完整前向、字符级 tokenizer、SVG 图与命令行输出；权重随机，不训练|
-|2|[真正的 tokenizer](ch02/index.md)|写作中|2.1–2.2 已上线；BPE、英中码点、联合词表、压缩率与 OOV；建立教学语料|
+|2|[真正的 tokenizer](ch02/index.md)|写作中|2.1–2.3 已上线；BPE、英中码点、联合词表、压缩率与 OOV；建立教学语料|
 |3|[参数、层与手写梯度](ch03/index.md)|大纲|`Parameter`、各层反向、softmax 交叉熵、next-token 目标与有限差分|
 |4|[注意力、block 与整模型反向](ch04/index.md)|大纲|softmax 雅可比、因果 mask、多头、残差/Pre-LN、绑定权重梯度|
 |5|[优化器](ch05/index.md)|大纲|SGD、AdamW、偏差修正、weight decay、梯度裁剪、状态保存|

@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="310" style="width:100%;height:auto" viewBox="0 0 820 310" role="img" aria-labelledby="title desc">
+<title id="title">词表的三层</title>
+<desc id="desc">词表由 3 个特殊 token、143 个初始码点和 366 个合并结果组成，共 512 个 token。</desc>
+<rect width="820" height="310" fill="#ffffff"/>
+<text x="28" y="34" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="20" font-weight="600" fill="#1f2937">词表的三层：3 + 143 + 366 = 512</text>
+<text x="28" y="58" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">id 从 0 开始按层分配；方框宽度为示意，数字是实际值。</text>
+<text x="28" y="110" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#5b21b6">特殊 token</text>
+<rect x="190" y="90" width="80" height="34" rx="6" fill="#ede9fe" stroke="#6d28d9"/>
+<text x="230" y="112" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#3b0764">3</text>
+<text x="282" y="112" font-family="ui-monospace, monospace" font-size="11" fill="#475569">&lt;unk&gt;, &lt;bos&gt;, &lt;eos&gt; · id 0–2</text>
+<text x="28" y="170" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#1e3a5f">初始码点</text>
+<rect x="190" y="150" width="300" height="34" rx="6" fill="#dbeafe" stroke="#3b6ea5"/>
+<text x="340" y="172" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1e3a5f">143</text>
+<text x="502" y="172" font-family="ui-monospace, monospace" font-size="11" fill="#475569">id 3–145 · 按码点排序</text>
+<text x="28" y="230" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#14532d">合并结果</text>
+<rect x="190" y="210" width="560" height="34" rx="6" fill="#dcfce7" stroke="#2f7d5c"/>
+<text x="470" y="232" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#14532d">366</text>
+<text x="28" y="286" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#64748b">合并结果按 merge rank 依次追加；本语料的 366 次合并各产生一个新 token，所以词表正好 512。</text>
+</svg>
