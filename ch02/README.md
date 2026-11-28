@@ -69,7 +69,7 @@ ch02/
 - 保留：`model.py`、`layers.py`、`attention.py`、`parameters.py`、`tests/test_structure.py`、`tests/test_layers.py`。
 - 新增：`tokenizer.py` 的 BPE 空壳、`samples/` 与 `samples/README.md`、三个红测试。
 
-`ch02/end/` 不保留第 1 章专用文件，也不做兼容层；2.1 的字符基线在 `ch01/end` 里跑，`show_tokenizer.py --stage 1` 使用脚本内冻结的字符表副本。
+`ch02/end/` 不保留第 1 章专用文件，也不做兼容层；2.1 的字符基线在 `ch01/end` 里跑，`show_tokenizer.py --stage 1` 使用 `src/llm101/baseline.py` 里冻结的字符表副本。
 
 ### 运行方式
 
@@ -84,7 +84,7 @@ uv run python scripts/show_tokenizer.py --stage 6
 ```
 
 - `--stage N` 只使用第 N 节已有的步骤；后面的步骤不出现。
-- stage 1 的字符基线是脚本里冻结的副本，只用于对比；库接口从 2.2 起是 BPE。
+- stage 1 的字符基线是 `src/llm101/baseline.py` 里冻结的副本，只用于对比；库接口从 2.2 起是 BPE。
 - 每节正文末尾贴 `--stage N` 的实际输出：2.1 是编号、符号数和 `<unk>` 数；2.2 起是符号序列或 ids；2.6 是 logits 形状、argmax 和回归结果。
 
 ### 图与架构

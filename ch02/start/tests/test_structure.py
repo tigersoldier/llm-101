@@ -1,4 +1,4 @@
-"""Scaffolding tests: all three are red until the matching section is written."""
+"""Tests for the chapter 1 forward pass; chapter 2 keeps them green."""
 
 import pytest
 import torch

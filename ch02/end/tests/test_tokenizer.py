@@ -1,6 +1,7 @@
 """Tests for the chapter 2 BPE tokenizer.
 
-The three checks are red until sections 2.2, 2.4 and 2.6. Failure messages
+The first check turns green in 2.2; the other two need the 2.4 encode/decode
+work, and the model check is part of the 2.6 acceptance. Failure messages
 contain the section that owns the missing implementation.
 """
 
@@ -34,7 +35,7 @@ def test_tokenizer_contract_round_trip() -> None:
 
 
 def test_vocab_size_matches_model() -> None:
-    """TODO 2.6: the tokenizer vocabulary feeds the model config."""
+    """2.6 acceptance: the tokenizer vocabulary feeds the model config."""
     tokenizer = BPETokenizer.train(TEXTS, 12)
     config = GPTConfig(
         vocab_size=tokenizer.vocab_size,
