@@ -69,7 +69,7 @@
 |multi-head|多头|把 C 维拆成 H 个头并行做注意力|[1.6](course/ch01/1.6.md)|
 |head|头|多头里的一个 D 维注意力子空间|[1.6](course/ch01/1.6.md)|
 |scaled dot-product|缩放点积|QK^T/sqrt(D) 的打分方式|[1.6](course/ch01/1.6.md)|
-|hidden state|隐藏状态|中间层输出的 `[B, T, C]` 数字|[1.7](course/ch01/1.7.md)|
+|hidden state|隐藏状态|中间层输出的 `[B, T, C]` 数字|[1.8](course/ch01/1.8.md)|
 |block|块、层块|两个残差子层（注意力 + MLP）组成的一层；本章叠 2 层|[1.7](course/ch01/1.7.md)|
 |residual connection|残差连接|把输入直接加回子层输出：y = x + F(x)；何恺明（Kaiming He）等 2015 在 ResNet 提出|[1.7](course/ch01/1.7.md)|
 |MLP|多层感知机|multi-layer perceptron；也叫前馈网络（feed-forward network，FFN）；本章 Linear → GELU → Linear|[1.7](course/ch01/1.7.md)|
