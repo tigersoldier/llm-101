@@ -49,7 +49,7 @@ ch01/
 
 - 核心模块：`tokenizer.py`、`layers.py`、`attention.py`、`model.py`。
 - 演示：`placeholder.py`、`scripts/show_placeholder.py`、`scripts/render_architecture.py`。
-- 本章不包含：反向传播、优化器、训练、真实语料、网页。
+- 本章不包含：反向传播、优化器、训练、真实语料。
 
 ## 本章验收
 
@@ -64,4 +64,3 @@ ch01/
 - 不让模型从数据里学东西，也不读真实文本数据；模型里的数字是随机开的头，输出没有意义。
 - 不做反向传播（第 3–4 章）、优化器（第 5 章）、训练循环（第 6 章）。
 - 不换更高效的切分方式（第 2 章），不放大模型（第 8 章），不做 KV cache（第 9 章只解释每步重算的成本，KV cache 留作后续扩展）。
-- 不做 web server、前端页面或逐层 trace；原理用 SVG 图、命令行输出和现有测试展示。
