@@ -10,7 +10,7 @@
 - 2.5：统计压缩率、OOV 与序列长度。
 - 2.6：接回 `TinyGPT`，用固定 id logits 回归证明模型代码没变。
 
-教学语料会在 2.3 加入 `samples/`；本节先用测试里的 `low`、`lower`、`lowest` 三条短文本。
+2.3 建立的教学语料已经在 `samples/`；本节先用测试里的 `low`、`lower`、`lowest` 三条短文本。
 
 ## 先跑一次
 
@@ -35,7 +35,7 @@ uv run pytest tests/test_tokenizer.py -q
 1. `src/llm101/tokenizer.py` —— 五成员接口与三个空壳函数
 2. `tests/test_tokenizer.py` —— 三个红测试分别检查什么
 3. `src/llm101/model.py` —— 只看 `GPTConfig.vocab_size` 怎么进 `TinyGPT`
-4. 2.3 加入的 `samples/README.md` —— 教学语料的来源、行数和许可
+4. `samples/README.md` —— 教学语料的来源、行数和许可
 
 ## 目录
 
@@ -43,6 +43,7 @@ uv run pytest tests/test_tokenizer.py -q
 ch02/start/
 ├── pyproject.toml
 ├── README.md
+├── samples/           # 2.3 的英中教学语料与统计
 ├── src/llm101/{tokenizer,parameters,layers,attention,model}.py
 └── tests/{test_tokenizer,test_layers,test_structure}.py
 ```

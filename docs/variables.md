@@ -61,7 +61,7 @@ $C$ 是**特征维**：一个位置的向量有多少个数字，本章是 16，
 |---|---|---:|---|---|
 |$S$|特殊 token 数|3|`len(special_tokens)`|[2.3](course/ch02/2.3.md)|
 |$A$|初始码点数|143|`len(initial_tokens)`|[2.3](course/ch02/2.3.md)|
-|$M$|合并新增的 token 数|366|`len(merges)`|[2.3](course/ch02/2.3.md)|
+|$M$|合并新增的 token 数|366|`len(vocabulary) - len(special_tokens) - len(initial_tokens)`|[2.3](course/ch02/2.3.md)|
 |$V$|词表大小|512|`vocab_size`|[2.3](course/ch02/2.3.md)|
 |$N$|参与合并统计的符号总数|随合并减少|—|[2.2](course/ch02/2.2.md)|
 

@@ -12,7 +12,7 @@
 ch02/
 ├── README.md          # 本文件：章节总览、小节清单、写作流程
 ├── sections/          # 6 个小节的计划：目标、内容安排、涉及代码、验收
-├── start/             # BPE 空壳 + 3 个红测试；教学语料在 2.3 加入
+├── start/             # BPE 空壳 + 3 个红测试；samples/ 是 2.3 教学语料
 └── end/               # 2.1 完成态；BPE、报告与回归随 2.2–2.6 加入
 ```
 
@@ -50,7 +50,7 @@ ch02/
 |2.5|`tokenizer_report.py`|英文/中文的字符数、token 数、压缩率、OOV|
 |2.6|`GPTConfig.vocab_size` + 固定 id 回归|`[T, V]` logits、argmax 片段；回归一致|
 
-2.1 只建立问题和基线，不引入 BPE 名称；2.2 才介绍 BPE 并实现合并；2.3 把符号串变成编号；2.4 完成文本 ↔ 编号；2.5 做评估；2.6 接回模型并收束全章。
+2.1 只建立问题和基线，不引入 BPE 名称；2.2 才介绍 BPE 并实现合并；2.3 建好词表与编号顺序；2.4 完成文本 ↔ 编号；2.5 做评估；2.6 接回模型并收束全章。
 
 ### 2.1 的占位组件
 
@@ -67,7 +67,7 @@ ch02/
 
 - 删除：`src/llm101/placeholder.py`、`scripts/show_placeholder.py`、`scripts/render_architecture.py`、`tests/test_placeholder.py`、`CharacterTokenizer` 及其测试。
 - 保留：`model.py`、`layers.py`、`attention.py`、`parameters.py`、`tests/test_structure.py`、`tests/test_layers.py`。
-- 新增：`tokenizer.py` 的 BPE 空壳与三个红测试；`samples/` 与 `samples/README.md` 在 2.3 加入。
+- 新增：`tokenizer.py` 的 BPE 空壳与三个红测试；`samples/` 与 `samples/README.md`（2.3）。
 
 `ch02/end/` 不保留第 1 章专用文件，也不做兼容层；2.1 的字符基线在 `ch01/end` 里跑，`show_tokenizer.py --stage 1` 使用 `src/llm101/baseline.py` 里冻结的字符表副本。
 

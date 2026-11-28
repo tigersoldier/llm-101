@@ -79,7 +79,7 @@ final/                    # 与 ch11/end 逐字节一致
 - `start/`：`ch01/end/` 的副本，删除第 1 章专用文件（`placeholder.py`、`show_placeholder.py`、`render_architecture.py`、`test_placeholder.py`），把 `tokenizer.py` 换成 BPE 空壳，保留 `test_structure.py`，新增 `samples/` 与三个红测试。
 - `end/`：`tokenizer.py`（BPE）、`samples/`、`scripts/show_tokenizer.py`、`scripts/tokenizer_report.py`、`tests/test_tokenizer.py`、`tests/test_report.py`、`tests/test_regression.py`、`tests/data/ch01-logits.json`。
 - 增量：`tokenizer.py` 换成 BPE；提供 `BPETokenizer.train`、`encode`、`decode`、保存/加载；`GPTConfig.vocab_size` 来自教学词表（目标约 512，实际由语料决定，不要求精确值）。
-- 内容：从 Unicode 码点出发的合并；英文空格与中文无空格的处理；联合词表；`<unk>`/`<bos>`/`<eos>`；词表大小、压缩率、OOV 与序列长度；建立英中教学语料（各约 200 行，自写，CC BY 4.0），供第 2–6 章使用。
+- 内容：从 Unicode 码点出发的合并；英文空格与中文无空格的处理；联合词表；`<unk>`/`<bos>`/`<eos>`；词表大小、压缩率、OOV 与序列长度；建立英中教学语料（各 200 行，自写，CC BY 4.0），供第 2–6 章使用。
 - 契约：`encode`/`decode`/`vocab_size`/`bos_id`/`eos_id` 行为不变；构造/训练/加载接口可以不同，但要提供 `train`/`save`/`load`；词表顺序固定为特殊 token → 初始码点（字典序）→ 合并结果；`decode` 默认跳过特殊 token，未知码点编码成一个 `<unk>`，往返对未知字符有损（与第 1 章一致）；`<pad>` 暂不加入，直到真正实现 padding。
 - 等价性：固定 `GPTConfig`（68）、seed 和手写 id 的 logits 回归（证明模型代码没变）；tokenizer 契约测试；tokenizer 与模型 `vocab_size` 一致性测试。回归 golden 从 `ch01/end` 生成，不用新文本 id。
 - 验收：英文/中文往返；未知字符；特殊 token；合并示例；新词表下 `TinyGPT` 前向形状正确；教学语料可由固定文件重复得到；`show_tokenizer.py --stage 1` 到 `--stage 6` 可跑。
@@ -373,10 +373,10 @@ uv run python scripts/show_placeholder.py --stage 1 "the cat sat"
 
 ### 教学语料
 
-- `samples/english.txt`、`samples/chinese.txt`：各约 200 行，一行一句，UTF-8/LF，无空行；主题限定在动物、家庭、天气、日常动作；全部自写，随仓库文字采用 CC BY 4.0；不下载、不嵌入外部数据集原文。
+- `samples/english.txt`、`samples/chinese.txt`：各 200 行，一行一句，UTF-8/LF，无空行；主题限定在动物、家庭、天气、日常动作；全部自写，随仓库文字采用 CC BY 4.0；不下载、不嵌入外部数据集原文。
 - `samples/README.md` 记录行数、字符数、许可、固定示例出现次数；`samples/heldout_english.txt`、`samples/heldout_chinese.txt` 只给 2.5 评估，不参与训练。
 - 固定示例 `the cat sat on the mat`、`小猫坐在垫子上` 各整行出现至少 3 次；留出句里至少有一个训练语料没有的生僻字，用于 OOV 演示。
-- 目标词表 512：$|V| = |S| + |A| + M$，$M$ 是合并新增的 token 数（按字符串去重后）。如果字母表 $A$ 太大、可用合并少于 100，补充语料或把目标调低到 $3+A+100$，并在正文记录实际值；不硬凑 512。
+- 目标词表 512：$V = S + A + M$，其中 $S$ 是特殊 token 数、$A$ 是初始码点数、$M$ 是合并新增的 token 数（按字符串去重后）。如果初始码点数 $A$ 太大、可用合并少于 100，补充语料或把目标调低到 $3+A+100$，并在正文记录实际值；不硬凑 512。
 
 ### 测试与验收
 
