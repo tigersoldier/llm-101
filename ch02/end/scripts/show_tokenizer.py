@@ -15,6 +15,21 @@ from llm101.baseline import (
     context_error,
 )
 
+from llm101.tokenizer import Pair, learn_merges, merge_pair
+
+DEMO_TEXTS: tuple[str, ...] = (
+    "the cat sat on the mat",
+    "the cat sat on the mat",
+    "the cat sat on the mat",
+    "the cat sat on a mat",
+    "the cat is on the mat",
+    "小猫坐在垫子上",
+    "小猫坐在垫子上",
+    "小猫坐在垫子上",
+    "小猫坐在垫子旁边",
+    "小猫坐在垫子上玩",
+)
+
 
 def _line(label: str, value: object) -> None:
     print(f"{label:<16}{value}")
@@ -35,13 +50,38 @@ def _print_report(report: BaselineReport) -> None:
     _line("model", "-" if error is None else f"ValueError: {error}")
 
 
+def _apply_merges(text: str, merges: list[Pair]) -> list[str]:
+    symbols = list(text)
+    for pair in merges:
+        symbols = merge_pair(symbols, pair)
+    return symbols
+
+
+def _print_stage_two() -> None:
+    merges = learn_merges(DEMO_TEXTS, 16, min_frequency=2)
+    print(f"stage 2 | adjacent-pair merges ({len(merges)})")
+    _line("corpus", f"{len(DEMO_TEXTS)} short lines")
+    for rank, pair in enumerate(merges, start=1):
+        print(f"{rank:>2}. {pair[0]!r} + {pair[1]!r} -> {pair[0] + pair[1]!r}")
+
+    for text in (ENGLISH_SAMPLE, CHINESE_SAMPLE):
+        symbols = _apply_merges(text, merges)
+        print()
+        _line("text", text)
+        _line(f"symbols ({len(symbols)})", symbols)
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--stage", type=int, default=1)
     args = parser.parse_args()
 
-    if args.stage != 1:
-        parser.error("only --stage 1 is implemented in section 2.1")
+    if args.stage not in (1, 2):
+        parser.error("only --stage 1 and 2 are implemented through section 2.2")
+
+    if args.stage == 2:
+        _print_stage_two()
+        return
 
     print("stage 1 | character baseline + hand merge")
     for text in (ENGLISH_SAMPLE, CHINESE_SAMPLE):

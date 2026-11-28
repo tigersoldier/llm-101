@@ -11,11 +11,11 @@ _PROJECT_ROOT = Path(__file__).resolve().parents[1]
 _SCRIPT = _PROJECT_ROOT / "scripts" / "show_tokenizer.py"
 
 
-def _run_stage_one() -> str:
+def _run_stage(stage: int) -> str:
     env = os.environ.copy()
     env["PYTHONPATH"] = str(_PROJECT_ROOT / "src")
     result = subprocess.run(
-        [sys.executable, str(_SCRIPT), "--stage", "1"],
+        [sys.executable, str(_SCRIPT), "--stage", str(stage)],
         cwd=_PROJECT_ROOT,
         env=env,
         check=True,
@@ -26,7 +26,7 @@ def _run_stage_one() -> str:
 
 
 def test_english_baseline_overflows_context() -> None:
-    output = _run_stage_one()
+    output = _run_stage(1)
 
     assert "text            the cat sat on the mat" in output
     assert "chars           22" in output
@@ -37,7 +37,7 @@ def test_english_baseline_overflows_context() -> None:
 
 
 def test_english_hand_merge_shares_at() -> None:
-    output = _run_stage_one()
+    output = _run_stage(1)
 
     assert (
         "symbols         ['the', ' ', 'c', 'at', ' ', 'sat', ' ', 'o', 'n', "
@@ -46,7 +46,7 @@ def test_english_hand_merge_shares_at() -> None:
 
 
 def test_chinese_baseline_is_unknown() -> None:
-    output = _run_stage_one()
+    output = _run_stage(1)
 
     assert "text            小猫坐在垫子上" in output
     assert "chars           7" in output
@@ -54,3 +54,12 @@ def test_chinese_baseline_is_unknown() -> None:
     assert "unknown         7" in output
     assert "decoded         ''" in output
     assert "model           -" in output
+
+
+def test_stage_two_learns_and_applies_merges() -> None:
+    output = _run_stage(2)
+
+    assert "stage 2 | adjacent-pair merges (16)" in output
+    assert "'a' + 't' -> 'at'" in output
+    assert "symbols (5)" in output
+    assert "symbols (2)" in output

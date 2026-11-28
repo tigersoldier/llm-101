@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="340" style="width:100%;height:auto" viewBox="0 0 820 340" role="img" aria-labelledby="title desc">
+<title id="title">固定样例在 stage 2 的合并结果</title>
+<desc id="desc">英文 22 个字符合并成 5 个片段：the cat加空格、s、at on加空格、the加空格、mat；中文 7 个字符合并成 2 个片段：小猫坐在垫子、上。</desc>
+<rect width="820" height="340" fill="#ffffff"/>
+<text x="28" y="34" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="20" font-weight="600" fill="#1f2937">固定样例在 stage 2 的合并结果</text>
+<text x="28" y="58" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">10 条演示短句训练 16 次合并；空格也参与合并，␣ 表示片段里的空格。</text>
+<defs><marker id="arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 z" fill="#64748b"/></marker></defs>
+<text x="28" y="94" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#334155">英文输入（22 个符号）</text>
+<rect x="165.0" y="76" width="24" height="26" rx="4" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="177.0" y="94" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" fill="#1f2937">t</text>
+<rect x="191.0" y="76" width="24" height="26" rx="4" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="203.0" y="94" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" fill="#1f2937">h</text>
+<rect x="217.0" y="76" width="24" height="26" rx="4" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="229.0" y="94" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" fill="#1f2937">e</text>
+<rect x="243.0" y="76" width="24" height="26" rx="4" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="255.0" y="94" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" fill="#1f2937">␣</text>
+<rect x="269.0" y="76" width="24" height="26" rx="4" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="281.0" y="94" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" fill="#1f2937">c</text>
+<rect x="295.0" y="76" width="24" height="26" rx="4" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="307.0" y="94" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" fill="#1f2937">a</text>
+<rect x="321.0" y="76" width="24" height="26" rx="4" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="333.0" y="94" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" fill="#1f2937">t</text>
+<rect x="347.0" y="76" width="24" height="26" rx="4" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="359.0" y="94" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" fill="#1f2937">␣</text>
+<rect x="373.0" y="76" width="24" height="26" rx="4" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="385.0" y="94" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" fill="#1f2937">s</text>
+<rect x="399.0" y="76" width="24" height="26" rx="4" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="411.0" y="94" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" fill="#1f2937">a</text>
+<rect x="425.0" y="76" width="24" height="26" rx="4" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="437.0" y="94" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" fill="#1f2937">t</text>
+<rect x="451.0" y="76" width="24" height="26" rx="4" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="463.0" y="94" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" fill="#1f2937">␣</text>
+<rect x="477.0" y="76" width="24" height="26" rx="4" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="489.0" y="94" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" fill="#1f2937">o</text>
+<rect x="503.0" y="76" width="24" height="26" rx="4" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="515.0" y="94" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" fill="#1f2937">n</text>
+<rect x="529.0" y="76" width="24" height="26" rx="4" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="541.0" y="94" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" fill="#1f2937">␣</text>
+<rect x="555.0" y="76" width="24" height="26" rx="4" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="567.0" y="94" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" fill="#1f2937">t</text>
+<rect x="581.0" y="76" width="24" height="26" rx="4" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="593.0" y="94" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" fill="#1f2937">h</text>
+<rect x="607.0" y="76" width="24" height="26" rx="4" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="619.0" y="94" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" fill="#1f2937">e</text>
+<rect x="633.0" y="76" width="24" height="26" rx="4" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="645.0" y="94" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" fill="#1f2937">␣</text>
+<rect x="659.0" y="76" width="24" height="26" rx="4" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="671.0" y="94" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" fill="#1f2937">m</text>
+<rect x="685.0" y="76" width="24" height="26" rx="4" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="697.0" y="94" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" fill="#1f2937">a</text>
+<rect x="711.0" y="76" width="24" height="26" rx="4" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="723.0" y="94" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" fill="#1f2937">t</text>
+<line x1="450" y1="106" x2="450" y2="136" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="462" y="126" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#475569">16 次合并</text>
+<text x="28" y="158" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#1e3a5f">英文合并后（5 个片段）</text>
+<rect x="301.0" y="140" width="94" height="26" rx="4" fill="#dbeafe" stroke="#3b6ea5"/>
+<text x="348.0" y="158" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1e3a5f">the␣cat␣</text>
+<rect x="397.0" y="140" width="24" height="26" rx="4" fill="#dbeafe" stroke="#3b6ea5"/>
+<text x="409.0" y="158" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1e3a5f">s</text>
+<rect x="423.0" y="140" width="74" height="26" rx="4" fill="#dbeafe" stroke="#3b6ea5"/>
+<text x="460.0" y="158" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1e3a5f">at␣on␣</text>
+<rect x="499.0" y="140" width="54" height="26" rx="4" fill="#dbeafe" stroke="#3b6ea5"/>
+<text x="526.0" y="158" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1e3a5f">the␣</text>
+<rect x="555.0" y="140" width="44" height="26" rx="4" fill="#dbeafe" stroke="#3b6ea5"/>
+<text x="577.0" y="158" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1e3a5f">mat</text>
+<text x="28" y="216" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#334155">中文输入（7 个符号）</text>
+<rect x="360.0" y="198" width="24" height="26" rx="4" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="372.0" y="216" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" fill="#1f2937">小</text>
+<rect x="386.0" y="198" width="24" height="26" rx="4" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="398.0" y="216" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" fill="#1f2937">猫</text>
+<rect x="412.0" y="198" width="24" height="26" rx="4" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="424.0" y="216" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" fill="#1f2937">坐</text>
+<rect x="438.0" y="198" width="24" height="26" rx="4" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="450.0" y="216" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" fill="#1f2937">在</text>
+<rect x="464.0" y="198" width="24" height="26" rx="4" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="476.0" y="216" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" fill="#1f2937">垫</text>
+<rect x="490.0" y="198" width="24" height="26" rx="4" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="502.0" y="216" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" fill="#1f2937">子</text>
+<rect x="516.0" y="198" width="24" height="26" rx="4" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="528.0" y="216" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" fill="#1f2937">上</text>
+<line x1="450" y1="228" x2="450" y2="258" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="462" y="248" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#475569">16 次合并</text>
+<text x="28" y="280" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#14532d">中文合并后（2 个片段）</text>
+<rect x="400.0" y="262" width="74" height="26" rx="4" fill="#dcfce7" stroke="#2f7d5c"/>
+<text x="437.0" y="280" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#14532d">小猫坐在垫子</text>
+<rect x="476.0" y="262" width="24" height="26" rx="4" fill="#dcfce7" stroke="#2f7d5c"/>
+<text x="488.0" y="280" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#14532d">上</text>
+<text x="28" y="320" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#64748b">英文片段末尾的空格保留在片段里；中文没有空格，合并直接从相邻汉字开始。</text>
+</svg>

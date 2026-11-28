@@ -9,6 +9,7 @@ from __future__ import annotations
 
 from collections import Counter
 from collections.abc import Iterable, Sequence
+from itertools import pairwise
 from pathlib import Path
 
 Pair = tuple[str, str]
@@ -18,12 +19,29 @@ UNKNOWN_TOKEN, BOS_TOKEN, EOS_TOKEN = SPECIAL_TOKENS
 
 def merge_pair(symbols: Sequence[str], pair: Pair) -> list[str]:
     """Merge non-overlapping occurrences of ``pair`` from left to right."""
-    raise NotImplementedError("TODO 2.2: merge one adjacent pair")
+    left, right = pair
+    merged: list[str] = []
+    index = 0
+    while index < len(symbols):
+        if (
+            index + 1 < len(symbols)
+            and symbols[index] == left
+            and symbols[index + 1] == right
+        ):
+            merged.append(left + right)
+            index += 2
+        else:
+            merged.append(symbols[index])
+            index += 1
+    return merged
 
 
 def count_pairs(sequences: Iterable[Sequence[str]]) -> Counter[Pair]:
     """Count adjacent symbol pairs within each sequence."""
-    raise NotImplementedError("TODO 2.2: count adjacent pairs")
+    counts: Counter[Pair] = Counter()
+    for sequence in sequences:
+        counts.update(pairwise(sequence))
+    return counts
 
 
 def learn_merges(
@@ -32,8 +50,34 @@ def learn_merges(
     *,
     min_frequency: int = 2,
 ) -> list[Pair]:
-    """Learn up to ``num_merges`` pairs, most frequent first."""
-    raise NotImplementedError("TODO 2.2: learn adjacent-pair merges")
+    """Learn up to ``num_merges`` pairs, most frequent first.
+
+    Ties are broken by the lexicographic order of ``(left, right)``, so the
+    same corpus always produces the same merge list.
+    """
+    if num_merges < 0:
+        raise ValueError("num_merges must be non-negative")
+    if min_frequency < 1:
+        raise ValueError("min_frequency must be positive")
+
+    sequences = [list(text) for text in texts]
+    if not sequences or not any(sequences):
+        raise ValueError("cannot learn merges without non-empty texts")
+
+    merges: list[Pair] = []
+    for _ in range(num_merges):
+        counts = count_pairs(sequences)
+        if not counts:
+            break
+        best_pair, frequency = min(
+            counts.items(),
+            key=lambda item: (-item[1], item[0]),
+        )
+        if frequency < min_frequency:
+            break
+        merges.append(best_pair)
+        sequences = [merge_pair(sequence, best_pair) for sequence in sequences]
+    return merges
 
 
 class BPETokenizer:

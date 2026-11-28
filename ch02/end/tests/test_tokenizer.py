@@ -8,7 +8,7 @@ contain the section that owns the missing implementation.
 import torch
 
 from llm101.model import GPTConfig, TinyGPT
-from llm101.tokenizer import BPETokenizer, learn_merges, merge_pair
+from llm101.tokenizer import BPETokenizer, count_pairs, learn_merges, merge_pair
 
 TEXTS = ["low", "lower", "lowest"]
 
@@ -21,6 +21,60 @@ def test_learn_merges_shrinks_symbols() -> None:
     symbols = merge_pair(list("lowest"), merges[0])
     assert symbols == ["lo", "w", "e", "s", "t"]
     assert len(symbols) < len("lowest")
+
+
+def test_merge_pair_left_to_right() -> None:
+    """Merges scan left to right and never overlap."""
+    assert merge_pair(["a", "a", "a"], ("a", "a")) == ["aa", "a"]
+    assert merge_pair(["a", "a", "a", "a"], ("a", "a")) == ["aa", "aa"]
+    assert merge_pair(["a", "b", "a", "b"], ("a", "b")) == ["ab", "ab"]
+
+
+def test_merge_pair_no_match() -> None:
+    """A pair that does not occur leaves the symbols unchanged."""
+    assert merge_pair(["a", "b"], ("b", "a")) == ["a", "b"]
+
+
+def test_count_pairs_across_sequences() -> None:
+    """Pairs are counted inside each sequence, never across a boundary."""
+    counts = count_pairs([["l", "o", "w"], ["l", "o", "w", "e", "r"]])
+
+    assert counts == {
+        ("l", "o"): 2,
+        ("o", "w"): 2,
+        ("w", "e"): 1,
+        ("e", "r"): 1,
+    }
+
+
+def test_learn_merges_order_and_ties() -> None:
+    """Frequencies choose the pair; ties are broken lexicographically."""
+    assert learn_merges(TEXTS, 6, min_frequency=1) == [
+        ("l", "o"),
+        ("lo", "w"),
+        ("low", "e"),
+        ("lowe", "r"),
+        ("lowe", "s"),
+        ("lowes", "t"),
+    ]
+
+
+def test_learn_merges_min_frequency() -> None:
+    """A pair below the frequency threshold stops the loop."""
+    assert learn_merges(TEXTS, 6, min_frequency=2) == [
+        ("l", "o"),
+        ("lo", "w"),
+        ("low", "e"),
+    ]
+
+
+def test_learn_merges_stops_at_num_merges() -> None:
+    """The caller's merge budget is an upper bound."""
+    assert learn_merges(TEXTS, 0) == []
+    assert learn_merges(TEXTS, 2, min_frequency=1) == [
+        ("l", "o"),
+        ("lo", "w"),
+    ]
 
 
 def test_tokenizer_contract_round_trip() -> None:
