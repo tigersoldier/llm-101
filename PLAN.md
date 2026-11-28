@@ -421,7 +421,7 @@ uv run python scripts/show_placeholder.py --stage 1 "the cat sat"
 |固定 id logits 回归|2.6|2.6 的测试|需要旧模型和 golden|不在 2.5 提前；不用新文本 id|
 |`vocab_size` 接入模型|2.6|2.6 的前向|tokenizer 冻结后才接|2.3 只算词表大小|
 |`<pad>`|推迟|真正需要 padding 的章节|本章不补齐序列|不加|
-|字节级 BPE|2.4 扩展阅读|不实现|只解释与码点级的差别|不写字节级代码|
+|字节级 BPE|2.2 扩展阅读|不实现|只解释与码点级的差别|不写字节级代码|
 |`initial_alphabet`、`max_texts`|第 7 章|真实语料的采样训练|教学语料不需要|本章不引入|
 |`CharacterTokenizer`|2.1 基线|2.1|2.2 起被替换|`ch02/end` 删除；2.1 用 `ch01/end` 与脚本冻结副本|
 |模型架构图|2.6 简化模型栈|2.6|模型没变，逐节重画是噪声|不生成 `architecture-N.svg`；2.6 画 `15-tokenizer-model.svg`|
@@ -454,3 +454,4 @@ uv run python scripts/show_placeholder.py --stage 1 "the cat sat"
 - 2026-11-27：为 2.1 增加手写合并工作示意图（图 2.1-1，22→19→18→17→13）；原 token 预算图改为图 2.1-2。
 
 - 2026-11-27：2.2 已写完：`merge_pair`、`count_pairs`、`learn_merges`，stage 2、7 项合并测试与 4 张图；2.3 起建立教学语料和词表。
+- 2026-11-27：2.2 评审修正：字节级 BPE 的首次介绍改为 2.2 扩展阅读，并同步术语表、章节 README 与正文的固定样例说明。

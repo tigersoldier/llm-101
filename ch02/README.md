@@ -44,7 +44,7 @@ ch02/
 |节|本节新增/换上的步骤|节末示例输出|
 |---|---|---|
 |2.1|第 1 章字符基线 + 手写片段合并占位|英文 24>16；中文 7 个 `<unk>`；手写合并后 13 个符号（加特殊 token 15）|
-|2.2|`merge_pair`、`count_pairs`、`learn_merges`|实际得到的合并（最多 16 条）；英文/中文样例的符号序列|
+|2.2|`merge_pair`、`count_pairs`、`learn_merges`|16 条合并；英文 5 个、中文 2 个片段|
 |2.3|`BPETokenizer.train`、词表顺序、特殊 token|实际词表大小；英文/中文样例的 ids|
 |2.4|`encode`、`decode`、`save`、`load`|往返文本；未知字符的 `<unk>` 行为|
 |2.5|`tokenizer_report.py`|英文/中文的字符数、token 数、压缩率、OOV|
@@ -67,7 +67,7 @@ ch02/
 
 - 删除：`src/llm101/placeholder.py`、`scripts/show_placeholder.py`、`scripts/render_architecture.py`、`tests/test_placeholder.py`、`CharacterTokenizer` 及其测试。
 - 保留：`model.py`、`layers.py`、`attention.py`、`parameters.py`、`tests/test_structure.py`、`tests/test_layers.py`。
-- 新增：`tokenizer.py` 的 BPE 空壳、`samples/` 与 `samples/README.md`、三个红测试。
+- 新增：`tokenizer.py` 的 BPE 空壳与三个红测试；`samples/` 与 `samples/README.md` 在 2.3 加入。
 
 `ch02/end/` 不保留第 1 章专用文件，也不做兼容层；2.1 的字符基线在 `ch01/end` 里跑，`show_tokenizer.py --stage 1` 使用 `src/llm101/baseline.py` 里冻结的字符表副本。
 
@@ -106,7 +106,7 @@ uv run python scripts/show_tokenizer.py --stage 6
 6. 把 `sections/<编号>.md` 的“状态：待写”改成“状态：完成”，并在本文件的进度清单里打勾。
 7. 全章写完后，`ch02/end/` 即为第 3 章 `start/` 的来源。
 
-**术语顺序**：正文只使用本节或更早小节已经介绍过的术语。2.1 不出现 BPE、子词、码点、相邻对；用“常见片段”“符号”，并明确“2.2 会讲算法”。2.2 第一次出现 BPE 时写全称与中文译名；码点、相邻对、合并顺序都在 2.2 介绍。
+**术语顺序**：正文只使用本节或更早小节已经介绍过的术语。2.1 不出现 BPE、子词、码点、相邻对；用“常见片段”“符号”，并明确“2.2 会讲算法”。2.2 第一次出现 BPE 时写全称与中文译名；码点、相邻对、合并顺序，以及字节级 BPE、WordPiece、Unigram 都在 2.2 介绍。
 
 **词表训练不是模型训练**：2.3 第一次出现“训练 tokenizer”时，明确说明这是统计合并，没有参数、没有损失、没有反向传播；模型训练在第 6 章。
 
@@ -130,7 +130,7 @@ uv run python scripts/show_tokenizer.py --stage 6
 
 ## 术语与引入时机
 
-每节写完把新术语补进 `docs/glossary.md`（BPE、子词、码点、相邻对、合并顺序、联合词表、压缩率、OOV），把短变量补进 `docs/variables.md`（$V$、$A$、$M$、$R$、$N$；$T$ 在 tokenizer 章节表示 token 数）。第 2 章的值单独成列或成节，不覆盖第 1 章的取值。
+每节写完把新术语补进 `docs/glossary.md`（BPE、子词、码点、相邻对、合并、合并顺序、字节级 BPE、WordPiece、Unigram、联合词表、压缩率、OOV），把短变量补进 `docs/variables.md`（$V$、$A$、$M$、$R$、$N$；$T$ 在 tokenizer 章节表示 token 数）。第 2 章的值单独成列或成节，不覆盖第 1 章的取值。
 
 |术语/概念|首次出现|处理|
 |---|---|---|
@@ -141,7 +141,7 @@ uv run python scripts/show_tokenizer.py --stage 6
 |联合词表、压缩率、OOV、序列长度|2.5|OOV 在第 1 章术语表已出现，这里第一次量化|
 |固定 id logits 回归|2.6|只用旧配置和手写 id，不用新文本 id|
 |`<pad>`|推迟|本章不加；到真正需要补齐序列的章节再引入|
-|字节级 BPE|2.4 扩展阅读|只解释与码点级的差别，不实现|
+|字节级 BPE|2.2 扩展阅读|只解释与码点级的差别，不实现|
 |`initial_alphabet`、`max_texts`|第 7 章|本章不引入|
 
 ## 本章不做什么

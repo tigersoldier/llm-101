@@ -19,7 +19,7 @@
 ## 前置与交接
 
 - 前置：第 1 章；需要知道 token id、`CharacterTokenizer` 的五个接口和 `TinyGPT` 的前向形状。
-- 数据：`ch02/start/samples/` 的英中教学语料，自写、许可明确，供第 2–6 章使用。
+- 数据：2.3 建立的英中教学语料（`samples/`），自写、许可明确，供第 2–6 章使用。
 - 交接：`ch02/end` 是第 3 章起点；tokenizer 与 `samples/` 冻结，模型结构不变，只改 `GPTConfig.vocab_size`。
 
 ## 本章流程
