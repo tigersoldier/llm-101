@@ -7,7 +7,7 @@
 - `tests/test_show_tokenizer.py`：3 项测试，检查英文 24>16、中文 7 个 `<unk>`、手写合并 13 个符号。
 - `docs/assets/ch02/01-token-budget.svg`：图 2.1-1。
 
-`src/llm101/tokenizer.py` 仍是 BPE 空壳；`tests/test_tokenizer.py` 的 3 个红测试要到 2.2–2.6 才逐个转绿。
+`src/llm101/tokenizer.py` 仍是 BPE 空壳；`tests/test_tokenizer.py` 的 3 个红测试要到 2.2–2.4 才逐个转绿，2.6 再把它们纳入整章验收。
 
 ## 怎么验证
 
@@ -25,7 +25,7 @@ uv run pytest tests/test_show_tokenizer.py -q
 - 手写合并：英文 13 个符号，加 `<bos>`/`<eos>` 是 15。
 - `tests/test_show_tokenizer.py`：3 passed。
 
-整章完成前，`uv run pytest -q` 仍会看到 `tests/test_tokenizer.py` 的 3 个 BPE 测试失败；这不影响 2.1 的验收。
+2.1 完成时，`uv run pytest -q` 仍会看到 `tests/test_tokenizer.py` 的 3 个 BPE 测试失败；这不影响 2.1 的验收。
 
 ## 下一节入口
 

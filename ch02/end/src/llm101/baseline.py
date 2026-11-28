@@ -1,8 +1,9 @@
 """Frozen chapter 1 character baseline for the section 2.1 demo.
 
-This module is chapter-specific: chapter 3 does not carry it forward. The
-tokenizer interface used by the model lives in :mod:`llm101.tokenizer`; this
-file only keeps the old 68-symbol table visible for the before/after comparison.
+This module is chapter-specific: it is not part of the tokenizer interface
+used by the model. The tokenizer interface lives in :mod:`llm101.tokenizer`;
+this file only keeps the old 68-symbol table visible for the before/after
+comparison.
 """
 
 from __future__ import annotations

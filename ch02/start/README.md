@@ -28,7 +28,7 @@ uv run pytest tests/test_tokenizer.py -q
 |`test_tokenizer_contract_round_trip`|2.4|
 |`test_vocab_size_matches_model`|2.4 可跑，2.6 纳入整章验收|
 
-失败信息里的 `TODO 2.2`、`TODO 2.3` 指出第一个缺口；`2.4` 完成编解码后，前两个测试才具备完整行为。不要先看 `../end/`，那是逐节完成态。
+失败信息里的 `TODO 2.2`、`TODO 2.3` 指出缺口所在的小节；`test_learn_merges_shrinks_symbols` 在 2.2 通过，另外两个测试在 2.4 完成编解码后可跑，`test_vocab_size_matches_model` 到 2.6 纳入整章验收。不要先看 `../end/`，那是逐节完成态。
 
 ## 阅读顺序
 

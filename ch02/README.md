@@ -119,7 +119,7 @@ uv run python scripts/show_tokenizer.py --stage 6
 `ch02/start/README.md`：
 
 1. 本章要做什么：把字符级 tokenizer 换成 BPE，保持五个接口，模型代码不改；先看教学语料与三个红测试。
-2. 先跑哪个失败测试：`cd ch02/start && uv sync --extra dev && uv run pytest -q`，应看到 3 个失败，失败信息指向 `TODO 2.2`、`TODO 2.4`、`TODO 2.6`。
+2. 先跑哪个失败测试：`cd ch02/start && uv sync --extra dev && uv run pytest -q`，应看到 3 个失败，失败信息指向 `TODO 2.2`、`TODO 2.3`；第一个测试在 2.2 转绿，后两个在 2.4 转绿，2.6 纳入整章验收。
 3. 按什么顺序读代码：`tokenizer.py` 的 BPE 空壳 → `samples/README.md` → `tests/test_tokenizer.py` 的三个红测试 → `model.py` 的 `GPTConfig`（只看 `vocab_size`）。
 
 `ch02/end/README.md`：
