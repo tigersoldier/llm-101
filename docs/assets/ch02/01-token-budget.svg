@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="800" height="380" style="width:100%;height:auto" viewBox="0 0 800 380" role="img" aria-labelledby="title desc">
 <title id="title">字符级编号与 16 个上下文位置</title>
-<desc id="desc">英文样例有 24 个字符级编号，超过上下文 16；中文样例有 9 个编号，其中 7 个是未知词元；手写合并后英文有 15 个编号，进入上限。</desc>
+<desc id="desc">英文样例有 24 个字符级编号，超过上下文 16；中文样例有 9 个编号，其中 7 个是未知词元；手写合并后英文有 15 个位置（13 个片段加 2 个特殊 token），进入上限。</desc>
 <defs>
   <pattern id="unknownHatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
     <rect width="8" height="8" fill="#fff7ed"/>
@@ -40,6 +40,7 @@
 <text x="28" y="211" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#1f2937">中文字符级（7 字符）</text>
 <rect x="210" y="190" width="142.92" height="32" fill="url(#unknownHatch)" stroke="#c2410c" stroke-width="0.8"/>
 <rect x="352.92" y="190" width="40.83" height="32" fill="#3b6ea5"/>
+<rect x="397" y="195" width="92" height="24" fill="#ffffff"/>
 <text x="402" y="211" font-family="ui-monospace, monospace" font-size="12" fill="#c2410c">9（7 个未知）</text>
 
 <text x="28" y="281" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="13" fill="#1f2937">英文手写合并</text>
