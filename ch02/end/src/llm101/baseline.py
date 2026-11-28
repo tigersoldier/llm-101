@@ -11,6 +11,10 @@ from __future__ import annotations
 from collections.abc import Sequence
 from dataclasses import dataclass
 
+import torch
+
+from llm101.model import GPTConfig, TinyGPT
+
 _CHARACTERS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ .,!?;:'\"-()\n"
 SPECIAL_TOKENS = ("<unk>", "<bos>", "<eos>")
 CHARACTER_VOCABULARY = (*_CHARACTERS, *SPECIAL_TOKENS)
@@ -136,10 +140,6 @@ def build_report(text: str) -> BaselineReport:
 
 def context_error(text: str) -> str | None:
     """Return the model's context error for ``text``, or ``None`` if it fits."""
-    import torch
-
-    from llm101.model import GPTConfig, TinyGPT
-
     ids = character_encode(text, add_bos=True, add_eos=True)
     config = GPTConfig(
         vocab_size=len(CHARACTER_VOCABULARY),

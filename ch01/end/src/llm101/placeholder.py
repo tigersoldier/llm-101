@@ -15,6 +15,11 @@ from dataclasses import dataclass
 
 import torch
 
+from llm101.attention import MultiHeadSelfAttention
+from llm101.layers import GELU, Embedding, LayerNorm
+from llm101.model import GPTConfig, TinyGPT
+from llm101.tokenizer import DEFAULT_VOCABULARY, CharacterTokenizer
+
 VOCAB_SIZE = 68
 WIDTH = 16
 MAX_SEQ_LEN = 16
@@ -62,14 +67,10 @@ def run(text: str, stage: int = 1) -> PipelineResult:
         raise ValueError("text must contain at least one character")
 
     if stage >= 2:
-        from llm101.tokenizer import DEFAULT_VOCABULARY, CharacterTokenizer
-
         tokenizer = CharacterTokenizer(DEFAULT_VOCABULARY)
         ids = tokenizer.encode(text, add_bos=True, add_eos=True)
 
         if stage == 7:
-            from llm101.model import GPTConfig, TinyGPT
-
             config = GPTConfig(
                 vocab_size=VOCAB_SIZE,
                 d_model=WIDTH,
@@ -95,8 +96,6 @@ def run(text: str, stage: int = 1) -> PipelineResult:
             )
 
         if stage >= 3:
-            from llm101.layers import Embedding
-
             embedding = Embedding(
                 VOCAB_SIZE, WIDTH, generator=torch.Generator().manual_seed(0)
             )
@@ -118,15 +117,11 @@ def run(text: str, stage: int = 1) -> PipelineResult:
                 position_vectors = position_embedding.forward(positions)
                 vectors = vectors + position_vectors
             if stage >= 5:
-                from llm101.layers import GELU, LayerNorm
-
                 layer_norm = LayerNorm(WIDTH)
                 gelu = GELU()
                 vectors = gelu.forward(layer_norm.forward(vectors))
             attention_weights = None
             if stage >= 6:
-                from llm101.attention import MultiHeadSelfAttention
-
                 attention = MultiHeadSelfAttention(
                     WIDTH, 2, generator=torch.Generator().manual_seed(2)
                 )

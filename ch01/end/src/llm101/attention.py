@@ -9,6 +9,16 @@ import torch
 from llm101.layers import Linear
 
 
+def _split_heads(
+    states: torch.Tensor,
+    n_heads: int,
+    head_dim: int,
+) -> torch.Tensor:
+    """Split the feature dimension into heads."""
+    states = states.reshape(*states.shape[:-1], n_heads, head_dim)
+    return states.transpose(-3, -2)
+
+
 class MultiHeadSelfAttention:
     """Scaled dot-product attention with a causal mask."""
 
@@ -43,13 +53,9 @@ class MultiHeadSelfAttention:
         k = self.k_proj.forward(inputs)
         v = self.v_proj.forward(inputs)
 
-        def split_heads(states: torch.Tensor) -> torch.Tensor:
-            states = states.reshape(*states.shape[:-1], self.n_heads, self.head_dim)
-            return states.transpose(-3, -2)
-
-        q = split_heads(q)
-        k = split_heads(k)
-        v = split_heads(v)
+        q = _split_heads(q, self.n_heads, self.head_dim)
+        k = _split_heads(k, self.n_heads, self.head_dim)
+        v = _split_heads(v, self.n_heads, self.head_dim)
 
         scores = q @ k.transpose(-2, -1) / math.sqrt(self.head_dim)
         length = inputs.shape[-2]

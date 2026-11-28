@@ -165,6 +165,7 @@ final/                    # 与 ch11/end 逐字节一致
 ## 8. 工程约束
 
 - 每个 `end/` 可独立 `uv sync`（不带 `--locked`）并 `pytest`。
+- 所有 import 放在文件顶部；正文示例代码块把 import 放在块顶部，函数、条件分支或循环内不写局部 import。新增代码避免在函数内部定义函数；可复用逻辑提到模块级私有函数。
 - 快照只含代码、测试、脚本、`pyproject.toml` 与 README；不含 `data/`、`artifacts/`、`site/`、`.venv/`。
 - 新增 `scripts/check_snapshots.py`：校验 `chNN/start` 与 `ch(N-1)/end` 的累计库核心文件一致；章节专用文件、README、新空壳/红测试按清单允许差异；`final/` 与 `ch11/end` 逐字节一致；对每个 `end/` 运行测试。
 - CI 增加章节矩阵：根目录测试、每个 `end/` 测试、`scripts/check_snapshots.py`、文档示例注解检查；`start/` 只做快照校验，不跑测试。
@@ -275,7 +276,7 @@ uv run python scripts/show_placeholder.py --stage 1 "the cat sat"
 
 ### 新增文件
 
-- `ch01/end/src/llm101/placeholder.py`：占位函数与 `run(text, stage)`；后面的组件在对应小节按需 import，1.1 不加载它们。
+- `ch01/end/src/llm101/placeholder.py`：占位函数与 `run(text, stage)`；后面的组件在对应小节才调用；所有 import 放在文件顶部，1.1 只走占位分支。
 - `ch01/end/scripts/show_placeholder.py`、`ch01/end/scripts/render_architecture.py`。
 - `ch01/end/tests/test_placeholder.py`：1.1 的确定性输出、各阶段形状、最终输出与 `TinyGPT.forward` 一致。
 - `ch01/end/README.md` 的目录树与阅读顺序补上管线。
