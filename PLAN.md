@@ -1,10 +1,10 @@
 # 课程重构计划：快照链
 
-记录日期：2026-11-23；最近调整：2026-11-27。状态：**第 1 章已完成；第 2–11 章按 §5 执行，本文件仍是可调整的规划草案。**
+记录日期：2026-11-23；最近调整：2026-11-27。状态：**第 1 章已完成；第 2 章已规划、代码未开始；第 3–11 章按 §5 执行，本文件仍是可调整的规划草案。**
 
 > 本文件记录的是目前讨论的结论，不是最终决定。章节划分、目录命名、模型规模、页面形式都可能在实现过程中调整；不要把它当成不可变的规范。每次调整请同步修改相关段落，并在末尾“修订记录”追加一条，避免文档与实际代码不一致。
 
-本文件汇总目前的课程结构设想，供以后回顾。当前仓库里的 `src/`、`scripts/`、`tests/` 仍是旧的“先实现、再补文档”形态；`ch01/` 已落地，`ch02/` … `ch11/` 待建，`final/` 由 `ch11/end` 产生。
+本文件汇总目前的课程结构设想，供以后回顾。当前仓库里的 `src/`、`scripts/`、`tests/` 仍是旧的“先实现、再补文档”形态；`ch01/` 已落地，`ch02/` 已有规划（`README.md` 与 `sections/`，`start/`/`end/` 待建），`ch03/` … `ch11/` 待建，`final/` 由 `ch11/end` 产生。
 
 ## 1. 教学目标的变化
 
@@ -63,7 +63,7 @@ final/                    # 与 ch11/end 逐字节一致
 
 ## 5. 章节清单
 
-全书按“看得见的前向 → 会学习 → 真实数据 → 放大 → 生成 → 限时训练 → 评估”推进。第 1 章已完成；第 2–11 章按下表执行。每章的大纲页在 `docs/course/chNN/index.md`，列出目标、前置、小节、代码和验收；小节页面随写作上线。
+全书按“看得见的前向 → 会学习 → 真实数据 → 放大 → 生成 → 限时训练 → 评估”推进。第 1 章已完成；第 2 章已有小节计划；第 3–11 章按下表执行。每章的大纲页在 `docs/course/chNN/index.md`，列出目标、前置、小节、代码和验收；小节页面随写作上线。
 
 ### 第 1 章 看得见的 transformer
 
@@ -75,12 +75,15 @@ final/                    # 与 ch11/end 逐字节一致
 
 ### 第 2 章 真正的 tokenizer
 
+- 小节：2.1–2.6，计划与验收在 `ch02/sections/`；2.1 是起点（固定示例、第 1 章基线、三个红测试），2.2–2.5 各讲一个机制，2.6 接回模型并收尾。详见 §14–15。
+- `start/`：`ch01/end/` 的副本，删除第 1 章专用文件（`placeholder.py`、`show_placeholder.py`、`render_architecture.py`、`test_placeholder.py`），把 `tokenizer.py` 换成 BPE 空壳，保留 `test_structure.py`，新增 `samples/` 与三个红测试。
+- `end/`：`tokenizer.py`（BPE）、`samples/`、`scripts/show_tokenizer.py`、`scripts/tokenizer_report.py`、`tests/test_tokenizer.py`、`tests/test_report.py`、`tests/test_regression.py`、`tests/data/ch01-logits.json`。
 - 增量：`tokenizer.py` 换成 BPE；提供 `BPETokenizer.train`、`encode`、`decode`、保存/加载；`GPTConfig.vocab_size` 来自教学词表（目标约 512，实际由语料决定，不要求精确值）。
-- 内容：从 Unicode 码点出发的合并；英文空格与中文无空格的处理；联合词表；`<unk>`/`<bos>`/`<eos>`；词表大小、压缩率、OOV 与序列长度；建立英中教学语料（数百条，自写或明确许可），供第 2–6 章使用。
-- 契约：`encode`/`decode`/`vocab_size`/`bos_id`/`eos_id` 行为不变；构造/训练/加载接口可以不同，但要提供 `train`/`load`；`<pad>` 暂不加入，直到真正实现 padding。
-- 等价性：固定 `GPTConfig`、seed 和手写 id 的 logits 回归（证明模型代码没变）；tokenizer 契约测试；tokenizer 与模型 `vocab_size` 一致性测试。
-- 验收：英文/中文往返；未知字符；特殊 token；合并示例；新词表下 `TinyGPT` 前向形状正确；教学语料可重复生成。
-- 不做什么：不接 TinyStories；不做 8192 词表（第 7 章）；不训练。
+- 内容：从 Unicode 码点出发的合并；英文空格与中文无空格的处理；联合词表；`<unk>`/`<bos>`/`<eos>`；词表大小、压缩率、OOV 与序列长度；建立英中教学语料（各约 200 行，自写，CC BY 4.0），供第 2–6 章使用。
+- 契约：`encode`/`decode`/`vocab_size`/`bos_id`/`eos_id` 行为不变；构造/训练/加载接口可以不同，但要提供 `train`/`save`/`load`；词表顺序固定为特殊 token → 初始码点（字典序）→ 合并结果；`decode` 默认跳过特殊 token，未知码点编码成一个 `<unk>`，往返对未知字符有损（与第 1 章一致）；`<pad>` 暂不加入，直到真正实现 padding。
+- 等价性：固定 `GPTConfig`（68）、seed 和手写 id 的 logits 回归（证明模型代码没变）；tokenizer 契约测试；tokenizer 与模型 `vocab_size` 一致性测试。回归 golden 从 `ch01/end` 生成，不用新文本 id。
+- 验收：英文/中文往返；未知字符；特殊 token；合并示例；新词表下 `TinyGPT` 前向形状正确；教学语料可由固定文件重复得到；`show_tokenizer.py --stage 1` 到 `--stage 6` 可跑。
+- 不做什么：不接 TinyStories；不做 8192 词表（第 7 章）；不加 `<pad>`；不做字节级 BPE；不训练。
 
 ### 第 3 章 参数、层与手写梯度
 
@@ -181,18 +184,18 @@ final/                    # 与 ch11/end 逐字节一致
 截至 2026-11-27 的状态：
 
 - 第 1 章已完成：`ch01/start/` 是脚手架（3 个红测试），`ch01/end/` 是完成态（39 passed），正文在 `docs/course/ch01/1.1.md`–`1.9.md`。
-- 第 2 章尚未开始；`ch02/` 还不存在。
+- 第 2 章已规划：`ch02/README.md` 与 `ch02/sections/2.1.md`–`2.6.md` 已写；`ch02/start/` 与 `ch02/end/` 尚未建立。
 - `scripts/check_snapshots.py` 尚未实现；CI 只跑根目录和 `ch01/end`，还没有章节矩阵。
-- 第 1 章正文里指向旧章号的句子暂不回填；等第 2 章开工或章节号稳定后统一做一次指针修订，以本文件 §5 为准。
+- 第 1 章正文里指向旧章号的句子暂不回填；等第 2 章正文开工或章节号稳定后统一做一次指针修订，以本文件 §5 为准。
 
-新 session 从第 2 章开始时的步骤：
+第 2 章实施顺序：
 
-1. 读本文件 §5 的第 2 章、`ch01/README.md`、`STYLE.md`。
-2. 从 `ch01/end/` 复制出 `ch02/start/`；写 `ch02/README.md`；决定 `placeholder.py`、`show_placeholder.py`、`render_architecture.py`、`test_placeholder.py` 是删除还是保留为兼容层，并在 README 里列出。
-3. 建立 `ch02/start/samples/` 的英中教学语料；写 `ch02/sections/` 的小节计划与验收。
-4. 实现 BPE 与五个成员接口；测试放 `ch02/end/tests/`：tokenizer 契约、固定 id logits 回归、tokenizer/模型词表一致性。
+1. 读 `ch02/README.md`、`ch02/sections/2.1.md`、本文件 §14–15、`ch01/README.md`、`STYLE.md`。
+2. 从 `ch01/end/` 复制出 `ch02/start/`；按 2.1 的清单删除 `placeholder.py`、`show_placeholder.py`、`render_architecture.py`、`test_placeholder.py`，把 `tokenizer.py` 换成 BPE 空壳，写 `ch02/start/README.md`（本章要做什么、先跑哪个失败测试、按什么顺序读代码）。
+3. 建立 `ch02/start/samples/` 的英中教学语料与 `samples/README.md`；写三个红测试。
+4. 按 2.1–2.6 顺序写正文与 `ch02/end/` 代码；测试放 `ch02/end/tests/`：tokenizer 契约、报告指标、固定 id logits 回归、tokenizer/模型词表一致性。
 5. 同时补 `scripts/check_snapshots.py` 与 CI 章节矩阵；不要等第 11 章再补。
-6. 不接 TinyStories、不做 8192 词表、不训练；这些分别留给第 7、10 章。
+6. 不接 TinyStories、不做 8192 词表、不训练、不加 `<pad>`；这些分别留给第 7 章和真正需要 padding 的章节。
 
 写作约束：第 2 章只换 tokenizer，不引入反向传播、优化器或真实语料；`ch01/end/` 的公开接口是基线，`final/` 不是。
 
@@ -201,7 +204,7 @@ final/                    # 与 ch11/end 逐字节一致
 - KV cache 不进入主线；第 9 章讲清每步重算的成本，KV cache 作为附录或第 12 章扩展，暂不排入 11 章。
 - top-p、beam search、指令微调/RLHF、GPU/分布式训练不进入基础主线；第 11 章给后续方向。
 - 章节中文标题与固定 URL 命名按 §5 的标题执行；页面统一放在 `docs/course/chNN/`。
-- 教学语料的最终条数与许可形式（自写、模板生成或明确许可的公共领域文本）在第 2 章开工前定；不把 TinyStories 原文带进第 2–6 章。
+- 教学语料的形式已定：自写静态文件 `samples/english.txt`、`samples/chinese.txt`，许可随仓库文字采用 CC BY 4.0；最终条数与字符数在 2.3 写作时按实际统计记录；不把 TinyStories 原文带进第 2–6 章。
 
 ## 12. 第 1 章的螺旋编排
 
@@ -326,6 +329,101 @@ uv run python scripts/show_placeholder.py --stage 1 "the cat sat"
 7. 第 4 章：注意力、block、整模型反向；第 5–11 章按 §5 的新顺序执行。
 8. 上述每步同步更新小节计划、README、章节总览、导航、图和测试。
 
+## 14. 第 2 章详细设计与螺旋编排
+
+目标：每节结束时，读者都能用同一对固定样例跑一遍 tokenizer 管线，看到本节改动带来的输入→输出变化；2.6 接回模型并收束全章。第 2 章不重画模型架构图，管线重点是 tokenizer；模型只在 2.6 出现一次。
+
+### 固定示例与基线
+
+- 英文：`the cat sat on the mat`（22 个字符；加 `<bos>`/`<eos>` 后 24 个编号，超过上下文 16）。它是第 1 章 `the cat sat` 的延长，前三个词不变。
+- 中文：`小猫坐在垫子上`（7 个字符；第 1 章字符表没有中文，编码结果是 7 个 `<unk>`，加特殊 token 后 9 个编号）。
+- 失败点：英文样例本身就是长度失败（24>16）；中文样例是覆盖失败（7 个 `<unk>`）。不再单独设长句。
+
+2.1 在 `ch01/end` 上跑第 1 章字符基线；`ch02/end` 从 2.2 起用 BPE。中文在 2.1 全部是 `<unk>`，2.3 建好码点表之后才有真实编号；正文要把这两个阶段分开写。
+
+### 管线随小节增长
+
+|节|新增/换上的步骤|节末示例输出|
+|---|---|---|
+|2.1|第 1 章字符基线 + 手写片段合并占位|英文 24>16；中文 7 个 `<unk>`；手写合并后 13 个符号（加特殊 token 15）|
+|2.2|`merge_pair`、`count_pairs`、`learn_merges`|实际得到的合并（最多 16 条）；英文/中文符号序列|
+|2.3|`BPETokenizer.train`、词表顺序、特殊 token|实际词表大小；英文/中文 ids|
+|2.4|`encode`、`decode`、`save`、`load`|往返文本；未知字符的 `<unk>` 行为|
+|2.5|`token_count`、`compression_ratio`、`unknown_count`、报告脚本|字符数、token 数、压缩率、OOV|
+|2.6|`GPTConfig.vocab_size` + 固定 id 回归|`[T, V]` logits、argmax；回归一致|
+
+### 2.1 的占位与删除
+
+- 手写合并只用于 2.1 演示：`a`+`t`→`at`、`s`+`at`→`sat`、`m`+`at`→`mat`、`t`+`h`→`th`、`th`+`e`→`the`，英文样例从 22 个符号降到 13 个，加特殊 token 后是 15，进入上下文 16。它故意简单、确定、可以手算，不是算法；`cat` 和 `on` 故意保留为字符，说明手写合并是部分的。
+- `ch02/start/` 删除第 1 章专用文件 `placeholder.py`、`scripts/show_placeholder.py`、`scripts/render_architecture.py`、`tests/test_placeholder.py`；不做兼容层。
+- `CharacterTokenizer` 在 `ch02/start/` 和 `ch02/end/` 中删除；2.1 的基线在 `ch01/end` 里跑，`show_tokenizer.py --stage 1` 用脚本内冻结的字符表副本，只用于对比。
+- `ch02/end/` 不再生成 `architecture-N.svg`；模型没变，逐节重画架构图是噪声。2.6 用简化模型栈画 `15-tokenizer-model.svg`，并注明完整架构见 1.8。
+
+### API 与契约
+
+- 新增 `BPETokenizer`：`train`、`vocabulary`、`vocab_size`、`unk_id`、`bos_id`、`eos_id`、`encode`、`decode`、`save`、`load`；`__init__(initial_tokens, merges, *, special_tokens=SPECIAL_TOKENS)` 负责校验并建词表。
+- 三个模块级辅助函数：`merge_pair(symbols, pair)`、`count_pairs(sequences)`、`learn_merges(texts, num_merges, *, min_frequency=2)`；`Pair = tuple[str, str]`。
+- 三个指标函数：`token_count(tokenizer, text)`、`compression_ratio(tokenizer, text)`、`unknown_count(tokenizer, text)`；放在 `src/llm101/tokenizer.py`，因为只依赖 tokenizer。
+- 词表顺序固定：特殊 token（按 `special_tokens` 给定顺序）→ 初始码点（字典序）→ 合并结果（合并顺序）。`<unk>`/`<bos>`/`<eos>` 的 id 是 0/1/2；`bos_id`/`eos_id` 的数值从第 1 章的 66/67 变成 1/2，含义不变。
+- `encode`/`decode` 的签名与关键字参数与第 1 章一致；未知码点编码成一个 `<unk>`，`decode` 默认跳过特殊 token，所以往返对未知字符有损。特殊 token 只由 `add_bos`/`add_eos` 控制。
+- `save` 只写 `format_version`、`special_tokens`、`initial_tokens`、`merges` 四个字段；`load` 重建词表。不保存派生词表，避免文件与代码不一致。
+- 本章不加入 `<pad>`；到真正需要补齐序列的章节再引入。
+
+### 教学语料
+
+- `samples/english.txt`、`samples/chinese.txt`：各约 200 行，一行一句，UTF-8/LF，无空行；主题限定在动物、家庭、天气、日常动作；全部自写，随仓库文字采用 CC BY 4.0；不下载、不嵌入外部数据集原文。
+- `samples/README.md` 记录行数、字符数、许可、固定示例出现次数；`samples/heldout_english.txt`、`samples/heldout_chinese.txt` 只给 2.5 评估，不参与训练。
+- 固定示例 `the cat sat on the mat`、`小猫坐在垫子上` 各整行出现至少 3 次；留出句里至少有一个训练语料没有的生僻字，用于 OOV 演示。
+- 目标词表 512：$|V| = |S| + |A| + M$，$M$ 是合并新增的 token 数（按字符串去重后）。如果字母表 $A$ 太大、可用合并少于 100，补充语料或把目标调低到 $3+A+100$，并在正文记录实际值；不硬凑 512。
+
+### 测试与验收
+
+- `ch02/start/tests/` 三个红测试：`test_learn_merges_shrinks_symbols`（2.2）、`test_bpe_contract_round_trip`（2.4）、`test_vocab_size_matches_model`（2.6 验收）。失败信息含 `TODO 2.x`。
+- `ch02/end/tests/`：`test_tokenizer.py`（合并、词表、编解码、保存/加载、约定）、`test_report.py`（指标与报告）、`test_samples.py`（语料格式与固定示例）、`test_regression.py`（固定 id logits 回归、词表一致性）、`test_structure.py`（第 1 章模型测试，保持通过）。
+- 回归 golden：旧配置 `vocab_size=68`、`d_model=16`、2 层、2 头、`d_ff=32`、`max_seq_len=16`、`generator=manual_seed(7)`、手写 ids `[5, 12, 3, 9]`；从 `ch01/end` 生成 logits 存到 `tests/data/ch01-logits.json`；比较用 `atol=1e-6`、`rtol=0`。
+- 验收：`ch02/end` 全绿；`ch01/end` 仍 39 passed；`show_tokenizer.py --stage 1` 到 `--stage 6` 可跑；根目录测试与 `mkdocs build --strict` 通过；`samples/README.md` 统计齐全。
+
+### 图与资产
+
+- 图放在 `docs/assets/ch02/`，编号 01–16，语义名：`01-token-budget`、`02-pair-loop`、`03-merge-tree`、`04-symbols`、`05-subword-methods`、`06-vocabulary-layers`、`07-vocab-growth`、`08-encode-decode`、`09-unknown`、`10-save-load`、`11-unicode`、`12-compression`、`13-oov`、`14-tokenizer-eval`、`15-tokenizer-model`、`16-regression`。
+- 2.2、2.4、2.5 的扩展阅读各配一张；2.1、2.3、2.6 的正文图不承担扩展阅读。
+- 改动 SVG 后把引用处 `?v=N` 加一；按 `docs/figures.md` 和 `llm101-figure-review` 在 1400/700/390 审核。
+
+### 与第 1 章风格的差异（有意）
+
+- 不逐节重画架构图：模型不变，只在 2.6 画一次简化模型栈；每节仍有机制样例图。
+- 不新增 2.7 验收节：2.1 兼作起点，2.6 兼作接入模型、验收与交接；六个小节各讲一个机制。
+- 仍保留“每节一个可运行 stage、同一对固定样例、节末贴实际输出”的螺旋做法。
+
+### 落地顺序
+
+1. 建 `ch02/start/` 与 `ch02/end/`：复制 `ch01/end/`，删除第 1 章专用文件，换 BPE 空壳与三个红测试。
+2. 写教学语料与 `samples/README.md`；跑 `test_samples.py`。
+3. 2.1 正文与 `show_tokenizer.py --stage 1`；2.2 合并算法；2.3 词表；2.4 编解码与保存/加载。
+4. 2.5 指标与报告；2.6 模型接入、golden 回归与全章验收。
+5. 同步 `docs/course/ch02/index.md`、`mkdocs.yml`、`docs/glossary.md`、`docs/variables.md`，并补 `scripts/check_snapshots.py` 与 CI 章节矩阵。
+
+## 15. 第 2 章编排审计（概念引入时机）
+
+按 `STYLE.md` 的“引入时机”检查第 2 章。
+
+|概念/组件|计划位置|第一次真正用到|判断|处理|
+|---|---|---|---|---|
+|常见片段、符号|2.1|2.1 的占位管线|只需要说明“把片段当一个单位”|2.1 不出现 BPE、子词、码点、相邻对|
+|BPE、子词、码点、相邻对、合并顺序|2.2|2.2 的合并算法|需要先有符号序列和频率|2.2 写全称、译名、来历和手算|
+|词表训练、特殊 token 顺序|2.3|2.3 的 `train`|需要先有合并列表|2.2 只讲合并，不讲词表训练和 id|
+|`encode`/`decode`、未知字符哨兵|2.4|2.4 的编码/解码|需要先有词表|2.3 只检查 `vocabulary`，不实现编解码|
+|保存/加载|2.4|2.4 的 `save`/`load`|需要完整 tokenizer|不放到 2.3|
+|压缩率、OOV、序列长度|2.5|2.5 的报告|需要编码和留出句|2.4 只做往返与未知字符|
+|联合词表|2.5|2.5 的中英对比|需要两种语言都能编码|2.3 只建一份词表，2.5 才比较|
+|固定 id logits 回归|2.6|2.6 的测试|需要旧模型和 golden|不在 2.5 提前；不用新文本 id|
+|`vocab_size` 接入模型|2.6|2.6 的前向|tokenizer 冻结后才接|2.3 只算词表大小|
+|`<pad>`|推迟|真正需要 padding 的章节|本章不补齐序列|不加|
+|字节级 BPE|2.4 扩展阅读|不实现|只解释与码点级的差别|不写字节级代码|
+|`initial_alphabet`、`max_texts`|第 7 章|真实语料的采样训练|教学语料不需要|本章不引入|
+|`CharacterTokenizer`|2.1 基线|2.1|2.2 起被替换|`ch02/end` 删除；2.1 用 `ch01/end` 与脚本冻结副本|
+|模型架构图|2.6 简化模型栈|2.6|模型没变，逐节重画是噪声|不生成 `architecture-N.svg`；2.6 画 `15-tokenizer-model.svg`|
+
 ## 修订记录
 
 - 2026-11-23：建立本文件，记录快照链结构、四项工程决策与十一章清单。
@@ -348,3 +446,5 @@ uv run python scripts/show_placeholder.py --stage 1 "the cat sat"
 - 2026-11-27：取消第 1 章的 web server、浏览器前端和逐层 trace（含 `forward_with_trace`、stage 8、`test_api.py`、`web/`）；第 1 章收为 1.1–1.9，1.9 只做验收、小结与交接，原理展示继续用 SVG 图、命令行输出和测试。
 - 2026-11-27：补写作规范：新增 `docs/figures.md` 图规则入口；`STYLE.md` 增补“断言配例、先修顺序、术语来历、库函数介绍、每节两张图、公式复核、轴标签/边距”；`ch01/README.md` 增补提交与发布、指针自检、图审核；修正过期 1.10/服务器引用、39/40 测试数字、1.7 上游图角色和根 README 章节数；CI 增加 `ch01/end` 测试。
 - 2026-11-27：按全书流程重排第 5–11 章为“优化器 → 小模型训练 → 真实语料/最终 tokenizer → 缩放 → 推理 → 限时训练 → 评估”；明确第 1 章 API 为基线、`final/` 第 11 章再生成、第 2 章 tokenizer 契约测试、第 3 章 GELU 精确化、第 8 章初始化/缩放、教学语料和快照校验规则；同步第 10/11 节交接与未决项。
+- 2026-11-27：完成第 2 章规划：新增 `ch02/README.md`、`ch02/sections/2.1.md`–`2.6.md`，确定固定英中样例、2.1 手写合并占位、六个 stage、BPE 契约、教学语料规格、固定 id logits 回归、16 张图的编号与概念引入审计；新增 §14–15，更新第 2 章清单、交接清单与路线图状态。
+- 2026-11-27：第 2 章固定样例改为同义平行对：英文 `the cat sat on the mat`、中文 `小猫坐在垫子上`；英文样例本身承担 24>16 的长度反例，不再单独设长句；2.1 的手写合并改为 `a+t`、`s+at`、`m+at`、`t+h`、`th+e` 五步，22 个符号降到 13 个，加特殊 token 后 15。
