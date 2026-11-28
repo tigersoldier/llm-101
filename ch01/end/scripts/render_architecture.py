@@ -82,27 +82,34 @@ def _box(top: int, name: str, detail: str, real: bool) -> str:
 def render(stage: int) -> str:
     steps = [step for step in STEPS if step[4](stage)]
     has_placeholder = any(stage < step[3] for step in steps)
+    chapter_complete = not has_placeholder and stage >= 8
     if has_placeholder:
         desc = "实线表示本节已经实现的步骤，虚线表示仍在使用的占位。"
         legend = "实线 = 已实现，虚线 = 占位"
         footer = "只画本节已有的步骤；后面的组件在对应小节才出现。"
+        desc += "后续小节的组件只在对应小节出现。"
+    elif chapter_complete:
+        desc = "实线表示已经实现的步骤；没有占位。"
+        legend = "实线 = 已实现"
+        footer = "只画本章已有的步骤；没有占位。"
     else:
         desc = "实线表示本节已经实现的步骤；本节没有占位。"
         legend = "实线 = 已实现"
         footer = "只画本节已有的步骤；本节没有占位。"
-    desc += "后续小节的组件只在对应小节出现。"
+        desc += "后续小节的组件只在对应小节出现。"
+    title = "第 1 章完成后的管线" if chapter_complete else f"第 {stage} 节结束时的管线"
     height = 80 + len(steps) * 92 + 60
     parts = [
         (
             f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 {height}" '
             'role="img" aria-labelledby="title desc">'
         ),
-        f'<title id="title">第 {stage} 节结束时的管线架构</title>',
+        f'<title id="title">{title}架构</title>',
         f'<desc id="desc">{desc}</desc>',
         f'<rect width="760" height="{height}" fill="#ffffff"/>',
         (
             f'<text x="30" y="36" font-family="system-ui, \'Noto Sans CJK SC\', sans-serif" '
-            f'font-size="18" font-weight="600" fill="#1f2937">第 {stage} 节结束时的管线</text>'
+            f'font-size="18" font-weight="600" fill="#1f2937">{title}</text>'
         ),
         (
             '<text x="730" y="36" text-anchor="end" '
