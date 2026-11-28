@@ -20,19 +20,6 @@ UNK_ID = _TOKEN_TO_ID["<unk>"]
 BOS_ID = _TOKEN_TO_ID["<bos>"]
 EOS_ID = _TOKEN_TO_ID["<eos>"]
 
-CONTEXT_LIMIT = 16
-ENGLISH_SAMPLE = "the cat sat on the mat"
-CHINESE_SAMPLE = "小猫坐在垫子上"
-
-# The hand merge is a 2.1 placeholder, not the algorithm from section 2.2.
-_HAND_MERGES: tuple[tuple[str, str], ...] = (
-    ("a", "t"),
-    ("s", "at"),
-    ("m", "at"),
-    ("t", "h"),
-    ("th", "e"),
-)
-
 
 def character_encode(
     text: str,
@@ -40,7 +27,7 @@ def character_encode(
     add_bos: bool = False,
     add_eos: bool = False,
 ) -> list[int]:
-    """Encode text one code point at a time with the frozen 68-symbol table."""
+    """Encode text one character at a time with the frozen 68-symbol table."""
     ids = [_TOKEN_TO_ID.get(character, UNK_ID) for character in text]
     if add_bos:
         ids.insert(0, BOS_ID)
@@ -66,6 +53,16 @@ def character_decode(
     return "".join(pieces)
 
 
+# The hand merge is a 2.1 placeholder, not the algorithm from section 2.2.
+_HAND_MERGES: tuple[tuple[str, str], ...] = (
+    ("a", "t"),
+    ("s", "at"),
+    ("m", "at"),
+    ("t", "h"),
+    ("th", "e"),
+)
+
+
 def _merge_symbols(symbols: Sequence[str], pair: tuple[str, str]) -> list[str]:
     """Merge non-overlapping occurrences of ``pair`` from left to right."""
     left, right = pair
@@ -86,11 +83,16 @@ def _merge_symbols(symbols: Sequence[str], pair: tuple[str, str]) -> list[str]:
 
 
 def hand_merge(text: str) -> list[str]:
-    """Apply the five section-2.1 merges to a string of code points."""
+    """Apply the five section-2.1 merges to a string of characters."""
     symbols = list(text)
     for pair in _HAND_MERGES:
         symbols = _merge_symbols(symbols, pair)
     return symbols
+
+
+CONTEXT_LIMIT = 16
+ENGLISH_SAMPLE = "the cat sat on the mat"
+CHINESE_SAMPLE = "小猫坐在垫子上"
 
 
 @dataclass(frozen=True)

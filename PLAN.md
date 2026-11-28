@@ -355,6 +355,7 @@ uv run python scripts/show_placeholder.py --stage 1 "the cat sat"
 ### 2.1 的占位与删除
 
 - 手写合并只用于 2.1 演示：`a`+`t`→`at`、`s`+`at`→`sat`、`m`+`at`→`mat`、`t`+`h`→`th`、`th`+`e`→`the`，英文样例从 22 个符号降到 13 个，加特殊 token 后是 15，进入上下文 16。它故意简单、确定、可以手算，不是算法；`cat` 和 `on` 故意保留为字符，说明手写合并是部分的。
+- 2.1 是基线节，不要求读者实现新函数；`baseline.py` 的代码按“字符表与编码 → 手写合并 → 报告与上下文检查”三段直接嵌入正文，不设独立的“参考实现”块，也不做签名空壳。
 - `ch02/start/` 删除第 1 章专用文件 `placeholder.py`、`scripts/show_placeholder.py`、`scripts/render_architecture.py`、`tests/test_placeholder.py`；不做兼容层。
 - `CharacterTokenizer` 在 `ch02/start/` 和 `ch02/end/` 中删除；2.1 的基线在 `ch01/end` 里跑，`show_tokenizer.py --stage 1` 用 `ch02/end/src/llm101/baseline.py` 里冻结的字符表副本，只用于对比。
 - `ch02/end/` 不再生成 `architecture-N.svg`；模型没变，逐节重画架构图是噪声。2.6 用简化模型栈画 `15-tokenizer-model.svg`，并注明完整架构见 1.8。
