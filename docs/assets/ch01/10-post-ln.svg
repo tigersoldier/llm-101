@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 700" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 540" role="img" aria-labelledby="title desc">
 <title id="title">Post-LN：先子层和残差，再 LayerNorm</title>
 <desc id="desc">x → 子层 → +（x）→ LayerNorm → x′</desc>
-<rect width="560" height="700" fill="#ffffff"/>
+<rect width="560" height="540" fill="#ffffff"/>
 <text x="24" y="36" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="17" font-weight="600" fill="#1f2937">Post-LN：先子层和残差，再 LayerNorm</text>
 <text x="24" y="60" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#64748b">x → 子层 → +（x）→ LayerNorm → x′</text>
 <rect x="180" y="100" width="160" height="44" rx="8" fill="#f8fafc" stroke="#3b6ea5"/>
@@ -18,8 +18,7 @@
 <line x1="260" y1="390" x2="260" y2="424" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
 <rect x="180" y="428" width="160" height="44" rx="8" fill="#fff7ed" stroke="#c2410c"/>
 <text x="260" y="455" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#c2410c">x′</text>
-<path d="M 340 122 L 390 122 L 390 368 L 342 368" fill="none" stroke="#c2410c" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M 340 122 L 390 122 L 390 286 L 342 286" fill="none" stroke="#c2410c" stroke-width="2" marker-end="url(#arrow-orange)"/>
 <text x="398" y="250" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="10" fill="#c2410c">残差主路经过 LN</text>
 <text x="24" y="520" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#64748b">先加残差再归一化，残差主路经过 LayerNorm。</text>
-<text x="24" y="548" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="10" fill="#64748b">x → 子层 → +（x）→ LayerNorm → x′</text>
-<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#64748b"/></marker></defs></svg>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#64748b"/></marker><marker id="arrow-orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#c2410c"/></marker></defs></svg>

@@ -6,7 +6,7 @@
 <text x="30" y="60" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="11.5" fill="#64748b">左：每个位置的 Linear → GELU → Linear；右：2-2-1 的 XOR 特例。</text>
 
 <rect x="30" y="90" width="450" height="500" rx="10" fill="#f8fafc" stroke="#cbd5e1"/>
-<text x="50" y="116" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="13" font-weight="600" fill="#1f2937">通用 MLP（每个位置独立）</text>
+<text x="255" y="116" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="13" font-weight="600" fill="#1f2937">通用 MLP（每个位置独立）</text>
 
 <rect x="165" y="140" width="180" height="42" rx="8" fill="#eef2f7" stroke="#94a3b8"/>
 <text x="255" y="166" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">x [C]</text>
@@ -33,31 +33,34 @@
 <text x="50" y="560" font-family="ui-monospace, monospace" font-size="10" fill="#64748b">参数：C·d_ff + d_ff + d_ff·C + C = 1,072</text>
 
 <rect x="510" y="90" width="460" height="500" rx="10" fill="#fffdf8" stroke="#fed7aa"/>
-<text x="530" y="116" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="13" font-weight="600" fill="#1f2937">2-2-1 的 XOR 特例</text>
+<text x="740" y="116" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="13" font-weight="600" fill="#1f2937">2-2-1 的 XOR 特例</text>
 
 <rect x="540" y="140" width="70" height="38" rx="7" fill="#eef2f7" stroke="#94a3b8"/>
 <text x="575" y="164" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">a</text>
 <rect x="640" y="140" width="70" height="38" rx="7" fill="#eef2f7" stroke="#94a3b8"/>
 <text x="675" y="164" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">b</text>
-<text x="740" y="164" font-family="ui-monospace, monospace" font-size="10" fill="#64748b">W1 = [[1,-1],[-1,1]]</text>
+<text x="740" y="164" font-family="ui-monospace, monospace" font-size="10" fill="#64748b">W1 = [[1, −1], [−1, 1]]</text>
 
-<line x1="575" y1="178" x2="595" y2="210" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
-<line x1="675" y1="178" x2="655" y2="210" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
-<rect x="530" y="214" width="190" height="46" rx="8" fill="#e0ecff" stroke="#3b6ea5"/>
-<text x="625" y="235" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1e3a5f">h1 = ReLU(a - b)</text>
-<text x="625" y="251" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="9" fill="#475569">a 比 b 大多少</text>
-<rect x="740" y="214" width="190" height="46" rx="8" fill="#e0ecff" stroke="#3b6ea5"/>
-<text x="835" y="235" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1e3a5f">h2 = ReLU(b - a)</text>
-<text x="835" y="251" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="9" fill="#475569">b 比 a 大多少</text>
+<line x1="575" y1="178" x2="740" y2="196" stroke="#64748b" stroke-width="1.5"/>
+<line x1="675" y1="178" x2="740" y2="196" stroke="#64748b" stroke-width="1.5"/>
+<path d="M 740 196 L 635 196 L 635 210" fill="none" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+<path d="M 740 196 L 845 196 L 845 210" fill="none" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+<circle cx="740" cy="196" r="3" fill="#64748b"/>
+<rect x="540" y="214" width="190" height="46" rx="8" fill="#e0ecff" stroke="#3b6ea5"/>
+<text x="635" y="235" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1e3a5f"><tspan font-style="italic">h</tspan><tspan dy="3" font-size="8">1</tspan><tspan dy="-3"> = ReLU(</tspan><tspan font-style="italic">a</tspan><tspan> − </tspan><tspan font-style="italic">b</tspan><tspan>)</tspan></text>
+<text x="635" y="251" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="9" fill="#475569">a 比 b 大多少</text>
+<rect x="750" y="214" width="190" height="46" rx="8" fill="#e0ecff" stroke="#3b6ea5"/>
+<text x="845" y="235" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#1e3a5f"><tspan font-style="italic">h</tspan><tspan dy="3" font-size="8">2</tspan><tspan dy="-3"> = ReLU(</tspan><tspan font-style="italic">b</tspan><tspan> − </tspan><tspan font-style="italic">a</tspan><tspan>)</tspan></text>
+<text x="845" y="251" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="9" fill="#475569">b 比 a 大多少</text>
 
-<line x1="625" y1="260" x2="625" y2="292" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
-<line x1="835" y1="260" x2="835" y2="292" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
-<rect x="620" y="296" width="220" height="46" rx="8" fill="#ecfdf5" stroke="#047857"/>
-<text x="730" y="317" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#065f46">y = h1 + h2</text>
-<text x="730" y="333" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#475569">W2 = [1, 1]</text>
+<line x1="635" y1="260" x2="635" y2="292" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="845" y1="260" x2="845" y2="292" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+<rect x="630" y="296" width="220" height="46" rx="8" fill="#ecfdf5" stroke="#047857"/>
+<text x="740" y="317" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#065f46"><tspan font-style="italic">y</tspan><tspan> = </tspan><tspan font-style="italic">h</tspan><tspan dy="3" font-size="8">1</tspan><tspan dy="-3"> + </tspan><tspan font-style="italic">h</tspan><tspan dy="3" font-size="8">2</tspan></text>
+<text x="740" y="333" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="#475569">W2 = [[1], [1]]</text>
 
-<text x="530" y="374" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="10.5" fill="#64748b">用 ReLU 近似 GELU：</text>
-<g font-family="ui-monospace, monospace" font-size="10" fill="#1f2937">
+<text x="615" y="374" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="10.5" fill="#64748b">用 ReLU 近似 GELU：</text>
+<g transform="translate(85,0)" font-family="ui-monospace, monospace" font-size="10" fill="#1f2937">
 <rect x="530" y="386" width="50" height="28" fill="#f8fafc" stroke="#94a3b8"/><text x="555" y="405" text-anchor="middle">a</text>
 <rect x="580" y="386" width="50" height="28" fill="#f8fafc" stroke="#94a3b8"/><text x="605" y="405" text-anchor="middle">b</text>
 <rect x="630" y="386" width="50" height="28" fill="#f8fafc" stroke="#94a3b8"/><text x="655" y="405" text-anchor="middle">h1</text>
@@ -84,7 +87,7 @@
 <rect x="680" y="498" width="50" height="28" fill="#f8fafc" stroke="#94a3b8"/><text x="705" y="517" text-anchor="middle">0</text>
 <rect x="730" y="498" width="50" height="28" fill="#ecfdf5" stroke="#047857"/><text x="755" y="517" text-anchor="middle">0</text>
 </g>
-<text x="530" y="552" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="10.5" fill="#64748b">这正是 XOR；GELU 是 ReLU 的平滑版，数值不会正好是 0/1。</text>
+<text x="615" y="552" font-family="system-ui, 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif" font-size="10.5" fill="#64748b">这正是 XOR；GELU 是 ReLU 的平滑版，数值不会正好是 0/1。</text>
 
 <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#64748b"/></marker></defs>
 </svg>
