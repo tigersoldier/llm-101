@@ -185,7 +185,7 @@ final/                    # 与 ch11/end 逐字节一致
 截至 2026-11-27 的状态：
 
 - 第 1 章已完成：`ch01/start/` 是脚手架（3 个红测试），`ch01/end/` 是完成态（39 passed），正文在 `docs/course/ch01/1.1.md`–`1.9.md`。
-- 第 2 章已规划：`ch02/README.md` 与 `ch02/sections/2.1.md`–`2.6.md` 已写；2.1 已写完（`ch02/start/`、`ch02/end/`、图 2.1-1、正文），2.2–2.6 待写。
+- 第 2 章已规划：`ch02/README.md` 与 `ch02/sections/2.1.md`–`2.6.md` 已写；2.1 已写完（`ch02/start/`、`ch02/end/`、图 2.1-1/2.1-2、正文），2.2–2.6 待写。
 - `scripts/check_snapshots.py` 尚未实现；CI 只跑根目录和 `ch01/end`，还没有章节矩阵。
 - 第 1 章正文里指向旧章号的句子暂不回填；等第 2 章正文开工或章节号稳定后统一做一次指针修订，以本文件 §5 为准。
 
@@ -387,7 +387,7 @@ uv run python scripts/show_placeholder.py --stage 1 "the cat sat"
 
 ### 图与资产
 
-- 图放在 `docs/assets/ch02/`，编号 01–16，语义名：`01-token-budget`、`02-pair-loop`、`03-merge-tree`、`04-symbols`、`05-subword-methods`、`06-vocabulary-layers`、`07-vocab-growth`、`08-encode-decode`、`09-unknown`、`10-save-load`、`11-unicode`、`12-compression`、`13-oov`、`14-tokenizer-eval`、`15-tokenizer-model`、`16-regression`。
+- 图放在 `docs/assets/ch02/`，序号 01–16；同一小节可以共用序号，语义名：`01-hand-merge`、`01-token-budget`、`02-pair-loop`、`03-merge-tree`、`04-symbols`、`05-subword-methods`、`06-vocabulary-layers`、`07-vocab-growth`、`08-encode-decode`、`09-unknown`、`10-save-load`、`11-unicode`、`12-compression`、`13-oov`、`14-tokenizer-eval`、`15-tokenizer-model`、`16-regression`。
 - 2.2、2.4、2.5 的扩展阅读各配一张；2.1、2.3、2.6 的正文图不承担扩展阅读。
 - 改动 SVG 后把引用处 `?v=N` 加一；按 `docs/figures.md` 和 `llm101-figure-review` 在 1400/700/390 审核。
 
@@ -448,5 +448,7 @@ uv run python scripts/show_placeholder.py --stage 1 "the cat sat"
 - 2026-11-27：取消第 1 章的 web server、浏览器前端和逐层 trace（含 `forward_with_trace`、stage 8、`test_api.py`、`web/`）；第 1 章收为 1.1–1.9，1.9 只做验收、小结与交接，原理展示继续用 SVG 图、命令行输出和测试。
 - 2026-11-27：补写作规范：新增 `docs/figures.md` 图规则入口；`STYLE.md` 增补“断言配例、先修顺序、术语来历、库函数介绍、每节两张图、公式复核、轴标签/边距”；`ch01/README.md` 增补提交与发布、指针自检、图审核；修正过期 1.10/服务器引用、39/40 测试数字、1.7 上游图角色和根 README 章节数；CI 增加 `ch01/end` 测试。
 - 2026-11-27：按全书流程重排第 5–11 章为“优化器 → 小模型训练 → 真实语料/最终 tokenizer → 缩放 → 推理 → 限时训练 → 评估”；明确第 1 章 API 为基线、`final/` 第 11 章再生成、第 2 章 tokenizer 契约测试、第 3 章 GELU 精确化、第 8 章初始化/缩放、教学语料和快照校验规则；同步第 10/11 节交接与未决项。
-- 2026-11-27：完成第 2 章规划：新增 `ch02/README.md`、`ch02/sections/2.1.md`–`2.6.md`，确定固定英中样例、2.1 手写合并占位、六个 stage、BPE 契约、教学语料规格、固定 id logits 回归、16 张图的编号与概念引入审计；新增 §14–15，更新第 2 章清单、交接清单与路线图状态。
-- 2026-11-27：第 2 章 2.1 已写完：`ch02/start/` 的 BPE 空壳与 3 个红测试、`ch02/end/` 的 stage-1 基线演示与图 2.1-1；固定样例改为同义平行对：英文 `the cat sat on the mat`、中文 `小猫坐在垫子上`；英文样例本身承担 24>16 的长度反例，不再单独设长句；2.1 的手写合并改为 `a+t`、`s+at`、`m+at`、`t+h`、`th+e` 五步，22 个符号降到 13 个，加特殊 token 后 15。
+- 2026-11-27：完成第 2 章规划：新增 `ch02/README.md`、`ch02/sections/2.1.md`–`2.6.md`，确定固定英中样例、2.1 手写合并占位、六个 stage、BPE 契约、教学语料规格、固定 id logits 回归、17 张图的语义名与概念引入审计；新增 §14–15，更新第 2 章清单、交接清单与路线图状态。
+- 2026-11-27：第 2 章 2.1 已写完：`ch02/start/` 的 BPE 空壳与 3 个红测试、`ch02/end/` 的 stage-1 基线演示与图 2.1-2；固定样例改为同义平行对：英文 `the cat sat on the mat`、中文 `小猫坐在垫子上`；英文样例本身承担 24>16 的长度反例，不再单独设长句；2.1 的手写合并改为 `a+t`、`s+at`、`m+at`、`t+h`、`th+e` 五步，22 个符号降到 13 个，加特殊 token 后 15。
+
+- 2026-11-27：为 2.1 增加手写合并工作示意图（图 2.1-1，22→19→18→17→13）；原 token 预算图改为图 2.1-2。

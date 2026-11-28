@@ -5,7 +5,8 @@
 - `src/llm101/baseline.py`：冻结的第 1 章 68 符号字符表、`character_encode`、`character_decode`、`hand_merge`、`build_report` 和 `context_error`。
 - `scripts/show_tokenizer.py`：stage 1 的命令行输出，打印英文/中文基线、未知编号数和手写合并结果。
 - `tests/test_show_tokenizer.py`：3 项测试，检查英文 24>16、中文 7 个 `<unk>`、手写合并 13 个符号。
-- `docs/assets/ch02/01-token-budget.svg`：图 2.1-1。
+- `docs/assets/ch02/01-hand-merge.svg`：图 2.1-1，手写合并的工作过程。
+- `docs/assets/ch02/01-token-budget.svg`：图 2.1-2，字符级编号与上下文 16 的对比。
 
 `src/llm101/tokenizer.py` 仍是 BPE 空壳；`tests/test_tokenizer.py` 的 3 个红测试要到 2.2–2.4 才逐个转绿，2.6 再把它们纳入整章验收。
 

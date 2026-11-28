@@ -1,0 +1,200 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="390" style="width:100%;height:auto" viewBox="0 0 820 390" role="img" aria-labelledby="title desc">
+<title id="title">手写合并的工作过程</title>
+<desc id="desc">英文样例 the cat sat on the mat 从 22 个符号开始；先合并 a+t 为 at，再合并 s+at 为 sat，再合并 m+at 为 mat；余下两步 t+h 与 th+e 把 the 收拢，最终是 13 个符号。</desc>
+<rect width="820" height="390" fill="#ffffff"/>
+<text x="28" y="34" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="20" font-weight="600" fill="#1f2937">手写合并的工作过程</text>
+<text x="28" y="58" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">英文样例 the cat sat on the mat（22 个符号）；␣ 表示空格。每次只显示当前合并对的结果。</text>
+<defs><marker id="arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 z" fill="#64748b"/></marker></defs>
+<text x="28" y="98" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#334155">输入：22 个符号</text>
+<rect x="174.5" y="78" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="186.5" y="98" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">t</text>
+<rect x="201.5" y="78" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="213.5" y="98" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">h</text>
+<rect x="228.5" y="78" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="240.5" y="98" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">e</text>
+<rect x="255.5" y="78" width="24" height="30" rx="5" fill="#ffffff" stroke="#cbd5e1" stroke-dasharray="3 3"/>
+<text x="267.5" y="98" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#64748b">␣</text>
+<rect x="282.5" y="78" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="294.5" y="98" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">c</text>
+<rect x="309.5" y="78" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="321.5" y="98" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">a</text>
+<rect x="336.5" y="78" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="348.5" y="98" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">t</text>
+<rect x="363.5" y="78" width="24" height="30" rx="5" fill="#ffffff" stroke="#cbd5e1" stroke-dasharray="3 3"/>
+<text x="375.5" y="98" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#64748b">␣</text>
+<rect x="390.5" y="78" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="402.5" y="98" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">s</text>
+<rect x="417.5" y="78" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="429.5" y="98" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">a</text>
+<rect x="444.5" y="78" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="456.5" y="98" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">t</text>
+<rect x="471.5" y="78" width="24" height="30" rx="5" fill="#ffffff" stroke="#cbd5e1" stroke-dasharray="3 3"/>
+<text x="483.5" y="98" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#64748b">␣</text>
+<rect x="498.5" y="78" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="510.5" y="98" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">o</text>
+<rect x="525.5" y="78" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="537.5" y="98" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">n</text>
+<rect x="552.5" y="78" width="24" height="30" rx="5" fill="#ffffff" stroke="#cbd5e1" stroke-dasharray="3 3"/>
+<text x="564.5" y="98" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#64748b">␣</text>
+<rect x="579.5" y="78" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="591.5" y="98" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">t</text>
+<rect x="606.5" y="78" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="618.5" y="98" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">h</text>
+<rect x="633.5" y="78" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="645.5" y="98" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">e</text>
+<rect x="660.5" y="78" width="24" height="30" rx="5" fill="#ffffff" stroke="#cbd5e1" stroke-dasharray="3 3"/>
+<text x="672.5" y="98" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#64748b">␣</text>
+<rect x="687.5" y="78" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="699.5" y="98" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">m</text>
+<rect x="714.5" y="78" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="726.5" y="98" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">a</text>
+<rect x="741.5" y="78" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="753.5" y="98" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">t</text>
+<text x="28" y="160" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#334155">第 1 对：a+t→at</text>
+<rect x="209.0" y="140" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="221.0" y="160" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">t</text>
+<rect x="236.0" y="140" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="248.0" y="160" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">h</text>
+<rect x="263.0" y="140" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="275.0" y="160" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">e</text>
+<rect x="290.0" y="140" width="24" height="30" rx="5" fill="#ffffff" stroke="#cbd5e1" stroke-dasharray="3 3"/>
+<text x="302.0" y="160" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#64748b">␣</text>
+<rect x="317.0" y="140" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="329.0" y="160" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">c</text>
+<rect x="344.0" y="140" width="28" height="30" rx="5" fill="#dbeafe" stroke="#3b6ea5"/>
+<text x="358.0" y="160" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1e3a5f">at</text>
+<rect x="375.0" y="140" width="24" height="30" rx="5" fill="#ffffff" stroke="#cbd5e1" stroke-dasharray="3 3"/>
+<text x="387.0" y="160" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#64748b">␣</text>
+<rect x="402.0" y="140" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="414.0" y="160" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">s</text>
+<rect x="429.0" y="140" width="28" height="30" rx="5" fill="#dbeafe" stroke="#3b6ea5"/>
+<text x="443.0" y="160" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1e3a5f">at</text>
+<rect x="460.0" y="140" width="24" height="30" rx="5" fill="#ffffff" stroke="#cbd5e1" stroke-dasharray="3 3"/>
+<text x="472.0" y="160" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#64748b">␣</text>
+<rect x="487.0" y="140" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="499.0" y="160" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">o</text>
+<rect x="514.0" y="140" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="526.0" y="160" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">n</text>
+<rect x="541.0" y="140" width="24" height="30" rx="5" fill="#ffffff" stroke="#cbd5e1" stroke-dasharray="3 3"/>
+<text x="553.0" y="160" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#64748b">␣</text>
+<rect x="568.0" y="140" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="580.0" y="160" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">t</text>
+<rect x="595.0" y="140" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="607.0" y="160" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">h</text>
+<rect x="622.0" y="140" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="634.0" y="160" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">e</text>
+<rect x="649.0" y="140" width="24" height="30" rx="5" fill="#ffffff" stroke="#cbd5e1" stroke-dasharray="3 3"/>
+<text x="661.0" y="160" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#64748b">␣</text>
+<rect x="676.0" y="140" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="688.0" y="160" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">m</text>
+<rect x="703.0" y="140" width="28" height="30" rx="5" fill="#dbeafe" stroke="#3b6ea5"/>
+<text x="717.0" y="160" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1e3a5f">at</text>
+<text x="28" y="222" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#334155">第 2 对：s+at→sat</text>
+<rect x="218.5" y="202" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="230.5" y="222" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">t</text>
+<rect x="245.5" y="202" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="257.5" y="222" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">h</text>
+<rect x="272.5" y="202" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="284.5" y="222" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">e</text>
+<rect x="299.5" y="202" width="24" height="30" rx="5" fill="#ffffff" stroke="#cbd5e1" stroke-dasharray="3 3"/>
+<text x="311.5" y="222" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#64748b">␣</text>
+<rect x="326.5" y="202" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="338.5" y="222" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">c</text>
+<rect x="353.5" y="202" width="28" height="30" rx="5" fill="#dbeafe" stroke="#3b6ea5"/>
+<text x="367.5" y="222" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1e3a5f">at</text>
+<rect x="384.5" y="202" width="24" height="30" rx="5" fill="#ffffff" stroke="#cbd5e1" stroke-dasharray="3 3"/>
+<text x="396.5" y="222" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#64748b">␣</text>
+<rect x="411.5" y="202" width="36" height="30" rx="5" fill="#ffedd5" stroke="#c2410c"/>
+<text x="429.5" y="222" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#7c2d12">sat</text>
+<rect x="450.5" y="202" width="24" height="30" rx="5" fill="#ffffff" stroke="#cbd5e1" stroke-dasharray="3 3"/>
+<text x="462.5" y="222" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#64748b">␣</text>
+<rect x="477.5" y="202" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="489.5" y="222" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">o</text>
+<rect x="504.5" y="202" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="516.5" y="222" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">n</text>
+<rect x="531.5" y="202" width="24" height="30" rx="5" fill="#ffffff" stroke="#cbd5e1" stroke-dasharray="3 3"/>
+<text x="543.5" y="222" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#64748b">␣</text>
+<rect x="558.5" y="202" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="570.5" y="222" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">t</text>
+<rect x="585.5" y="202" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="597.5" y="222" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">h</text>
+<rect x="612.5" y="202" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="624.5" y="222" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">e</text>
+<rect x="639.5" y="202" width="24" height="30" rx="5" fill="#ffffff" stroke="#cbd5e1" stroke-dasharray="3 3"/>
+<text x="651.5" y="222" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#64748b">␣</text>
+<rect x="666.5" y="202" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="678.5" y="222" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">m</text>
+<rect x="693.5" y="202" width="28" height="30" rx="5" fill="#dbeafe" stroke="#3b6ea5"/>
+<text x="707.5" y="222" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1e3a5f">at</text>
+<text x="28" y="284" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#334155">第 3 对：m+at→mat</text>
+<rect x="228.0" y="264" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="240.0" y="284" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">t</text>
+<rect x="255.0" y="264" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="267.0" y="284" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">h</text>
+<rect x="282.0" y="264" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="294.0" y="284" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">e</text>
+<rect x="309.0" y="264" width="24" height="30" rx="5" fill="#ffffff" stroke="#cbd5e1" stroke-dasharray="3 3"/>
+<text x="321.0" y="284" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#64748b">␣</text>
+<rect x="336.0" y="264" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="348.0" y="284" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">c</text>
+<rect x="363.0" y="264" width="28" height="30" rx="5" fill="#dbeafe" stroke="#3b6ea5"/>
+<text x="377.0" y="284" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1e3a5f">at</text>
+<rect x="394.0" y="264" width="24" height="30" rx="5" fill="#ffffff" stroke="#cbd5e1" stroke-dasharray="3 3"/>
+<text x="406.0" y="284" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#64748b">␣</text>
+<rect x="421.0" y="264" width="36" height="30" rx="5" fill="#ffedd5" stroke="#c2410c"/>
+<text x="439.0" y="284" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#7c2d12">sat</text>
+<rect x="460.0" y="264" width="24" height="30" rx="5" fill="#ffffff" stroke="#cbd5e1" stroke-dasharray="3 3"/>
+<text x="472.0" y="284" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#64748b">␣</text>
+<rect x="487.0" y="264" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="499.0" y="284" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">o</text>
+<rect x="514.0" y="264" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="526.0" y="284" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">n</text>
+<rect x="541.0" y="264" width="24" height="30" rx="5" fill="#ffffff" stroke="#cbd5e1" stroke-dasharray="3 3"/>
+<text x="553.0" y="284" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#64748b">␣</text>
+<rect x="568.0" y="264" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="580.0" y="284" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">t</text>
+<rect x="595.0" y="264" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="607.0" y="284" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">h</text>
+<rect x="622.0" y="264" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="634.0" y="284" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">e</text>
+<rect x="649.0" y="264" width="24" height="30" rx="5" fill="#ffffff" stroke="#cbd5e1" stroke-dasharray="3 3"/>
+<text x="661.0" y="284" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#64748b">␣</text>
+<rect x="676.0" y="264" width="36" height="30" rx="5" fill="#dcfce7" stroke="#2f7d5c"/>
+<text x="694.0" y="284" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#14532d">mat</text>
+<text x="28" y="346" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#334155">最终：13 个符号</text>
+<rect x="270.0" y="326" width="36" height="30" rx="5" fill="#ede9fe" stroke="#6d28d9"/>
+<text x="288.0" y="346" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#3b0764">the</text>
+<rect x="309.0" y="326" width="24" height="30" rx="5" fill="#ffffff" stroke="#cbd5e1" stroke-dasharray="3 3"/>
+<text x="321.0" y="346" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#64748b">␣</text>
+<rect x="336.0" y="326" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="348.0" y="346" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">c</text>
+<rect x="363.0" y="326" width="28" height="30" rx="5" fill="#dbeafe" stroke="#3b6ea5"/>
+<text x="377.0" y="346" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1e3a5f">at</text>
+<rect x="394.0" y="326" width="24" height="30" rx="5" fill="#ffffff" stroke="#cbd5e1" stroke-dasharray="3 3"/>
+<text x="406.0" y="346" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#64748b">␣</text>
+<rect x="421.0" y="326" width="36" height="30" rx="5" fill="#ffedd5" stroke="#c2410c"/>
+<text x="439.0" y="346" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#7c2d12">sat</text>
+<rect x="460.0" y="326" width="24" height="30" rx="5" fill="#ffffff" stroke="#cbd5e1" stroke-dasharray="3 3"/>
+<text x="472.0" y="346" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#64748b">␣</text>
+<rect x="487.0" y="326" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="499.0" y="346" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">o</text>
+<rect x="514.0" y="326" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="526.0" y="346" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">n</text>
+<rect x="541.0" y="326" width="24" height="30" rx="5" fill="#ffffff" stroke="#cbd5e1" stroke-dasharray="3 3"/>
+<text x="553.0" y="346" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#64748b">␣</text>
+<rect x="568.0" y="326" width="36" height="30" rx="5" fill="#ede9fe" stroke="#6d28d9"/>
+<text x="586.0" y="346" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#3b0764">the</text>
+<rect x="607.0" y="326" width="24" height="30" rx="5" fill="#ffffff" stroke="#cbd5e1" stroke-dasharray="3 3"/>
+<text x="619.0" y="346" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#64748b">␣</text>
+<rect x="634.0" y="326" width="36" height="30" rx="5" fill="#dcfce7" stroke="#2f7d5c"/>
+<text x="652.0" y="346" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#14532d">mat</text>
+<line x1="470" y1="108" x2="470" y2="138" stroke="#64748b" stroke-width="1.6" marker-end="url(#arrow)"/>
+<text x="482" y="127.0" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#475569">合并 3 处</text>
+<line x1="470" y1="170" x2="470" y2="200" stroke="#64748b" stroke-width="1.6" marker-end="url(#arrow)"/>
+<text x="482" y="189.0" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#475569">合并 1 处</text>
+<line x1="470" y1="232" x2="470" y2="262" stroke="#64748b" stroke-width="1.6" marker-end="url(#arrow)"/>
+<text x="482" y="251.0" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#475569">合并 1 处</text>
+<line x1="470" y1="294" x2="470" y2="324" stroke="#64748b" stroke-width="1.6" marker-end="url(#arrow)"/>
+<text x="482" y="313.0" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#475569">t+h→th，th+e→the</text>
+<text x="28" y="376" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#64748b">最终 13 个片段 + 2 个特殊 token = 15 个位置；彩色片段是各自步骤新合并出来的符号。</text>
+</svg>
