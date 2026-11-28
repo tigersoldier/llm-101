@@ -1,101 +1,101 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="840" height="470" style="width:100%;height:auto" viewBox="0 0 840 470" role="img" aria-labelledby="title desc">
 <title id="title">lower 与 lowest 的合并阶梯</title>
-<desc id="desc">同一份合并列表按 rank 依次作用：rank 0 合并 l+o，rank 1 合并 lo+w，rank 2 合并 low+e；rank 3 只合并 lowe+r，rank 4 合并 lowe+s，rank 5 合并 lowes+t。</desc>
+<desc id="desc">同一份合并列表按 rank 依次作用：rank 0–2 合并两条序列共享的 l+o、lo+w、low+e；rank 3 只把 lower 的 lowe+r 合并成 lower；rank 4–5 只作用于 lowest。无变化 表示该 rank 对这条序列没有合并。</desc>
 <rect width="840" height="470" fill="#ffffff"/>
 <text x="28" y="34" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="20" font-weight="600" fill="#1f2937">lower 与 lowest 的合并阶梯</text>
-<text x="28" y="58" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">同一份合并列表按 rank 依次作用；rank 3 只作用于 lower，rank 4–5 只作用于 lowest。浅蓝是共享前缀，橙色、绿色、紫色是各自完成的词。</text>
+<text x="28" y="58" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#64748b">同一份合并列表按 rank 依次作用；rank 3 只合并 lower 的 r，rank 4–5 只合并 lowest 的 s、t。</text>
 <defs><marker id="arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 z" fill="#64748b"/></marker></defs>
-<text x="270" y="78" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#334155">lower</text>
-<text x="600" y="78" text-anchor="middle" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#334155">lowest</text>
+<text x="244.5" y="78" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#334155">lower</text>
+<text x="574.5" y="78" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="11" fill="#334155">lowest</text>
 <text x="28" y="104" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#334155">输入</text>
-<rect x="204.0" y="84" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
-<text x="216.0" y="104" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">l</text>
-<rect x="231.0" y="84" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
-<text x="243.0" y="104" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">o</text>
-<rect x="258.0" y="84" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
-<text x="270.0" y="104" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">w</text>
-<rect x="285.0" y="84" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
-<text x="297.0" y="104" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">e</text>
-<rect x="312.0" y="84" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
-<text x="324.0" y="104" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">r</text>
-<rect x="520.5" y="84" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
-<text x="532.5" y="104" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">l</text>
-<rect x="547.5" y="84" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
-<text x="559.5" y="104" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">o</text>
+<rect x="244.5" y="84" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="256.5" y="104" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">l</text>
+<rect x="271.5" y="84" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="283.5" y="104" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">o</text>
+<rect x="298.5" y="84" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="310.5" y="104" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">w</text>
+<rect x="325.5" y="84" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="337.5" y="104" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">e</text>
+<rect x="352.5" y="84" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="364.5" y="104" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">r</text>
 <rect x="574.5" y="84" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
-<text x="586.5" y="104" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">w</text>
+<text x="586.5" y="104" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">l</text>
 <rect x="601.5" y="84" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
-<text x="613.5" y="104" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">e</text>
+<text x="613.5" y="104" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">o</text>
 <rect x="628.5" y="84" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
-<text x="640.5" y="104" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">s</text>
+<text x="640.5" y="104" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">w</text>
 <rect x="655.5" y="84" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
-<text x="667.5" y="104" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">t</text>
+<text x="667.5" y="104" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">e</text>
+<rect x="682.5" y="84" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="694.5" y="104" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">s</text>
+<rect x="709.5" y="84" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="721.5" y="104" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">t</text>
 <text x="28" y="156" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#334155">rank 0</text>
-<rect x="215.5" y="136" width="28" height="30" rx="5" fill="#dbeafe" stroke="#3b6ea5"/>
-<text x="229.5" y="156" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1e3a5f">lo</text>
-<rect x="246.5" y="136" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
-<text x="258.5" y="156" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">w</text>
-<rect x="273.5" y="136" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
-<text x="285.5" y="156" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">e</text>
-<rect x="300.5" y="136" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
-<text x="312.5" y="156" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">r</text>
-<rect x="532.0" y="136" width="28" height="30" rx="5" fill="#dbeafe" stroke="#3b6ea5"/>
-<text x="546.0" y="156" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1e3a5f">lo</text>
-<rect x="563.0" y="136" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
-<text x="575.0" y="156" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">w</text>
-<rect x="590.0" y="136" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
-<text x="602.0" y="156" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">e</text>
-<rect x="617.0" y="136" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
-<text x="629.0" y="156" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">s</text>
-<rect x="644.0" y="136" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
-<text x="656.0" y="156" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">t</text>
+<rect x="256" y="136" width="28" height="30" rx="5" fill="#dbeafe" stroke="#3b6ea5"/>
+<text x="270" y="156" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1e3a5f">lo</text>
+<rect x="287" y="136" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="299" y="156" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">w</text>
+<rect x="314" y="136" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="326" y="156" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">e</text>
+<rect x="341" y="136" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="353" y="156" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">r</text>
+<rect x="586" y="136" width="28" height="30" rx="5" fill="#dbeafe" stroke="#3b6ea5"/>
+<text x="600" y="156" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1e3a5f">lo</text>
+<rect x="617" y="136" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="629" y="156" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">w</text>
+<rect x="644" y="136" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="656" y="156" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">e</text>
+<rect x="671" y="136" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="683" y="156" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">s</text>
+<rect x="698" y="136" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="710" y="156" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">t</text>
 <text x="28" y="208" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#334155">rank 1</text>
-<rect x="225.0" y="188" width="36" height="30" rx="5" fill="#dbeafe" stroke="#3b6ea5"/>
-<text x="243.0" y="208" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1e3a5f">low</text>
-<rect x="264.0" y="188" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
-<text x="276.0" y="208" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">e</text>
-<rect x="291.0" y="188" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
-<text x="303.0" y="208" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">r</text>
-<rect x="541.5" y="188" width="36" height="30" rx="5" fill="#dbeafe" stroke="#3b6ea5"/>
-<text x="559.5" y="208" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1e3a5f">low</text>
-<rect x="580.5" y="188" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
-<text x="592.5" y="208" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">e</text>
-<rect x="607.5" y="188" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
-<text x="619.5" y="208" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">s</text>
-<rect x="634.5" y="188" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
-<text x="646.5" y="208" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">t</text>
+<rect x="252" y="188" width="36" height="30" rx="5" fill="#dbeafe" stroke="#3b6ea5"/>
+<text x="270" y="208" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1e3a5f">low</text>
+<rect x="291" y="188" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="303" y="208" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">e</text>
+<rect x="318" y="188" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="330" y="208" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">r</text>
+<rect x="582" y="188" width="36" height="30" rx="5" fill="#dbeafe" stroke="#3b6ea5"/>
+<text x="600" y="208" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1e3a5f">low</text>
+<rect x="621" y="188" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="633" y="208" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">e</text>
+<rect x="648" y="188" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="660" y="208" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">s</text>
+<rect x="675" y="188" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="687" y="208" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">t</text>
 <text x="28" y="260" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#334155">rank 2</text>
-<rect x="234.5" y="240" width="44" height="30" rx="5" fill="#dbeafe" stroke="#3b6ea5"/>
-<text x="256.5" y="260" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1e3a5f">lowe</text>
-<rect x="281.5" y="240" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
-<text x="293.5" y="260" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">r</text>
-<rect x="551.0" y="240" width="44" height="30" rx="5" fill="#dbeafe" stroke="#3b6ea5"/>
-<text x="573.0" y="260" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1e3a5f">lowe</text>
-<rect x="598.0" y="240" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
-<text x="610.0" y="260" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">s</text>
-<rect x="625.0" y="240" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
-<text x="637.0" y="260" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">t</text>
+<rect x="248" y="240" width="44" height="30" rx="5" fill="#dbeafe" stroke="#3b6ea5"/>
+<text x="270" y="260" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1e3a5f">lowe</text>
+<rect x="295" y="240" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="307" y="260" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">r</text>
+<rect x="578" y="240" width="44" height="30" rx="5" fill="#dbeafe" stroke="#3b6ea5"/>
+<text x="600" y="260" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1e3a5f">lowe</text>
+<rect x="625" y="240" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="637" y="260" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">s</text>
+<rect x="652" y="240" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="664" y="260" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">t</text>
 <text x="28" y="312" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#334155">rank 3</text>
-<rect x="244.0" y="292" width="52" height="30" rx="5" fill="#ffedd5" stroke="#c2410c"/>
-<text x="270.0" y="312" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#7c2d12">lower</text>
-<rect x="551.0" y="292" width="44" height="30" rx="5" fill="#dbeafe" stroke="#3b6ea5"/>
-<text x="573.0" y="312" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1e3a5f">lowe</text>
-<rect x="598.0" y="292" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
-<text x="610.0" y="312" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">s</text>
-<rect x="625.0" y="292" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
-<text x="637.0" y="312" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">t</text>
+<rect x="244" y="292" width="52" height="30" rx="5" fill="#ffedd5" stroke="#c2410c"/>
+<text x="270" y="312" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#7c2d12">lower</text>
+<rect x="578" y="292" width="44" height="30" rx="5" fill="#dbeafe" stroke="#3b6ea5"/>
+<text x="600" y="312" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1e3a5f">lowe</text>
+<rect x="625" y="292" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="637" y="312" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">s</text>
+<rect x="652" y="292" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="664" y="312" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">t</text>
 <text x="28" y="364" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#334155">rank 4</text>
-<rect x="244.0" y="344" width="52" height="30" rx="5" fill="#ffedd5" stroke="#c2410c"/>
-<text x="270.0" y="364" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#7c2d12">lower</text>
-<rect x="560.5" y="344" width="52" height="30" rx="5" fill="#dcfce7" stroke="#2f7d5c"/>
-<text x="586.5" y="364" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#14532d">lowes</text>
-<rect x="615.5" y="344" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
-<text x="627.5" y="364" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">t</text>
+<rect x="244" y="344" width="52" height="30" rx="5" fill="#ffedd5" stroke="#c2410c"/>
+<text x="270" y="364" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#7c2d12">lower</text>
+<rect x="574" y="344" width="52" height="30" rx="5" fill="#dcfce7" stroke="#2f7d5c"/>
+<text x="600" y="364" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#14532d">lowes</text>
+<rect x="629" y="344" width="24" height="30" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
+<text x="641" y="364" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">t</text>
 <text x="28" y="416" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="12" fill="#334155">rank 5</text>
-<rect x="244.0" y="396" width="52" height="30" rx="5" fill="#ffedd5" stroke="#c2410c"/>
-<text x="270.0" y="416" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#7c2d12">lower</text>
-<rect x="570.0" y="396" width="60" height="30" rx="5" fill="#ede9fe" stroke="#6d28d9"/>
-<text x="600.0" y="416" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#3b0764">lowest</text>
+<rect x="244" y="396" width="52" height="30" rx="5" fill="#ffedd5" stroke="#c2410c"/>
+<text x="270" y="416" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#7c2d12">lower</text>
+<rect x="570" y="396" width="60" height="30" rx="5" fill="#ede9fe" stroke="#6d28d9"/>
+<text x="600" y="416" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#3b0764">lowest</text>
 <line x1="270" y1="114" x2="270" y2="136" stroke="#64748b" stroke-width="1.4" marker-end="url(#arrow)"/>
 <line x1="600" y1="114" x2="600" y2="136" stroke="#64748b" stroke-width="1.4" marker-end="url(#arrow)"/>
 <line x1="270" y1="166" x2="270" y2="188" stroke="#64748b" stroke-width="1.4" marker-end="url(#arrow)"/>
@@ -103,7 +103,9 @@
 <line x1="270" y1="218" x2="270" y2="240" stroke="#64748b" stroke-width="1.4" marker-end="url(#arrow)"/>
 <line x1="600" y1="218" x2="600" y2="240" stroke="#64748b" stroke-width="1.4" marker-end="url(#arrow)"/>
 <line x1="270" y1="270" x2="270" y2="292" stroke="#64748b" stroke-width="1.4" marker-end="url(#arrow)"/>
-<text x="612" y="282" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="10" fill="#94a3b8">无变化</text>
 <line x1="600" y1="322" x2="600" y2="344" stroke="#64748b" stroke-width="1.4" marker-end="url(#arrow)"/>
 <line x1="600" y1="374" x2="600" y2="396" stroke="#64748b" stroke-width="1.4" marker-end="url(#arrow)"/>
+<text x="688" y="312" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="10" fill="#94a3b8">无变化</text>
+<text x="308" y="364" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="10" fill="#94a3b8">无变化</text>
+<text x="308" y="416" font-family="system-ui, 'Noto Sans CJK SC', sans-serif" font-size="10" fill="#94a3b8">无变化</text>
 </svg>
